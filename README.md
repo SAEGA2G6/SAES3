@@ -1,5 +1,5 @@
 # SAES3
-
+ 
 Notre équipe est chargée de développer un jeu sérieux (« serious
 game »). 
 Il s’agit d’une application qui vise à atteindre un objectif
