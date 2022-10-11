@@ -11,6 +11,6 @@ comme le propose par exemple les plateformes CodeWars ou
 CodeInGame. 
 
 Le type et les fonctionnalités du jeu seront à
-définir avec le client (tuteur).
+définir avec le client (tuteur). 
 
 [Presentation SAE](https://github.com/Aehnt/SAES3/files/9753629/2022_SAE_S3_presentation.pdf)
