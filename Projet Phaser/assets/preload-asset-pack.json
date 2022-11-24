@@ -1,0 +1,28 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/guapen.png",
+                "type": "image",
+                "key": "guapen"
+            },
+            {
+                "url": "assets/spinner.png",
+                "key": "spinner",
+                "type": "spritesheet",
+                "frameConfig":
+                {
+                "frameWidth": 69.5,
+                "frameHeight": 69.5
+                }
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
