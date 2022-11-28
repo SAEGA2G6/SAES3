@@ -2,8 +2,8 @@
     "section1": {
         "files": [
             {
-                "url": "assets/dino.png",
-                "key": "dino",
+                "url": "assets/menu-image.jpg",
+                "key": "menu-image",
                 "type": "image"
             },
             {

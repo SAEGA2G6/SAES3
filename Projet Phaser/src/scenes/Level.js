@@ -43,6 +43,7 @@ class Level extends Phaser.Scene {
       0,
       0
     );
+
     var calque2 = carte.createLayer(
       "Calque de Tuiles 2",
       [
@@ -60,11 +61,12 @@ class Level extends Phaser.Scene {
       0
     );
 
+
     //Pokemon Sprite
     const player = new Player(this, 400, 218);
-    player.setRectangle(200);
 
     //Calque 3 (pour que le joueur soit en-dessous)
+
     var calque3 = carte.createLayer(
       "Calque de Tuiles 3",
       [
@@ -88,15 +90,13 @@ class Level extends Phaser.Scene {
     calque3.setCollisionByProperty({ estSolide: true });
     this.physics.add.collider(player, [calque1,calque2,calque3]);
 
-
-    // text_1
-    /*const text_1 = this.add.text(400, 408, "", {});
-    text_1.setOrigin(0.5, 0.5);
-    text_1.text = "Je suis débile et je m'appelle Ethan";
-    text_1.setStyle({ fontFamily: "Arial", fontSize: "30px" });*/
-
+    //camera
+    this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
+    this.cameras.main.startFollow(player);
+    this.cameras.main.zoom=1.2;
+    
     // (components)
-    new PushOnClick(player);
+    //new PushOnClick(player);
 
     this.player = player;
 
