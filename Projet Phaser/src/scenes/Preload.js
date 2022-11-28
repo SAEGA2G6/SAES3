@@ -64,7 +64,8 @@ class Preload extends Phaser.Scene {
 
 		//this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
 		console.log('fin preload');
-		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Menu"));
+		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
+		//this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Menu"));
 	}
 
 	/* END-USER-CODE */

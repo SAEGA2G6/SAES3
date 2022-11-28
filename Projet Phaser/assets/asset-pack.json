@@ -15,6 +15,26 @@
                 "frameWidth": 32,
                 "frameHeight": 48
                 }
+            },
+            {
+                "url": "assets/cadredoubleporte.png",
+                "key": "cadredoubleporte",
+                "type": "image"
+            },
+            {
+                "url": "assets/cadresimpleporte.png",
+                "key": "cadresimpleporte",
+                "type": "image"
+            },
+            {
+                "url": "assets/doubleporte.png",
+                "key": "doubleporte",
+                "type": "image"
+            },
+            {
+                "url": "assets/simpleporte.png",
+                "key": "simpleporte",
+                "type": "image"
             }
         ]
     },

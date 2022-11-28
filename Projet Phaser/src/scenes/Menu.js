@@ -17,25 +17,27 @@ class Menu extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     // text_menu
-    const text_menu = this.add.text(400, 150, "", {});
+    const text_menu = this.add.text(400, 100, "", {});
     text_menu.setOrigin(0.5, 0.5);
     text_menu.text = "MENU";
     text_menu.setStyle({
       fontFamily: "Roboto",
-      fontSize: "250px",
+      fontSize: "125px",
       color: "white",
       backgroundColor: "black",
     });
 
-    const text_start = this.add.text(400, 500, "", {});
+    const text_start = this.add.text(400, 400, "", {});
     text_start.setOrigin(0.5, 0.5);
     text_start.text = "START";
     text_start.setStyle({
       fontFamily: "Roboto",
-      fontSize: "100px",
+      fontSize: "60px",
       color: "white",
       backgroundColor: "black",
     });
+
+    text_menu.setInteractive().on("pointerdown",() => text_menu.text = "feur feur feur");
 
     this.text_start = text_start;
     //animation start
@@ -44,6 +46,7 @@ class Menu extends Phaser.Scene {
       .on("pointerdown", () => this.start_button_down())
       .on("pointerover", () => this.start_button_over())
       .on("pointerout", () => this.start_button_out());
+    new PushOnClick(text_start);
 
     this.events.emit("scene-awake");
   }

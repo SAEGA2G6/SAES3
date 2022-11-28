@@ -7,11 +7,6 @@
         "type": "image"
       },
       {
-        "url": "assets/tilesets/door.png",
-        "key": "door",
-        "type": "image"
-      },
-      {
         "url": "assets/tilesets/escaliers.png",
         "key": "escaliers",
         "type": "image"

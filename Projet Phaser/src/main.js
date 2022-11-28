@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
 			arcade:{
 				debug: true,
 				gravity: {y: 0},
-				debug: true //false de base
+				debug: false //false de base
 			}
 		}
 	});
