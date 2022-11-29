@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
 			arcade:{
 				debug: true,
 				gravity: {y: 0},
-				debug: true //false de base
+				debug: false //false de base
 			}
 		}
 	});
@@ -31,7 +31,7 @@ class Boot extends Phaser.Scene {
 		
 		this.load.pack("pack", "assets/preload-asset-pack.json");
 		
-
+		console.log("Lancement Preload");
 		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Preload"));
 	}
 }

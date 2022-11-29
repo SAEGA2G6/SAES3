@@ -26,8 +26,7 @@ class Preload extends Phaser.Scene {
 
 		// spinner
 		const spinner = this.physics.add.sprite(400, 219, "spinner");
-		//spinner.scaleX = 0.5915891440784282;
-		//spinner.scaleY = 0.5915891440784282;
+
 
 		this.anims.create({
 			key: "spin",
@@ -62,8 +61,7 @@ class Preload extends Phaser.Scene {
 
 		this.editorPreload();
 
-		//this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
-		console.log('fin preload');
+		console.log('Fin Preload');
 		//this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
 		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Menu"));
 	}

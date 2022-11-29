@@ -2,11 +2,6 @@
     "section1": {
         "files": [
             {
-                "url": "assets/menu-image.jpg",
-                "key": "menu-image",
-                "type": "image"
-            },
-            {
                 "url": "assets/pokemon-char-sheet.png",
                 "key": "player",
                 "type": "spritesheet",
@@ -15,6 +10,11 @@
                 "frameWidth": 32,
                 "frameHeight": 48
                 }
+            },
+            {
+                "url": "assets/prof1.png",
+                "key": "prof1",
+                "type": "image"
             },
             {
                 "url": "assets/cadredoubleporte.png",

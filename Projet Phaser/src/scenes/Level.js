@@ -44,12 +44,16 @@ class Level extends Phaser.Scene {
     //Pokemon Sprite
     const player = new Player(this, 400, 218);
 
+    //Professeur
+    const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
+    prof1.body.setSize(prof1.width * 0.6, prof1.height * 0.8, true);
+
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
     var door_room2_1 = this.physics.add
       .sprite(770, 415, "doubleporte")
       .setImmovable();
-    
+
     var door_room2_2 = this.physics.add
       .sprite(1025, 415, "doubleporte")
       .setImmovable();
@@ -98,7 +102,24 @@ class Level extends Phaser.Scene {
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
 
-    const collider_list = [calque1, calque2, calque3,door_room2_1,door_room2_2,door_room3_1,door_room3_2,door_room4_1,door_room4_2,door_office1,door_office2,door_office3,door_office4,door_secretariat,door_boss];
+    const collider_list = [
+      calque1,
+      calque2,
+      calque3,
+      prof1,
+      door_room2_1,
+      door_room2_2,
+      door_room3_1,
+      door_room3_2,
+      door_room4_1,
+      door_room4_2,
+      door_office1,
+      door_office2,
+      door_office3,
+      door_office4,
+      door_secretariat,
+      door_boss,
+    ];
     this.physics.add.collider(player, collider_list);
 
     //camera

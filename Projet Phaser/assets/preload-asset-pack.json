@@ -2,11 +2,6 @@
     "section1": {
         "files": [
             {
-                "url": "assets/guapen.png",
-                "type": "image",
-                "key": "guapen"
-            },
-            {
                 "url": "assets/spinner.png",
                 "key": "spinner",
                 "type": "spritesheet",
