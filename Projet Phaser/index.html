@@ -7,6 +7,7 @@
 	
 	<title>My Game</title>
 
+	<link rel="preload" as="font" href="assets/fonts/Retro_Computer.otf" type="font/otf" />
 	<script src="lib/phaser.min.js"></script>
 	<script src="src/components/Player.js"></script>
 	<script src="src/components/UserComponent.js"></script>
@@ -23,7 +24,14 @@
 			margin: 0;
 			padding: 0;
 		}
+		@font-face {
+			font-family: retro-computer;
+			src: url(assets/fonts/Retro_Computer.otf);
+		}
 	</style>
+
+<div style="font-family:retro-computer; position:absolute; left:-1000px; visibility:hidden;">.</div>
+
 
 </head>
 

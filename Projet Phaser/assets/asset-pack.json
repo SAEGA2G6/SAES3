@@ -35,6 +35,11 @@
                 "url": "assets/simpleporte.png",
                 "key": "simpleporte",
                 "type": "image"
+            },
+            {
+                "url": "assets/menuDemarrage.png",
+                "key": "menuDemarrage",
+                "type": "image"
             }
         ]
     },

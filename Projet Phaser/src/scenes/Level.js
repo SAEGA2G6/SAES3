@@ -44,12 +44,11 @@ class Level extends Phaser.Scene {
     //Pokemon Sprite
     const player = new Player(this, 400, 218);
 
-    //Portes
+    //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
     var door_room2_1 = this.physics.add
       .sprite(770, 415, "doubleporte")
       .setImmovable();
-    door_room2_1.setTexture('player');
     
     var door_room2_2 = this.physics.add
       .sprite(1025, 415, "doubleporte")
