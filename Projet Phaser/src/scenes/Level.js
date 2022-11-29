@@ -51,47 +51,67 @@ class Level extends Phaser.Scene {
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
     var door_room2_1 = this.physics.add
-      .sprite(770, 415, "doubleporte")
+      .sprite(768, 416, "doubleporte")
       .setImmovable();
 
     var door_room2_2 = this.physics.add
-      .sprite(1025, 415, "doubleporte")
+      .sprite(1024, 416, "doubleporte")
       .setImmovable();
 
     var door_room3_1 = this.physics.add
-      .sprite(1632, 415, "doubleporte")
+      .sprite(1632, 416, "doubleporte")
       .setImmovable();
     var door_room3_2 = this.physics.add
-      .sprite(1887, 415, "doubleporte")
+      .sprite(1888, 416, "doubleporte")
       .setImmovable();
 
     var door_room4_1 = this.physics.add
       .sprite(1632, 545, "doubleporte")
       .setImmovable();
+      door_room4_1.body.setSize(door_room4_1.width,door_room4_1.height*0.2).setOffset(0,31);
     var door_room4_2 = this.physics.add
-      .sprite(1887, 545, "doubleporte")
+      .sprite(1888, 545, "doubleporte")
       .setImmovable();
+      door_room4_2.body.setSize(door_room4_2.width,door_room4_2.height*0.2).setOffset(0,31);
 
     var door_office1 = this.physics.add
-      .sprite(1215, 415, "doubleporte")
+      .sprite(1216, 416, "doubleporte")
       .setImmovable();
     var door_office2 = this.physics.add
-      .sprite(1440, 415, "doubleporte")
+      .sprite(1440, 416, "doubleporte")
       .setImmovable();
     var door_office3 = this.physics.add
-      .sprite(1215, 545, "doubleporte")
+      .sprite(1216, 545, "doubleporte")
       .setImmovable();
+      door_office3.body.setSize(door_office3.width,door_office3.height*0.2).setOffset(0,31);
     var door_office4 = this.physics.add
       .sprite(1440, 545, "doubleporte")
       .setImmovable();
+      door_office4.body.setSize(door_office4.width,door_office4.height*0.2).setOffset(0,31);
 
     var door_secretariat = this.physics.add
-      .sprite(927, 673, "doubleporte")
+      .sprite(928, 673, "doubleporte")
       .setImmovable();
+    door_secretariat.body.setSize(door_secretariat.width,door_secretariat.height*0.2).setOffset(0,31);
 
     var door_boss = this.physics.add
       .sprite(750, 673, "simpleporte")
       .setImmovable();
+    door_boss.body.setSize(door_boss.width,door_boss.height*(0.2));
+
+
+    //Indice
+
+    const pcAllume1_room1 = this.physics.add
+    .sprite(495,240,"pcAllume")
+    .setImmovable();
+    pcAllume1_room1.flipX=true;
+    const pcAllume2_room1 = this.physics.add
+    .sprite(625,110,"pcAllume")
+    .setImmovable();
+    const papiers_room1 = this.physics.add
+    .sprite(305,80,"papiers")
+    .setImmovable();
 
     //Calque 3 (pour que le joueur soit en-dessous)
 

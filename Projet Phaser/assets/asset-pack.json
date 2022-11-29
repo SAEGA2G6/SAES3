@@ -40,6 +40,16 @@
                 "url": "assets/menuDemarrage.png",
                 "key": "menuDemarrage",
                 "type": "image"
+            },
+            {
+                "url": "assets/pcAllume.png",
+                "key": "pcAllume",
+                "type": "image"
+            },
+            {
+                "url": "assets/papiers.png",
+                "key": "papiers",
+                "type": "image"
             }
         ]
     },
