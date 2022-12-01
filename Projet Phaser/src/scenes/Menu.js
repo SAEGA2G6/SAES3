@@ -29,22 +29,6 @@ class Menu extends Phaser.Scene {
     this.editorCreate();
   }
 
-  // Fonctions pour pointerdown, pointerover et pointerout
-
-  start_button_down() {
-    this.text_start.setStyle({ fill: "yellow" });
-    console.log("Lancement Level");
-    this.scene.start("Level");
-  }
-
-  start_button_over() {
-    this.text_start.setStyle({ fill: "orange" });
-  }
-
-  start_button_out() {
-    this.text_start.setStyle({ fill: "white" });
-  }
-
   // Texte du menu
 
   place_menu_items() {
@@ -73,12 +57,12 @@ class Menu extends Phaser.Scene {
     this.text_start = text_start;
 
     // Gestion START
-    text_start
+    new TextColor(text_start, "Level");
+    new TextColor(text_highscore, "Highscore");
+
+    /*text_start
       .setInteractive({ useHandCursor: true })
-      .on("pointerdown", () => this.start_button_down())
-      .on("pointerover", () => this.start_button_over())
-      .on("pointerout", () => this.start_button_out());
-    new PushOnClick(text_start);
+      .on("pointerdown", () => this.start_button_down());*/
   }
 
   /* END-USER-CODE */

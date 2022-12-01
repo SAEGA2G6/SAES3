@@ -5,12 +5,13 @@
 
 class TextColor extends UserComponent {
 
-	constructor(gameObject) {
+	constructor(gameObject, scene) {
 		super(gameObject);
 
 		this.gameObject = gameObject;
 		gameObject["__TextColor"] = this;
         
+		this.scene = scene;
 
     }
 
@@ -19,20 +20,15 @@ class TextColor extends UserComponent {
 		return gameObject["__TextColor"];
 	}
 
-	/** @type {Phaser.GameObjects.Image} */
+	/** @type {Phaser.GameObjects.Text} */
 	gameObject;
 
 	awake() {
 
-		this.gameObject.setInteractive().on("pointerdown", () => {
-
-			this.scene.add.tween({
-				targets: this.gameObject,
-				scaleX: "*=0.8",
-				scaleY: "*=0.8",
-				duration: 80,
-				yoyo: true
-			});
-		});
+		this.gameObject.setInteractive({ useHandCursor: true }).on("pointerdown", () => { this.gameObject.setStyle({fill: "purple"}), this.gameObject.scene.scene.start(this.scene)});
+		this.gameObject.setInteractive({ useHandCursor: true }).on("pointerover", () => this.gameObject.setStyle({fill: "orange"}));
+		this.gameObject.setInteractive({ useHandCursor: true }).on("pointerout", () => this.gameObject.setStyle({fill: "white"}));
+		
+		//new PushOnClick(this.gameObject);
 	}
 }

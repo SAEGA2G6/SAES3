@@ -8,7 +8,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.world.enable(this);
     this.setTexture("player");
     this.setScale(0.8,0.8);
-    this.body.setSize(this.width*0.6,this.height*0.8,true);
+    this.body.setSize(this.width*0.6,this.height*0.5).setOffset(6,20);
+    this.setDepth(5);
     this.scene = scene;
     scene.add.existing(this);
 
