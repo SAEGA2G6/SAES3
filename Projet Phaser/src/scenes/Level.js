@@ -35,11 +35,13 @@ class Level extends Phaser.Scene {
       tileset8,
     ];
 
-    //Calque 1 et 2 (pour que le joueur soit au-dessus)
+    //Calque 1,2 et 3
 
-    var calque1 = carte.createLayer("Calque de Tuiles 1", tilesets_list, 0, 0);
+    var calque1 = carte.createLayer("Calque de Tuiles 1", tilesets_list, 0, 0).setDepth(0);
 
-    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0);
+    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(0);
+
+    var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0).setDepth(0);
 
     //Pokemon Sprite
     const player = new Player(this, 400, 218);
@@ -50,10 +52,8 @@ class Level extends Phaser.Scene {
 
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
-    /*var door_room2_1 = this.physics.add
-      .sprite(768, 416, "doubleporte")
-      .setImmovable();*/
     var door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
+    this.door = door_room2_1;
 
     var door_room2_2 = new Door(this, 1024, 417, "doubleporte", true);
 
@@ -79,65 +79,6 @@ class Level extends Phaser.Scene {
 
     var door_boss = new Door(this, 750, 673, "simpleporte", false);
 
-
-    /*
-    var door_room2_2 = this.physics.add
-      .sprite(1024, 416, "doubleporte")
-      .setImmovable();
-
-    var door_room3_1 = this.physics.add
-      .sprite(1632, 416, "doubleporte")
-      .setImmovable();
-    var door_room3_2 = this.physics.add
-      .sprite(1888, 416, "doubleporte")
-      .setImmovable();
-
-    var door_room4_1 = this.physics.add
-      .sprite(1632, 545, "doubleporte")
-      .setImmovable()
-      .setOffset(0, 31);
-    door_room4_1.body
-      .setSize(door_room4_1.width, door_room4_1.height * 0.5)
-      .setOffset(0, 31);
-    var door_room4_2 = this.physics.add
-      .sprite(1888, 545, "doubleporte")
-      .setImmovable();
-    door_room4_2.body
-      .setSize(door_room4_2.width, door_room4_2.height * 0.5)
-      .setOffset(0, 31);
-      
-
-    var door_office1 = this.physics.add
-      .sprite(1216, 416, "doubleporte")
-      .setImmovable();
-    var door_office2 = this.physics.add
-      .sprite(1440, 416, "doubleporte")
-      .setImmovable();
-    var door_office3 = this.physics.add
-      .sprite(1216, 545, "doubleporte")
-      .setImmovable();
-    door_office3.body
-      .setSize(door_office3.width, door_office3.height * 0.5)
-      .setOffset(0, 31);
-    var door_office4 = this.physics.add
-      .sprite(1440, 545, "doubleporte")
-      .setImmovable();
-    door_office4.body
-      .setSize(door_office4.width, door_office4.height * 0.5)
-      .setOffset(0, 31);
-
-    var door_secretariat = this.physics.add
-      .sprite(928, 673, "doubleporte")
-      .setImmovable();
-    door_secretariat.body
-      .setSize(door_secretariat.width, door_secretariat.height * 0.5)
-      .setOffset(0, 31);
-
-    var door_boss = this.physics.add
-      .sprite(750, 673, "simpleporte")
-      .setImmovable();
-    door_boss.body.setSize(door_boss.width, door_boss.height * 0.5).setOffset(0,31);*/
-
     //Indice
 
     const pcAllume1_room1 = this.physics.add
@@ -150,10 +91,6 @@ class Level extends Phaser.Scene {
     const papiers_room1 = this.physics.add
       .sprite(305, 80, "papiers")
       .setImmovable();
-
-    //Calque 3 (pour que le joueur soit en-dessous)
-
-    var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0);
 
     //Collision
     calque1.setCollisionByProperty({ estSolide: true });
@@ -187,69 +124,22 @@ class Level extends Phaser.Scene {
 
     this.player = player;
 
+    // Events
+    this.emitter = new Phaser.Events.EventEmitter();
+    this.emitter.on('openDoors', this.handler, this);
+
+
+
+
     this.events.emit("scene-awake");
   }
- ///todo séparer portes du haut et du bas + refaire la classe TextColor.js
-  create_doors_upper() {
-    /*var door_room2_1 = this.physics.add
-      .sprite(768, 416, "doubleporte")
-      .setImmovable();*/
 
-    var door_room2_2 = this.physics.add
-      .sprite(1024, 416, "doubleporte")
-      .setImmovable();
-
-    var door_room3_1 = this.physics.add
-      .sprite(1632, 416, "doubleporte")
-      .setImmovable();
-    var door_room3_2 = this.physics.add
-      .sprite(1888, 416, "doubleporte")
-      .setImmovable();
-
-    var door_room4_1 = this.physics.add
-      .sprite(1632, 545, "doubleporte")
-      .setImmovable();
-    door_room4_1.body
-      .setSize(door_room4_1.width, door_room4_1.height * 0.2)
-      .setOffset(0, 31);
-    var door_room4_2 = this.physics.add
-      .sprite(1888, 545, "doubleporte")
-      .setImmovable();
-    door_room4_2.body
-      .setSize(door_room4_2.width, door_room4_2.height * 0.2)
-      .setOffset(0, 31);
-
-    var door_office1 = this.physics.add
-      .sprite(1216, 416, "doubleporte")
-      .setImmovable();
-    var door_office2 = this.physics.add
-      .sprite(1440, 416, "doubleporte")
-      .setImmovable();
-    var door_office3 = this.physics.add
-      .sprite(1216, 545, "doubleporte")
-      .setImmovable();
-    door_office3.body
-      .setSize(door_office3.width, door_office3.height * 0.2)
-      .setOffset(0, 31);
-    var door_office4 = this.physics.add
-      .sprite(1440, 545, "doubleporte")
-      .setImmovable();
-    door_office4.body
-      .setSize(door_office4.width, door_office4.height * 0.2)
-      .setOffset(0, 31);
-
-    var door_secretariat = this.physics.add
-      .sprite(928, 673, "doubleporte")
-      .setImmovable();
-    door_secretariat.body
-      .setSize(door_secretariat.width, door_secretariat.height * 0.2)
-      .setOffset(0, 31);
-
-    var door_boss = this.physics.add
-      .sprite(750, 673, "simpleporte")
-      .setImmovable();
-    door_boss.body.setSize(door_boss.width, door_boss.height * 0.2);
+  handler() {
+    this.door.open();
+    this.door.disableCollide();
+    console.log("truc");
   }
+
 
   create() {
     this.editorCreate();
