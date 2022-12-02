@@ -39,7 +39,7 @@ class Level extends Phaser.Scene {
 
     var calque1 = carte.createLayer("Calque de Tuiles 1", tilesets_list, 0, 0).setDepth(0);
 
-    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(2);
+    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(0);
 
     var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0).setDepth(2);
 
@@ -137,6 +137,7 @@ class Level extends Phaser.Scene {
   handler() {
     this.door.open();
     this.door.disableCollide();
+    this.door.setDepth(2);
     console.log("truc");
   }
 
