@@ -52,8 +52,8 @@
                 "type": "image"
             },
             {
-                "url": "assets/poubelle.png",
-                "key": "poubelle",
+                "url": "assets/interfaceQCM.png",
+                "key": "interfaceQCM",
                 "type": "image"
             }
         ]

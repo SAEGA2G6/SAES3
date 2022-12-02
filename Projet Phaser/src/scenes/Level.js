@@ -13,7 +13,7 @@ class Level extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    //map
+    ///////////// MAP /////////////
     var carte = this.make.tilemap({ key: "map" });
     var tileset1 = carte.addTilesetImage("couloir", "couloir");
     var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
@@ -35,21 +35,30 @@ class Level extends Phaser.Scene {
       tileset8,
     ];
 
-    //Calque 1,2 et 3
+    ///////////// LAYERS /////////////
+    //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
 
-    var calque1 = carte.createLayer("Calque de Tuiles 1", tilesets_list, 0, 0).setDepth(0);
+    var calque1 = carte
+      .createLayer("Calque de Tuiles 1", tilesets_list, 0, 0)
+      .setDepth(0);
 
-    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(0);
+    var calque2 = carte
+      .createLayer("Calque de Tuiles 2", tilesets_list, 0, 0)
+      .setDepth(0);
 
-    var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0).setDepth(2);
+    var calque3 = carte
+      .createLayer("Calque de Tuiles 3", tilesets_list, 0, 0)
+      .setDepth(2);
 
-    //Pokemon Sprite
+    ///////////// PLAYER /////////////
     const player = new Player(this, 400, 218).setDepth(1);
 
-    //Professeur
+    ///////////// PROF/BOSS /////////////
     const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
     prof1.body.setSize(prof1.width * 0.6, prof1.height * 0.8, true);
 
+
+    ///////////// DOORS /////////////
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
     var door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
@@ -60,12 +69,10 @@ class Level extends Phaser.Scene {
     var door_room3_1 = new Door(this, 1632, 417, "doubleporte", true);
 
     var door_room3_2 = new Door(this, 1888, 417, "doubleporte", true);
- 
+
     var door_room4_1 = new Door(this, 1632, 545, "doubleporte", false);
 
     var door_room4_2 = new Door(this, 1888, 545, "doubleporte", false);
-
-
 
     var door_office1 = new Door(this, 1216, 417, "doubleporte", true);
 
@@ -81,6 +88,8 @@ class Level extends Phaser.Scene {
 
     //Indice
 
+    ///////////// ROOM 1 /////////////
+
     const pcAllume1_room1 = this.physics.add
       .sprite(495, 240, "pcAllume")
       .setImmovable();
@@ -92,7 +101,46 @@ class Level extends Phaser.Scene {
       .sprite(305, 80, "papiers")
       .setImmovable();
 
-    //Collision
+    ///////////// ROOM 2 /////////////
+
+    const pcAllume1_room2 = this.physics.add
+      .sprite(1040, 240, "pcAllume")
+      .setImmovable();
+    const pcAllume2_room2 = this.physics.add
+      .sprite(750, 146, "pcAllume")
+      .setImmovable();
+    pcAllume2_room2.flipX = true;
+    const poubelle_room2 = this.physics.add
+      .sprite(1075, 400, "poubelle")
+      .setImmovable();
+
+    ///////////// ROOM 3 /////////////
+
+    const pcAllume_room3 = this.physics.add
+      .sprite(1775, 112, "pcAllume")
+      .setImmovable();
+    pcAllume_room3.flipX = true;
+    const poubelle_room3 = this.physics.add
+      .sprite(1580, 400, "poubelleSprite")
+      .setImmovable();
+    const papiers_room3 = this.physics.add
+      .sprite(1937, 262, "papiers")
+      .setImmovable();
+
+    ///////////// ROOM 4 /////////////
+
+    const pcAllume1_room4 = this.physics.add
+      .sprite(1810, 623, "pcAllume")
+      .setImmovable();
+    const pcAllume2_room4 = this.physics.add
+      .sprite(1905, 912, "pcAllume")
+      .setImmovable();
+    const pcAllume3_room4 = this.physics.add
+      .sprite(1776, 815, "pcAllume")
+      .setImmovable();
+
+    ///////////// COLLISIONS /////////////
+
     calque1.setCollisionByProperty({ estSolide: true });
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
@@ -117,30 +165,34 @@ class Level extends Phaser.Scene {
     ];
     this.physics.add.collider(player, collider_list);
 
-    //camera
+    ///////////// CAMERA /////////////
     this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
     this.cameras.main.startFollow(player);
     this.cameras.main.zoom = 1.2;
 
     this.player = player;
 
-    // Events
+    const list_doors = [door_room2_1, door_room2_2];
+    this.list_doors = list_doors;
+
+    ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on('openDoors', this.handler, this);
-
-
-
+    this.emitter.on("openDoors", this.handler, this);
 
     this.events.emit("scene-awake");
   }
 
   handler() {
-    this.door.open();
+    for (var i = 0; i < this.list_doors.length; i++) {
+      this.list_doors[i].open();
+      this.list_doors[i].disableCollide();
+      this.list_doors[i].setDepth(2);
+    }
+    /*this.door.open();
     this.door.disableCollide();
     this.door.setDepth(2);
-    console.log("truc");
+    console.log("truc");*/
   }
-
 
   create() {
     this.editorCreate();

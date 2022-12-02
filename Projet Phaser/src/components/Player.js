@@ -10,6 +10,24 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
+
+    ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
+    this.score = 0;
+
+    const text_score = this.scene.add.text(this.x - 200, this.y - 100, "", {}).setScrollFactor(0);
+    text_score.setOrigin(0.5, 0.5);
+    text_score.text = "Score:" + this.score;
+    text_score.setStyle({
+      fontFamily: "retro-computer",
+      fontSize: "60px",
+      color: "white",
+    });
+
+    this.text_score = text_score;
+    this.text_score.visible = false;
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
     this.facing_direction;
     this.scene = scene;
     scene.add.existing(this);
@@ -80,11 +98,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       }
       this.setVelocityX(0);
       this.setVelocityY(0);
+
+      ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
       var KeyK = this.scene.input.keyboard.addKey("k");
+
       if (KeyK.isDown) {
-        console.log("kk");
-        this.scene.emitter.emit('openDoors');
+        this.score++;
+        this.text_score.text = "Score : " + this.score;
+        this.text_score.visible = true;
       }
+      if (this.score === 10) {
+        this.scene.emitter.emit("openDoors");
+      }
+      //////////////////////////////////////////////////////////////////////////////////////
     }
   }
 }
