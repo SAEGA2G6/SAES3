@@ -39,12 +39,12 @@ class Level extends Phaser.Scene {
 
     var calque1 = carte.createLayer("Calque de Tuiles 1", tilesets_list, 0, 0).setDepth(0);
 
-    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(0);
+    var calque2 = carte.createLayer("Calque de Tuiles 2", tilesets_list, 0, 0).setDepth(2);
 
-    var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0).setDepth(0);
+    var calque3 = carte.createLayer("Calque de Tuiles 3", tilesets_list, 0, 0).setDepth(2);
 
     //Pokemon Sprite
-    const player = new Player(this, 400, 218);
+    const player = new Player(this, 400, 218).setDepth(1);
 
     //Professeur
     const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
