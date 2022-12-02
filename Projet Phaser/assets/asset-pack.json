@@ -50,6 +50,11 @@
                 "url": "assets/papiers.png",
                 "key": "papiers",
                 "type": "image"
+            },
+            {
+                "url": "assets/poubelle.png",
+                "key": "poubelle",
+                "type": "image"
             }
         ]
     },
