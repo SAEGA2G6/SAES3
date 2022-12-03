@@ -13,6 +13,8 @@ class Level extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    ///////////// UPDATE /////////////
+    this.update_list = [];
     ///////////// MAP /////////////
     var carte = this.make.tilemap({ key: "map" });
     var tileset1 = carte.addTilesetImage("couloir", "couloir");
@@ -51,11 +53,19 @@ class Level extends Phaser.Scene {
       .setDepth(2);
 
     ///////////// PLAYER /////////////
+
     const player = new Player(this, 400, 218).setDepth(1);
+    this.player = player;
+
 
     ///////////// PROF/BOSS /////////////
-    const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
+
+    // ancien
+    //const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
+    
+    const prof1 = new DialogObject(this, 480, 340, "prof1","Appuyer sur ESPACE pour commencer le QCM !", "mcq");
     prof1.body.setSize(prof1.width * 0.6, prof1.height * 0.8, true);
+    this.prof1 = prof1;
 
 
     ///////////// DOORS /////////////
@@ -90,52 +100,48 @@ class Level extends Phaser.Scene {
 
     ///////////// ROOM 1 /////////////
 
-    const pcAllume1_room1 = this.physics.add
-      .sprite(495, 240, "pcAllume")
-      .setImmovable();
-    pcAllume1_room1.flipX = true;
-    const pcAllume2_room1 = this.physics.add
-      .sprite(625, 110, "pcAllume")
-      .setImmovable();
-    const papiers_room1 = this.physics.add
-      .sprite(305, 80, "papiers")
-      .setImmovable();
+    const pcOn1_room1 = new DialogObject(this, 495, 240, "pcAllume", "Regarder l'ordinateur...", "clue");
+    pcOn1_room1.flipX = true;
+    const pcOn2_room1 = new DialogObject(this, 625, 110, "pcAllume", "Regarder l'ordinateur...", "clue");
+    const papers_room1 = new DialogObject(this, 305, 80, "papiers", "Regarder les notes...", "clue");
 
-    ///////////// ROOM 2 /////////////
 
-    const pcAllume1_room2 = this.physics.add
+
+    ///////////// ROOM 2 (TODO: faire comme pour ROOM 1) /////////////
+
+    const pcOn1_room2 = this.physics.add
       .sprite(1040, 240, "pcAllume")
       .setImmovable();
-    const pcAllume2_room2 = this.physics.add
+    const pcOn2_room2 = this.physics.add
       .sprite(750, 146, "pcAllume")
       .setImmovable();
-    pcAllume2_room2.flipX = true;
+    pcOn2_room2.flipX = true;
     const poubelle_room2 = this.physics.add
-      .sprite(1075, 400, "poubelle")
+      .sprite(1075, 400, "poubelleSprite")
       .setImmovable();
 
-    ///////////// ROOM 3 /////////////
+    ///////////// ROOM 3 (TODO: faire comme pour ROOM 1) /////////////
 
-    const pcAllume_room3 = this.physics.add
+    const pcOn_room3 = this.physics.add
       .sprite(1775, 112, "pcAllume")
       .setImmovable();
-    pcAllume_room3.flipX = true;
+    pcOn_room3.flipX = true;
     const poubelle_room3 = this.physics.add
       .sprite(1580, 400, "poubelleSprite")
       .setImmovable();
-    const papiers_room3 = this.physics.add
+    const papers_room3 = this.physics.add
       .sprite(1937, 262, "papiers")
       .setImmovable();
 
-    ///////////// ROOM 4 /////////////
+    ///////////// ROOM 4 (TODO: faire comme pour ROOM 1) /////////////
 
-    const pcAllume1_room4 = this.physics.add
+    const pcOn1_room4 = this.physics.add
       .sprite(1810, 623, "pcAllume")
       .setImmovable();
-    const pcAllume2_room4 = this.physics.add
+    const pcOn2_room4 = this.physics.add
       .sprite(1905, 912, "pcAllume")
       .setImmovable();
-    const pcAllume3_room4 = this.physics.add
+    const pcOn3_room4 = this.physics.add
       .sprite(1776, 815, "pcAllume")
       .setImmovable();
 
@@ -144,7 +150,7 @@ class Level extends Phaser.Scene {
     calque1.setCollisionByProperty({ estSolide: true });
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
-
+    
     const collider_list = [
       calque1,
       calque2,
@@ -170,28 +176,26 @@ class Level extends Phaser.Scene {
     this.cameras.main.startFollow(player);
     this.cameras.main.zoom = 1.2;
 
-    this.player = player;
-
+    ///////////// PROVISOIRE: portes de la salle 2 à ouvrir /////////////
     const list_doors = [door_room2_1, door_room2_2];
     this.list_doors = list_doors;
 
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on("openDoors", this.handler, this);
+    this.emitter.on("open_doors", this.open_doors_handler, this);
+
+    ///////////// UPDATE /////////////
+    //this.update_list = [player, prof1, pcOn1_room1, pcOn2_room1, papers_room1];
 
     this.events.emit("scene-awake");
   }
 
-  handler() {
+  open_doors_handler() {
     for (var i = 0; i < this.list_doors.length; i++) {
       this.list_doors[i].open();
       this.list_doors[i].disableCollide();
       this.list_doors[i].setDepth(2);
     }
-    /*this.door.open();
-    this.door.disableCollide();
-    this.door.setDepth(2);
-    console.log("truc");*/
   }
 
   create() {
@@ -199,7 +203,9 @@ class Level extends Phaser.Scene {
   }
 
   update() {
-    this.player.update();
+    for(var i=0; i < this.update_list.length; i++) {
+      this.update_list[i].update();
+    }
   }
   /* END-USER-CODE */
 }
