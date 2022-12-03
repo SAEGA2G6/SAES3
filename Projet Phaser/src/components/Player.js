@@ -103,6 +103,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       } else if (this.facing_direction == "down") {
         this.anims.play("down");
       }
+        
       this.setVelocityX(0);
       this.setVelocityY(0);
     }

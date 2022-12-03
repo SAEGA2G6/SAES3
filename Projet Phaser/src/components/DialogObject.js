@@ -7,6 +7,10 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture, text, dialogType) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
+    this.setImmovable();
+    this.dialogType = dialogType;
+
+    /// Texte pour le "dialogue" ///
     const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
     text_dialog.setOrigin(0.5, 0.5);
     text_dialog.text = text;
@@ -17,8 +21,8 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       backgroundColor: "grey",
     });
     this.text_dialog = text_dialog;
-    this.dialogType = dialogType;
 
+    /// Texte pour l'indice ///
     const text_clue = this.scene.add.text(0, 0, "clue 1", {}).setDepth(5);
     text_clue.setStyle({
       fontFamily: "Roboto",
@@ -28,15 +32,17 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     });
     this.text_clue = text_clue;
     this.text_clue.visible = false;
+    ///////////////////////////
 
     this.scene.update_list.push(this);
 
-    this.setImmovable();
     scene.add.existing(this);
   }
 
   update() {
-    var KeySpace = this.scene.input.keyboard.addKey("SPACE");
+    const KeySpace = this.scene.input.keyboard.addKey("SPACE");
+    const KeyEsc = this.scene.input.keyboard.addKey("ENTER");
+
     if (
       Phaser.Math.Distance.Between(
         this.x,
@@ -54,7 +60,11 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         Phaser.Display.Align.In.Center(this.text_clue, this.scene.player);
         this.text_clue.visible = true;
         this.scene.player.velocity = 0;
-        const timedEvent = this.scene.time.delayedCall(10000, () => { this.scene.player.velocity = this.scene.player.baseVelocity, this.text_clue.visible = false}, [], this);
+      }
+
+      if (KeyEsc.isDown && this.text_clue.visible === true) {
+        this.text_clue.visible = false;
+        this.scene.player.velocity = this.scene.player.baseVelocity;
       }
     } else {
       this.text_dialog.visible = false;

@@ -22,16 +22,14 @@ class Answer extends Phaser.GameObjects.Text {
   );
   this.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
     if (this.isRight) {
+      /// on lance l'event de la bonne réponse ///
       this.scene.emitter.emit("right_answer");
     } else {
+      /// on lance l'event de la mauvaise réponse ///
       this.scene.emitter.emit("wrong_answer");
     }
   });
 
     this.scene.add.existing(this);
-  }
-
-  enableInteractive() {
-    this.input.enable = true;
   }
 }

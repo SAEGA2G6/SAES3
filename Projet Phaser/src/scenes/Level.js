@@ -57,16 +57,21 @@ class Level extends Phaser.Scene {
     const player = new Player(this, 400, 218).setDepth(1);
     this.player = player;
 
-
     ///////////// PROF/BOSS /////////////
 
     // ancien
     //const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
-    
-    const prof1 = new DialogObject(this, 480, 340, "prof1","Appuyer sur ESPACE pour commencer le QCM !", "mcq");
+
+    const prof1 = new DialogObject(
+      this,
+      480,
+      340,
+      "prof1",
+      "Appuyer sur ESPACE pour commencer le QCM !",
+      "mcq"
+    );
     prof1.body.setSize(prof1.width * 0.6, prof1.height * 0.8, true);
     this.prof1 = prof1;
-
 
     ///////////// DOORS /////////////
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
@@ -98,14 +103,33 @@ class Level extends Phaser.Scene {
 
     //Indice
 
-    ///////////// ROOM 1 /////////////
+    ///////////// ROOM 1 (TODO: faire un json avec les textes) /////////////
 
-    const pcOn1_room1 = new DialogObject(this, 495, 240, "pcAllume", "Regarder l'ordinateur...", "clue");
+    const pcOn1_room1 = new DialogObject(
+      this,
+      495,
+      240,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "clue"
+    );
     pcOn1_room1.flipX = true;
-    const pcOn2_room1 = new DialogObject(this, 625, 110, "pcAllume", "Regarder l'ordinateur...", "clue");
-    const papers_room1 = new DialogObject(this, 305, 80, "papiers", "Regarder les notes...", "clue");
-
-
+    const pcOn2_room1 = new DialogObject(
+      this,
+      625,
+      110,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "clue"
+    );
+    const papers_room1 = new DialogObject(
+      this,
+      305,
+      80,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
 
     ///////////// ROOM 2 (TODO: faire comme pour ROOM 1) /////////////
 
@@ -150,7 +174,7 @@ class Level extends Phaser.Scene {
     calque1.setCollisionByProperty({ estSolide: true });
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
-    
+
     const collider_list = [
       calque1,
       calque2,
@@ -183,13 +207,12 @@ class Level extends Phaser.Scene {
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("open_doors", this.open_doors_handler, this);
-
-    ///////////// UPDATE /////////////
-    //this.update_list = [player, prof1, pcOn1_room1, pcOn2_room1, papers_room1];
+    //////////////////////////////////
 
     this.events.emit("scene-awake");
   }
 
+  /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
   open_doors_handler() {
     for (var i = 0; i < this.list_doors.length; i++) {
       this.list_doors[i].open();
@@ -203,7 +226,7 @@ class Level extends Phaser.Scene {
   }
 
   update() {
-    for(var i=0; i < this.update_list.length; i++) {
+    for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
     }
   }

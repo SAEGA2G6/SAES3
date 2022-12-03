@@ -48,9 +48,6 @@ class InterfaceQCM extends Phaser.Scene {
     Phaser.Display.Align.In.Center(returned_message, this.back_interface);
     this.returned_message = returned_message;
 
-    
-
-
     const answer1 = new Answer(this, "A) Java", false);
 
     const answer2 = new Answer(this, "B) C++", false);
@@ -132,7 +129,7 @@ class InterfaceQCM extends Phaser.Scene {
       () => {
         this.changeInteractivity(),
           (this.returned_message.visible = false),
-          this.scene.switch("Level")
+          this.scene.switch("Level");
       },
       [],
       this
