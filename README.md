@@ -13,4 +13,7 @@ CodeInGame.
 Le type et les fonctionnalités du jeu seront à
 définir avec le client (tuteur). 
 
-[Presentation SAE](https://github.com/Aehnt/SAES3/files/9753629/2022_SAE_S3_presentation.pdf)
+[Presentation SAE](https://github.com/Aehnt/SAES3/files/9753629/2022_SAE_S3_presentation.pdf)  
+
+[Présentation Projet](https://user-images.githubusercontent.com/104560706/205443143-24af80b3-0251-44e4-851d-2bcfc903bfae.mp4)
+
