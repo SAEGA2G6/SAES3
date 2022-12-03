@@ -1,4 +1,4 @@
-# SAES3
+# Aix'ploration - À la découverte du BUT Informatique !
  
 Notre équipe est chargée de développer un jeu sérieux (« serious
 game »). 
