@@ -52,6 +52,11 @@
                 "type": "image"
             },
             {
+                "url": "assets/interfaceQCM.png",
+                "key": "interfaceQCM",
+                "type": "image"
+            },
+            {
                 "url": "assets/poubelle.png",
                 "key": "poubelleSprite",
                 "type": "image"

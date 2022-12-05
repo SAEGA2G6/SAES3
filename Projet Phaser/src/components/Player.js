@@ -3,12 +3,38 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y);
-    this.velocity = 600;
-    //this.velocity = 160;
+    const baseVelocity = 160;
+    this.baseVelocity = baseVelocity;
+    this.velocity = 160;
     this.scene.physics.world.enable(this);
     this.setTexture("player");
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
+
+
+    ///////////// ADD TO UPDATE LIST //////////
+    this.scene.update_list.push(this);
+    ///////////////////////////////////////////
+
+
+    ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
+    /*
+    this.score = 0;
+
+    const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
+    text_dialog.setOrigin(0.5, 0.5);
+    text_dialog.text = "Appuyer sur ESPACE pour commencer le QCM";
+    text_dialog.setStyle({
+      fontFamily: "Roboto",
+      fontSize: "10px",
+      color: "black",
+      backgroundColor: "grey",
+    });
+
+    this.text_dialog = text_dialog;
+    this.text_dialog.visible = false;
+    */
+    /////////////////////////////////////////////////////////////////////////////////////
 
     this.facing_direction;
     this.scene = scene;
@@ -69,7 +95,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       this.facing_direction = "down";
     } else {
       if (this.facing_direction == "left") {
-        console.log("a gauche");
         this.anims.play("left");
       } else if (this.facing_direction == "right") {
         this.anims.play("right");
@@ -78,14 +103,34 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       } else if (this.facing_direction == "down") {
         this.anims.play("down");
       }
+        
       this.setVelocityX(0);
       this.setVelocityY(0);
-      var KeyK = this.scene.input.keyboard.addKey("k");
-      if (KeyK.isDown) {
-        console.log("kk");
-        this.scene.emitter.emit('openDoors');
-      }
     }
+    ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
+    /*var KeySpace = this.scene.input.keyboard.addKey("SPACE");
+
+    if (
+      Phaser.Math.Distance.Between(
+        this.x,
+        this.y,
+        this.scene.prof1.x,
+        this.scene.prof1.y
+      ) < 40
+    ) {
+      Phaser.Display.Align.In.BottomCenter(this.text_dialog, this.scene.prof1);
+      this.text_dialog.y += 5;
+      this.text_dialog.visible = true;
+      if (KeySpace.isDown) {
+        this.scene.scene.switch("InterfaceQCM");
+      }
+    } else {
+      this.text_dialog.visible = false;
+    }
+    if (this.score === 10) {
+      this.scene.emitter.emit("openDoors");
+    }*/
+    //////////////////////////////////////////////////////////////////////////////////////
   }
 }
 
