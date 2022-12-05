@@ -53,7 +53,7 @@
             },
             {
                 "url": "assets/poubelle.png",
-                "key": "poubelle",
+                "key": "poubelleSprite",
                 "type": "image"
             }
         ]
