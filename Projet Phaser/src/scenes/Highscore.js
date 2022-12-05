@@ -18,13 +18,13 @@ class Highscore extends Phaser.Scene {
   editorCreate() {
     const highscore_test = this.add.text(400, 250, "", {});
     highscore_test.setOrigin(0.5, 0.5);
-    highscore_test.text = "1ER - AURELIEN DANS MON COEUR";
+    highscore_test.text = "1ER\n2EME\n3EME";
     highscore_test.setStyle({
       fontFamily: "retro-computer",
       fontSize: "60px",
       color: "white",
     });
-		highscore_test.setInteractive({ useHandCursor: true }).on("pointerdown", () => {highscore_test.text = "1ER - AURELIEN DANS MON CUL"});
+		highscore_test.setInteractive({ useHandCursor: true }).on("pointerdown", () => {});
 
     const text_menu = this.add.text(400, 425, "", {});
     text_menu.setOrigin(0.5, 0.5);
