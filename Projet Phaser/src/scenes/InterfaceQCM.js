@@ -12,10 +12,16 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
+  editorPreload() {
+    this.load.text('QA','questions_and_answers.json');
+  }
 
   /** @returns {void} */
   editorCreate() {
+    // fichier json contenant les questions et réponses
+    const QA = JSON.parse(this.game.cache.getText('QA'));
+    console.log(QA);
+
     // Fond sur lequel seront affiché les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
     Phaser.Display.Align.In.Center(
@@ -28,8 +34,9 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    question.text =
-      "2 : Quel est l’intrus parmi ces langages de programmation ?";
+    /*question.text =
+      "2 : Quel est l’intrus parmi ces langages de programmation ?";*/
+    question.text = QA.QCM1.question1;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
@@ -56,13 +63,13 @@ class InterfaceQCM extends Phaser.Scene {
 
     const answer4 = new Answer(this, "D) Javascript", false);
 
-    Phaser.Display.Align.In.TopLeft(answer1, this.back_interface);
-    Phaser.Display.Align.In.TopRight(answer2, this.back_interface);
+    Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
+    Phaser.Display.Align.In.BottomRight(answer2, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(answer3, this.back_interface);
     Phaser.Display.Align.In.BottomRight(answer4, this.back_interface);
 
-    answer1.y += 30;
-    answer2.y += 30;
+    answer1.y -= 120;
+    answer2.y -= 120;
 
     answer3.y -= 30;
     answer4.y -= 30;
@@ -85,21 +92,35 @@ class InterfaceQCM extends Phaser.Scene {
 
   // Write your code here
 
+  Preload() {
+    this.editorPreload();
+  }
+
   create() {
     this.editorCreate();
   }
 
   update() {
-    var KeyK = this.input.keyboard.addKey("k");
+    const KeyK = this.input.keyboard.addKey("k");
+    const KeyESC = this.input.keyboard.addKey("esc"); 
 
     if (KeyK.isDown) {
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
       this.scene.switch("Level");
     }
+    if (KeyESC.isDown) {
+      this.scene.switch("Level");
+    }
   }
 
-  nextQuestion() {}
+  nextQuestion() {
+    this.question;
+    this.answer1;
+    this.answer2;
+    this.answer3;
+    this.answer4;
+  }
 
   right_answer_handler() {
     console.log("right");
@@ -156,11 +177,11 @@ class InterfaceQCM extends Phaser.Scene {
       this.answer4.disableInteractive();
       console.log("disable");
     } else {
-      console.log("enable");
       this.answer1.setInteractive();
       this.answer2.setInteractive();
       this.answer3.setInteractive();
       this.answer4.setInteractive();
+      console.log("enable");
     }
   }
   /* END-USER-CODE */
