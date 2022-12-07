@@ -12,16 +12,10 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {
-    this.load.text('QA','questions_and_answers.json');
-  }
+  editorPreload() {}
 
   /** @returns {void} */
   editorCreate() {
-    // fichier json contenant les questions et réponses
-    const QA = JSON.parse(this.game.cache.getText('QA'));
-    console.log(QA);
-
     // Fond sur lequel seront affiché les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
     Phaser.Display.Align.In.Center(
@@ -34,9 +28,8 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    /*question.text =
-      "2 : Quel est l’intrus parmi ces langages de programmation ?";*/
-    question.text = QA.QCM1.question1;
+    question.text =
+      "2 : Quel est l’intrus parmi ces langages de programmation ?";
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
@@ -102,7 +95,7 @@ class InterfaceQCM extends Phaser.Scene {
 
   update() {
     const KeyK = this.input.keyboard.addKey("k");
-    const KeyESC = this.input.keyboard.addKey("esc"); 
+    const KeyESC = this.input.keyboard.addKey("esc");
 
     if (KeyK.isDown) {
       const scene_level = this.game.scene.getScene("Level");

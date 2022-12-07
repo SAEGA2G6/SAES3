@@ -81,7 +81,7 @@ class Level extends Phaser.Scene {
 
     var door_room2_2 = new Door(this, 1024, 417, "doubleporte", true);
 
-    var door_room3_1 = new Door(this, 1800, 417, "doubleporte", true);
+    var door_room3_1 = new Door(this, 1632, 417, "doubleporte", true);
 
     var door_room3_2 = new Door(this, 1888, 417, "doubleporte", true);
 
