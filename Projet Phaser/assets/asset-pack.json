@@ -65,6 +65,11 @@
                 "url": "assets/prof2.png",
                 "key": "prof2",
                 "type": "image"
+            },
+            {
+                "url": "assets/prof3.png",
+                "key": "prof3",
+                "type": "image"
             }
         ]
     },
