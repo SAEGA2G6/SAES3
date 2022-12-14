@@ -112,6 +112,7 @@ class Level extends Phaser.Scene {
 
     var door_boss = new Door(this, 750, 673, "simpleporte", false);
 
+
     //Indice
 
     ///////////// ROOM 1 (TODO: faire un json avec les textes) /////////////
@@ -191,6 +192,7 @@ class Level extends Phaser.Scene {
       calque2,
       calque3,
       prof1,
+      prof2,
       door_room2_1,
       door_room2_2,
       door_room3_1,
@@ -218,8 +220,10 @@ class Level extends Phaser.Scene {
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("open_doors", this.open_doors_handler, this);
+    this.emitter.on("time_malus", this.malusChrono, this);
 
     ///////////// CHRONOMETER /////////////
+    /// txt chrono
     const chrono_txt = this.add.text(125, 70, "", {}).setDepth(5);
     chrono_txt.setOrigin(0.5, 0.5);
     chrono_txt.setStyle({
@@ -228,13 +232,25 @@ class Level extends Phaser.Scene {
       color: "black",
       backgroundColor: "white",
     });
-    //chrono_txt.visible = true;
     chrono_txt.setScrollFactor(0);
     this.chrono_txt = chrono_txt;
 
+    /// txt malus chrono
+    const time_malus_txt = this.add.text(chrono_txt.x, chrono_txt.y + 40, "+30", {}).setDepth(5);
+    time_malus_txt.setOrigin(0.5, 0.5);
+    time_malus_txt.setStyle({
+      fontFamily: "roboto",
+      fontSize: "25px",
+      color: "red",
+    });
+    time_malus_txt.setScrollFactor(0);
+    time_malus_txt.visible = false;
+    this.time_malus_txt = time_malus_txt;
+
+    /// Chrono start at 0
     this.chrono = 0;
 
-    ///Every second, the chrono increment of 1
+    /// Every second, the chrono increment of 1
     const chrono = this.time.addEvent({
       delay: 1000,
       callback: () => this.chrono+=1,
@@ -245,6 +261,7 @@ class Level extends Phaser.Scene {
     this.events.emit("scene-awake");
   }
 
+  ///////////// EVENTS HANDLERS /////////////
   /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
   open_doors_handler() {
     for (var i = 0; i < this.list_doors.length; i++) {
@@ -252,8 +269,22 @@ class Level extends Phaser.Scene {
     }
   }
 
+  malusChrono() {
+    this.time_malus_txt.visible = true;
+    const timedEvent = this.time.delayedCall(
+      3000,
+      () => {
+        this.time_malus_txt.visible = false,
+        this.chrono+=30;
+      },
+      [],
+      this
+    );    
+  }
+
+  ///////////// UPDATE /////////////
   updateChrono() {
-    ///CHRONOMETER
+    /// CHRONOMETER
     var min = Math.floor(this.chrono / 60);
     var sec = this.chrono % 60;
     var min_txt;
