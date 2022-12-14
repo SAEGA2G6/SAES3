@@ -81,8 +81,17 @@ class Level extends Phaser.Scene {
       "Appuyer sur ESPACE pour commencer le QCM !",
       "mcq"
     );
-    prof2.body.setSize(prof2.width * 0.6, prof2.height * 0.8, true);
-    this.prof2 = prof2;
+
+    const prof3 = new DialogObject(
+      this,
+      1760,
+      340,
+      "prof3",
+      "Appuyer sur ESPACE pour commencer le QCM !",
+      "mcq"
+    );
+    prof3.body.setSize(prof3.width * 0.6, prof3.height * 0.8, true);
+    this.prof3 = prof3;
 
     ///////////// DOORS /////////////
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
