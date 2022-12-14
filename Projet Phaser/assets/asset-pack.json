@@ -60,6 +60,11 @@
                 "url": "assets/poubelle.png",
                 "key": "poubelleSprite",
                 "type": "image"
+            },
+            {
+                "url": "assets/prof2.png",
+                "key": "prof2",
+                "type": "image"
             }
         ]
     },
