@@ -143,11 +143,15 @@ class InterfaceQCM extends Phaser.Scene {
     this.returned_message.visible = true;
     this.returned_message.text = "Mauvaise réponse !";
     this.returned_message.setStyle({ color: "red" });
+
+    const scene_level = this.game.scene.getScene("Level");
+
     const timedEvent = this.time.delayedCall(
       1000,
       () => {
         this.changeInteractivity(),
           (this.returned_message.visible = false),
+          scene_level.emitter.emit("time_malus"),
           this.scene.switch("Level");
       },
       [],

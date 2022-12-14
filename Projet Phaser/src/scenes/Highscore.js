@@ -18,10 +18,10 @@ class Highscore extends Phaser.Scene {
   editorCreate() {
     const highscore_test = this.add.text(400, 250, "", {});
     highscore_test.setOrigin(0.5, 0.5);
-    highscore_test.text = "1ER\n2EME\n3EME";
+    highscore_test.text = "1ER\n2EME\n3EME\n4EME\n5EME\n6EME\n7EME\n8EME\n9EME\n10EME";
     highscore_test.setStyle({
       fontFamily: "retro-computer",
-      fontSize: "60px",
+      fontSize: "25px",
       color: "white",
     });
 		highscore_test.setInteractive({ useHandCursor: true }).on("pointerdown", () => {});
