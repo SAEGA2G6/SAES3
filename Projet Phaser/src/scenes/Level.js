@@ -227,7 +227,29 @@ class Level extends Phaser.Scene {
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("open_doors", this.open_doors_handler, this);
-    //////////////////////////////////
+
+    ///////////// CHRONOMETER /////////////
+    const chrono_txt = this.add.text(125, 70, "", {}).setDepth(5);
+    chrono_txt.setOrigin(0.5, 0.5);
+    chrono_txt.setStyle({
+      fontFamily: "roboto",
+      fontSize: "25px",
+      color: "black",
+      backgroundColor: "white",
+    });
+    //chrono_txt.visible = true;
+    chrono_txt.setScrollFactor(0);
+    this.chrono_txt = chrono_txt;
+
+    this.chrono = 0;
+
+    ///Every second, the chrono increment of 1
+    const chrono = this.time.addEvent({
+      delay: 1000,
+      callback: () => this.chrono+=1,
+      callbackScope: this,
+      loop: true,
+    });
 
     this.events.emit("scene-awake");
   }
@@ -236,9 +258,26 @@ class Level extends Phaser.Scene {
   open_doors_handler() {
     for (var i = 0; i < this.list_doors.length; i++) {
       this.list_doors[i].open();
-      this.list_doors[i].disableCollide();
-      this.list_doors[i].setDepth(2);
     }
+  }
+
+  updateChrono() {
+    ///CHRONOMETER
+    var min = Math.floor(this.chrono / 60);
+    var sec = this.chrono % 60;
+    var min_txt;
+    var sec_txt;
+    if (min < 10) {
+      min_txt = "0" + min;
+    } else {
+      min_txt = min;
+    }
+    if (sec < 10) {
+      sec_txt = "0" + sec;
+    } else {
+      sec_txt = sec;
+    }
+    this.chrono_txt.text = min_txt + " : " + sec_txt;
   }
 
   create() {
@@ -246,8 +285,19 @@ class Level extends Phaser.Scene {
   }
 
   update() {
+
+    ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
+    }
+
+    ///TO UPDATE CHRONOMETER
+    this.updateChrono();
+
+    /////TEST
+    const KeyK = this.input.keyboard.addKey("k");
+    if (KeyK.isDown) {
+      this.scene.restart("Level");
     }
   }
   /* END-USER-CODE */

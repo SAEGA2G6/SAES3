@@ -10,7 +10,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.setImmovable();
     this.dialogType = dialogType;
 
-    /// Texte pour le "dialogue" ///
+    /// Texte qui s'affiche au joueur quand il est proche ///
     const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
     text_dialog.setOrigin(0.5, 0.5);
     text_dialog.text = text;
@@ -30,10 +30,11 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       color: "black",
       backgroundColor: "grey",
     });
+    text_clue.visible = false;
     this.text_clue = text_clue;
-    this.text_clue.visible = false;
     ///////////////////////////
 
+    /// On met le dialog object dans la liste des objets à update
     this.scene.update_list.push(this);
 
     scene.add.existing(this);
@@ -41,7 +42,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
 
   update() {
     const KeySpace = this.scene.input.keyboard.addKey("SPACE");
-    const KeyEsc = this.scene.input.keyboard.addKey("ENTER");
+    const KeyEsc = this.scene.input.keyboard.addKey("ESC");
 
     if (
       Phaser.Math.Distance.Between(

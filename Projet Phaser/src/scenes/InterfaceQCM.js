@@ -9,6 +9,10 @@ class InterfaceQCM extends Phaser.Scene {
     /* START-USER-CTR-CODE */
     // Write your code here.
     /* END-USER-CTR-CODE */
+
+    this.jsonQA = '[{"question": "?","reponse1": "a","reponse2": "b","reponse3": "c","reponse4": "d"}]';
+    //this.jsonQA = require('./assets/question/QA.json');
+    this.myJsonQA = JSON.parse(this.jsonQA);
   }
 
   /** @returns {void} */
@@ -28,8 +32,9 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    question.text =
-      "2 : Quel est l’intrus parmi ces langages de programmation ?";
+    //question.text =
+    //  "2 : Quel est l’intrus parmi ces langages de programmation ?";
+    question.text = this.myJsonQA[0].question;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
