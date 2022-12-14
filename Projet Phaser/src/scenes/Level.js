@@ -121,7 +121,6 @@ class Level extends Phaser.Scene {
 
     var door_boss = new Door(this, 750, 673, "simpleporte", false);
 
-
     //Indice
 
     ///////////// ROOM 1 (TODO: faire un json avec les textes) /////////////
@@ -202,6 +201,7 @@ class Level extends Phaser.Scene {
       calque3,
       prof1,
       prof2,
+      prof3,
       door_room2_1,
       door_room2_2,
       door_room3_1,
@@ -233,23 +233,35 @@ class Level extends Phaser.Scene {
 
     ///////////// CHRONOMETER /////////////
     /// txt chrono
-    const chrono_txt = this.add.text(125, 70, "", {}).setDepth(5);
+
+    const back_chrono = this.add.image(125, 100, "back_chrono").setDepth(4);
+    /*Phaser.Display.Align.In.TopLeft(
+      back_chrono,
+      this.add.zone(400, 300, 800, 600)
+    );*/
+    back_chrono.setOrigin(0.5, 0.48);
+    back_chrono.setScrollFactor(0);
+    back_chrono.setScale(0.17);
+
+    const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5);
     chrono_txt.setOrigin(0.5, 0.5);
     chrono_txt.setStyle({
       fontFamily: "roboto",
-      fontSize: "25px",
+      fontSize: "20px",
       color: "black",
-      backgroundColor: "white",
     });
     chrono_txt.setScrollFactor(0);
+    Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
     this.chrono_txt = chrono_txt;
 
     /// txt malus chrono
-    const time_malus_txt = this.add.text(chrono_txt.x, chrono_txt.y + 40, "+30", {}).setDepth(5);
+    const time_malus_txt = this.add
+      .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
+      .setDepth(5);
     time_malus_txt.setOrigin(0.5, 0.5);
     time_malus_txt.setStyle({
       fontFamily: "roboto",
-      fontSize: "25px",
+      fontSize: "15px",
       color: "red",
     });
     time_malus_txt.setScrollFactor(0);
@@ -262,7 +274,7 @@ class Level extends Phaser.Scene {
     /// Every second, the chrono increment of 1
     const chrono = this.time.addEvent({
       delay: 1000,
-      callback: () => this.chrono+=1,
+      callback: () => (this.chrono += 1),
       callbackScope: this,
       loop: true,
     });
@@ -283,12 +295,11 @@ class Level extends Phaser.Scene {
     const timedEvent = this.time.delayedCall(
       3000,
       () => {
-        this.time_malus_txt.visible = false,
-        this.chrono+=30;
+        (this.time_malus_txt.visible = false), (this.chrono += 30);
       },
       [],
       this
-    );    
+    );
   }
 
   ///////////// UPDATE /////////////
@@ -316,7 +327,6 @@ class Level extends Phaser.Scene {
   }
 
   update() {
-
     ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
