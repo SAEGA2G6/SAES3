@@ -70,6 +70,7 @@ class Level extends Phaser.Scene {
       "Appuyer sur ESPACE pour commencer le QCM !",
       "mcq"
     );
+
     prof1.body.setSize(prof1.width * 0.6, prof1.height * 0.8, true);
     this.prof1 = prof1;
 

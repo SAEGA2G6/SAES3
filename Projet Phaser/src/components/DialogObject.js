@@ -11,15 +11,32 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.dialogType = dialogType;
 
     /// Texte qui s'affiche au joueur quand il est proche ///
+    /////TEST/////
+    const screenCenterX =
+      this.scene.cameras.main.worldView.x + this.scene.cameras.main.width / 2;
+    const screenCenterY =
+      this.scene.cameras.main.worldView.y +
+      this.scene.cameras.main.height / 1.2;
+
+    const text_box = this.scene.add
+      .image(screenCenterX, screenCenterY, "textbox")
+      .setScrollFactor(0);
+    text_box.setDepth(5);
+    this.text_box = text_box;
+
+    /////////////
     const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
     text_dialog.setOrigin(0.5, 0.5);
     text_dialog.text = text;
     text_dialog.setStyle({
       fontFamily: "Roboto",
-      fontSize: "10px",
+      fontSize: "25px",
       color: "black",
-      backgroundColor: "grey",
     });
+    /////TEST/////
+    text_dialog.setScrollFactor(0);
+    Phaser.Display.Align.In.Center(text_dialog, text_box);
+    /////////////
     this.text_dialog = text_dialog;
 
     /// Texte pour l'indice ///
@@ -52,9 +69,9 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         this.scene.player.y
       ) < 40
     ) {
-      Phaser.Display.Align.In.BottomCenter(this.text_dialog, this);
-      this.text_dialog.y += 5;
       this.text_dialog.visible = true;
+      this.text_box.visible = true;
+
       if (KeySpace.isDown && this.dialogType === "mcq") {
         this.scene.scene.switch("InterfaceQCM");
       } else if (KeySpace.isDown && this.dialogType === "clue") {
@@ -69,6 +86,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       }
     } else {
       this.text_dialog.visible = false;
+      this.text_box.visible = false;
     }
   }
 }

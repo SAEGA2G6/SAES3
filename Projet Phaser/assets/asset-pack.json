@@ -75,6 +75,11 @@
                 "url": "assets/chrono.png",
                 "key": "back_chrono",
                 "type": "image"
+            },
+            {
+                "url": "assets/textbox.png",
+                "key": "textbox",
+                "type": "image"
             }
         ]
     },
