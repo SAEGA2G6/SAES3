@@ -29,11 +29,14 @@ class InterfaceQCM extends Phaser.Scene {
   editorCreate() {
     // Fond sur lequel seront affichées les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
+
+
     Phaser.Display.Align.In.Center(
       back_interface,
       this.add.zone(400, 300, 800, 600)
     );
     back_interface.setScale(2);
+    back_interface.setOrigin(0.5, 0.5);
     this.back_interface = back_interface;
 
     // Question
@@ -71,21 +74,32 @@ class InterfaceQCM extends Phaser.Scene {
 
     const answer4 = new Answer(this);
 
-    Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
+    /*Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
     Phaser.Display.Align.In.BottomRight(answer2, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(answer3, this.back_interface);
     Phaser.Display.Align.In.BottomRight(answer4, this.back_interface);
-
+    
     answer1.y -= 120;
     answer2.y -= 120;
 
     answer3.y -= 30;
-    answer4.y -= 30;
+    answer4.y -= 30;*/
 
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+
+    Phaser.Display.Align.In.BottomLeft(this.answer1, this.back_interface);
+    Phaser.Display.Align.In.BottomRight(this.answer2, this.back_interface);
+    Phaser.Display.Align.In.BottomLeft(this.answer3, this.back_interface);
+    Phaser.Display.Align.In.BottomRight(this.answer4, this.back_interface);
+    
+    this.answer1.y -= 120;
+    this.answer2.y -= 120;
+
+    this.answer3.y -= 30;
+    this.answer4.y -= 30;
 
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
@@ -114,6 +128,8 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   update() {
+
+
     const KeyK = this.input.keyboard.addKey("k");
     const KeyESC = this.input.keyboard.addKey("esc");
 
@@ -128,8 +144,10 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   nextQuestion() {
+    this.resetRightAnswer();
     if (this.currentQuestion < this.myJsonQA.length) {
       console.log("changement question");
+
       this.question.text = this.myJsonQA[this.currentQuestion].question;
       this.answer1.text = this.myJsonQA[this.currentQuestion].reponse1;
       this.answer2.text = this.myJsonQA[this.currentQuestion].reponse2;
@@ -219,6 +237,14 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer3.setStyle({ fill: "white" });
     this.answer4.setStyle({ fill: "white" });
   }
+
+  resetRightAnswer() {
+    this.answer1.isRight = false;
+    this.answer2.isRight = false;
+    this.answer3.isRight = false;
+    this.answer4.isRight = false;
+  }
+
   /* END-USER-CODE */
 }
 

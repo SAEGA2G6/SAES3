@@ -13,6 +13,8 @@ class Answer extends Phaser.GameObjects.Text {
       fontSize: "20px",
       color: "white",
     });
+    this.setOrigin(0.5, 0.5);
+
     /*
     this.setInteractive({ useHandCursor: true }).on("pointerover", () =>
     this.setStyle({ fill: "purple" })
