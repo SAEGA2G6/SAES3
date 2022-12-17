@@ -10,7 +10,8 @@ class InterfaceQCM extends Phaser.Scene {
     // Write your code here.
     /* END-USER-CTR-CODE */
 
-    this.jsonQA = '[{"question": "?","reponse1": "a","reponse2": "b","reponse3": "c","reponse4": "d"}]';
+    this.jsonQA =
+      '[{"question": "?","reponse1": "a","reponse2": "b","reponse3": "c","reponse4": "d"}]';
     //this.jsonQA = require('./assets/question/QA.json');
     this.myJsonQA = JSON.parse(this.jsonQA);
   }
@@ -20,7 +21,7 @@ class InterfaceQCM extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    // Fond sur lequel seront affiché les questions
+    // Fond sur lequel seront affichées les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
     Phaser.Display.Align.In.Center(
       back_interface,
@@ -43,16 +44,8 @@ class InterfaceQCM extends Phaser.Scene {
     Phaser.Display.Align.In.TopCenter(question, this.back_interface);
     this.question = question;
 
-    const returned_message = this.add.text(0, 0, "", {}).setDepth(5);
-    returned_message.setOrigin(0.5, 0.5);
-    returned_message.setStyle({
-      fontFamily: "roboto",
-      fontSize: "25px",
-    });
-    returned_message.visible = false;
-    Phaser.Display.Align.In.Center(returned_message, this.back_interface);
-    this.returned_message = returned_message;
-
+    // Questions test
+    /*
     const answer1 = new Answer(this, "A) Java", false);
 
     const answer2 = new Answer(this, "B) C++", false);
@@ -60,6 +53,17 @@ class InterfaceQCM extends Phaser.Scene {
     const answer3 = new Answer(this, "C) Boa", true);
 
     const answer4 = new Answer(this, "D) Javascript", false);
+    */
+
+    // Questions test JSON
+
+    const answer1 = new Answer(this, this.myJsonQA[0].reponse1, false);
+
+    const answer2 = new Answer(this, this.myJsonQA[0].reponse2, false);
+
+    const answer3 = new Answer(this, this.myJsonQA[0].reponse3, true);
+
+    const answer4 = new Answer(this, this.myJsonQA[0].reponse4, false);
 
     Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
     Phaser.Display.Align.In.BottomRight(answer2, this.back_interface);
@@ -123,14 +127,11 @@ class InterfaceQCM extends Phaser.Scene {
   right_answer_handler() {
     console.log("right");
     this.changeInteractivity();
-    this.returned_message.visible = true;
-    this.returned_message.text = "Bonne réponse !";
-    this.returned_message.setStyle({ color: "green" });
 
     const timedEvent = this.time.delayedCall(
       1000,
       () => (
-        this.changeInteractivity(), (this.returned_message.visible = false)
+        this.changeInteractivity(), this.resetAnswersColor() //, (this.returned_message.visible = false)
       ),
       [],
       this
@@ -140,17 +141,12 @@ class InterfaceQCM extends Phaser.Scene {
   wrong_answer_handler() {
     console.log("wrong");
     this.changeInteractivity();
-    this.returned_message.visible = true;
-    this.returned_message.text = "Mauvaise réponse !";
-    this.returned_message.setStyle({ color: "red" });
-
     const scene_level = this.game.scene.getScene("Level");
-
     const timedEvent = this.time.delayedCall(
       1000,
       () => {
         this.changeInteractivity(),
-          (this.returned_message.visible = false),
+          this.resetAnswersColor(),
           scene_level.emitter.emit("time_malus"),
           this.scene.switch("Level");
       },
@@ -185,6 +181,13 @@ class InterfaceQCM extends Phaser.Scene {
       this.answer4.setInteractive();
       console.log("enable");
     }
+  }
+
+  resetAnswersColor() {
+    this.answer1.setStyle({ fill: "white" });
+    this.answer2.setStyle({ fill: "white" });
+    this.answer3.setStyle({ fill: "white" });
+    this.answer4.setStyle({ fill: "white" });
   }
   /* END-USER-CODE */
 }
