@@ -3,10 +3,10 @@
 /* START OF COMPILED CODE */
 
 class Answer extends Phaser.GameObjects.Text {
-  constructor(scene, text, isRight) {
-    super(scene, 0, 0, text, {});
+  constructor(scene) {
+    super(scene, 0, 0, "", {});
     this.scene = scene;
-    this.isRight = isRight;
+    this.isRight = false
     this.setDepth(5);
     this.setStyle({
       fontFamily: "Roboto",

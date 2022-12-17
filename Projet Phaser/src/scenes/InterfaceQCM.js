@@ -10,10 +10,16 @@ class InterfaceQCM extends Phaser.Scene {
     // Write your code here.
     /* END-USER-CTR-CODE */
 
+    this.currentBoss;
+
     this.jsonQA =
-      '[{"question": "?","reponse1": "a","reponse2": "b","reponse3": "c","reponse4": "d"}]';
+      '[{ "question": "Q1","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "bonne réponse","reponse4": "mauvaise réponse", "correct": 3},' +
+      '{ "question": "Q2","reponse1": "mauvaise réponse","reponse2": "bonne réponse","reponse3": "mauvaise réponse","reponse4": "mauvaise réponse", "correct" : 2},' +
+      '{ "question": "Q3","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "mauvaise réponse","reponse4": "bonne réponse", "correct" : 4}]';
+
     //this.jsonQA = require('./assets/question/QA.json');
     this.myJsonQA = JSON.parse(this.jsonQA);
+    this.currentQuestion = 0;
   }
 
   /** @returns {void} */
@@ -35,7 +41,7 @@ class InterfaceQCM extends Phaser.Scene {
     question.setOrigin(0.5, 0.5);
     //question.text =
     //  "2 : Quel est l’intrus parmi ces langages de programmation ?";
-    question.text = this.myJsonQA[0].question;
+    question.text = this.myJsonQA[this.currentQuestion].question;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
@@ -57,13 +63,13 @@ class InterfaceQCM extends Phaser.Scene {
 
     // Questions test JSON
 
-    const answer1 = new Answer(this, this.myJsonQA[0].reponse1, false);
+    const answer1 = new Answer(this);
 
-    const answer2 = new Answer(this, this.myJsonQA[0].reponse2, false);
+    const answer2 = new Answer(this);
 
-    const answer3 = new Answer(this, this.myJsonQA[0].reponse3, true);
+    const answer3 = new Answer(this);
 
-    const answer4 = new Answer(this, this.myJsonQA[0].reponse4, false);
+    const answer4 = new Answer(this);
 
     Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
     Phaser.Display.Align.In.BottomRight(answer2, this.back_interface);
@@ -80,6 +86,11 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+
+    this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
+
+
+    this.nextQuestion();
 
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("right_answer", this.right_answer_handler, this);
@@ -117,12 +128,27 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   nextQuestion() {
-    this.question;
-    this.answer1;
-    this.answer2;
-    this.answer3;
-    this.answer4;
+    if (this.currentQuestion < this.myJsonQA.length) {
+      console.log("changement question");
+      this.question.text = this.myJsonQA[this.currentQuestion].question;
+      this.answer1.text = this.myJsonQA[this.currentQuestion].reponse1;
+      this.answer2.text = this.myJsonQA[this.currentQuestion].reponse2;
+      this.answer3.text = this.myJsonQA[this.currentQuestion].reponse3;
+      this.answer4.text = this.myJsonQA[this.currentQuestion].reponse4;
+
+      this.answerList[this.myJsonQA[this.currentQuestion].correct - 1].isRight = true;
+      
+      this.currentQuestion++;
+    }
+    else {
+      console.log("end of questions");
+      this.currentQuestion = 0;
+      this.currentBoss.isEnable = false;
+      this.scene.switch("Level");
+    }
   }
+
+
 
   right_answer_handler() {
     console.log("right");
@@ -131,7 +157,9 @@ class InterfaceQCM extends Phaser.Scene {
     const timedEvent = this.time.delayedCall(
       1000,
       () => (
-        this.changeInteractivity(), this.resetAnswersColor() //, (this.returned_message.visible = false)
+        this.changeInteractivity(),
+        this.resetAnswersColor(),
+        this.nextQuestion()
       ),
       [],
       this
@@ -147,6 +175,8 @@ class InterfaceQCM extends Phaser.Scene {
       () => {
         this.changeInteractivity(),
           this.resetAnswersColor(),
+          this.currentQuestion = 0;
+          this.nextQuestion();
           scene_level.emitter.emit("time_malus"),
           this.scene.switch("Level");
       },

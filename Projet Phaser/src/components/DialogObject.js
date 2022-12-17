@@ -10,6 +10,8 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.setImmovable();
     this.dialogType = dialogType;
 
+    this.isEnable = true;
+
     /// Texte qui s'affiche au joueur quand il est proche ///
     /////TEST/////
     const screenCenterX =
@@ -67,12 +69,15 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         this.y,
         this.scene.player.x,
         this.scene.player.y
-      ) < 40
+      ) < 40 &&
+      this.isEnable
     ) {
       this.text_dialog.visible = true;
       this.text_box.visible = true;
 
       if (KeySpace.isDown && this.dialogType === "mcq") {
+        const scene_InterfaceQCM = this.scene.game.scene.getScene("InterfaceQCM");
+        scene_InterfaceQCM.currentBoss = this;
         this.scene.scene.switch("InterfaceQCM");
       } else if (KeySpace.isDown && this.dialogType === "clue") {
         Phaser.Display.Align.In.Center(this.text_clue, this.scene.player);
