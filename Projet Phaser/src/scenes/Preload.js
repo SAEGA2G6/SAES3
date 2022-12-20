@@ -19,6 +19,7 @@ class Preload extends Phaser.Scene {
 		this.load.pack("asset-pack", "assets/asset-pack.json");
 		this.load.pack("tileset-pack", "assets/tileset-pack.json");
 		this.load.tilemapTiledJSON('map', 'assets/maps/iut_rcFinis.json');
+		// TODO: charger maps 1er et 2eme etage
 	}
 
 	/** @returns {void} */

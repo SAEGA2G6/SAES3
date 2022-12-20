@@ -20,6 +20,8 @@ window.addEventListener("load", function () {
   game.scene.add("Menu", Menu);
   game.scene.add("Highscore", Highscore);
   game.scene.add("Level", Level);
+  game.scene.add("FirstFloor", FirstFloor);
+  game.scene.add("SecondFloor", SecondFloor);
   game.scene.add("InterfaceQCM", InterfaceQCM);
   game.scene.add("Boot", Boot, true);
 });
