@@ -115,6 +115,11 @@
                 "url": "assets/arrow_back.png",
                 "key": "arrow_back",
                 "type": "image"
+            },            
+            {
+                "url": "assets/prof4.png",
+                "key": "prof4",
+                "type": "image"
             }
         ]
     },

@@ -98,6 +98,14 @@ class Level extends Phaser.Scene {
     prof3.body.setSize(prof3.width * 0.6, prof3.height * 0.8, true);
     this.prof3 = prof3;
 
+    const prof4 = new DialogObject(
+      this, 1938, 725,
+      "prof4",
+      "Appuyer sur ESPACE pour commencer le QCM !",
+      null,
+      "mcq"
+    );
+
     ///////////// DOORS /////////////
     //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
@@ -202,7 +210,7 @@ class Level extends Phaser.Scene {
 
     const collider_list = [
       calque1, calque2, calque3,
-      prof1, prof2, prof3,
+      prof1, prof2, prof3, prof4,
       door_room2_1, door_room2_2,
       door_room3_1, door_room3_2,
       door_room4_1, door_room4_2,
