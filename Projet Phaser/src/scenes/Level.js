@@ -7,10 +7,10 @@ class Level extends Phaser.Scene {
     super("Level");
   }*/
 
-  init(data)
-  {
+  init(data) {
     this.playerGender = data.texture;
-  };
+    this.nbRoom = 1;
+  }
 
   /** @returns {void} */
   editorCreate() {
@@ -201,11 +201,18 @@ class Level extends Phaser.Scene {
     calque3.setCollisionByProperty({ estSolide: true });
 
     const collider_list = [
-      calque1, calque2, calque3,
-      prof1, prof2, prof3,
-      door_room2_1, door_room2_2,
-      door_room3_1, door_room3_2,
-      door_room4_1, door_room4_2,
+      calque1,
+      calque2,
+      calque3,
+      prof1,
+      prof2,
+      prof3,
+      door_room2_1,
+      door_room2_2,
+      door_room3_1,
+      door_room3_2,
+      door_room4_1,
+      door_room4_2,
       door_office1,
       door_office2,
       door_office3,
@@ -221,8 +228,20 @@ class Level extends Phaser.Scene {
     this.cameras.main.zoom = 1.2;
 
     ///////////// PROVISOIRE: portes de la salle 2 à ouvrir /////////////
-    const list_doors = [door_room2_1, door_room2_2];
-    this.list_doors = list_doors;
+    /*const list_doors_r2 = [door_room2_1, door_room2_2];
+
+    const list_doors_r3 = [door_room3_1, door_room3_2];
+    
+    const list_doors_r4 = [door_room4_1, door_room4_2];
+
+    const list_allDoors = [];
+    list_allDoors.push(list_doors_r2, list_doors_r3, list_doors_r4);*/
+    const list_allDoors = [
+      [door_room2_1, door_room2_2],
+      [door_room3_1, door_room3_2],
+      [door_room4_1, door_room4_2],
+    ];
+    this.list_allDoors = list_allDoors;
 
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
@@ -282,10 +301,12 @@ class Level extends Phaser.Scene {
 
   ///////////// EVENTS HANDLERS /////////////
   /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
-  open_doors_handler(nbDoors) {
-    for (var i = 0; i < this.list_doors.length; i++) {
-      this.list_doors[i].open();
+  open_doors_handler() {
+    console.log(this.nbRoom);
+    for (var i = 0; i < this.list_allDoors[this.nbRoom - 1].length; i++) {
+      this.list_allDoors[this.nbRoom - 1][i].open();
     }
+    this.nbRoom++;
   }
 
   malusChrono() {
