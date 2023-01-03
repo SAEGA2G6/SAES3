@@ -18,7 +18,7 @@ class FirstFloor extends Phaser.Scene {
       ///////////// MAP /////////////
 
       // TODO: ajouter la map du 1er étage
-      var carte = this.make.tilemap({ key: "map" });
+      var carte = this.make.tilemap({ key: "map1" });
       var tileset1 = carte.addTilesetImage("couloir", "couloir");
       var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
       var tileset3 = carte.addTilesetImage("meuble1", "meuble1");
@@ -65,12 +65,139 @@ class FirstFloor extends Phaser.Scene {
   
       ///////////// DOORS /////////////
       
-      //TODO//
+      var door_room1_1 = new Door(this, 1504, 417, "doubleporte", true);
+      var door_room1_2 = new Door(this, 1888, 417, "doubleporte", true);
+
+      var door_room2_1 = new Door(this, 1024, 545, "doubleporte", false);
+      var door_room2_2 = new Door(this, 1216, 545, "doubleporte", false);
+
+      var door_room3_1 = new Door(this, 1376, 545, "doubleporte", false);
+      var door_room3_2 = new Door(this, 1568, 545, "doubleporte", false);
+
+      var door_room4_1 = new Door(this, 1728, 545, "doubleporte", false);
+      var door_room4_2 = new Door(this, 1920, 545, "doubleporte", false);
   
       ///////////// INDICES /////////////
       
-      //TODO//
-  
+      /////////////// ROOM 0 /////////////
+
+    const pcOn1_room0 = new DialogObject(
+      this, 399, 368,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "clue"
+    );
+
+    const pcOn2_room0 = new DialogObject(
+      this, 559, 48,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "clue"
+    );
+    pcOn2_room0.flipX = true;
+
+    const papers_room0 = new DialogObject(
+      this, 305, 190,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+      /////////////// ROOM 1 /////////////
+
+
+    const pcOn1_room1 = new DialogObject(
+      this, 1905, 73,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "clue"
+    );
+    pcOn1_room1.flipX = true;
+
+    const papers_room1 = new DialogObject(
+      this, 1505, 60,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+    const bin_room1 = new DialogObject(
+      this, 1937, 400,
+      "poubelleSprite",
+      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "clue"
+    );
+
+    /////////////// ROOM 2 /////////////
+
+    const bin_room2 = new DialogObject(
+      this, 976, 590,
+      "poubelleSprite",
+      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "clue"
+    );
+
+    const papers_room2 = new DialogObject(
+      this, 1260, 768,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+    const eleve_room2 = new DialogObject(
+      this, 976, 975,
+      "eleve1",
+      "Appuyer sur ESPACE pour parler à l'élève",
+      "clue"
+    );
+
+    /////////////// ROOM 3 /////////////
+
+    const papers1_room3 = new DialogObject(
+      this, 1328, 720,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+    const papers2_room3 = new DialogObject(
+      this, 1500, 926,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+    const bin_room3 = new DialogObject(
+      this, 1616, 590,
+      "poubelleSprite",
+      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "clue"
+    );
+
+    /////////////// ROOM 4 /////////////
+
+    const papers_room4 = new DialogObject(
+      this, 1780, 830,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "clue"
+    );
+
+    const eleve1_room4 = new DialogObject(
+      this, 1970, 930,
+      "eleve1",
+      "Appuyer sur ESPACE pour parler à l'élève",
+      "clue"
+    );
+    eleve1_room4.flipX = true;
+
+    const eleve2_room4 = new DialogObject(
+      this, 1935, 930,
+      "eleve2",
+      "Appuyer sur ESPACE pour parler à l'élève",
+      "clue"
+    );
+
       ///////////// COLLISIONS /////////////
   
       calque1.setCollisionByProperty({ estSolide: true });
@@ -78,9 +205,15 @@ class FirstFloor extends Phaser.Scene {
       calque3.setCollisionByProperty({ estSolide: true });
   
       const collider_list = [
-        calque1,
-        calque2,
-        calque3
+        calque1, calque2, calque3,
+        door_room1_1, door_room1_2,
+        door_room2_1, door_room2_2,
+        door_room3_1, door_room3_2,
+        door_room4_1, door_room4_2,
+        bin_room1,
+        bin_room2, eleve_room2,
+        bin_room3,
+        eleve1_room4, eleve2_room4
       ];
       this.physics.add.collider(player, collider_list);
   

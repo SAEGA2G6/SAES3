@@ -197,18 +197,11 @@ class Level extends Phaser.Scene {
     calque3.setCollisionByProperty({ estSolide: true });
 
     const collider_list = [
-      calque1,
-      calque2,
-      calque3,
-      prof1,
-      prof2,
-      prof3,
-      door_room2_1,
-      door_room2_2,
-      door_room3_1,
-      door_room3_2,
-      door_room4_1,
-      door_room4_2,
+      calque1, calque2, calque3,
+      prof1, prof2, prof3,
+      door_room2_1, door_room2_2,
+      door_room3_1, door_room3_2,
+      door_room4_1, door_room4_2,
       door_office1,
       door_office2,
       door_office3,

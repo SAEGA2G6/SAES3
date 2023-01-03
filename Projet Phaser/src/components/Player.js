@@ -5,7 +5,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y);
     const baseVelocity = 160;
     this.baseVelocity = baseVelocity;
-    this.velocity = 160;
+    this.velocity = 300; //160;
     this.scene.physics.world.enable(this);
     this.setTexture("player");
     this.setScale(0.8, 0.8);
