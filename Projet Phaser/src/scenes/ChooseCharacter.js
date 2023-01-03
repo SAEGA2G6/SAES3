@@ -16,8 +16,24 @@ class ChooseCharacter extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    var back1 = this.add.rectangle(340, 300, 100, 148, 0x6666ff);
-    var back2 = this.add.rectangle(460, 300, 100, 148, 0x6666ff);
+    const msg_chooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {}).setDepth(5);
+    msg_chooseCharacter.setOrigin(0.5);
+    msg_chooseCharacter.setStyle({
+      fontFamily: "retro-computer",
+      fontSize: "40px",
+      color: "WHITE",
+    });
+
+    const arrow_back = this.add.image(100, 100, "arrow_back");
+    arrow_back.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.scene.switch("Menu");
+    });
+
+
+    var back1 = this.add.rectangle(340, 300, 100, 148, 0xF3E6D8);
+    var back2 = this.add.rectangle(460, 300, 100, 148, 0xF3E6D8);
+    back1.setStrokeStyle(4, 0x56A0D3);
+    back2.setStrokeStyle(4, 0xF773D6);
 
     const player1 = this.add.sprite(0, 0, "player");
     player1.setScale(2);

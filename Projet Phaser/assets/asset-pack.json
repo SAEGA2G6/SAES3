@@ -110,6 +110,11 @@
                 "url": "assets/eleve2.png",
                 "key": "eleve2",
                 "type": "image"
+            },
+            {
+                "url": "assets/arrow_back.png",
+                "key": "arrow_back",
+                "type": "image"
             }
         ]
     },

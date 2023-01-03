@@ -69,6 +69,7 @@ class Level extends Phaser.Scene {
       340,
       "prof1",
       "Appuyer sur ESPACE pour commencer le QCM !",
+      null,
       "mcq"
     );
 
@@ -81,6 +82,7 @@ class Level extends Phaser.Scene {
       340,
       "prof2",
       "Appuyer sur ESPACE pour commencer le QCM !",
+      null,
       "mcq"
     );
 
@@ -90,6 +92,7 @@ class Level extends Phaser.Scene {
       340,
       "prof3",
       "Appuyer sur ESPACE pour commencer le QCM !",
+      null,
       "mcq"
     );
     prof3.body.setSize(prof3.width * 0.6, prof3.height * 0.8, true);
