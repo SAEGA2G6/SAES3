@@ -1,13 +1,13 @@
 /* START OF COMPILED CODE */
 
 class Player extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y) {
+  constructor(scene, x, y, texture) {
     super(scene, x, y);
     const baseVelocity = 160;
     this.baseVelocity = baseVelocity;
     this.velocity = 160;
     this.scene.physics.world.enable(this);
-    this.setTexture("player");
+    this.setTexture(texture);
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
@@ -43,30 +43,31 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.cursors = this.scene.input.keyboard.createCursorKeys();
 
     ///animations///
+
     this.anims.create({
       key: "left",
-      frames: this.anims.generateFrameNumbers("player", { start: 4, end: 7 }),
+      frames: this.anims.generateFrameNumbers(texture, { start: 4, end: 7 }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: "right",
-      frames: this.anims.generateFrameNumbers("player", { start: 8, end: 11 }),
+      frames: this.anims.generateFrameNumbers(texture, { start: 8, end: 11 }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: "up",
-      frames: this.anims.generateFrameNumbers("player", { start: 12, end: 15 }),
+      frames: this.anims.generateFrameNumbers(texture, { start: 12, end: 15 }),
       frameRate: 10,
       repeat: -1,
     });
 
     this.anims.create({
       key: "down",
-      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers(texture, { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1,
     });
@@ -107,30 +108,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityX(0);
       this.setVelocityY(0);
     }
-    ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
-    /*var KeySpace = this.scene.input.keyboard.addKey("SPACE");
-
-    if (
-      Phaser.Math.Distance.Between(
-        this.x,
-        this.y,
-        this.scene.prof1.x,
-        this.scene.prof1.y
-      ) < 40
-    ) {
-      Phaser.Display.Align.In.BottomCenter(this.text_dialog, this.scene.prof1);
-      this.text_dialog.y += 5;
-      this.text_dialog.visible = true;
-      if (KeySpace.isDown) {
-        this.scene.scene.switch("InterfaceQCM");
-      }
-    } else {
-      this.text_dialog.visible = false;
-    }
-    if (this.score === 10) {
-      this.scene.emitter.emit("openDoors");
-    }*/
-    //////////////////////////////////////////////////////////////////////////////////////
   }
 }
 

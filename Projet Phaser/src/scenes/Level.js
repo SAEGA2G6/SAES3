@@ -3,13 +3,14 @@
 /* START OF COMPILED CODE */
 
 class Level extends Phaser.Scene {
-  constructor() {
+  /*constructor() {
     super("Level");
+  }*/
 
-    /* START-USER-CTR-CODE */
-    // Write your code here.
-    /* END-USER-CTR-CODE */
-  }
+  init(data)
+  {
+    this.playerGender = data.texture;
+  };
 
   /** @returns {void} */
   editorCreate() {
@@ -53,8 +54,8 @@ class Level extends Phaser.Scene {
       .setDepth(2);
 
     ///////////// PLAYER /////////////
-
-    const player = new Player(this, 400, 218).setDepth(1);
+    console.log(this.playerGender);
+    const player = new Player(this, 400, 218, this.playerGender).setDepth(1);
     this.player = player;
 
     ///////////// PROF/BOSS /////////////
@@ -285,7 +286,7 @@ class Level extends Phaser.Scene {
 
   ///////////// EVENTS HANDLERS /////////////
   /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
-  open_doors_handler() {
+  open_doors_handler(nbDoors) {
     for (var i = 0; i < this.list_doors.length; i++) {
       this.list_doors[i].open();
     }
@@ -335,12 +336,6 @@ class Level extends Phaser.Scene {
 
     ///TO UPDATE CHRONOMETER
     this.updateChrono();
-
-    /////TEST
-    const KeyK = this.input.keyboard.addKey("k");
-    if (KeyK.isDown) {
-      this.scene.restart("Level");
-    }
   }
   /* END-USER-CODE */
 }
