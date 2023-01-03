@@ -18,7 +18,7 @@ class SecondFloor extends Phaser.Scene {
       ///////////// MAP /////////////
 
       // TODO: ajouter la map du 2ème étage
-      var carte = this.make.tilemap({ key: "map" });
+      var carte = this.make.tilemap({ key: "map2" });
       var tileset1 = carte.addTilesetImage("couloir", "couloir");
       var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
       var tileset3 = carte.addTilesetImage("meuble1", "meuble1");
