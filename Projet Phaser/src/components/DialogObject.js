@@ -4,7 +4,7 @@
 
 class DialogObject extends Phaser.Physics.Arcade.Sprite {
   ///dialogType correspond au type de dialogue (indice -> clue, qcm -> mcq...)
-  constructor(scene, x, y, texture, text, dialogType) {
+  constructor(scene, x, y, texture, displayText, clueText,dialogType) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
     this.setImmovable();
@@ -29,7 +29,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     /////////////
     const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
     text_dialog.setOrigin(0.5, 0.5);
-    text_dialog.text = text;
+    text_dialog.text = displayText;
     text_dialog.setStyle({
       fontFamily: "Roboto",
       fontSize: "25px",
@@ -42,7 +42,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.text_dialog = text_dialog;
 
     /// Texte pour l'indice ///
-    const text_clue = this.scene.add.text(0, 0, "clue 1", {}).setDepth(5);
+    const text_clue = this.scene.add.text(0, 0, clueText, {}).setDepth(5);
     text_clue.setStyle({
       fontFamily: "Roboto",
       fontSize: "10px",

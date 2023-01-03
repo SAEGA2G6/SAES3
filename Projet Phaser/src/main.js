@@ -19,6 +19,7 @@ window.addEventListener("load", function () {
   game.scene.add("Preload", Preload);
   game.scene.add("Menu", Menu);
   game.scene.add("Highscore", Highscore);
+  game.scene.add("ChooseCharacter", ChooseCharacter);
   game.scene.add("Level", Level);
   game.scene.add("FirstFloor", FirstFloor);
   game.scene.add("SecondFloor", SecondFloor);

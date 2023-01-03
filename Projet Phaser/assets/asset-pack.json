@@ -12,6 +12,26 @@
                 }
             },
             {
+                "url": "assets/character_fille.png",
+                "key": "player2",
+                "type": "spritesheet",
+                "frameConfig":
+                {
+                "frameWidth": 32,
+                "frameHeight": 48
+                }
+            },
+            {
+                "url": "assets/male-symbol.png",
+                "key": "male-symbol",
+                "type": "image"
+            },
+            {
+                "url": "assets/female-symbol.png",
+                "key": "female-symbol",
+                "type": "image"
+            },
+            {
                 "url": "assets/prof1.png",
                 "key": "prof1",
                 "type": "image"
@@ -89,6 +109,11 @@
             {
                 "url": "assets/eleve2.png",
                 "key": "eleve2",
+                "type": "image"
+            },
+            {
+                "url": "assets/arrow_back.png",
+                "key": "arrow_back",
                 "type": "image"
             }
         ]

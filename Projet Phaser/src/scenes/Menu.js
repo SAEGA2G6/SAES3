@@ -57,7 +57,8 @@ class Menu extends Phaser.Scene {
     this.text_start = text_start;
 
     // Gestion START
-    new TextColor(text_start, "Level");
+    //new TextColor(text_start, "Level");
+    new TextColor(text_start, "ChooseCharacter");
     new TextColor(text_highscore, "Highscore");
 
     /*text_start
