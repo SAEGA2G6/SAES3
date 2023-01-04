@@ -166,8 +166,8 @@ class InterfaceQCM extends Phaser.Scene {
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
       this.scene.switch("Level");
+      }
     }
-  }
 
 
 

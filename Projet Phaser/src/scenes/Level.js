@@ -9,7 +9,8 @@ class Level extends Phaser.Scene {
 
   init(data) {
     this.playerGender = data.texture;
-    this.nbRoom = 1;
+    this.currentNbRoom = 1;
+    this.nbRooms = 4;
   }
 
   /** @returns {void} */
@@ -99,7 +100,9 @@ class Level extends Phaser.Scene {
     this.prof3 = prof3;
 
     const prof4 = new DialogObject(
-      this, 1938, 725,
+      this,
+      1938,
+      725,
       "prof4",
       "Appuyer sur ESPACE pour commencer le QCM !",
       null,
@@ -209,11 +212,19 @@ class Level extends Phaser.Scene {
     calque3.setCollisionByProperty({ estSolide: true });
 
     const collider_list = [
-      calque1, calque2, calque3,
-      prof1, prof2, prof3, prof4,
-      door_room2_1, door_room2_2,
-      door_room3_1, door_room3_2,
-      door_room4_1, door_room4_2,
+      calque1,
+      calque2,
+      calque3,
+      prof1,
+      prof2,
+      prof3,
+      prof4,
+      door_room2_1,
+      door_room2_2,
+      door_room3_1,
+      door_room3_2,
+      door_room4_1,
+      door_room4_2,
       door_office1,
       door_office2,
       door_office3,
@@ -229,14 +240,6 @@ class Level extends Phaser.Scene {
     this.cameras.main.zoom = 1.2;
 
     ///////////// PROVISOIRE: portes de la salle 2 à ouvrir /////////////
-    /*const list_doors_r2 = [door_room2_1, door_room2_2];
-
-    const list_doors_r3 = [door_room3_1, door_room3_2];
-    
-    const list_doors_r4 = [door_room4_1, door_room4_2];
-
-    const list_allDoors = [];
-    list_allDoors.push(list_doors_r2, list_doors_r3, list_doors_r4);*/
     const list_allDoors = [
       [door_room2_1, door_room2_2],
       [door_room3_1, door_room3_2],
@@ -301,13 +304,19 @@ class Level extends Phaser.Scene {
   }
 
   ///////////// EVENTS HANDLERS /////////////
-  /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
   open_doors_handler() {
-    console.log(this.nbRoom);
-    for (var i = 0; i < this.list_allDoors[this.nbRoom - 1].length; i++) {
-      this.list_allDoors[this.nbRoom - 1][i].open();
+    console.log("room num: " + this.currentNbRoom);
+    if (this.currentNbRoom < this.nbRooms) {
+      for (
+        var i = 0;
+        i < this.list_allDoors[this.currentNbRoom - 1].length;
+        i++
+      ) {
+        this.list_allDoors[this.currentNbRoom - 1][i].open();
+      }
     }
-    this.nbRoom++;
+    this.currentNbRoom++;
+    console.log("portes de la salle " + this.currentNbRoom + " ouvertes");
   }
 
   malusChrono() {
@@ -322,7 +331,7 @@ class Level extends Phaser.Scene {
     );
   }
 
-  ///////////// UPDATE /////////////
+  ///////////// UPDATECHRONO /////////////
   updateChrono() {
     /// CHRONOMETER
     var min = Math.floor(this.chrono / 60);
@@ -342,16 +351,31 @@ class Level extends Phaser.Scene {
     this.chrono_txt.text = min_txt + " : " + sec_txt;
   }
 
+  ///////////// END OF GAME /////////////
+  isGameEnded() {
+    if (this.currentNbRoom > this.nbRooms) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  ///////////// CREATE /////////////
   create() {
     this.editorCreate();
   }
 
+  ///////////// UPDATE /////////////
   update() {
+    ///CHECK IF GAME ENDED
+    if(this.isGameEnded()) {
+      this.scene.switch("Menu");
+      this.scene.stop();
+    }
     ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
     }
-
     ///TO UPDATE CHRONOMETER
     this.updateChrono();
   }

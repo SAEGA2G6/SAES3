@@ -4,7 +4,7 @@
 
 class DialogObject extends Phaser.Physics.Arcade.Sprite {
   ///dialogType correspond au type de dialogue (indice -> clue, qcm -> mcq...)
-  constructor(scene, x, y, texture, displayText, clueText,dialogType) {
+  constructor(scene, x, y, texture, displayText,clueText,dialogType) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
     this.setImmovable();
