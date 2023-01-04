@@ -55,7 +55,7 @@ class Level extends Phaser.Scene {
 
     ///////////// PLAYER /////////////
     console.log(this.playerGender);
-    const player = new Player(this, 400, 218, this.playerGender).setDepth(1);
+    const player = new Player(this, 352, 918, this.playerGender).setDepth(1);
     this.player = player;
 
     ///////////// PROF/BOSS /////////////
