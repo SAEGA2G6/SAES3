@@ -132,7 +132,7 @@ class Level extends Phaser.Scene {
 
     var door_secretariat = new Door(this, 928, 673, "doubleporte", false);
 
-    var door_boss = new Door(this, 750, 673, "simpleporte", false);
+    var door_boss = new Door(this, 752, 673, "simpleporte", false);
 
     //Indice
 
@@ -144,15 +144,17 @@ class Level extends Phaser.Scene {
       240,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Indice pc",
       "clue"
     );
     pcOn1_room1.flipX = true;
+
     const pcOn2_room1 = new DialogObject(
       this,
       625,
       110,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
 
@@ -161,7 +163,7 @@ class Level extends Phaser.Scene {
       305,
       80,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
       "clue"
     );
 
@@ -172,7 +174,7 @@ class Level extends Phaser.Scene {
         1040,
         240,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
         "clue"
       );
    
@@ -181,7 +183,7 @@ class Level extends Phaser.Scene {
       750,
       146,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
     pcOn2_room2.flipX = true;
@@ -189,7 +191,7 @@ class Level extends Phaser.Scene {
       const bin_room2 = new DialogObject(
         this, 1075, 400,
         "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle",
+        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle", 
         "clue"
       );
 
@@ -200,7 +202,7 @@ class Level extends Phaser.Scene {
       1775,
       112,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
     pcOn_room3.flipX = true;
@@ -208,7 +210,7 @@ class Level extends Phaser.Scene {
       const bin_room3 = new DialogObject(
         this, 1580, 400,
         "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle",
+        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle",
         "clue"
       );
 
@@ -217,7 +219,7 @@ class Level extends Phaser.Scene {
         1937,
         262,
         "papiers",
-        "Appuyer sur ESPACE pour regarder les notes...",
+        "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
         "clue"
       );
 
@@ -228,7 +230,7 @@ class Level extends Phaser.Scene {
         1810,
         623,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
         "clue"
       );
 
@@ -237,7 +239,7 @@ class Level extends Phaser.Scene {
         1905,
         912,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
         "clue"
       );
 
@@ -246,7 +248,7 @@ class Level extends Phaser.Scene {
         1776,
         815,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
         "clue"
       );
 

@@ -32,7 +32,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     text_dialog.text = displayText;
     text_dialog.setStyle({
       fontFamily: "Roboto",
-      fontSize: "25px",
+      fontSize: "22px",
       color: "black",
     });
     /////TEST/////
