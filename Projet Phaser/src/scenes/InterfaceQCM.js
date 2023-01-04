@@ -20,6 +20,7 @@ class InterfaceQCM extends Phaser.Scene {
     //this.jsonQA = require('./assets/question/QA.json');
     this.myJsonQA = JSON.parse(this.jsonQA);
     this.currentQuestion = 0;
+    this.sendRequest();
   }
 
   /** @returns {void} */
@@ -246,6 +247,21 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer2.isRight = false;
     this.answer3.isRight = false;
     this.answer4.isRight = false;
+  }
+
+  sendRequest() {
+    console.log("request");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Traitez la réponse ici
+        var response = xhr.responseText;
+        console.log(response);
+      }
+    };
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("query=SELECT * FROM question");
   }
 
   /* END-USER-CODE */
