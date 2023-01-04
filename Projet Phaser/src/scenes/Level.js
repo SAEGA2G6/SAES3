@@ -56,7 +56,7 @@ class Level extends Phaser.Scene {
 
     ///////////// PLAYER /////////////
     console.log(this.playerGender);
-    const player = new Player(this, 400, 218, this.playerGender).setDepth(1);
+    const player = new Player(this, 352, 918, this.playerGender).setDepth(1);
     this.player = player;
 
     ///////////// PROF/BOSS /////////////
@@ -135,7 +135,7 @@ class Level extends Phaser.Scene {
 
     var door_secretariat = new Door(this, 928, 673, "doubleporte", false);
 
-    var door_boss = new Door(this, 750, 673, "simpleporte", false);
+    var door_boss = new Door(this, 752, 673, "simpleporte", false);
 
     //Indice
 
@@ -147,63 +147,113 @@ class Level extends Phaser.Scene {
       240,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Indice pc",
       "clue"
     );
     pcOn1_room1.flipX = true;
+
     const pcOn2_room1 = new DialogObject(
       this,
       625,
       110,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
+
     const papers_room1 = new DialogObject(
       this,
       305,
       80,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
       "clue"
     );
 
     ///////////// ROOM 2 (TODO: faire comme pour ROOM 1) /////////////
 
-    const pcOn1_room2 = this.physics.add
-      .sprite(1040, 240, "pcAllume")
-      .setImmovable();
-    const pcOn2_room2 = this.physics.add
-      .sprite(750, 146, "pcAllume")
-      .setImmovable();
+      const pcOn1_room2 = new DialogObject(
+        this,
+        1040,
+        240,
+        "pcAllume",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "clue"
+      );
+   
+      const pcOn2_room2 = new DialogObject(
+      this,
+      750,
+      146,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+      "clue"
+    );
     pcOn2_room2.flipX = true;
-    const poubelle_room2 = this.physics.add
-      .sprite(1075, 400, "poubelleSprite")
-      .setImmovable();
+
+      const bin_room2 = new DialogObject(
+        this, 1075, 400,
+        "poubelleSprite",
+        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle", 
+        "clue"
+      );
 
     ///////////// ROOM 3 (TODO: faire comme pour ROOM 1) /////////////
 
-    const pcOn_room3 = this.physics.add
-      .sprite(1775, 112, "pcAllume")
-      .setImmovable();
+    const pcOn_room3 = new DialogObject(
+      this,
+      1775,
+      112,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+      "clue"
+    );
     pcOn_room3.flipX = true;
-    const poubelle_room3 = this.physics.add
-      .sprite(1580, 400, "poubelleSprite")
-      .setImmovable();
-    const papers_room3 = this.physics.add
-      .sprite(1937, 262, "papiers")
-      .setImmovable();
+
+      const bin_room3 = new DialogObject(
+        this, 1580, 400,
+        "poubelleSprite",
+        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle",
+        "clue"
+      );
+
+      const papers_room3 = new DialogObject(
+        this,
+        1937,
+        262,
+        "papiers",
+        "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
+        "clue"
+      );
 
     ///////////// ROOM 4 (TODO: faire comme pour ROOM 1) /////////////
 
-    const pcOn1_room4 = this.physics.add
-      .sprite(1810, 623, "pcAllume")
-      .setImmovable();
-    const pcOn2_room4 = this.physics.add
-      .sprite(1905, 912, "pcAllume")
-      .setImmovable();
-    const pcOn3_room4 = this.physics.add
-      .sprite(1776, 815, "pcAllume")
-      .setImmovable();
+      const pcOn_room4 = new DialogObject(
+        this,
+        1810,
+        623,
+        "pcAllume",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "clue"
+      );
+
+      const pcOn2_room4 = new DialogObject(
+        this,
+        1905,
+        912,
+        "pcAllume",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "clue"
+      );
+
+      const pcOn3_room4 = new DialogObject(
+        this,
+        1776,
+        815,
+        "pcAllume",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "clue"
+      );
 
     ///////////// COLLISIONS /////////////
 
@@ -231,6 +281,7 @@ class Level extends Phaser.Scene {
       door_office4,
       door_secretariat,
       door_boss,
+      bin_room2, bin_room3
     ];
     this.physics.add.collider(player, collider_list);
 
