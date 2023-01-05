@@ -120,6 +120,31 @@
                 "url": "assets/prof4.png",
                 "key": "prof4",
                 "type": "image"
+            },            
+            {
+                "url": "assets/prof5.png",
+                "key": "prof5",
+                "type": "image"
+            },            
+            {
+                "url": "assets/prof6.png",
+                "key": "prof6",
+                "type": "image"
+            },            
+            {
+                "url": "assets/prof7.png",
+                "key": "prof7",
+                "type": "image"
+            },            
+            {
+                "url": "assets/prof8.png",
+                "key": "prof8",
+                "type": "image"
+            },            
+            {
+                "url": "assets/prof9.png",
+                "key": "prof9",
+                "type": "image"
             }
         ]
     },
