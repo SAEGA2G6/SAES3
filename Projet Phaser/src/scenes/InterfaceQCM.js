@@ -12,13 +12,13 @@ class InterfaceQCM extends Phaser.Scene {
 
     this.currentBoss;
 
-    this.jsonQA =
+    this.jsonQA;
+    /*this.jsonQA = 
       '[{ "question": "Q1","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "bonne réponse","reponse4": "mauvaise réponse", "correct": 3},' +
       '{ "question": "Q2","reponse1": "mauvaise réponse","reponse2": "bonne réponse","reponse3": "mauvaise réponse","reponse4": "mauvaise réponse", "correct" : 2},' +
       '{ "question": "Q3","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "mauvaise réponse","reponse4": "bonne réponse", "correct" : 4}]';
-
-    //this.jsonQA = require('./assets/question/QA.json');
-    this.myJsonQA = JSON.parse(this.jsonQA);
+      */
+    this.myJsonQA; // = JSON.parse(this.jsonQA);
     this.currentQuestion = 0;
     this.sendRequest();
   }
@@ -28,6 +28,7 @@ class InterfaceQCM extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    this.myJsonQA = InterfaceQCM.myJsonQA;
     // Fond sur lequel seront affichées les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
 
@@ -43,27 +44,16 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    //question.text =
-    //  "2 : Quel est l’intrus parmi ces langages de programmation ?";
-    question.text = this.myJsonQA[this.currentQuestion].question;
+    question.text = this.myJsonQA[0].Enoncer;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
       color: "white",
+      wordWrap: { width: 400 }
     });
     Phaser.Display.Align.In.TopCenter(question, this.back_interface);
+    question.y -= 80;
     this.question = question;
-
-    // Questions test
-    /*
-    const answer1 = new Answer(this, "A) Java", false);
-
-    const answer2 = new Answer(this, "B) C++", false);
-
-    const answer3 = new Answer(this, "C) Boa", true);
-
-    const answer4 = new Answer(this, "D) Javascript", false);
-    */
 
     // Questions test JSON
 
@@ -75,32 +65,22 @@ class InterfaceQCM extends Phaser.Scene {
 
     const answer4 = new Answer(this);
 
-    /*Phaser.Display.Align.In.BottomLeft(answer1, this.back_interface);
-    Phaser.Display.Align.In.BottomRight(answer2, this.back_interface);
-    Phaser.Display.Align.In.BottomLeft(answer3, this.back_interface);
-    Phaser.Display.Align.In.BottomRight(answer4, this.back_interface);
-    
-    answer1.y -= 120;
-    answer2.y -= 120;
-
-    answer3.y -= 30;
-    answer4.y -= 30;*/
 
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+  
 
     Phaser.Display.Align.In.BottomLeft(this.answer1, this.back_interface);
-    Phaser.Display.Align.In.BottomRight(this.answer2, this.back_interface);
+    Phaser.Display.Align.In.BottomLeft(this.answer2, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(this.answer3, this.back_interface);
-    Phaser.Display.Align.In.BottomRight(this.answer4, this.back_interface);
+    Phaser.Display.Align.In.BottomLeft(this.answer4, this.back_interface);
     
-    this.answer1.y -= 120;
-    this.answer2.y -= 120;
-
-    this.answer3.y -= 30;
-    this.answer4.y -= 30;
+    this.answer1.y -= 250;
+    this.answer2.y = this.answer1.y + 90;
+    this.answer3.y = this.answer2.y + 90; 
+    this.answer4.y = this.answer3.y + 90;
 
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
@@ -149,13 +129,13 @@ class InterfaceQCM extends Phaser.Scene {
     if (this.currentQuestion < this.myJsonQA.length) {
       console.log("changement question");
 
-      this.question.text = this.myJsonQA[this.currentQuestion].question;
-      this.answer1.text = this.myJsonQA[this.currentQuestion].reponse1;
-      this.answer2.text = this.myJsonQA[this.currentQuestion].reponse2;
-      this.answer3.text = this.myJsonQA[this.currentQuestion].reponse3;
-      this.answer4.text = this.myJsonQA[this.currentQuestion].reponse4;
+      this.question.text = this.myJsonQA[this.currentQuestion].Enoncer;
+      this.answer1.text = this.myJsonQA[this.currentQuestion].Reponse1;
+      this.answer2.text = this.myJsonQA[this.currentQuestion].Reponse2;
+      this.answer3.text = this.myJsonQA[this.currentQuestion].Reponse3;
+      this.answer4.text = this.myJsonQA[this.currentQuestion].Reponse4;
 
-      this.answerList[this.myJsonQA[this.currentQuestion].correct - 1].isRight = true;
+      this.answerList[this.myJsonQA[this.currentQuestion].BonneReponse - 1].isRight = true;
       
       this.currentQuestion++;
     }
@@ -251,17 +231,26 @@ class InterfaceQCM extends Phaser.Scene {
 
   sendRequest() {
     console.log("request");
+    const interQCM = this;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
+        console.log("on est dans la requete");
         var response = xhr.responseText;
         console.log(response);
+        InterfaceQCM.myJsonQA = JSON.parse(this.response);
+        console.log(InterfaceQCM.myJsonQA[0].Enoncer);
+        console.log(InterfaceQCM.myJsonQA[0].Reponse1);
+        console.log(InterfaceQCM.myJsonQA[0].Reponse2);
+        console.log(InterfaceQCM.myJsonQA[0].Reponse3);
+        console.log(InterfaceQCM.myJsonQA[0].Reponse4);
+
       }
     };
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM question");
+    xhr.send("query=SELECT * FROM QUESTION where ID_QUESTION = 1 OR ID_QUESTION = 2 OR ID_QUESTION = 3");
   }
 
   /* END-USER-CODE */

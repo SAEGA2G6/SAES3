@@ -10,10 +10,12 @@ class Answer extends Phaser.GameObjects.Text {
     this.setDepth(5);
     this.setStyle({
       fontFamily: "Roboto",
-      fontSize: "20px",
+      fontSize: "15px",
       color: "white",
+      wordWrap: { width: 400 }
     });
-    this.setOrigin(0.5, 0.5);
+    //this.setOrigin(0.5, 0.5);
+    this.setOrigin(0, 0.5);
 
     /*
     this.setInteractive({ useHandCursor: true }).on("pointerover", () =>
