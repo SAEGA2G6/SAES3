@@ -4,10 +4,11 @@
 
 class DialogObject extends Phaser.Physics.Arcade.Sprite {
   ///dialogType correspond au type de dialogue (indice -> clue, qcm -> mcq...)
-  constructor(scene, x, y, texture, displayText,clueText,dialogType) {
+  constructor(scene, x, y, texture, displayText,clueId,dialogType) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
     this.setImmovable();
+    this.clueId = clueId;
     this.dialogType = dialogType;
 
     this.isEnable = true;
@@ -42,7 +43,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.text_dialog = text_dialog;
 
     /// Texte pour l'indice ///
-    const text_clue = this.scene.add.text(0, 0, clueText, {}).setDepth(5);
+    const text_clue = this.scene.add.text(0, 0, "", {}).setDepth(5);
     text_clue.setStyle({
       fontFamily: "Roboto",
       fontSize: "10px",
@@ -80,14 +81,21 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         scene_InterfaceQCM.currentBoss = this;
         this.scene.scene.switch("InterfaceQCM");
       } else if (KeySpace.isDown && this.dialogType === "clue") {
-        Phaser.Display.Align.In.Center(this.text_clue, this.scene.player);
-        this.text_clue.visible = true;
+        const scene_clue = this.scene.game.scene.getScene("Clue");
+        scene_clue.clueId = this.clueId;
+
+        this.scene.scene.launch("Clue");
+
+        //ENLEVER
+        /*Phaser.Display.Align.In.Center(this.text_clue, this.scene.player);
+        this.text_clue.visible = true;*/
+        //
         this.scene.player.velocity = 0;
       }
 
       if (KeyEsc.isDown && this.text_clue.visible === true) {
-        this.text_clue.visible = false;
-        this.scene.player.velocity = this.scene.player.baseVelocity;
+        /*this.text_clue.visible = false;
+        this.scene.player.velocity = this.scene.player.baseVelocity;*/
       }
     } else {
       this.text_dialog.visible = false;

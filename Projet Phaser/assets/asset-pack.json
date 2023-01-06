@@ -2,7 +2,7 @@
     "section1": {
         "files": [
             {
-                "url": "assets/pokemon-char-sheet.png",
+                "url": "assets/skin/character_boy.png",
                 "key": "player",
                 "type": "spritesheet",
                 "frameConfig":
@@ -12,7 +12,7 @@
                 }
             },
             {
-                "url": "assets/character_fille.png",
+                "url": "assets/skin/character_girl.png",
                 "key": "player2",
                 "type": "spritesheet",
                 "frameConfig":
@@ -22,128 +22,133 @@
                 }
             },
             {
-                "url": "assets/male-symbol.png",
+                "url": "assets/icones/male-symbol.png",
                 "key": "male-symbol",
                 "type": "image"
             },
             {
-                "url": "assets/female-symbol.png",
+                "url": "assets/icones/female-symbol.png",
                 "key": "female-symbol",
                 "type": "image"
             },
             {
-                "url": "assets/prof1.png",
+                "url": "assets/profs/prof1.png",
                 "key": "prof1",
                 "type": "image"
             },
             {
-                "url": "assets/cadredoubleporte.png",
+                "url": "assets/portes/cadredoubleporte.png",
                 "key": "cadredoubleporte",
                 "type": "image"
             },
             {
-                "url": "assets/cadresimpleporte.png",
+                "url": "assets/portes/cadresimpleporte.png",
                 "key": "cadresimpleporte",
                 "type": "image"
             },
             {
-                "url": "assets/doubleporte.png",
+                "url": "assets/portes/doubleporte.png",
                 "key": "doubleporte",
                 "type": "image"
             },
             {
-                "url": "assets/simpleporte.png",
+                "url": "assets/portes/simpleporte.png",
                 "key": "simpleporte",
                 "type": "image"
             },
             {
-                "url": "assets/menuDemarrage.png",
+                "url": "assets/fonds/menuDemarrage.png",
                 "key": "menuDemarrage",
                 "type": "image"
             },
             {
-                "url": "assets/pcAllume.png",
+                "url": "assets/indices/pcAllume.png",
                 "key": "pcAllume",
                 "type": "image"
             },
             {
-                "url": "assets/papiers.png",
+                "url": "assets/indices/papiers.png",
                 "key": "papiers",
                 "type": "image"
             },
             {
-                "url": "assets/interfaceQCM.png",
+                "url": "assets/fonds/interfaceQCM.png",
                 "key": "interfaceQCM",
                 "type": "image"
             },
             {
-                "url": "assets/poubelle.png",
+                "url": "assets/indices/poubelle.png",
                 "key": "poubelleSprite",
                 "type": "image"
             },
             {
-                "url": "assets/prof2.png",
+                "url": "assets/profs/prof2.png",
                 "key": "prof2",
                 "type": "image"
             },
             {
-                "url": "assets/prof3.png",
+                "url": "assets/profs/prof3.png",
                 "key": "prof3",
                 "type": "image"
             },
             {
-                "url": "assets/chrono.png",
+                "url": "assets/icones/chrono.png",
                 "key": "back_chrono",
                 "type": "image"
             },
             {
-                "url": "assets/textbox.png",
+                "url": "assets/fonds/textbox.png",
                 "key": "textbox",
                 "type": "image"
             },
             {
-                "url": "assets/eleve1.png",
+                "url": "assets/indices/eleve1.png",
                 "key": "eleve1",
                 "type": "image"
             },
             {
-                "url": "assets/eleve2.png",
+                "url": "assets/indices/eleve2.png",
                 "key": "eleve2",
                 "type": "image"
             },
             {
-                "url": "assets/arrow_back.png",
+                "url": "assets/icones/arrow_back.png",
                 "key": "arrow_back",
                 "type": "image"
             },            
             {
-                "url": "assets/prof4.png",
+                "url": "assets/profs/prof4.png",
                 "key": "prof4",
                 "type": "image"
             },            
             {
-                "url": "assets/prof5.png",
+                "url": "assets/profs/prof5.png",
                 "key": "prof5",
                 "type": "image"
             },            
             {
-                "url": "assets/prof6.png",
+                "url": "assets/profs/prof6.png",
                 "key": "prof6",
                 "type": "image"
             },            
             {
-                "url": "assets/prof7.png",
+                "url": "assets/profs/prof7.png",
                 "key": "prof7",
                 "type": "image"
             },            
             {
-                "url": "assets/prof8.png",
+                "url": "assets/profs/prof8.png",
                 "key": "prof8",
                 "type": "image"
             },            
             {
-                "url": "assets/prof9.png",
+                "url": "assets/profs/prof9.png",
                 "key": "prof9",
+                "type": "image"
+            },            
+            {
+                "url": "assets/fonds/papier.png",
+                "key": "papier",
                 "type": "image"
             }
         ]

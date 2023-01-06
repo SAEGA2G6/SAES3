@@ -24,6 +24,7 @@ window.addEventListener("load", function () {
   game.scene.add("FirstFloor", FirstFloor);
   game.scene.add("SecondFloor", SecondFloor);
   game.scene.add("InterfaceQCM", InterfaceQCM);
+  game.scene.add("Clue", Clue);
   game.scene.add("Boot", Boot, true);
 });
 

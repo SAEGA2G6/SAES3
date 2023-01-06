@@ -2,7 +2,7 @@
     "section1": {
         "files": [
             {
-                "url": "assets/spinner.png",
+                "url": "assets/icones/spinner.png",
                 "key": "spinner",
                 "type": "spritesheet",
                 "frameConfig":
