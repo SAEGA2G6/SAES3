@@ -9,6 +9,8 @@ class Highscore extends Phaser.Scene {
     /* START-USER-CTR-CODE */
     // Write your code here.
     /* END-USER-CTR-CODE */
+
+    this.myJsonScores;
   }
 
   /** @returns {void} */
@@ -17,10 +19,11 @@ class Highscore extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     const highscore_test = this.add.text(400, 250, "", {});
+    this.highscore_test = highscore_test;
     highscore_test.setOrigin(0.5, 0.5);
-    highscore_test.text = "1ER\n2EME\n3EME\n4EME\n5EME\n6EME\n7EME\n8EME\n9EME\n10EME";
+    //highscore_test.text = "1ER\n2EME\n3EME\n4EME\n5EME\n6EME\n7EME\n8EME\n9EME\n10EME";
     highscore_test.setStyle({
-      fontFamily: "retro-computer",
+      fontFamily: "spacemono-regular",
       fontSize: "25px",
       color: "white",
     });
@@ -37,6 +40,8 @@ class Highscore extends Phaser.Scene {
 
     new TextColor(text_menu, "Menu");
 
+    this.sendRequest();
+
     this.events.emit("scene-awake");
   }
 
@@ -46,6 +51,35 @@ class Highscore extends Phaser.Scene {
 
   create() {
     this.editorCreate();
+  }
+
+  sendRequest() {
+    const that = this;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Traitez la réponse ici
+        console.log("on est dans la requete");
+        var response = xhr.responseText;
+        const myJsonScores = JSON.parse(this.response);
+        console.log(response);
+        console.log(myJsonScores);
+        for (let index = 0; index < myJsonScores.length; index++) {
+          if(index == 0) {
+            that.highscore_test.text += "1ER  " + myJsonScores[index].ID_JOUEUR + " " + myJsonScores[index].SCORE;
+          }
+          else {
+            var place = index + 1;
+            that.highscore_test.text += "\n" + place + "EME " + myJsonScores[index].ID_JOUEUR + " " + myJsonScores[index].SCORE;
+          }
+        }
+      }
+    };
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("query=SELECT * FROM SCORE ORDER BY score DESC");
   }
 
   /* END-USER-CODE */

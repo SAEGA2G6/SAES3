@@ -11,6 +11,7 @@ class Level extends Phaser.Scene {
     this.playerGender = data.texture;
     this.currentNbRoom = 1;
     this.nbRooms = 4;
+    this.levelPrefix = "rc_r"
   }
 
   /** @returns {void} */
@@ -420,6 +421,7 @@ class Level extends Phaser.Scene {
   update() {
     ///CHECK IF GAME ENDED
     if(this.isGameEnded()) {
+      this.sendRequest();
       this.scene.switch("Menu");
       this.scene.stop();
     }
@@ -431,6 +433,23 @@ class Level extends Phaser.Scene {
     this.updateChrono();
   }
   /* END-USER-CODE */
+
+  sendRequest() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Traitez la réponse ici
+        console.log("ajout du score dans la bd");
+        var response = xhr.responseText;
+      }
+    };
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("query=INSERT INTO SCORE VALUES ('DANNATHOR',1000)");
+  }
+
 }
 
 /* END OF COMPILED CODE */

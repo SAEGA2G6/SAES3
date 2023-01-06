@@ -10,7 +10,12 @@ class InterfaceQCM extends Phaser.Scene {
     // Write your code here.
     /* END-USER-CTR-CODE */
 
+    //Boss of the current room
     this.currentBoss;
+
+    //Request DB
+    this.xhr;
+
 
     this.jsonQA;
     /*this.jsonQA = 
@@ -18,9 +23,9 @@ class InterfaceQCM extends Phaser.Scene {
       '{ "question": "Q2","reponse1": "mauvaise réponse","reponse2": "bonne réponse","reponse3": "mauvaise réponse","reponse4": "mauvaise réponse", "correct" : 2},' +
       '{ "question": "Q3","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "mauvaise réponse","reponse4": "bonne réponse", "correct" : 4}]';
       */
-    this.myJsonQA; // = JSON.parse(this.jsonQA);
+    this.myJsonQA;
     this.currentQuestion = 0;
-    this.sendRequest();
+    //this.sendRequest();
   }
 
   /** @returns {void} */
@@ -28,10 +33,8 @@ class InterfaceQCM extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    this.myJsonQA = InterfaceQCM.myJsonQA;
     // Fond sur lequel seront affichées les questions
     const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
-
 
     Phaser.Display.Align.In.Center(
       back_interface,
@@ -44,7 +47,7 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    question.text = this.myJsonQA[0].Enoncer;
+    //question.text = this.myJsonQA[0].Enoncer;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
@@ -85,7 +88,10 @@ class InterfaceQCM extends Phaser.Scene {
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
 
-    this.nextQuestion();
+    //this.nextQuestion();
+    //temp request
+    var prefix = this.currentBoss.scene.levelPrefix + this.currentBoss.scene.currentNbRoom;
+    this.sendRequest(prefix);
 
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("right_answer", this.right_answer_handler, this);
@@ -114,6 +120,7 @@ class InterfaceQCM extends Phaser.Scene {
     const KeyK = this.input.keyboard.addKey("k");
     const KeyESC = this.input.keyboard.addKey("esc");
 
+    // TODO: RETIRER AVANT LA FIN DU PROJET
     if (KeyK.isDown) {
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
@@ -125,6 +132,8 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   nextQuestion() {
+    this.myJsonQA = InterfaceQCM.myJsonQA;
+    
     this.resetRightAnswer();
     if (this.currentQuestion < this.myJsonQA.length) {
       console.log("changement question");
@@ -142,11 +151,12 @@ class InterfaceQCM extends Phaser.Scene {
     else {
       console.log("end of questions");
       this.currentQuestion = 0;
-      this.nextQuestion();
+      //this.nextQuestion();
       this.currentBoss.isEnable = false;
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
       this.scene.switch("Level");
+      this.scene.stop();
       }
     }
 
@@ -186,6 +196,8 @@ class InterfaceQCM extends Phaser.Scene {
       this
     );
   }
+
+
   areInteractives() {
     if (
       this.answer1.input.enabled &&
@@ -198,6 +210,7 @@ class InterfaceQCM extends Phaser.Scene {
       return false;
     }
   }
+
 
   changeInteractivity() {
     if (this.areInteractives() === true) {
@@ -215,12 +228,14 @@ class InterfaceQCM extends Phaser.Scene {
     }
   }
 
+
   resetAnswersColor() {
     this.answer1.setStyle({ fill: "white" });
     this.answer2.setStyle({ fill: "white" });
     this.answer3.setStyle({ fill: "white" });
     this.answer4.setStyle({ fill: "white" });
   }
+
 
   resetRightAnswer() {
     this.answer1.isRight = false;
@@ -229,10 +244,15 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer4.isRight = false;
   }
 
-  sendRequest() {
+
+  sendRequest(prefix) {
     console.log("request");
-    const interQCM = this;
+    var that = this; 
+
     var xhr = new XMLHttpRequest();
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log("prefixe: " + prefix);
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
@@ -245,12 +265,12 @@ class InterfaceQCM extends Phaser.Scene {
         console.log(InterfaceQCM.myJsonQA[0].Reponse2);
         console.log(InterfaceQCM.myJsonQA[0].Reponse3);
         console.log(InterfaceQCM.myJsonQA[0].Reponse4);
-
+        that.nextQuestion();
       }
     };
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM QUESTION where ID_QUESTION = 1 OR ID_QUESTION = 2 OR ID_QUESTION = 3");
+    xhr.send("query=SELECT * FROM QUESTION where SALLE = '" + prefix + "'");
   }
 
   /* END-USER-CODE */
