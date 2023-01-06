@@ -148,7 +148,7 @@ class Level extends Phaser.Scene {
       240,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
-      "Indice pc",
+      "rc_r1_1",
       "clue"
     );
     pcOn1_room1.flipX = true;
@@ -158,7 +158,7 @@ class Level extends Phaser.Scene {
       625,
       110,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r1_2",
       "clue"
     );
 
@@ -167,7 +167,7 @@ class Level extends Phaser.Scene {
       305,
       80,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
+      "Appuyer sur ESPACE pour regarder les notes...", "rc_r1_3",
       "clue"
     );
 
