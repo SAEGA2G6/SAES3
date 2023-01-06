@@ -11,6 +11,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
+    this.score;
+
 
     ///////////// ADD TO UPDATE LIST //////////
     this.scene.update_list.push(this);

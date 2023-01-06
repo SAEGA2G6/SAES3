@@ -90,7 +90,7 @@ class InterfaceQCM extends Phaser.Scene {
 
     //this.nextQuestion();
     //temp request
-    var prefix = this.currentBoss.scene.levelPrefix + this.currentBoss.scene.currentNbRoom;
+    var prefix = this.currentBoss.scene.levelPrefix + "_r" + this.currentBoss.scene.currentNbRoom;
     this.sendRequest(prefix);
 
     this.emitter = new Phaser.Events.EventEmitter();
