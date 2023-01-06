@@ -3,13 +3,9 @@
 /* START OF COMPILED CODE */
 
 class FirstFloor extends Phaser.Scene {
-    constructor() {
-      super("FirstFloor");
-  
-      /* START-USER-CTR-CODE */
-      // Write your code here.
-      /* END-USER-CTR-CODE */
-    }
+  init(data) {
+    this.playerGender = data.texture;
+  }
   
     /** @returns {void} */
     editorCreate() {
@@ -56,10 +52,60 @@ class FirstFloor extends Phaser.Scene {
   
       ///////////// PLAYER /////////////
   
-      const player = new Player(this, 400, 218).setDepth(1);
+      const player = new Player(this, 160, 600, this.playerGender).setDepth(1);
       this.player = player;
   
       ///////////// PROF/BOSS /////////////
+
+      const prof5 = new DialogObject(
+        this,
+        660,
+        240,
+        "prof5",
+        "Appuyer sur ESPACE pour commencer le QCM !",
+        null,
+        "mcq"
+      );
+
+      const prof6 = new DialogObject(
+        this,
+        1120,
+        580,
+        "prof6",
+        "Appuyer sur ESPACE pour commencer le QCM !",
+        null,
+        "mcq"
+      );
+
+      const prof7 = new DialogObject(
+        this,
+        1472,
+        580,
+        "prof7",
+        "Appuyer sur ESPACE pour commencer le QCM !",
+        null,
+        "mcq"
+      );
+
+      const prof8 = new DialogObject(
+        this,
+        1824,
+        580,
+        "prof8",
+        "Appuyer sur ESPACE pour commencer le QCM !",
+        null,
+        "mcq"
+      );
+
+      const prof9 = new DialogObject(
+        this,
+        1900,
+        250,
+        "prof9",
+        "Appuyer sur ESPACE pour commencer le QCM !",
+        null,
+        "mcq"
+      );
       
       //TODO//
   
@@ -213,7 +259,8 @@ class FirstFloor extends Phaser.Scene {
         bin_room1,
         bin_room2, eleve_room2,
         bin_room3,
-        eleve1_room4, eleve2_room4
+        eleve1_room4, eleve2_room4,
+        prof5, prof6, prof7, prof8, prof9
       ];
       this.physics.add.collider(player, collider_list);
   
