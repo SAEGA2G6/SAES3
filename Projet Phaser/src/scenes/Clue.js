@@ -1,6 +1,7 @@
 class Clue extends Phaser.Scene {
-    constructor() {
-      super("Clue");
+    init(data) {
+      this.currentScene = data.currentScene;
+      this.currentClue;
       this.clueId;
     }
   
@@ -40,6 +41,7 @@ class Clue extends Phaser.Scene {
     update() {
         const KeyESC = this.input.keyboard.addKey("esc");
         if (KeyESC.isDown) {
+          this.currentClue.disable(false);
           this.scene.stop();
         }
     }

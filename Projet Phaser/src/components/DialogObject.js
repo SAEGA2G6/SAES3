@@ -92,9 +92,10 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       } else if (KeySpace.isDown && this.dialogType === "clue") {
         this.disable(true);
         const scene_clue = this.scene.game.scene.getScene("Clue");
+        scene_clue.currentClue = this;
         scene_clue.clueId = this.clueId;
 
-        this.scene.scene.launch("Clue");
+        this.scene.scene.launch("Clue", { currentScene: this.scene });
       }
     } else {
       this.text_dialog.visible = false;
