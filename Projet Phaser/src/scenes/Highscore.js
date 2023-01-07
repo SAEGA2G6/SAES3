@@ -5,14 +5,10 @@ class Highscore extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
     const highscore_test = this.add.text(400, 250, "", {});
     this.highscore_test = highscore_test;
     highscore_test.setOrigin(0.5, 0.5);
-    //highscore_test.text = "1ER\n2EME\n3EME\n4EME\n5EME\n6EME\n7EME\n8EME\n9EME\n10EME";
     highscore_test.setStyle({
       fontFamily: "spacemono-regular",
       fontSize: "25px",
@@ -32,7 +28,6 @@ class Highscore extends Phaser.Scene {
     });
 
     new TextColor(text_menu, "Menu");
-
     DBQueries.sendScoresRequest(this);
 
     this.events.emit("scene-awake");

@@ -82,25 +82,31 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       this.text_box.visible = true;
 
       if (KeySpace.isDown && this.dialogType === "mcq") {
+        this.disable(true);
         const scene_InterfaceQCM =
           this.scene.game.scene.getScene("InterfaceQCM");
         scene_InterfaceQCM.currentBoss = this;
-        this.scene.scene.switch("InterfaceQCM");
+        //Test
+        this.scene.scene.launch("InterfaceQCM", { currentScene: this.scene });
+        //
       } else if (KeySpace.isDown && this.dialogType === "clue") {
+        this.disable(true);
         const scene_clue = this.scene.game.scene.getScene("Clue");
         scene_clue.clueId = this.clueId;
 
         this.scene.scene.launch("Clue");
-        this.scene.player.velocity = 0;
-      }
-
-      if (KeyEsc.isDown && this.text_clue.visible === true) {
-        /*this.text_clue.visible = false;
-        this.scene.player.velocity = this.scene.player.baseVelocity;*/
       }
     } else {
       this.text_dialog.visible = false;
       this.text_box.visible = false;
     }
+  }
+
+  /**
+   * Enable or disable the dialog object. This prevents the player to interact with the dialog object
+   * @param {boolean} enableDialogObject
+   */
+  disable(enableDialogObject) {
+    this.isEnable = !enableDialogObject;
   }
 }

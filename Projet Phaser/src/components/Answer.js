@@ -6,13 +6,13 @@ class Answer extends Phaser.GameObjects.Text {
   constructor(scene) {
     super(scene, 0, 0, "", {});
     this.scene = scene;
-    this.isRight = false
+    this.isRight = false;
     this.setDepth(5);
     this.setStyle({
       fontFamily: "Roboto",
       fontSize: "15px",
-      color: "white",
-      wordWrap: { width: 400 }
+      color: "black",
+      wordWrap: { width: 300 },
     });
     this.setOrigin(0, 0.5);
 

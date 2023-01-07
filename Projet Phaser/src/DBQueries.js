@@ -5,6 +5,7 @@ class DBQueries {
    */
   static sendClueRequest(that) {
     var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
@@ -30,6 +31,7 @@ class DBQueries {
    */
   static sendScoresRequest(that) {
     var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
@@ -71,9 +73,8 @@ class DBQueries {
    * @return {void}
    */
   static sendQuestionAnswersRequest(that, prefix) {
-    console.log("request");
-
     var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     console.log("prefixe: " + prefix);
@@ -89,6 +90,7 @@ class DBQueries {
         console.log(InterfaceQCM.myJsonQA[0].Reponse2);
         console.log(InterfaceQCM.myJsonQA[0].Reponse3);
         console.log(InterfaceQCM.myJsonQA[0].Reponse4);
+        console.log("--------------juste avant nextQuestion DBQUERIES--------------")
         that.nextQuestion();
       }
     };
@@ -103,6 +105,7 @@ class DBQueries {
    */
   static sendInsertScoreRequest(that) {
     var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {

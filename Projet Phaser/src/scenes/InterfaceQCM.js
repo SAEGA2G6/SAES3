@@ -1,7 +1,6 @@
 class InterfaceQCM extends Phaser.Scene {
-  constructor() {
-    super("InterfaceQCM");
-
+  init(data) {
+    this.currentScene = data.currentScene;
     //Boss of the current room
     this.currentBoss;
 
@@ -10,7 +9,11 @@ class InterfaceQCM extends Phaser.Scene {
 
     this.jsonQA;
     this.myJsonQA;
-    this.currentQuestionNb = 0;
+    this.currentQuestionNb;
+
+    //test
+    this.txtcolor = "black";
+    //
   }
 
   /** @returns {void} */
@@ -18,14 +21,16 @@ class InterfaceQCM extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    this.currentQuestionNb = 0;
     // Fond sur lequel seront affichées les questions
-    const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
+    //const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
+    const back_interface = this.add.image(0, 0, "papier").setDepth(5);
 
     Phaser.Display.Align.In.Center(
       back_interface,
       this.add.zone(400, 300, 800, 600)
     );
-    back_interface.setScale(2);
+    back_interface.setScale(1.8);
     back_interface.setOrigin(0.5, 0.5);
     this.back_interface = back_interface;
 
@@ -35,14 +40,13 @@ class InterfaceQCM extends Phaser.Scene {
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
-      color: "white",
+      color: this.txtcolor,
       wordWrap: { width: 400 },
     });
     Phaser.Display.Align.In.TopCenter(question, this.back_interface);
     question.y -= 80;
     this.question = question;
 
-    // Questions test JSON
 
     const answer1 = new Answer(this);
 
@@ -51,6 +55,7 @@ class InterfaceQCM extends Phaser.Scene {
     const answer3 = new Answer(this);
 
     const answer4 = new Answer(this);
+    
 
     this.answer1 = answer1;
     this.answer2 = answer2;
@@ -75,6 +80,7 @@ class InterfaceQCM extends Phaser.Scene {
       "_r" +
       this.currentBoss.scene.currentNbRoom;
     //Request send to the DB to get the questions and answers that correspond to the actual boss
+    console.log("--------------------------------juste avant sendQuestionAnswersRequest--------------------------------")
     DBQueries.sendQuestionAnswersRequest(this, prefix);
 
     //Creation of the events about the right and wrong answers
@@ -99,12 +105,15 @@ class InterfaceQCM extends Phaser.Scene {
 
     // TODO: RETIRER AVANT LA FIN DU PROJET
     if (KeyK.isDown) {
-      const scene_level = this.game.scene.getScene("Level");
+      //TEST
+      const scene_level = this.game.scene.getScene(data.currentScene);
       scene_level.emitter.emit("open_doors");
-      this.scene.switch("Level");
+      this.scene.stop;
+      //
     }
     if (KeyESC.isDown) {
-      this.scene.switch("Level");
+      this.currentBoss.disable(false);
+      this.scene.stop();
     }
   }
 
@@ -113,6 +122,7 @@ class InterfaceQCM extends Phaser.Scene {
    * @return {void}
    */
   nextQuestion() {
+    console.log("--------------Next question--------------");
     this.myJsonQA = InterfaceQCM.myJsonQA;
 
     this.resetRightAnswer();
@@ -141,17 +151,13 @@ class InterfaceQCM extends Phaser.Scene {
       this.currentQuestionNb = 0;
 
       //the player is prevented from interacting with this boss again
-      this.currentBoss.isEnable = false;
+      this.currentBoss.disable(true);
 
       //the doors to the next room open
-      const scene_level = this.game.scene.getScene("Level");
+      const scene_level = this.game.scene.getScene(this.currentScene);
       scene_level.emitter.emit("open_doors");
 
-      //we go back to the game scene
-      this.scene.switch("Level");
-
-      //we stop this scene which is then reset
-      this.scene.stop();
+      this.exitMCQ();
     }
   }
 
@@ -193,11 +199,8 @@ class InterfaceQCM extends Phaser.Scene {
     const timedEvent = this.time.delayedCall(
       1000,
       () => {
-        this.changeInteractivity(),
-          this.resetAnswersColor(),
-          (this.currentQuestionNb = 0);
-        this.nextQuestion();
-        scene_level.emitter.emit("time_malus"), this.scene.switch("Level");
+        this.currentBoss.disable(false);
+        scene_level.emitter.emit("time_malus"), this.exitMCQ();
       },
       [],
       this
@@ -246,20 +249,25 @@ class InterfaceQCM extends Phaser.Scene {
    * @return {void}
    */
   resetAnswersColor() {
-    this.answer1.setStyle({ fill: "white" });
-    this.answer2.setStyle({ fill: "white" });
-    this.answer3.setStyle({ fill: "white" });
-    this.answer4.setStyle({ fill: "white" });
+    this.answer1.setStyle({ fill: this.txtcolor });
+    this.answer2.setStyle({ fill: this.txtcolor });
+    this.answer3.setStyle({ fill: this.txtcolor });
+    this.answer4.setStyle({ fill: this.txtcolor });
   }
 
   /**
    * Reset all answers as false
    * @return {void}
-   */ 
+   */
   resetRightAnswer() {
     this.answer1.isRight = false;
     this.answer2.isRight = false;
     this.answer3.isRight = false;
     this.answer4.isRight = false;
+  }
+
+  exitMCQ() {
+    //we stop this scene which is then reset
+    this.scene.stop();
   }
 }
