@@ -75,7 +75,7 @@ class InterfaceQCM extends Phaser.Scene {
       "_r" +
       this.currentBoss.scene.currentNbRoom;
     //Request send to the DB to get the questions and answers that correspond to the actual boss
-    this.sendRequest(prefix);
+    DBQueries.sendQuestionAnswersRequest(this, prefix);
 
     //Creation of the events about the right and wrong answers
     this.emitter = new Phaser.Events.EventEmitter();
@@ -261,38 +261,5 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer2.isRight = false;
     this.answer3.isRight = false;
     this.answer4.isRight = false;
-  }
-
-  /**
-   * Send a request to the DB to get the question and answers texts of the current MCQ
-   * @param {string} prefix 
-   * @return {void}
-   */
-  sendRequest(prefix) {
-    console.log("request");
-    var that = this;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log("prefixe: " + prefix);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
-        console.log("on est dans la requete");
-        var response = xhr.responseText;
-        console.log(response);
-        InterfaceQCM.myJsonQA = JSON.parse(this.response);
-        console.log(InterfaceQCM.myJsonQA[0].Enoncer);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse1);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse2);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse3);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse4);
-        that.nextQuestion();
-      }
-    };
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM QUESTION where SALLE = '" + prefix + "'");
   }
 }

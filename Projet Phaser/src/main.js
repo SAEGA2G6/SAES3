@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   var game = new Phaser.Game({
     width: 800,
     height: 600,
-    type: Phaser.AUTO,
+    type: Phaser.CANVAS,
     backgroundColor: "#242424",
     scale: {
       mode: Phaser.Scale.FIT,
@@ -11,11 +11,14 @@ window.addEventListener("load", function () {
     physics: {
       default: "arcade",
       arcade: {
-        debug: false, //false de base
+        debug: false,
         gravity: { y: 0 },
       },
     },
   });
+
+  
+
   game.scene.add("Preload", Preload);
   game.scene.add("Menu", Menu);
   game.scene.add("Highscore", Highscore);

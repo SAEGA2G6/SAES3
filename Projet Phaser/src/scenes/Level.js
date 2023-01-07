@@ -417,7 +417,7 @@ class Level extends Phaser.Scene {
     ///CHECK IF GAME IS OVER
     if(this.isGameOver()) {
       this.getScore();
-      this.sendRequest();
+      DBQueries.sendInsertScoreRequest(this);
       this.scene.switch("Menu");
       this.scene.stop();
     }
@@ -434,26 +434,5 @@ class Level extends Phaser.Scene {
    */
   getScore() {
     this.player.score = this.chrono;
-  }
-
-  /**
-   * Sends a request to the DB to insert the player's score in the DB
-   * @return {void}
-   */
-  sendRequest() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
-        console.log("ajout du score dans la bd");
-        var response = xhr.responseText;
-      }
-    };
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=INSERT INTO SCORE VALUES ('DANNATHOR'," + this.player.score + ", '" + this.levelPrefix + "')");
-    console.log("query=INSERT INTO SCORE VALUES ('DANNATHOR'," + this.player.score + ", '" + this.levelPrefix + "')");
   }
 }
