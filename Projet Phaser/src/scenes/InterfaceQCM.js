@@ -11,9 +11,7 @@ class InterfaceQCM extends Phaser.Scene {
     this.myJsonQA;
     this.currentQuestionNb;
 
-    //test
     this.txtcolor = "black";
-    //
   }
 
   /** @returns {void} */
@@ -105,11 +103,10 @@ class InterfaceQCM extends Phaser.Scene {
 
     // TODO: RETIRER AVANT LA FIN DU PROJET
     if (KeyK.isDown) {
-      //TEST
-      const scene_level = this.game.scene.getScene(data.currentScene);
+      const scene_level = this.game.scene.getScene(this.currentScene);
       scene_level.emitter.emit("open_doors");
-      this.scene.stop;
-      //
+      this.currentBoss.disable(true);
+      this.scene.stop();
     }
     if (KeyESC.isDown) {
       this.currentBoss.disable(false);
@@ -147,8 +144,6 @@ class InterfaceQCM extends Phaser.Scene {
       console.log(
         "end of questions: the player has answered the MCQ correctly"
       );
-      //TODO: voir si utile ou non
-      this.currentQuestionNb = 0;
 
       //the player is prevented from interacting with this boss again
       this.currentBoss.disable(true);
