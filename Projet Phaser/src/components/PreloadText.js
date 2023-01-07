@@ -1,5 +1,3 @@
-/* START OF COMPILED CODE */
-
 class PreloadText extends UserComponent {
   constructor(gameObject) {
     super(gameObject);
@@ -7,13 +5,9 @@ class PreloadText extends UserComponent {
     this.gameObject = gameObject;
     gameObject["__PreloadText"] = this;
 
-    /* START-USER-CTR-CODE */
-
     this.scene.load.on(Phaser.Loader.Events.PROGRESS, (p) => {
       this.gameObject.text = Math.floor(p * 100) + "%";
     });
-
-    /* END-USER-CTR-CODE */
   }
 
   /** @returns {PreloadText} */
@@ -23,14 +17,4 @@ class PreloadText extends UserComponent {
 
   /** @type {Phaser.GameObjects.Text} */
   gameObject;
-
-  /* START-USER-CODE */
-
-  // Write your code here.
-
-  /* END-USER-CODE */
 }
-
-/* END OF COMPILED CODE */
-
-// You can write more code here

@@ -1,7 +1,3 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class Clue extends Phaser.Scene {
     constructor() {
       super("Clue");
@@ -67,10 +63,4 @@ class Clue extends Phaser.Scene {
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send("query=SELECT * FROM INDICE WHERE ID_INDICE = '" + this.clueId + "'");
       }
-  
-    /* END-USER-CODE */
   }
-  
-  /* END OF COMPILED CODE */
-  
-  // You can write more code here

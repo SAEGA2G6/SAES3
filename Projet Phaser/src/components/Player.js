@@ -1,11 +1,9 @@
-/* START OF COMPILED CODE */
-
 class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
     super(scene, x, y);
     const baseVelocity = 160;
     this.baseVelocity = baseVelocity;
-    this.velocity = 300; //160;
+    this.velocity = 300;
     this.scene.physics.world.enable(this);
     this.setTexture(texture);
     this.setScale(0.8, 0.8);
@@ -17,26 +15,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     ///////////// ADD TO UPDATE LIST //////////
     this.scene.update_list.push(this);
     ///////////////////////////////////////////
-
-
-    ////////////////////////////////// PARTIE PROVISOIRE //////////////////////////////////
-    /*
-    this.score = 0;
-
-    const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
-    text_dialog.setOrigin(0.5, 0.5);
-    text_dialog.text = "Appuyer sur ESPACE pour commencer le QCM";
-    text_dialog.setStyle({
-      fontFamily: "Roboto",
-      fontSize: "10px",
-      color: "black",
-      backgroundColor: "grey",
-    });
-
-    this.text_dialog = text_dialog;
-    this.text_dialog.visible = false;
-    */
-    /////////////////////////////////////////////////////////////////////////////////////
 
     this.facing_direction;
     this.scene = scene;
@@ -112,7 +90,3 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 }
-
-/* END OF COMPILED CODE */
-
-// You can write more code here

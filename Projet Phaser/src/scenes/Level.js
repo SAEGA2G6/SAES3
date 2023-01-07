@@ -1,11 +1,4 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class Level extends Phaser.Scene {
-  /*constructor() {
-    super("Level");
-  }*/
 
   init(data) {
     this.playerGender = data.texture;
@@ -111,7 +104,6 @@ class Level extends Phaser.Scene {
     );
 
     ///////////// DOORS /////////////
-    //Portes (pour pouvoir les ouvrir, ça doit être des sprites)
 
     var door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
     this.door = door_room2_1;
@@ -138,7 +130,9 @@ class Level extends Phaser.Scene {
 
     var door_boss = new Door(this, 752, 673, "simpleporte", false);
 
-    //Indice
+
+    ///////////// CLUES /////////////
+
 
     ///////////// ROOM 1 (TODO: faire un json avec les textes) /////////////
 
@@ -291,7 +285,7 @@ class Level extends Phaser.Scene {
     this.cameras.main.startFollow(player);
     this.cameras.main.zoom = 1.2;
 
-    ///////////// PROVISOIRE: portes de la salle 2 à ouvrir /////////////
+    ///////////// DOOR OPENING SYSTEM /////////////
     const list_allDoors = [
       [door_room2_1, door_room2_2],
       [door_room3_1, door_room3_2],
@@ -305,16 +299,11 @@ class Level extends Phaser.Scene {
     this.emitter.on("time_malus", this.malusChrono, this);
 
     ///////////// CHRONOMETER /////////////
-    /// txt chrono
-
     const back_chrono = this.add.image(125, 100, "back_chrono").setDepth(4);
-    /*Phaser.Display.Align.In.TopLeft(
-      back_chrono,
-      this.add.zone(400, 300, 800, 600)
-    );*/
     back_chrono.setOrigin(0.5, 0.48);
     back_chrono.setScrollFactor(0);
     back_chrono.setScale(0.17);
+
 
     const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5);
     chrono_txt.setOrigin(0.5, 0.5);
@@ -327,7 +316,7 @@ class Level extends Phaser.Scene {
     Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
     this.chrono_txt = chrono_txt;
 
-    /// txt malus chrono
+    ////malus text////
     const time_malus_txt = this.add
       .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
       .setDepth(5);
@@ -344,7 +333,7 @@ class Level extends Phaser.Scene {
     /// Chrono start at 0
     this.chrono = 0;
 
-    /// Every second, the chrono increment of 1
+    /// Every second, the chrono is incremented by one
     const chrono = this.time.addEvent({
       delay: 1000,
       callback: () => (this.chrono += 1),
@@ -354,6 +343,7 @@ class Level extends Phaser.Scene {
 
     this.events.emit("scene-awake");
   }
+
 
   ///////////// EVENTS HANDLERS /////////////
   open_doors_handler() {
@@ -384,6 +374,7 @@ class Level extends Phaser.Scene {
   }
 
   ///////////// UPDATECHRONO /////////////
+  //TODO: faire une fonction à part qui calcule les minutes etc
   updateChrono() {
     /// CHRONOMETER
     var min = Math.floor(this.chrono / 60);
@@ -403,8 +394,8 @@ class Level extends Phaser.Scene {
     this.chrono_txt.text = min_txt + " : " + sec_txt;
   }
 
-  ///////////// END OF GAME /////////////
-  isGameEnded() {
+  ///////////// ENDGAME /////////////
+  isGameOver() {
     if (this.currentNbRoom > this.nbRooms) {
       return true;
     } else {
@@ -419,21 +410,20 @@ class Level extends Phaser.Scene {
 
   ///////////// UPDATE /////////////
   update() {
-    ///CHECK IF GAME ENDED
-    if(this.isGameEnded()) {
+    ///CHECK IF GAME IS OVER
+    if(this.isGameOver()) {
       this.getScore();
       this.sendRequest();
       this.scene.switch("Menu");
       this.scene.stop();
     }
-    ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
+    ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
     }
     ///TO UPDATE CHRONOMETER
     this.updateChrono();
   }
-  /* END-USER-CODE */
 
   getScore() {
     this.player.score = this.chrono;
@@ -453,11 +443,6 @@ class Level extends Phaser.Scene {
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("query=INSERT INTO SCORE VALUES ('DANNATHOR'," + this.player.score + ", '" + this.levelPrefix + "')");
-    console.log("query=INSERT INTO SCORE VALUES ('DANNATHOR'," + this.player.score + "," + this.levelPrefix + ")");
+    console.log("query=INSERT INTO SCORE VALUES ('DANNATHOR'," + this.player.score + ", '" + this.levelPrefix + "')");
   }
-
 }
-
-/* END OF COMPILED CODE */
-
-// You can write more code here

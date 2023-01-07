@@ -1,7 +1,3 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class FirstFloor extends Phaser.Scene {
   init(data) {
     this.playerGender = data.texture;
@@ -381,10 +377,5 @@ class FirstFloor extends Phaser.Scene {
         this.scene.restart("Level");
       }
     }
-    /* END-USER-CODE */
   }
-  
-  /* END OF COMPILED CODE */
-  
-  // You can write more code here
   

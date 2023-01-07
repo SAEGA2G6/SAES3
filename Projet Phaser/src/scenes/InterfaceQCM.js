@@ -1,14 +1,6 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class InterfaceQCM extends Phaser.Scene {
   constructor() {
     super("InterfaceQCM");
-
-    /* START-USER-CTR-CODE */
-    // Write your code here.
-    /* END-USER-CTR-CODE */
 
     //Boss of the current room
     this.currentBoss;
@@ -18,14 +10,8 @@ class InterfaceQCM extends Phaser.Scene {
 
 
     this.jsonQA;
-    /*this.jsonQA = 
-      '[{ "question": "Q1","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "bonne réponse","reponse4": "mauvaise réponse", "correct": 3},' +
-      '{ "question": "Q2","reponse1": "mauvaise réponse","reponse2": "bonne réponse","reponse3": "mauvaise réponse","reponse4": "mauvaise réponse", "correct" : 2},' +
-      '{ "question": "Q3","reponse1": "mauvaise réponse","reponse2": "mauvaise réponse","reponse3": "mauvaise réponse","reponse4": "bonne réponse", "correct" : 4}]';
-      */
     this.myJsonQA;
-    this.currentQuestion = 0;
-    //this.sendRequest();
+    this.currentQuestionNb = 0;
   }
 
   /** @returns {void} */
@@ -47,7 +33,6 @@ class InterfaceQCM extends Phaser.Scene {
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0.5, 0.5);
-    //question.text = this.myJsonQA[0].Enoncer;
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
@@ -87,24 +72,19 @@ class InterfaceQCM extends Phaser.Scene {
 
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
-
-    //this.nextQuestion();
-    //temp request
+    //Prefix correspond to the actual floor (rc_, e1_, e2_) + the actual room number (1,2,3,4...) 
     var prefix = this.currentBoss.scene.levelPrefix + "_r" + this.currentBoss.scene.currentNbRoom;
+    //Request send to the DB to get the questions and answers that correspond to the actual boss
     this.sendRequest(prefix);
 
+    //Creation of the events about the right and wrong answers
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("right_answer", this.right_answer_handler, this);
-
     this.emitter.on("wrong_answer", this.wrong_answer_handler, this);
 
-    /* END-USER-CTR-CODE */
+
     this.events.emit("scene-awake");
   }
-
-  /* START-USER-CODE */
-
-  // Write your code here
 
   Preload() {
     this.editorPreload();
@@ -115,8 +95,6 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   update() {
-
-
     const KeyK = this.input.keyboard.addKey("k");
     const KeyESC = this.input.keyboard.addKey("esc");
 
@@ -135,27 +113,38 @@ class InterfaceQCM extends Phaser.Scene {
     this.myJsonQA = InterfaceQCM.myJsonQA;
     
     this.resetRightAnswer();
-    if (this.currentQuestion < this.myJsonQA.length) {
-      console.log("changement question");
+    if (this.currentQuestionNb < this.myJsonQA.length) {
+      console.log("question n°" + this.currentQuestionNb);
 
-      this.question.text = this.myJsonQA[this.currentQuestion].Enoncer;
-      this.answer1.text = this.myJsonQA[this.currentQuestion].Reponse1;
-      this.answer2.text = this.myJsonQA[this.currentQuestion].Reponse2;
-      this.answer3.text = this.myJsonQA[this.currentQuestion].Reponse3;
-      this.answer4.text = this.myJsonQA[this.currentQuestion].Reponse4;
+      //the question and answers are assigned to the respective texts that will be displayed
+      this.question.text = this.myJsonQA[this.currentQuestionNb].Enoncer;
+      this.answer1.text = this.myJsonQA[this.currentQuestionNb].Reponse1;
+      this.answer2.text = this.myJsonQA[this.currentQuestionNb].Reponse2;
+      this.answer3.text = this.myJsonQA[this.currentQuestionNb].Reponse3;
+      this.answer4.text = this.myJsonQA[this.currentQuestionNb].Reponse4;
 
-      this.answerList[this.myJsonQA[this.currentQuestion].BonneReponse - 1].isRight = true;
+      //the property of the correct answer is changed so that it is considered correct
+      this.answerList[this.myJsonQA[this.currentQuestionNb].BonneReponse - 1].isRight = true;
       
-      this.currentQuestion++;
+      //the question number is incremented for the next
+      this.currentQuestionNb++;
     }
     else {
-      console.log("end of questions");
-      this.currentQuestion = 0;
-      //this.nextQuestion();
+      console.log("end of questions: the player has answered the MCQ correctly");
+      //TODO: voir si utile ou non
+      this.currentQuestionNb = 0;
+
+      //the player is prevented from interacting with this boss again
       this.currentBoss.isEnable = false;
+
+      //the doors to the next room open
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
+      
+      //we go back to the game scene
       this.scene.switch("Level");
+
+      //we stop this scene which is then reset
       this.scene.stop();
       }
     }
@@ -163,9 +152,12 @@ class InterfaceQCM extends Phaser.Scene {
 
 
   right_answer_handler() {
-    console.log("right");
+    console.log("right answer");
+
+    //the player is momentarily prevented from interacting with the answers
     this.changeInteractivity();
 
+    //wait a second before moving on to the next question
     const timedEvent = this.time.delayedCall(
       1000,
       () => (
@@ -179,15 +171,19 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   wrong_answer_handler() {
-    console.log("wrong");
+    console.log("wrong answer");
+
+    //the player is momentarily prevented from interacting with the answers
     this.changeInteractivity();
     const scene_level = this.game.scene.getScene("Level");
+
+    //wait a second before returning to the game scene
     const timedEvent = this.time.delayedCall(
       1000,
       () => {
         this.changeInteractivity(),
           this.resetAnswersColor(),
-          this.currentQuestion = 0;
+          this.currentQuestionNb = 0;
           this.nextQuestion();
           scene_level.emitter.emit("time_malus"),
           this.scene.switch("Level");
@@ -218,13 +214,13 @@ class InterfaceQCM extends Phaser.Scene {
       this.answer2.disableInteractive();
       this.answer3.disableInteractive();
       this.answer4.disableInteractive();
-      console.log("disable");
+      console.log("answers interactivity disable");
     } else {
       this.answer1.setInteractive();
       this.answer2.setInteractive();
       this.answer3.setInteractive();
       this.answer4.setInteractive();
-      console.log("enable");
+      console.log("answers interactivity enable");
     }
   }
 
@@ -272,10 +268,4 @@ class InterfaceQCM extends Phaser.Scene {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("query=SELECT * FROM QUESTION where SALLE = '" + prefix + "'");
   }
-
-  /* END-USER-CODE */
 }
-
-/* END OF COMPILED CODE */
-
-// You can write more code here

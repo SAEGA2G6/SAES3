@@ -1,14 +1,6 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class SecondFloor extends Phaser.Scene {
     constructor() {
       super("SecondFloor");
-  
-      /* START-USER-CTR-CODE */
-      // Write your code here.
-      /* END-USER-CTR-CODE */
     }
   
     /** @returns {void} */
@@ -201,10 +193,5 @@ class SecondFloor extends Phaser.Scene {
         this.scene.restart("Level");
       }
     }
-    /* END-USER-CODE */
   }
-  
-  /* END OF COMPILED CODE */
-  
-  // You can write more code here
   
