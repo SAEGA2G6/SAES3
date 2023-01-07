@@ -18,7 +18,9 @@ class Highscore extends Phaser.Scene {
       fontSize: "25px",
       color: "white",
     });
-		highscore_test.setInteractive({ useHandCursor: true }).on("pointerdown", () => {});
+    highscore_test
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {});
 
     const text_menu = this.add.text(400, 425, "", {});
     text_menu.setOrigin(0.5, 0.5);
@@ -40,12 +42,16 @@ class Highscore extends Phaser.Scene {
     this.editorCreate();
   }
 
+  /**
+   * query sent to retrieve the text of the clue
+   * @return {void}
+   */
   sendRequest() {
     const that = this;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         console.log("on est dans la requete");
@@ -54,12 +60,21 @@ class Highscore extends Phaser.Scene {
         console.log(response);
         console.log(myJsonScores);
         for (let index = 0; index < myJsonScores.length; index++) {
-          if(index == 0) {
-            that.highscore_test.text += "1ER  " + myJsonScores[index].ID_JOUEUR + " " + myJsonScores[index].SCORE;
-          }
-          else {
+          if (index == 0) {
+            that.highscore_test.text +=
+              "1ER  " +
+              myJsonScores[index].ID_JOUEUR +
+              " " +
+              myJsonScores[index].SCORE;
+          } else {
             var place = index + 1;
-            that.highscore_test.text += "\n" + place + "EME " + myJsonScores[index].ID_JOUEUR + " " + myJsonScores[index].SCORE;
+            that.highscore_test.text +=
+              "\n" +
+              place +
+              "EME " +
+              myJsonScores[index].ID_JOUEUR +
+              " " +
+              myJsonScores[index].SCORE;
           }
         }
       }

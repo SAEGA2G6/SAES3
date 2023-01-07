@@ -1,8 +1,8 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class Answer extends Phaser.GameObjects.Text {
+  /**
+   * The constructor for a answer objectwhich will be displayed during the MCQ. The player will be able to click on it if he/she thinks it is right
+   * @param {Phaser.Scene} scene Scene to display the answer
+   */
   constructor(scene) {
     super(scene, 0, 0, "", {});
     this.scene = scene;
@@ -14,16 +14,8 @@ class Answer extends Phaser.GameObjects.Text {
       color: "white",
       wordWrap: { width: 400 }
     });
-    //this.setOrigin(0.5, 0.5);
     this.setOrigin(0, 0.5);
 
-    /*
-    this.setInteractive({ useHandCursor: true }).on("pointerover", () =>
-    this.setStyle({ fill: "purple" })
-  );
-  this.setInteractive({ useHandCursor: true }).on("pointerout", () =>
-    this.setStyle({ fill: "white" })
-  );*/
     this.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if (this.isRight) {
         /// on lance l'event de la bonne réponse ///

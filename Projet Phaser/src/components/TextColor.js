@@ -1,8 +1,8 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class TextColor extends UserComponent {
+  /**
+   * @param {Phaser.GameObjects.GameObject} gameObject The entity.
+   * @param {Phaser.Scene} scene Scene that will be played when this text is clicked on
+   */
   constructor(gameObject, scene) {
     super(gameObject);
 

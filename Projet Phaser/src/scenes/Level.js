@@ -395,6 +395,10 @@ class Level extends Phaser.Scene {
   }
 
   ///////////// ENDGAME /////////////
+  /**
+   * Check if the game is over, i.e. if all MCQs have been completed
+   * @returns {boolean} true if the game is over and false otherwise
+   */
   isGameOver() {
     if (this.currentNbRoom > this.nbRooms) {
       return true;
@@ -425,10 +429,17 @@ class Level extends Phaser.Scene {
     this.updateChrono();
   }
 
+  /**
+   * Gives the player's score, which is the time it took to complete all the MCQs
+   */
   getScore() {
     this.player.score = this.chrono;
   }
 
+  /**
+   * Sends a request to the DB to insert the player's score in the DB
+   * @return {void}
+   */
   sendRequest() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "src/mysql.php", true);

@@ -1,10 +1,15 @@
-// You can write more code here
-
-/* START OF COMPILED CODE */
-
 class DialogObject extends Phaser.Physics.Arcade.Sprite {
-  ///dialogType correspond au type de dialogue (indice -> clue, qcm -> mcq...)
-  constructor(scene, x, y, texture, displayText,clueId,dialogType) {
+  /**
+   *
+   * @param {Phaser.Scene} scene Scene where the dialog object will be placed
+   * @param {number} x x coordinate
+   * @param {number} y y coordinate
+   * @param {string} texture Texture of the dialog object
+   * @param {string} displayText
+   * @param {string} clueId ID which is used for the call to the DB to obtain the associated text
+   * @param {string} dialogType Type of dialogue the object will have with the player, it can be a 'MCQ' type dialogue or a 'clue' type dialogue
+   */
+  constructor(scene, x, y, texture, displayText, clueId, dialogType) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
     this.setImmovable();
@@ -14,7 +19,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.isEnable = true;
 
     /// Texte qui s'affiche au joueur quand il est proche ///
-    /////TEST/////
+    /////TEST///// TODO: verifier si c'est qu'un test
     const screenCenterX =
       this.scene.cameras.main.worldView.x + this.scene.cameras.main.width / 2;
     const screenCenterY =
@@ -36,7 +41,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       fontSize: "22px",
       color: "black",
     });
-    /////TEST/////
+    /////TEST///// TODO: verifier si c'est qu'un test
     text_dialog.setScrollFactor(0);
     Phaser.Display.Align.In.Center(text_dialog, text_box);
     /////////////
@@ -77,7 +82,8 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       this.text_box.visible = true;
 
       if (KeySpace.isDown && this.dialogType === "mcq") {
-        const scene_InterfaceQCM = this.scene.game.scene.getScene("InterfaceQCM");
+        const scene_InterfaceQCM =
+          this.scene.game.scene.getScene("InterfaceQCM");
         scene_InterfaceQCM.currentBoss = this;
         this.scene.scene.switch("InterfaceQCM");
       } else if (KeySpace.isDown && this.dialogType === "clue") {
@@ -85,11 +91,6 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         scene_clue.clueId = this.clueId;
 
         this.scene.scene.launch("Clue");
-
-        //ENLEVER
-        /*Phaser.Display.Align.In.Center(this.text_clue, this.scene.player);
-        this.text_clue.visible = true;*/
-        //
         this.scene.player.velocity = 0;
       }
 

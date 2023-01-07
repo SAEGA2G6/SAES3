@@ -25,10 +25,6 @@ class Clue extends Phaser.Scene {
         this.sendRequest();
     }
   
-    /* START-USER-CODE */
-  
-    // Write your code here
-  
     Preload() {
       this.editorPreload();
     }
@@ -44,6 +40,10 @@ class Clue extends Phaser.Scene {
         }
     }
 
+    /**
+     * query sent to retrieve the text of the clue
+     * @return {void}
+     */
     sendRequest() {
         const that = this;
         var xhr = new XMLHttpRequest();

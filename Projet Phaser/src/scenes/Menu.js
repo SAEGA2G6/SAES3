@@ -17,11 +17,15 @@ class Menu extends Phaser.Scene {
     this.editorCreate();
   }
 
+  /**
+   * Places all objects in the menu
+   * @return {void}
+   */
   place_menu_items() {
     // Ajout du logo du MENU
     const back_menu = this.add.image(400, 300, "menuDemarrage");
 
-    // Ajout de HIGHSCORE
+    // HIGHSCORE TEXT
     const text_highscore = this.add.text(400, 325, "", {});
     text_highscore.setOrigin(0.5, 0.5);
     text_highscore.text = "HIGHSCORE";
@@ -31,7 +35,7 @@ class Menu extends Phaser.Scene {
       color: "white",
     });
 
-    // Ajout de START
+    // START TEXT
     const text_start = this.add.text(400, 425, "", {});
     text_start.setOrigin(0.5, 0.5);
     text_start.text = "START";
@@ -42,13 +46,8 @@ class Menu extends Phaser.Scene {
     });
     this.text_start = text_start;
 
-    // Gestion START
-    //new TextColor(text_start, "Level");
+    // START GAME AND HIGHSCORE 
     new TextColor(text_start, "ChooseCharacter");
     new TextColor(text_highscore, "Highscore");
-
-    /*text_start
-      .setInteractive({ useHandCursor: true })
-      .on("pointerdown", () => this.start_button_down());*/
   }
 }

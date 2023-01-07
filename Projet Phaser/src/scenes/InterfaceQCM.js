@@ -8,7 +8,6 @@ class InterfaceQCM extends Phaser.Scene {
     //Request DB
     this.xhr;
 
-
     this.jsonQA;
     this.myJsonQA;
     this.currentQuestionNb = 0;
@@ -37,7 +36,7 @@ class InterfaceQCM extends Phaser.Scene {
       fontFamily: "roboto",
       fontSize: "25px",
       color: "white",
-      wordWrap: { width: 400 }
+      wordWrap: { width: 400 },
     });
     Phaser.Display.Align.In.TopCenter(question, this.back_interface);
     question.y -= 80;
@@ -53,27 +52,28 @@ class InterfaceQCM extends Phaser.Scene {
 
     const answer4 = new Answer(this);
 
-
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
-  
 
     Phaser.Display.Align.In.BottomLeft(this.answer1, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(this.answer2, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(this.answer3, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(this.answer4, this.back_interface);
-    
+
     this.answer1.y -= 250;
     this.answer2.y = this.answer1.y + 90;
-    this.answer3.y = this.answer2.y + 90; 
+    this.answer3.y = this.answer2.y + 90;
     this.answer4.y = this.answer3.y + 90;
 
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
-    //Prefix correspond to the actual floor (rc_, e1_, e2_) + the actual room number (1,2,3,4...) 
-    var prefix = this.currentBoss.scene.levelPrefix + "_r" + this.currentBoss.scene.currentNbRoom;
+    //Prefix correspond to the actual floor (rc_, e1_, e2_) + the actual room number (1,2,3,4...)
+    var prefix =
+      this.currentBoss.scene.levelPrefix +
+      "_r" +
+      this.currentBoss.scene.currentNbRoom;
     //Request send to the DB to get the questions and answers that correspond to the actual boss
     this.sendRequest(prefix);
 
@@ -81,7 +81,6 @@ class InterfaceQCM extends Phaser.Scene {
     this.emitter = new Phaser.Events.EventEmitter();
     this.emitter.on("right_answer", this.right_answer_handler, this);
     this.emitter.on("wrong_answer", this.wrong_answer_handler, this);
-
 
     this.events.emit("scene-awake");
   }
@@ -109,9 +108,13 @@ class InterfaceQCM extends Phaser.Scene {
     }
   }
 
+  /**
+   * Goes to next question
+   * @return {void}
+   */
   nextQuestion() {
     this.myJsonQA = InterfaceQCM.myJsonQA;
-    
+
     this.resetRightAnswer();
     if (this.currentQuestionNb < this.myJsonQA.length) {
       console.log("question n°" + this.currentQuestionNb);
@@ -124,13 +127,16 @@ class InterfaceQCM extends Phaser.Scene {
       this.answer4.text = this.myJsonQA[this.currentQuestionNb].Reponse4;
 
       //the property of the correct answer is changed so that it is considered correct
-      this.answerList[this.myJsonQA[this.currentQuestionNb].BonneReponse - 1].isRight = true;
-      
+      this.answerList[
+        this.myJsonQA[this.currentQuestionNb].BonneReponse - 1
+      ].isRight = true;
+
       //the question number is incremented for the next
       this.currentQuestionNb++;
-    }
-    else {
-      console.log("end of questions: the player has answered the MCQ correctly");
+    } else {
+      console.log(
+        "end of questions: the player has answered the MCQ correctly"
+      );
       //TODO: voir si utile ou non
       this.currentQuestionNb = 0;
 
@@ -140,17 +146,19 @@ class InterfaceQCM extends Phaser.Scene {
       //the doors to the next room open
       const scene_level = this.game.scene.getScene("Level");
       scene_level.emitter.emit("open_doors");
-      
+
       //we go back to the game scene
       this.scene.switch("Level");
 
       //we stop this scene which is then reset
       this.scene.stop();
-      }
     }
+  }
 
-
-
+  /**
+   * Is triggered when an answer is correct
+   * @return {void}
+   */
   right_answer_handler() {
     console.log("right answer");
 
@@ -170,6 +178,10 @@ class InterfaceQCM extends Phaser.Scene {
     );
   }
 
+  /**
+   * Is triggered when an answer is wrong
+   * @return {void}
+   */
   wrong_answer_handler() {
     console.log("wrong answer");
 
@@ -183,17 +195,19 @@ class InterfaceQCM extends Phaser.Scene {
       () => {
         this.changeInteractivity(),
           this.resetAnswersColor(),
-          this.currentQuestionNb = 0;
-          this.nextQuestion();
-          scene_level.emitter.emit("time_malus"),
-          this.scene.switch("Level");
+          (this.currentQuestionNb = 0);
+        this.nextQuestion();
+        scene_level.emitter.emit("time_malus"), this.scene.switch("Level");
       },
       [],
       this
     );
   }
 
-
+  /**
+   * Check if the player can interact with the answers or not
+   * @return {boolean} true if the player can interact with the answers and false otherwise
+   */
   areInteractives() {
     if (
       this.answer1.input.enabled &&
@@ -207,7 +221,10 @@ class InterfaceQCM extends Phaser.Scene {
     }
   }
 
-
+  /**
+   * Change the interactivity of the answers (disable if interactive, enable if non-interactive)
+   * @return {void}
+   */
   changeInteractivity() {
     if (this.areInteractives() === true) {
       this.answer1.disableInteractive();
@@ -224,7 +241,10 @@ class InterfaceQCM extends Phaser.Scene {
     }
   }
 
-
+  /**
+   * Reset the color of the answers (to white)
+   * @return {void}
+   */
   resetAnswersColor() {
     this.answer1.setStyle({ fill: "white" });
     this.answer2.setStyle({ fill: "white" });
@@ -232,7 +252,10 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer4.setStyle({ fill: "white" });
   }
 
-
+  /**
+   * Reset all answers as false
+   * @return {void}
+   */ 
   resetRightAnswer() {
     this.answer1.isRight = false;
     this.answer2.isRight = false;
@@ -240,16 +263,20 @@ class InterfaceQCM extends Phaser.Scene {
     this.answer4.isRight = false;
   }
 
-
+  /**
+   * Send a request to the DB to get the question and answers texts of the current MCQ
+   * @param {string} prefix 
+   * @return {void}
+   */
   sendRequest(prefix) {
     console.log("request");
-    var that = this; 
+    var that = this;
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     console.log("prefixe: " + prefix);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         console.log("on est dans la requete");

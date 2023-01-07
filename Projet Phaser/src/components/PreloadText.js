@@ -1,4 +1,7 @@
 class PreloadText extends UserComponent {
+  /**
+   * @param {Phaser.GameObjects.GameObject} gameObject The entity.
+   */
   constructor(gameObject) {
     super(gameObject);
 

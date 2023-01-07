@@ -1,4 +1,11 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
+  /**
+   *
+   * @param {Phaser.Scene} scene Scene where the player will be placed
+   * @param {number} x x coordinate
+   * @param {number} y y coordinate
+   * @param {string} texture Texture of the player
+   */
   constructor(scene, x, y, texture) {
     super(scene, x, y);
     const baseVelocity = 160;
@@ -10,7 +17,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
     this.score;
-
 
     ///////////// ADD TO UPDATE LIST //////////
     this.scene.update_list.push(this);
@@ -84,7 +90,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       } else if (this.facing_direction == "down") {
         this.anims.play("down");
       }
-        
+
       this.setVelocityX(0);
       this.setVelocityY(0);
     }
