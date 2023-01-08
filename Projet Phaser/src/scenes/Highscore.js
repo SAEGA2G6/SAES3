@@ -6,28 +6,28 @@ class Highscore extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    const highscore_test = this.add.text(400, 250, "", {});
-    this.highscore_test = highscore_test;
-    highscore_test.setOrigin(0.5, 0.5);
-    highscore_test.setStyle({
+    const highscore_text = this.add.text(400, 250, "", {});
+    this.highscore_text = highscore_text;
+    highscore_text.setOrigin(0.5, 0.5);
+    highscore_text.setStyle({
       fontFamily: "spacemono-regular",
       fontSize: "25px",
       color: "white",
     });
-    highscore_test
+    highscore_text
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", () => {});
 
-    const text_menu = this.add.text(400, 425, "", {});
-    text_menu.setOrigin(0.5, 0.5);
-    text_menu.text = "MENU";
-    text_menu.setStyle({
+    const menu_text = this.add.text(400, 425, "", {});
+    menu_text.setOrigin(0.5, 0.5);
+    menu_text.text = "MENU";
+    menu_text.setStyle({
       fontFamily: "retro-computer",
       fontSize: "60px",
       color: "white",
     });
 
-    new TextColor(text_menu, "Menu");
+    new TextColor(menu_text, "Menu");
     DBQueries.sendScoresRequest(this);
 
     this.events.emit("scene-awake");

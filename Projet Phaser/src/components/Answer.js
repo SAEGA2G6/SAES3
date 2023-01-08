@@ -14,7 +14,7 @@ class Answer extends Phaser.GameObjects.Text {
       color: "black",
       wordWrap: { width: 300 },
     });
-    this.setOrigin(0, 0.5);
+    this.setOrigin(0);
 
     this.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if (this.isRight) {

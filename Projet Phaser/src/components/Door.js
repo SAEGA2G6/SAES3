@@ -13,9 +13,9 @@ class Door extends Phaser.Physics.Arcade.Sprite {
     this.setTexture(texture);
     this.body.setSize(this.width, this.height * 0.5).setOffset(0, 31);
     this.setImmovable();
-    // Si porte d'un mur du haut alors baisser la profondeur du sprite
-    if (isTop) this.setDepth(0);
-    else this.setDepth(2);
+    if (isTop) {
+      this.setDepth(0);
+    } else this.setDepth(2);
     scene.add.existing(this);
   }
 

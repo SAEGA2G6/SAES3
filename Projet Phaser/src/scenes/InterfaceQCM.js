@@ -7,7 +7,6 @@ class InterfaceQCM extends Phaser.Scene {
     //Request DB
     this.xhr;
 
-    this.jsonQA;
     this.myJsonQA;
     this.currentQuestionNb;
 
@@ -20,28 +19,25 @@ class InterfaceQCM extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     this.currentQuestionNb = 0;
-    // Fond sur lequel seront affichées les questions
-    //const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
+    // Fond sur lequel seront affichées les questions //
     const back_interface = this.add.image(0, 0, "papier").setDepth(5);
+    ////////////////////////////////
 
-    Phaser.Display.Align.In.Center(
-      back_interface,
-      this.add.zone(400, 300, 800, 600)
-    );
+    Phaser.Display.Align.In.Center(back_interface, this.add.zone(400, 300, 800, 600));
     back_interface.setScale(1.8);
     back_interface.setOrigin(0.5, 0.5);
     this.back_interface = back_interface;
 
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
-    question.setOrigin(0.5, 0.5);
+    question.setOrigin(0);
     question.setStyle({
       fontFamily: "roboto",
       fontSize: "25px",
       color: this.txtcolor,
-      wordWrap: { width: 400 },
+      wordWrap: { width: 350 },
     });
-    Phaser.Display.Align.In.TopCenter(question, this.back_interface);
+    Phaser.Display.Align.In.TopLeft(question, this.back_interface);
     question.y -= 80;
     this.question = question;
 

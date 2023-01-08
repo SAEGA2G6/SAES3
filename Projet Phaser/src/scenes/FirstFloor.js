@@ -9,7 +9,6 @@ class FirstFloor extends Phaser.Scene {
       this.update_list = [];
       ///////////// MAP /////////////
 
-      // TODO: ajouter la map du 1er étage
       var carte = this.make.tilemap({ key: "map1" });
       var tileset1 = carte.addTilesetImage("couloir", "couloir");
       var tileset2 = carte.addTilesetImage("escaliers", "escaliers");

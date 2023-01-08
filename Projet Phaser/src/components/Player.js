@@ -10,26 +10,27 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y);
     const baseVelocity = 160;
     this.baseVelocity = baseVelocity;
-    this.velocity = 300;
-    this.scene.physics.world.enable(this);
+    this.velocity = 300; //TODO: voir quelle vitesse mettre
+    scene.physics.world.enable(this);
     this.setTexture(texture);
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
+    ///////////////// SCORE ////////////////
     this.score;
+    ///////////////////////////////////////
+
 
     ///////////// ADD TO UPDATE LIST //////////
-    this.scene.update_list.push(this);
+    scene.update_list.push(this);
     ///////////////////////////////////////////
 
-    this.facing_direction;
-    this.scene = scene;
     scene.add.existing(this);
 
-    this.cursors = this.scene.input.keyboard.createCursorKeys();
+    this.cursors = scene.input.keyboard.createCursorKeys();
+    this.facing_direction;
 
-    ///animations///
-
+    ///////////////// ANIMATIONS ////////////////
     this.anims.create({
       key: "left",
       frames: this.anims.generateFrameNumbers(texture, { start: 4, end: 7 }),
@@ -57,6 +58,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       frameRate: 10,
       repeat: -1,
     });
+    ///////////////////////////////////////////
   }
 
   update() {
