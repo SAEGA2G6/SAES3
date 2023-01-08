@@ -2,6 +2,7 @@ class Level extends Phaser.Scene {
 
   init(data) {
     this.playerGender = data.texture;
+    this.playerPseudo = data.pseudo;
     this.currentNbRoom = 1;
     this.nbRooms = 4;
     this.levelPrefix = "rc"
@@ -49,8 +50,8 @@ class Level extends Phaser.Scene {
       .setDepth(2);
 
     ///////////// PLAYER /////////////
-    console.log(this.playerGender);
-    const player = new Player(this, 352, 918, this.playerGender).setDepth(1);
+    const player = new Player(this, 352, 918, this.playerGender, this.playerPseudo).setDepth(1);
+    console.log("pseudo: " + player.pseudo)
     this.player = player;
 
     ///////////// PROF/BOSS /////////////

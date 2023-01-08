@@ -18,6 +18,7 @@ class InterfaceQCM extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    this.currentScene.player.velocity = 0;
     this.currentQuestionNb = 0;
     // Fond sur lequel seront affichées les questions //
     const back_interface = this.add.image(0, 0, "papier").setDepth(5);
@@ -74,7 +75,6 @@ class InterfaceQCM extends Phaser.Scene {
       "_r" +
       this.currentBoss.scene.currentNbRoom;
     //Request send to the DB to get the questions and answers that correspond to the actual boss
-    console.log("--------------------------------juste avant sendQuestionAnswersRequest--------------------------------")
     DBQueries.sendQuestionAnswersRequest(this, prefix);
 
     //Creation of the events about the right and wrong answers
@@ -102,11 +102,12 @@ class InterfaceQCM extends Phaser.Scene {
       const scene_level = this.game.scene.getScene(this.currentScene);
       scene_level.emitter.emit("open_doors");
       this.currentBoss.disable(true);
-      this.scene.stop();
+      this.exitMCQ();
     }
     if (KeyESC.isDown) {
       this.currentBoss.disable(false);
-      this.scene.stop();
+      this.currentScene.player.velocity = this.currentScene.player.baseVelocity;
+      this.exitMCQ();
     }
   }
 
@@ -258,6 +259,8 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   exitMCQ() {
+    //TODO: faire une méthode pour reset la vitesse du joueur
+    this.currentScene.player.velocity = this.currentScene.player.baseVelocity;
     //we stop this scene which is then reset
     this.scene.stop();
   }

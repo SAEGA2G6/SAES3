@@ -13,6 +13,10 @@ class Menu extends Phaser.Scene {
     this.events.emit("scene-awake");
   }
 
+  preload() {
+    this.load.plugin('rexinputtextplugin', 'lib/rexinputtextplugin.min.js', true);
+  }
+
   create() {
     this.editorCreate();
   }

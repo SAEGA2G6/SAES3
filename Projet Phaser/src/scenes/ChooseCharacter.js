@@ -50,12 +50,44 @@ class ChooseCharacter extends Phaser.Scene {
     male_symbol.setScale(0.025);
     female_symbol.setScale(0.025);
 
+    const inputText = this.add.rexInputText(400, 450, {
+      type: 'textarea',
+      text: '',
+      fontSize: '20px',
+      placeholder: 'pseudo',
+      minLength: 1,
+      maxLength: 22,
+      align: 'center',
+
+    })
+      .resize(250, 100)
+      .setOrigin(0.5, 0.5)
+      .on('textchange', function (inputText) {
+      })
+      .on('focus', function (inputText) {
+          console.log('On focus');
+      })
+      .on('blur', function (inputText) {
+          console.log('On blur');
+      })
+      .on('click', function (inputText) {
+          console.log('On click');
+      })
+      .on('dblclick', function (inputText) {
+          console.log('On dblclick');
+      })
+
+
     player1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      this.scene.start("Level", {texture: "player"});
+      if(inputText.text.trim().length > 0) {
+        this.scene.start("Level", {texture: "player", pseudo: inputText.text});
+      }
     });
 
     player2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      this.scene.start("Level", {texture: "player2"});
+      if(inputText.text.length > 0) {
+        this.scene.start("Level", {texture: "player2", pseudo: inputText.text});
+      }
     });
 
     this.events.emit("scene-awake");

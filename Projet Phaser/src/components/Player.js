@@ -5,10 +5,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
    * @param {number} x x coordinate
    * @param {number} y y coordinate
    * @param {string} texture Texture of the player
+   * @param {string} pseudo Pseudo of the player
    */
-  constructor(scene, x, y, texture) {
+  constructor(scene, x, y, texture, pseudo) {
     super(scene, x, y);
-    const baseVelocity = 160;
+    const baseVelocity = 300; //160
     this.baseVelocity = baseVelocity;
     this.velocity = 300; //TODO: voir quelle vitesse mettre
     scene.physics.world.enable(this);
@@ -16,7 +17,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
-    ///////////////// SCORE ////////////////
+    ///////////////// SCORE MANAGER ////////////////
+    this.pseudo = pseudo;
     this.score;
     ///////////////////////////////////////
 

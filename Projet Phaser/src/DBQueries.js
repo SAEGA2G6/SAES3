@@ -44,27 +44,27 @@ class DBQueries {
         console.log(myJsonScores);
         for (let index = 0; index < myJsonScores.length; index++) {
           if (index == 0) {
-            that.highscore_test.text +=
+            that.highscore_text.text +=
               "1ER  " +
               myJsonScores[index].ID_JOUEUR +
-              " " +
-              myJsonScores[index].SCORE;
+              "   " +
+              myJsonScores[index].SCORE + " sec";
           } else {
             var place = index + 1;
-            that.highscore_test.text +=
+            that.highscore_text.text +=
               "\n" +
               place +
               "EME " +
               myJsonScores[index].ID_JOUEUR +
-              " " +
-              myJsonScores[index].SCORE;
+              "   " +
+              myJsonScores[index].SCORE + " sec";
           }
         }
       }
     };
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM SCORE ORDER BY score DESC");
+    xhr.send("query=SELECT * FROM SCORE ORDER BY score");
   }
 
   /**
@@ -118,14 +118,7 @@ class DBQueries {
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
-      "query=INSERT INTO SCORE VALUES ('DANNATHOR'," +
-        that.player.score +
-        ", '" +
-        that.levelPrefix +
-        "')"
-    );
-    console.log(
-      "query=INSERT INTO SCORE VALUES ('DANNATHOR'," +
+      "query=INSERT INTO SCORE VALUES ('" + that.player.pseudo + "'," +
         that.player.score +
         ", '" +
         that.levelPrefix +
