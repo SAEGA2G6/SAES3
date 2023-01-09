@@ -10,9 +10,12 @@ class Clue extends Phaser.Scene {
   
     /** @returns {void} */
     editorCreate() {
-        const paper_support = this.add.image(400, 300, "papier");
-        paper_support.setScale(1.8);
-        paper_support.setOrigin(0.5);
+        //const paper_support = this.add.image(400, 300, "papier");
+        const computer_support = this.add.image(400, 300, "ordinateur");
+        computer_support.setScale(1.8);
+        computer_support.setOrigin(0.5);
+        //paper_support.setScale(1.8);
+        //paper_support.setOrigin(0.5);
 
         const clue_text = this.add.text(0, 0, "", {}).setDepth(5);
         clue_text.setOrigin(0);
@@ -24,7 +27,7 @@ class Clue extends Phaser.Scene {
         });
         this.clue_text = clue_text;
 
-        Phaser.Display.Align.In.TopLeft(clue_text,paper_support);
+        Phaser.Display.Align.In.TopLeft(clue_text,computer_support);
         clue_text.y -= 90;
         DBQueries.sendClueRequest(this);
 
