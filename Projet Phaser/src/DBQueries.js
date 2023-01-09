@@ -11,7 +11,6 @@ class DBQueries {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
-        console.log("on est dans la requete");
         var response = xhr.responseText;
         const MyJsonClue = JSON.parse(response);
         console.log(response);
@@ -37,7 +36,6 @@ class DBQueries {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
-        console.log("on est dans la requete");
         var response = xhr.responseText;
         const myJsonScores = JSON.parse(response);
         console.log(response);
@@ -48,7 +46,8 @@ class DBQueries {
               "1ER  " +
               myJsonScores[index].ID_JOUEUR +
               "   " +
-              myJsonScores[index].SCORE + " sec";
+              myJsonScores[index].SCORE +
+              " sec";
           } else {
             var place = index + 1;
             that.highscore_text.text +=
@@ -57,7 +56,8 @@ class DBQueries {
               "EME " +
               myJsonScores[index].ID_JOUEUR +
               "   " +
-              myJsonScores[index].SCORE + " sec";
+              myJsonScores[index].SCORE +
+              " sec";
           }
         }
       }
@@ -65,6 +65,54 @@ class DBQueries {
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("query=SELECT * FROM SCORE ORDER BY score");
+  }
+
+  /**
+   * query sent to the DB to get the lowest highscore
+   * @return {void}
+   */
+  static sendMinScoreRequest(that) {
+    var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Traitez la réponse ici
+        var response = xhr.responseText;
+        const myJsonMinScore = JSON.parse(response);
+        console.log(response);
+        console.log(myJsonScores);
+        DBQueries.minScore = myJsonMinScore[0].SCORE;
+      }
+    };
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("query=SELECT MAX(SCORE) FROM SCORE");
+  }
+
+  /**
+   * query sent to the DB to get the lowest highscore
+   * @return {void}
+   */
+  static sendScoreRowNbRequest(that) {
+    var xhr = new XMLHttpRequest();
+    DBQueries.xhr = xhr;
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // Traitez la réponse ici
+        var response = xhr.responseText;
+        const myJsonMinScore = JSON.parse(response);
+        console.log(response);
+        console.log(myJsonScores);
+        DBQueries.minScore = myJsonMinScore[0].SCORE;
+      }
+    };
+    xhr.open("POST", "src/mysql.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("query=SELECT MAX(SCORE) FROM SCORE");
   }
 
   /**
@@ -81,7 +129,6 @@ class DBQueries {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
-        console.log("on est dans la requete");
         var response = xhr.responseText;
         console.log(response);
         InterfaceQCM.myJsonQA = JSON.parse(response);
@@ -90,7 +137,9 @@ class DBQueries {
         console.log(InterfaceQCM.myJsonQA[0].Reponse2);
         console.log(InterfaceQCM.myJsonQA[0].Reponse3);
         console.log(InterfaceQCM.myJsonQA[0].Reponse4);
-        console.log("--------------juste avant nextQuestion DBQUERIES--------------")
+        console.log(
+          "--------------juste avant nextQuestion DBQUERIES--------------"
+        );
         that.nextQuestion();
       }
     };
@@ -118,7 +167,9 @@ class DBQueries {
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
-      "query=INSERT INTO SCORE VALUES ('" + that.player.pseudo + "'," +
+      "query=INSERT INTO SCORE VALUES ('" +
+        that.player.pseudo +
+        "'," +
         that.player.score +
         ", '" +
         that.levelPrefix +
