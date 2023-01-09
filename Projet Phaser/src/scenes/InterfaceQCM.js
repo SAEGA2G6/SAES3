@@ -21,19 +21,22 @@ class InterfaceQCM extends Phaser.Scene {
     this.currentScene.player.velocity = 0;
     this.currentQuestionNb = 0;
     // Fond sur lequel seront affichées les questions //
-    const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
+    const back_interface = this.add.image(0, 0, "interfaceQCM")
+    .setDepth(5)
+    .setScale(0.97)
+    .setOrigin(0.5, 0.5);
     ////////////////////////////////
 
     Phaser.Display.Align.In.Center(back_interface, this.add.zone(400, 300, 800, 600));
-    back_interface.setScale(0.97);
-    back_interface.setOrigin(0.5, 0.5);
-    this.back_interface = back_interface;
+
     back_interface.y += 59;
+    this.back_interface = back_interface;
 
     // Question
-    const question = this.add.text(0, 0, "", {}).setDepth(5);
-    question.setOrigin(0);
-    question.setStyle({
+    const question = this.add.text(0, 0, "", {})
+    .setDepth(5)
+    .setOrigin(0)
+    .setStyle({
       fontFamily: "comforta",
       fontSize: "25px",
       color: this.txtcolor,

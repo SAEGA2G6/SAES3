@@ -31,7 +31,8 @@ class TextColor extends UserComponent {
         .setInteractive({ useHandCursor: true })
         .on("pointerdown", () => {
           this.gameObject.setStyle({ fill: "purple" }),
-            this.gameObject.scene.scene.start(this.scene, this.sceneData);
+            this.gameObject.scene.scene.start(this.scene, this.sceneData),
+            this.gameObject.scene.scene.stop();
         });
     }
 

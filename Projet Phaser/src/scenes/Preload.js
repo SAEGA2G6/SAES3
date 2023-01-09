@@ -11,13 +11,12 @@ class Preload extends Phaser.Scene {
 		this.load.tilemapTiledJSON('map', 'assets/maps/iut_rcFinis.json');
 		this.load.tilemapTiledJSON('map1', 'assets/maps/iut_e1Finis.json');
 		this.load.tilemapTiledJSON('map2', 'assets/maps/iut_e2.json');
-		// TODO: charger maps 1er et 2eme etage
 	}
 
 	/** @returns {void} */
 	editorCreate() {
 
-		// spinner
+		// spinner TODO: voir si on garde ou pas
 		const spinner = this.physics.add.sprite(400, 219, "spinner");
 
 
@@ -33,10 +32,10 @@ class Preload extends Phaser.Scene {
 		  spinner.anims.yoyo = !spinner.anims.yoyo;
 
 		// progress
-		const progress = this.add.text(400, 349, "", {});
-		progress.setOrigin(0.5, 0.5);
+		const progress = this.add.text(400, 349, "", {})
+		.setOrigin(0.5, 0.5)
+		.setStyle({ "fontSize": "30px" });
 		progress.text = "0%";
-		progress.setStyle({ "fontSize": "30px" });
 
 		// progress (components)
 		new PreloadText(progress);
@@ -51,7 +50,6 @@ class Preload extends Phaser.Scene {
 		this.editorPreload();
 
 		console.log('Fin Preload');
-		//this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Level"));
 		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Menu"));
 	}
 }

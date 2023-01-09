@@ -9,19 +9,21 @@ class ChooseCharacter extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    const arrow_back = this.add.image(100, 100, "arrow_back")
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.scene.start("Menu");
+      this.scene.stop();
+    });
+
 
     if(this.chooseOption == "Level") {
-      this.chooseLevel;
+      this.chooseLevel();
+      console.log("choosing level");
     }
     else if(this.chooseOption == "Character") {
       this.chooseCharacter();
+      console.log("choosing character");
     }
-
-
-    const arrow_back = this.add.image(100, 100, "arrow_back");
-    arrow_back.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      this.scene.switch("Menu");
-    });
 
     this.events.emit("scene-awake");
   }
@@ -31,89 +33,97 @@ class ChooseCharacter extends Phaser.Scene {
   }
 
   chooseLevel() {
-    const msg_chooseLevel = this.add.text(400, 150, "CHOISIS TON ETAGE", {}).setDepth(5);
-      msg_chooseLevel.setOrigin(0.5);
-      msg_chooseLevel.setStyle({
+    const msg_chooseLevel = this.add.text(400, 150, "CHOISIS TON ETAGE", {}).setDepth(5)
+      .setOrigin(0.5)
+      .setStyle({
         fontFamily: "retro-computer",
         fontSize: "40px",
         color: "WHITE",
       });
-  
-      const roof0 = this.add.text(400, 150, "REZ-DE-CHAUSSEE / 1ERE ANNEE", {}).setDepth(5);
-      roof0.setOrigin(0.5);
-      roof0.setStyle({
+      
+      //TODO: changer en TextColor
+      const roof0 = this.add.text(400, 300, "REZ-DE-CHAUSSEE - 1ERE ANNEE", {}).setDepth(5)
+      .setOrigin(0.5)
+      .setStyle({
         fontFamily: "retro-computer",
         fontSize: "40px",
         color: "WHITE",
-      });
-
-      const roof1 = this.add.text(400, 150, "1ER ETAGE / 2EME ANNEE", {}).setDepth(5);
-      roof1.setOrigin(0.5);
-      roof1.setStyle({
-        fontFamily: "retro-computer",
-        fontSize: "40px",
-        color: "WHITE",
-      });
-
-      const roof2 = this.add.text(400, 150, "2EME ETAGE / 3EME ANNEE", {}).setDepth(5);
-      roof2.setOrigin(0.5);
-      roof2.setStyle({
-        fontFamily: "retro-computer",
-        fontSize: "40px",
-        color: "WHITE",
-      });
-  
-
-      roof0.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      })
+      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "Level"});
       });
-  
-      roof1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+
+      const roof1 = this.add.text(400, 400, "1ER ETAGE - 2EME ANNEE", {}).setDepth(5)
+      .setOrigin(0.5)
+      .setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      })
+      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "FirstFloor"});
       });
 
-      roof2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      const roof2 = this.add.text(400, 500, "2EME ETAGE - 3EME ANNEE", {}).setDepth(5)
+      .setOrigin(0.5)
+      .setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      })
+      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "SecondFloor"});
       });
   }
 
 
   chooseCharacter() {
-    const msg_chooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {}).setDepth(5);
-    msg_chooseCharacter.setOrigin(0.5);
-    msg_chooseCharacter.setStyle({
+    const msg_chooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {})
+    .setDepth(5)
+    .setOrigin(0.5)
+    .setStyle({
       fontFamily: "retro-computer",
       fontSize: "40px",
       color: "WHITE",
     });
 
-    var back1 = this.add.rectangle(340, 300, 100, 148, 0xF3E6D8);
-    var back2 = this.add.rectangle(460, 300, 100, 148, 0xF3E6D8);
-    back1.setStrokeStyle(4, 0x56A0D3);
-    back2.setStrokeStyle(4, 0xF773D6);
+    const back1 = this.add.rectangle(340, 300, 100, 148, 0xF3E6D8)
+    .setStrokeStyle(4, 0x56A0D3);
+    const back2 = this.add.rectangle(460, 300, 100, 148, 0xF3E6D8)
+    .setStrokeStyle(4, 0xF773D6);
 
-    const player1 = this.add.sprite(0, 0, "player");
-    player1.setScale(2);
+    const player1 = this.add.sprite(0, 0, "player")
+    .setScale(2)
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      if(inputText.text.trim().length > 0) {
+        this.scene.start(this.chosenLevel, {texture: "player", pseudo: inputText.text});
+        this.scene.stop();
+      }
+    });
+
     Phaser.Display.Align.In.Center(player1, back1);
 
-    const player2 = this.add.sprite(0, 0, "player2");
-    player2.setScale(2);
+
+    const player2 = this.add.sprite(0, 0, "player2")
+    .setScale(2)
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      if(inputText.text.trim().length > 0) {
+        this.scene.start(this.chosenLevel, {texture: "player2", pseudo: inputText.text});
+        this.scene.stop();
+      }
+    });
+
     Phaser.Display.Align.In.Center(player2, back2);
 
-    const male_symbol = this.add.image(
-      player1.x + 38,
-      player1.y - 60,
-      "male-symbol"
-    );
-    const female_symbol = this.add.image(
-      player2.x + 40,
-      player2.y - 60,
-      "female-symbol"
-    );
-    male_symbol.setOrigin(0.5);
-    female_symbol.setOrigin(0.5);
-    male_symbol.setScale(0.025);
-    female_symbol.setScale(0.025);
+
+    const male_symbol = this.add.image(0, 0, "male-symbol")
+    .setOrigin(1,0).setScale(0.025);
+
+    const female_symbol = this.add.image(0, 0, "female-symbol")
+    .setOrigin(1,0).setScale(0.025);
+
+    Phaser.Display.Align.In.TopRight(male_symbol, back1);
+    Phaser.Display.Align.In.TopRight(female_symbol, back2);
 
     const inputText = this.add.rexInputText(400, 450, {
       type: 'textarea',
@@ -127,18 +137,5 @@ class ChooseCharacter extends Phaser.Scene {
     })
       .resize(250, 100)
       .setOrigin(0.5, 0.5);
-
-
-    player1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      if(inputText.text.trim().length > 0) {
-        this.scene.start(this.chosenLevel, {texture: "player", pseudo: inputText.text});
-      }
-    });
-
-    player2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      if(inputText.text.trim().length > 0) {
-        this.scene.start(this.chosenLevel, {texture: "player2", pseudo: inputText.text});
-      }
-    });
   }
 }

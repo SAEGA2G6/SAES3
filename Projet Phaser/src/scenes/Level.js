@@ -14,24 +14,16 @@ class Level extends Phaser.Scene {
     this.update_list = [];
     ///////////// MAP /////////////
     var carte = this.make.tilemap({ key: "map" });
-    var tileset1 = carte.addTilesetImage("couloir", "couloir");
-    var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
-    var tileset3 = carte.addTilesetImage("meuble1", "meuble1");
-    var tileset4 = carte.addTilesetImage("mur", "mur");
-    var tileset5 = carte.addTilesetImage("pc", "pc");
-    var tileset6 = carte.addTilesetImage("portes", "portes");
-    var tileset7 = carte.addTilesetImage("poubelle", "poubelle");
-    var tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
 
     var tilesets_list = [
-      tileset1,
-      tileset2,
-      tileset3,
-      tileset4,
-      tileset5,
-      tileset6,
-      tileset7,
-      tileset8,
+      carte.addTilesetImage("couloir", "couloir"),
+      carte.addTilesetImage("escaliers", "escaliers"),
+      carte.addTilesetImage("meuble1", "meuble1"),
+      carte.addTilesetImage("mur", "mur"),
+      carte.addTilesetImage("pc", "pc"),
+      carte.addTilesetImage("portes", "portes"),
+      carte.addTilesetImage("poubelle", "poubelle"),
+      carte.addTilesetImage("toiletsBureau", "toiletsBureau"),
     ];
 
     ///////////// LAYERS /////////////
@@ -51,13 +43,11 @@ class Level extends Phaser.Scene {
 
     ///////////// PLAYER /////////////
     const player = new Player(this, 352, 918, this.playerGender, this.playerPseudo).setDepth(1);
-    console.log("pseudo: " + player.pseudo)
     this.player = player;
 
-    ///////////// PROF/BOSS /////////////
+    console.log("pseudo: " + player.pseudo)
 
-    // ancien
-    //const prof1 = this.physics.add.sprite(480, 340, "prof1").setImmovable();
+    ///////////// PROF/BOSS /////////////
 
     const prof1 = new DialogObject(
       this,
@@ -300,34 +290,34 @@ class Level extends Phaser.Scene {
     this.emitter.on("time_malus", this.malusChrono, this);
 
     ///////////// CHRONOMETER /////////////
-    const back_chrono = this.add.image(125, 100, "back_chrono").setDepth(4);
-    back_chrono.setOrigin(0.5, 0.48);
-    back_chrono.setScrollFactor(0);
-    back_chrono.setScale(0.17);
+    const back_chrono = this.add.image(125, 100, "back_chrono")
+    .setDepth(4)
+    .setOrigin(0.5, 0.48)
+    .setScrollFactor(0)
+    .setScale(0.17);
 
 
-    const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5);
-    chrono_txt.setOrigin(0.5, 0.5);
-    chrono_txt.setStyle({
+    const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5)
+    .setOrigin(0.5, 0.5)
+    .setStyle({
       fontFamily: "roboto",
       fontSize: "20px",
       color: "black",
-    });
-    chrono_txt.setScrollFactor(0);
+    })
+    .setScrollFactor(0);
     Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
     this.chrono_txt = chrono_txt;
 
     ////malus text////
-    const time_malus_txt = this.add
-      .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
-      .setDepth(5);
-    time_malus_txt.setOrigin(0.5, 0.5);
-    time_malus_txt.setStyle({
+    const time_malus_txt = this.add.text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
+    .setDepth(5)
+    .setOrigin(0.5, 0.5)
+    .setStyle({
       fontFamily: "roboto",
       fontSize: "15px",
       color: "red",
-    });
-    time_malus_txt.setScrollFactor(0);
+    })
+    .setScrollFactor(0);
     time_malus_txt.visible = false;
     this.time_malus_txt = time_malus_txt;
 
@@ -375,7 +365,6 @@ class Level extends Phaser.Scene {
   }
 
   ///////////// UPDATECHRONO /////////////
-  //TODO: faire une fonction à part qui calcule les minutes etc
   updateChrono() {
     /// CHRONOMETER
     var min = Math.floor(this.chrono / 60);
@@ -419,7 +408,7 @@ class Level extends Phaser.Scene {
     if(this.isGameOver()) {
       this.getScore();
       DBQueries.sendInsertScoreRequest(this);
-      this.scene.switch("Menu");
+      this.scene.start("Menu");
       this.scene.stop();
     }
     ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)

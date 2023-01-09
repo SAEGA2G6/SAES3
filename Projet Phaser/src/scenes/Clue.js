@@ -12,13 +12,13 @@ class Clue extends Phaser.Scene {
     /** @returns {void} */
     editorCreate() {
         
-        const support = this.add.image(400, 300, this.supportTexture);
-        support.setOrigin(0.5);
+        const support = this.add.image(400, 300, this.supportTexture)
+        .setOrigin(0.5);
 
 
-        const clue_text = this.add.text(0, 0, "", {}).setDepth(5);
-        clue_text.setOrigin(0); 
-        clue_text.setStyle({
+        const clue_text = this.add.text(0, 0, "", {}).setDepth(5)
+        .setOrigin(0)
+        .setStyle({
         fontFamily: "comforta"
         });
         this.clue_text = clue_text;

@@ -13,39 +13,31 @@ class FirstFloor extends Phaser.Scene {
       this.update_list = [];
       ///////////// MAP /////////////
 
-      var carte = this.make.tilemap({ key: "map1" });
-      var tileset1 = carte.addTilesetImage("couloir", "couloir");
-      var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
-      var tileset3 = carte.addTilesetImage("meuble1", "meuble1");
-      var tileset4 = carte.addTilesetImage("mur", "mur");
-      var tileset5 = carte.addTilesetImage("pc", "pc");
-      var tileset6 = carte.addTilesetImage("portes", "portes");
-      var tileset7 = carte.addTilesetImage("poubelle", "poubelle");
-      var tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
+      const carte = this.make.tilemap({ key: "map1" });
   
-      var tilesets_list = [
-        tileset1,
-        tileset2,
-        tileset3,
-        tileset4,
-        tileset5,
-        tileset6,
-        tileset7,
-        tileset8,
+      const tilesets_list = [
+        carte.addTilesetImage("couloir", "couloir"),
+        carte.addTilesetImage("escaliers", "escaliers"),
+        carte.addTilesetImage("meuble1", "meuble1"),
+        carte.addTilesetImage("mur", "mur"),
+        carte.addTilesetImage("pc", "pc"),
+        carte.addTilesetImage("portes", "portes"),
+        carte.addTilesetImage("poubelle", "poubelle"),
+        carte.addTilesetImage("toiletsBureau", "toiletsBureau"),
       ];
   
       ///////////// LAYERS /////////////
       //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
   
-      var calque1 = carte
+      const calque1 = carte
         .createLayer("Calque de Tuiles 1", tilesets_list, 0, 0)
         .setDepth(0);
   
-      var calque2 = carte
+      const calque2 = carte
         .createLayer("Calque de Tuiles 2", tilesets_list, 0, 0)
         .setDepth(0);
   
-      var calque3 = carte
+      const calque3 = carte
         .createLayer("Calque de Tuiles 3", tilesets_list, 0, 0)
         .setDepth(2);
   
@@ -110,17 +102,17 @@ class FirstFloor extends Phaser.Scene {
   
       ///////////// DOORS /////////////
       
-      var door_room2_1 = new Door(this, 1504, 417, "doubleporte", true);
-      var door_room2_2 = new Door(this, 1888, 417, "doubleporte", true);
+      const door_room2_1 = new Door(this, 1504, 417, "doubleporte", true);
+      const door_room2_2 = new Door(this, 1888, 417, "doubleporte", true);
 
-      var door_room3_1 = new Door(this, 1024, 545, "doubleporte", false);
-      var door_room3_2 = new Door(this, 1216, 545, "doubleporte", false);
+      const door_room3_1 = new Door(this, 1024, 545, "doubleporte", false);
+      const door_room3_2 = new Door(this, 1216, 545, "doubleporte", false);
 
-      var door_room4_1 = new Door(this, 1376, 545, "doubleporte", false);
-      var door_room4_2 = new Door(this, 1568, 545, "doubleporte", false);
+      const door_room4_1 = new Door(this, 1376, 545, "doubleporte", false);
+      const door_room4_2 = new Door(this, 1568, 545, "doubleporte", false);
 
-      var door_room5_1 = new Door(this, 1728, 545, "doubleporte", false);
-      var door_room5_2 = new Door(this, 1920, 545, "doubleporte", false);
+      const door_room5_1 = new Door(this, 1728, 545, "doubleporte", false);
+      const door_room5_2 = new Door(this, 1920, 545, "doubleporte", false);
   
       ///////////// INDICES /////////////
       
@@ -264,11 +256,11 @@ class FirstFloor extends Phaser.Scene {
       this.physics.add.collider(player, collider_list);
   
       ///////////// CAMERA /////////////
-      this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
+      this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight)
       this.cameras.main.startFollow(player);
       this.cameras.main.zoom = 1.2;
 
-          ///////////// DOOR OPENING SYSTEM ///////////// //TODO: mettre les portes devant être ouvertes
+      ///////////// DOOR OPENING SYSTEM ///////////// //TODO: mettre les portes devant être ouvertes
     const list_allDoors = [
       [door_room2_1, door_room2_2],
       [door_room3_1, door_room3_2],
@@ -378,6 +370,8 @@ class FirstFloor extends Phaser.Scene {
       }
       this.chrono_txt.text = min_txt + " : " + sec_txt;
     }
+
+    
   
   ///////////// ENDGAME /////////////
   /**
@@ -401,7 +395,7 @@ class FirstFloor extends Phaser.Scene {
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
-        this.scene.switch("Menu");
+        this.scene.start("Menu");
         this.scene.stop();
       }
       ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
