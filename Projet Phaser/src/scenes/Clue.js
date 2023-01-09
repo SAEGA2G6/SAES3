@@ -1,6 +1,7 @@
 class Clue extends Phaser.Scene {
     init(data) {
       this.currentScene = data.currentScene;
+      this.supportTexture = data.supportTexture;
       this.currentClue;
       this.clueId;
     }
@@ -10,25 +11,42 @@ class Clue extends Phaser.Scene {
   
     /** @returns {void} */
     editorCreate() {
-        //const paper_support = this.add.image(400, 300, "papier");
-        const computer_support = this.add.image(400, 300, "ordinateur");
-        computer_support.setScale(1.8);
-        computer_support.setOrigin(0.5);
-        //paper_support.setScale(1.8);
-        //paper_support.setOrigin(0.5);
+        
+        const support = this.add.image(400, 300, this.supportTexture);
+        support.setOrigin(0.5);
+
 
         const clue_text = this.add.text(0, 0, "", {}).setDepth(5);
-        clue_text.setOrigin(0);
+        clue_text.setOrigin(0); 
         clue_text.setStyle({
-        fontFamily: "roboto",
-        fontSize: "25px",
-        color: "black",
-        wordWrap: { width: 300 }
+        fontFamily: "comforta"
         });
         this.clue_text = clue_text;
 
-        Phaser.Display.Align.In.TopLeft(clue_text,computer_support);
-        clue_text.y -= 90;
+        Phaser.Display.Align.In.TopLeft(clue_text,support);
+
+        // change couleur texte selon le support 
+        if(this.supportTexture === "ordinateur") {
+          support.setScale(1.5);
+          clue_text.setStyle({
+            fontSize: "23px",
+            color: "white",
+            wordWrap: { width: 500 }
+          });
+          clue_text.y -= 30;
+          clue_text.x -= 50;
+        }
+        else {
+          support.setScale(1.8);
+          clue_text.setStyle({
+            fontSize: "22px",
+            color: "black",
+            wordWrap: { width: 400 }
+          });
+          clue_text.y -= 90;
+          clue_text.x -= 50;
+        }
+
         DBQueries.sendClueRequest(this);
 
         const KeyESC = this.input.keyboard.addKey("esc");

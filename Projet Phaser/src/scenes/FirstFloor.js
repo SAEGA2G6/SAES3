@@ -1,6 +1,10 @@
 class FirstFloor extends Phaser.Scene {
   init(data) {
     this.playerGender = data.texture;
+    this.playerPseudo = data.pseudo;
+    this.currentNbRoom = 1;
+    this.nbRooms = 5; //TODO: mettre nb de rooms avec boss de l'étage
+    this.levelPrefix = "e1" //TODO: mettre le prefixe de la room
   }
   
     /** @returns {void} */
@@ -106,30 +110,30 @@ class FirstFloor extends Phaser.Scene {
   
       ///////////// DOORS /////////////
       
-      var door_room1_1 = new Door(this, 1504, 417, "doubleporte", true);
-      var door_room1_2 = new Door(this, 1888, 417, "doubleporte", true);
+      var door_room2_1 = new Door(this, 1504, 417, "doubleporte", true);
+      var door_room2_2 = new Door(this, 1888, 417, "doubleporte", true);
 
-      var door_room2_1 = new Door(this, 1024, 545, "doubleporte", false);
-      var door_room2_2 = new Door(this, 1216, 545, "doubleporte", false);
+      var door_room3_1 = new Door(this, 1024, 545, "doubleporte", false);
+      var door_room3_2 = new Door(this, 1216, 545, "doubleporte", false);
 
-      var door_room3_1 = new Door(this, 1376, 545, "doubleporte", false);
-      var door_room3_2 = new Door(this, 1568, 545, "doubleporte", false);
+      var door_room4_1 = new Door(this, 1376, 545, "doubleporte", false);
+      var door_room4_2 = new Door(this, 1568, 545, "doubleporte", false);
 
-      var door_room4_1 = new Door(this, 1728, 545, "doubleporte", false);
-      var door_room4_2 = new Door(this, 1920, 545, "doubleporte", false);
+      var door_room5_1 = new Door(this, 1728, 545, "doubleporte", false);
+      var door_room5_2 = new Door(this, 1920, 545, "doubleporte", false);
   
       ///////////// INDICES /////////////
       
-      /////////////// ROOM 0 /////////////
+      /////////////// ROOM 1 /////////////
 
-    const pcOn1_room0 = new DialogObject(
+    const pcOn1_room1 = new DialogObject(
       this, 399, 368,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
       "clue"
     );
 
-    const pcOn2_room0 = new DialogObject(
+    const pcOn2_room1 = new DialogObject(
       this, 559, 48,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
@@ -137,17 +141,17 @@ class FirstFloor extends Phaser.Scene {
     );
     pcOn2_room0.flipX = true;
 
-    const papers_room0 = new DialogObject(
+    const papers_room1 = new DialogObject(
       this, 305, 190,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-      /////////////// ROOM 1 /////////////
+      /////////////// ROOM 2 /////////////
 
 
-    const pcOn1_room1 = new DialogObject(
+    const pcOn1_room2 = new DialogObject(
       this, 1905, 73,
       "pcAllume",
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
@@ -155,76 +159,76 @@ class FirstFloor extends Phaser.Scene {
     );
     pcOn1_room1.flipX = true;
 
-    const papers_room1 = new DialogObject(
+    const papers_room2 = new DialogObject(
       this, 1505, 60,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-    const bin_room1 = new DialogObject(
+    const bin_room2 = new DialogObject(
       this, 1937, 400,
       "poubelleSprite",
       "Appuyer sur ESPACE pour fouiller la poubelle",
       "clue"
     );
 
-    /////////////// ROOM 2 /////////////
+    /////////////// ROOM 3 /////////////
 
-    const bin_room2 = new DialogObject(
+    const bin_room3 = new DialogObject(
       this, 976, 590,
       "poubelleSprite",
       "Appuyer sur ESPACE pour fouiller la poubelle",
       "clue"
     );
 
-    const papers_room2 = new DialogObject(
+    const papers_room3 = new DialogObject(
       this, 1260, 768,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-    const eleve_room2 = new DialogObject(
+    const eleve_room3 = new DialogObject(
       this, 976, 975,
       "eleve1",
       "Appuyer sur ESPACE pour parler à l'élève",
       "clue"
     );
 
-    /////////////// ROOM 3 /////////////
+    /////////////// ROOM 4 /////////////
 
-    const papers1_room3 = new DialogObject(
+    const papers1_room4 = new DialogObject(
       this, 1328, 720,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-    const papers2_room3 = new DialogObject(
+    const papers2_room4 = new DialogObject(
       this, 1500, 926,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-    const bin_room3 = new DialogObject(
+    const bin_room4 = new DialogObject(
       this, 1616, 590,
       "poubelleSprite",
       "Appuyer sur ESPACE pour fouiller la poubelle",
       "clue"
     );
 
-    /////////////// ROOM 4 /////////////
+    /////////////// ROOM 5 /////////////
 
-    const papers_room4 = new DialogObject(
+    const papers_room5 = new DialogObject(
       this, 1780, 830,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
       "clue"
     );
 
-    const eleve1_room4 = new DialogObject(
+    const eleve1_room5 = new DialogObject(
       this, 1970, 930,
       "eleve1",
       "Appuyer sur ESPACE pour parler à l'élève",
@@ -232,7 +236,7 @@ class FirstFloor extends Phaser.Scene {
     );
     eleve1_room4.flipX = true;
 
-    const eleve2_room4 = new DialogObject(
+    const eleve2_room5 = new DialogObject(
       this, 1935, 930,
       "eleve2",
       "Appuyer sur ESPACE pour parler à l'élève",
@@ -263,6 +267,15 @@ class FirstFloor extends Phaser.Scene {
       this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
       this.cameras.main.startFollow(player);
       this.cameras.main.zoom = 1.2;
+
+          ///////////// DOOR OPENING SYSTEM ///////////// //TODO: mettre les portes devant être ouvertes
+    const list_allDoors = [
+      [door_room2_1, door_room2_2],
+      [door_room3_1, door_room3_2],
+      [door_room4_1, door_room4_2],
+      [door_room5_1, door_room5_2]
+    ];
+    this.list_allDoors = list_allDoors;
   
   
       ///////////// EVENTS /////////////
@@ -320,9 +333,18 @@ class FirstFloor extends Phaser.Scene {
     ///////////// EVENTS HANDLERS /////////////
     /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
     open_doors_handler() {
-      for (var i = 0; i < this.list_doors.length; i++) {
-        this.list_doors[i].open();
+      console.log("room num: " + this.currentNbRoom);
+      if (this.currentNbRoom < this.nbRooms) {
+        for (
+          var i = 0;
+          i < this.list_allDoors[this.currentNbRoom - 1].length;
+          i++
+        ) {
+          this.list_allDoors[this.currentNbRoom - 1][i].open();
+        }
       }
+      this.currentNbRoom++;
+      console.log("portes de la salle " + this.currentNbRoom + " ouvertes");
     }
   
     malusChrono() {
@@ -357,24 +379,44 @@ class FirstFloor extends Phaser.Scene {
       this.chrono_txt.text = min_txt + " : " + sec_txt;
     }
   
+  ///////////// ENDGAME /////////////
+  /**
+   * Check if the game is over, i.e. if all MCQs have been completed
+   * @returns {boolean} true if the game is over and false otherwise
+   */
+   isGameOver() {
+    if (this.currentNbRoom > this.nbRooms) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
     create() {
       this.editorCreate();
     }
   
     update() {
-      ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
+      ///CHECK IF GAME IS OVER
+      if(this.isGameOver()) {
+        this.getScore();
+        DBQueries.sendInsertScoreRequest(this);
+        this.scene.switch("Menu");
+        this.scene.stop();
+      }
+      ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
       for (var i = 0; i < this.update_list.length; i++) {
         this.update_list[i].update();
       }
-  
       ///TO UPDATE CHRONOMETER
       this.updateChrono();
+    }
   
-      /////TEST
-      const KeyK = this.input.keyboard.addKey("k");
-      if (KeyK.isDown) {
-        this.scene.restart("Level");
-      }
+    /**
+     * Gives the player's score, which is the time it took to complete all the MCQs
+     */
+    getScore() {
+      this.player.score = this.chrono;
     }
   }
   

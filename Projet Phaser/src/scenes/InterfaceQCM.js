@@ -21,25 +21,27 @@ class InterfaceQCM extends Phaser.Scene {
     this.currentScene.player.velocity = 0;
     this.currentQuestionNb = 0;
     // Fond sur lequel seront affichées les questions //
-    const back_interface = this.add.image(0, 0, "papier").setDepth(5);
+    const back_interface = this.add.image(0, 0, "interfaceQCM").setDepth(5);
     ////////////////////////////////
 
     Phaser.Display.Align.In.Center(back_interface, this.add.zone(400, 300, 800, 600));
-    back_interface.setScale(1.8);
+    back_interface.setScale(0.97);
     back_interface.setOrigin(0.5, 0.5);
     this.back_interface = back_interface;
+    back_interface.y += 59;
 
     // Question
     const question = this.add.text(0, 0, "", {}).setDepth(5);
     question.setOrigin(0);
     question.setStyle({
-      fontFamily: "roboto",
+      fontFamily: "comforta",
       fontSize: "25px",
       color: this.txtcolor,
-      wordWrap: { width: 350 },
+      wordWrap: { width: 600 },
     });
     Phaser.Display.Align.In.TopLeft(question, this.back_interface);
-    question.y -= 80;
+    question.y += 70;
+    question.x += 100;
     this.question = question;
 
 
@@ -62,10 +64,14 @@ class InterfaceQCM extends Phaser.Scene {
     Phaser.Display.Align.In.BottomLeft(this.answer3, this.back_interface);
     Phaser.Display.Align.In.BottomLeft(this.answer4, this.back_interface);
 
-    this.answer1.y -= 250;
-    this.answer2.y = this.answer1.y + 90;
-    this.answer3.y = this.answer2.y + 90;
-    this.answer4.y = this.answer3.y + 90;
+    this.answer1.y -= 230;
+    answer1.x += 140;
+    this.answer2.y = this.answer1.y + 60;
+    answer2.x += 140;
+    this.answer3.y = this.answer2.y + 60;
+    answer3.x += 140;
+    this.answer4.y = this.answer3.y + 60;
+    answer4.x += 140;
 
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 

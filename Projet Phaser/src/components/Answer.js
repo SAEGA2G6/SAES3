@@ -12,7 +12,7 @@ class Answer extends Phaser.GameObjects.Text {
       fontFamily: "Roboto",
       fontSize: "15px",
       color: "black",
-      wordWrap: { width: 300 },
+      wordWrap: { width: 600 },
     });
     this.setOrigin(0);
 

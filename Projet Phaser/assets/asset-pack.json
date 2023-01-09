@@ -72,7 +72,7 @@
                 "type": "image"
             },
             {
-                "url": "assets/fonds/ordinateur (copie).png",
+                "url": "assets/fonds/ordinateur.png",
                 "key": "ordinateur",
                 "type": "image"
             },
@@ -149,6 +149,11 @@
             {
                 "url": "assets/fonds/papier.png",
                 "key": "papier",
+                "type": "image"
+            },            
+            {
+                "url": "assets/fonds/interfaceQCM3.png",
+                "key": "interfaceQCM",
                 "type": "image"
             }
         ]
