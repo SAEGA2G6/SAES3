@@ -1,6 +1,7 @@
 class ChooseCharacter extends Phaser.Scene {
-  constructor() {
-    super("ChooseCharacter");
+  init(data) {
+    this.chooseOption = data.chooseOption;
+    this.chosenLevel = data.chosenLevel
   }
 
   /** @returns {void} */
@@ -8,6 +9,76 @@ class ChooseCharacter extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+
+    if(this.chooseOption == "Level") {
+      this.chooseLevel;
+    }
+    else if(this.chooseOption == "Character") {
+      this.chooseCharacter();
+    }
+
+
+    const arrow_back = this.add.image(100, 100, "arrow_back");
+    arrow_back.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.scene.switch("Menu");
+    });
+
+    this.events.emit("scene-awake");
+  }
+
+  create() {
+    this.editorCreate();
+  }
+
+  chooseLevel() {
+    const msg_chooseLevel = this.add.text(400, 150, "CHOISIS TON ETAGE", {}).setDepth(5);
+      msg_chooseLevel.setOrigin(0.5);
+      msg_chooseLevel.setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      });
+  
+      const roof0 = this.add.text(400, 150, "REZ-DE-CHAUSSEE / 1ERE ANNEE", {}).setDepth(5);
+      roof0.setOrigin(0.5);
+      roof0.setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      });
+
+      const roof1 = this.add.text(400, 150, "1ER ETAGE / 2EME ANNEE", {}).setDepth(5);
+      roof1.setOrigin(0.5);
+      roof1.setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      });
+
+      const roof2 = this.add.text(400, 150, "2EME ETAGE / 3EME ANNEE", {}).setDepth(5);
+      roof2.setOrigin(0.5);
+      roof2.setStyle({
+        fontFamily: "retro-computer",
+        fontSize: "40px",
+        color: "WHITE",
+      });
+  
+
+      roof0.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+        this.scene.restart({chooseOption: "Character", chosenLevel: "Level"});
+      });
+  
+      roof1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+        this.scene.restart({chooseOption: "Character", chosenLevel: "FirstFloor"});
+      });
+
+      roof2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+        this.scene.restart({chooseOption: "Character", chosenLevel: "SecondFloor"});
+      });
+  }
+
+
+  chooseCharacter() {
     const msg_chooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {}).setDepth(5);
     msg_chooseCharacter.setOrigin(0.5);
     msg_chooseCharacter.setStyle({
@@ -15,12 +86,6 @@ class ChooseCharacter extends Phaser.Scene {
       fontSize: "40px",
       color: "WHITE",
     });
-
-    const arrow_back = this.add.image(100, 100, "arrow_back");
-    arrow_back.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      this.scene.switch("Menu");
-    });
-
 
     var back1 = this.add.rectangle(340, 300, 100, 148, 0xF3E6D8);
     var back2 = this.add.rectangle(460, 300, 100, 148, 0xF3E6D8);
@@ -61,39 +126,19 @@ class ChooseCharacter extends Phaser.Scene {
 
     })
       .resize(250, 100)
-      .setOrigin(0.5, 0.5)
-      .on('textchange', function (inputText) {
-      })
-      .on('focus', function (inputText) {
-          console.log('On focus');
-      })
-      .on('blur', function (inputText) {
-          console.log('On blur');
-      })
-      .on('click', function (inputText) {
-          console.log('On click');
-      })
-      .on('dblclick', function (inputText) {
-          console.log('On dblclick');
-      })
+      .setOrigin(0.5, 0.5);
 
 
     player1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if(inputText.text.trim().length > 0) {
-        this.scene.start("Level", {texture: "player", pseudo: inputText.text});
+        this.scene.start(this.chosenLevel, {texture: "player", pseudo: inputText.text});
       }
     });
 
     player2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      if(inputText.text.length > 0) {
-        this.scene.start("Level", {texture: "player2", pseudo: inputText.text});
+      if(inputText.text.trim().length > 0) {
+        this.scene.start(this.chosenLevel, {texture: "player2", pseudo: inputText.text});
       }
     });
-
-    this.events.emit("scene-awake");
-  }
-
-  create() {
-    this.editorCreate();
   }
 }

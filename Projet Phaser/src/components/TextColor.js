@@ -3,13 +3,14 @@ class TextColor extends UserComponent {
    * @param {Phaser.GameObjects.GameObject} gameObject The entity.
    * @param {Phaser.Scene} scene Scene that will be played when this text is clicked on
    */
-  constructor(gameObject, scene) {
+  constructor(gameObject, scene, sceneData) {
     super(gameObject);
 
     this.gameObject = gameObject;
     gameObject["__TextColor"] = this;
 
     this.scene = scene;
+    this.sceneData = sceneData;
   }
 
   /** @returns {TextColor} */
@@ -30,7 +31,7 @@ class TextColor extends UserComponent {
         .setInteractive({ useHandCursor: true })
         .on("pointerdown", () => {
           this.gameObject.setStyle({ fill: "purple" }),
-            this.gameObject.scene.scene.start(this.scene);
+            this.gameObject.scene.scene.start(this.scene, this.sceneData);
         });
     }
 
