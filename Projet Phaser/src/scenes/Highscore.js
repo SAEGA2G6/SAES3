@@ -6,6 +6,12 @@ class Highscore extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    const arrow_back = this.add.image(100, 100, "arrow_back")
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.scene.start("Menu");
+      this.scene.stop();
+    });
+
     const highscore_text = this.add.text(400, 250, "", {})
     .setOrigin(0.5, 0.5)
     .setStyle({
@@ -16,16 +22,6 @@ class Highscore extends Phaser.Scene {
     .setInteractive({ useHandCursor: true }) .on("pointerdown", () => {});
     this.highscore_text = highscore_text;
 
-    const menu_text = this.add.text(400, 425, "", {})
-    .setOrigin(0.5, 0.5)
-    .setStyle({
-      fontFamily: "retro-computer",
-      fontSize: "60px",
-      color: "white",
-    });
-    menu_text.text = "MENU";
-
-    new TextColor(menu_text, "Menu");
     DBQueries.sendScoresRequest(this);
 
     this.events.emit("scene-awake");

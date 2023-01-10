@@ -13,9 +13,9 @@ class Level extends Phaser.Scene {
     ///////////// UPDATE /////////////
     this.update_list = [];
     ///////////// MAP /////////////
-    var carte = this.make.tilemap({ key: "map" });
+    const carte = this.make.tilemap({ key: "map" });
 
-    var tilesets_list = [
+    const tilesets_list = [
       carte.addTilesetImage("couloir", "couloir"),
       carte.addTilesetImage("escaliers", "escaliers"),
       carte.addTilesetImage("meuble1", "meuble1"),
@@ -29,15 +29,15 @@ class Level extends Phaser.Scene {
     ///////////// LAYERS /////////////
     //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
 
-    var calque1 = carte
+    const calque1 = carte
       .createLayer("Calque de Tuiles 1", tilesets_list, 0, 0)
       .setDepth(0);
 
-    var calque2 = carte
+    const calque2 = carte
       .createLayer("Calque de Tuiles 2", tilesets_list, 0, 0)
       .setDepth(0);
 
-    var calque3 = carte
+    const calque3 = carte
       .createLayer("Calque de Tuiles 3", tilesets_list, 0, 0)
       .setDepth(2);
 
@@ -125,8 +125,7 @@ class Level extends Phaser.Scene {
     ///////////// CLUES /////////////
 
 
-    ///////////// ROOM 1 (TODO: faire un json avec les textes) /////////////
-
+    ///////////// ROOM 1 /////////////
     const pcOn1_room1 = new DialogObject(
       this,
       495,
@@ -156,8 +155,7 @@ class Level extends Phaser.Scene {
       "clue"
     );
 
-    ///////////// ROOM 2 (TODO: faire comme pour ROOM 1) /////////////
-
+    ///////////// ROOM 2 /////////////
       const pcOn1_room2 = new DialogObject(
         this,
         1040,
@@ -184,7 +182,7 @@ class Level extends Phaser.Scene {
         "clue"
       );
 
-    ///////////// ROOM 3 (TODO: faire comme pour ROOM 1) /////////////
+    ///////////// ROOM 3 /////////////
 
     const pcOn_room3 = new DialogObject(
       this,
@@ -212,7 +210,7 @@ class Level extends Phaser.Scene {
         "clue"
       );
 
-    ///////////// ROOM 4 (TODO: faire comme pour ROOM 1) /////////////
+    ///////////// ROOM 4 /////////////
 
       const pcOn_room4 = new DialogObject(
         this,
@@ -242,31 +240,19 @@ class Level extends Phaser.Scene {
       );
 
     ///////////// COLLISIONS /////////////
-
     calque1.setCollisionByProperty({ estSolide: true });
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
 
     const collider_list = [
-      calque1,
-      calque2,
-      calque3,
-      prof1,
-      prof2,
-      prof3,
-      prof4,
-      door_room2_1,
-      door_room2_2,
-      door_room3_1,
-      door_room3_2,
-      door_room4_1,
-      door_room4_2,
-      door_office1,
-      door_office2,
-      door_office3,
-      door_office4,
-      door_secretariat,
-      door_boss,
+      calque1,calque2,calque3,
+      prof1,prof2,prof3,prof4,
+      door_room2_1,door_room2_2,
+      door_room3_1,door_room3_2,
+      door_room4_1,door_room4_2,
+      door_office1, door_office2,
+      door_office3,door_office4,
+      door_secretariat,door_boss,
       bin_room2, bin_room3
     ];
     this.physics.add.collider(player, collider_list);
@@ -289,48 +275,10 @@ class Level extends Phaser.Scene {
     this.emitter.on("open_doors", this.open_doors_handler, this);
     this.emitter.on("time_malus", this.malusChrono, this);
 
-    ///////////// CHRONOMETER /////////////
-    const back_chrono = this.add.image(125, 100, "back_chrono")
-    .setDepth(4)
-    .setOrigin(0.5, 0.48)
-    .setScrollFactor(0)
-    .setScale(0.17);
-
-
-    const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5)
-    .setOrigin(0.5, 0.5)
-    .setStyle({
-      fontFamily: "roboto",
-      fontSize: "20px",
-      color: "black",
-    })
-    .setScrollFactor(0);
-    Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
-    this.chrono_txt = chrono_txt;
-
-    ////malus text////
-    const time_malus_txt = this.add.text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
-    .setDepth(5)
-    .setOrigin(0.5, 0.5)
-    .setStyle({
-      fontFamily: "roboto",
-      fontSize: "15px",
-      color: "red",
-    })
-    .setScrollFactor(0);
-    time_malus_txt.visible = false;
-    this.time_malus_txt = time_malus_txt;
-
-    /// Chrono start at 0
-    this.chrono = 0;
-
-    /// Every second, the chrono is incremented by one
-    const chrono = this.time.addEvent({
-      delay: 1000,
-      callback: () => (this.chrono += 1),
-      callbackScope: this,
-      loop: true,
-    });
+    //test
+    const chronometer = new Chronometer(this);
+    this.chronometer = chronometer;
+    //
 
     this.events.emit("scene-awake");
   }
@@ -353,36 +301,9 @@ class Level extends Phaser.Scene {
   }
 
   malusChrono() {
-    this.time_malus_txt.visible = true;
-    const timedEvent = this.time.delayedCall(
-      3000,
-      () => {
-        (this.time_malus_txt.visible = false), (this.chrono += 30);
-      },
-      [],
-      this
-    );
+    this.chronometer.malusChrono();
   }
 
-  ///////////// UPDATECHRONO /////////////
-  updateChrono() {
-    /// CHRONOMETER
-    var min = Math.floor(this.chrono / 60);
-    var sec = this.chrono % 60;
-    var min_txt;
-    var sec_txt;
-    if (min < 10) {
-      min_txt = "0" + min;
-    } else {
-      min_txt = min;
-    }
-    if (sec < 10) {
-      sec_txt = "0" + sec;
-    } else {
-      sec_txt = sec;
-    }
-    this.chrono_txt.text = min_txt + " : " + sec_txt;
-  }
 
   ///////////// ENDGAME /////////////
   /**
@@ -409,20 +330,19 @@ class Level extends Phaser.Scene {
       this.getScore();
       DBQueries.sendInsertScoreRequest(this);
       this.scene.start("Menu");
+      clearInterval(this.chronometer.intervalChrono);
       this.scene.stop();
     }
     ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
     }
-    ///TO UPDATE CHRONOMETER
-    this.updateChrono();
   }
 
   /**
    * Gives the player's score, which is the time it took to complete all the MCQs
    */
   getScore() {
-    this.player.score = this.chrono;
+    this.player.score = this.chronometer.chrono;
   }
 }

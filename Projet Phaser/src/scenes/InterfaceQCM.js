@@ -79,7 +79,7 @@ class InterfaceQCM extends Phaser.Scene {
     this.answerList = [this.answer1, this.answer2, this.answer3, this.answer4];
 
     //Prefix correspond to the actual floor (rc_, e1_, e2_) + the actual room number (1,2,3,4...)
-    var prefix =
+    const prefix =
       this.currentBoss.scene.levelPrefix +
       "_r" +
       this.currentBoss.scene.currentNbRoom;

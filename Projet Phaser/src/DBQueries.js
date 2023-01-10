@@ -4,7 +4,7 @@ class DBQueries {
    * @return {void}
    */
   static sendClueRequest(that) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -29,7 +29,7 @@ class DBQueries {
    * @return {void}
    */
   static sendScoresRequest(that) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -72,7 +72,7 @@ class DBQueries {
    * @return {void}
    */
   static sendMinScoreRequest(that) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -96,7 +96,7 @@ class DBQueries {
    * @return {void}
    */
   static sendScoreRowNbRequest(that) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -121,7 +121,7 @@ class DBQueries {
    * @return {void}
    */
   static sendQuestionAnswersRequest(that, prefix) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -153,7 +153,7 @@ class DBQueries {
    * @return {void}
    */
   static sendInsertScoreRequest(that) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
