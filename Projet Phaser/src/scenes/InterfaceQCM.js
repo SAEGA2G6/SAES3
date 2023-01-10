@@ -91,6 +91,11 @@ class InterfaceQCM extends Phaser.Scene {
     this.emitter.on("right_answer", this.right_answer_handler, this);
     this.emitter.on("wrong_answer", this.wrong_answer_handler, this);
 
+    const KeyK = this.input.keyboard.addKey("k");
+    this.KeyK = KeyK;
+    const KeyESC = this.input.keyboard.addKey("esc");
+    this.KeyESC = KeyESC;
+
     this.events.emit("scene-awake");
   }
 
@@ -103,17 +108,14 @@ class InterfaceQCM extends Phaser.Scene {
   }
 
   update() {
-    const KeyK = this.input.keyboard.addKey("k");
-    const KeyESC = this.input.keyboard.addKey("esc");
-
     // TODO: RETIRER AVANT LA FIN DU PROJET
-    if (KeyK.isDown) {
+    if (this.KeyK.isDown) {
       const scene_level = this.game.scene.getScene(this.currentScene);
       scene_level.emitter.emit("open_doors");
       this.currentBoss.disable(true);
       this.exitMCQ();
     }
-    if (KeyESC.isDown) {
+    if (this.KeyESC.isDown) {
       this.currentBoss.disable(false);
       this.currentScene.player.velocity = this.currentScene.player.baseVelocity;
       this.exitMCQ();
@@ -235,13 +237,11 @@ class InterfaceQCM extends Phaser.Scene {
       this.answer2.disableInteractive();
       this.answer3.disableInteractive();
       this.answer4.disableInteractive();
-      console.log("answers interactivity disable");
     } else {
       this.answer1.setInteractive();
       this.answer2.setInteractive();
       this.answer3.setInteractive();
       this.answer4.setInteractive();
-      console.log("answers interactivity enable");
     }
   }
 

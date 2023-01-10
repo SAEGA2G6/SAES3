@@ -49,7 +49,6 @@ class Preload extends Phaser.Scene {
 
 		this.editorPreload();
 
-		console.log('Fin Preload');
 		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Menu"));
 	}
 }

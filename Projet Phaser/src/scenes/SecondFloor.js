@@ -10,17 +10,17 @@ class SecondFloor extends Phaser.Scene {
       ///////////// MAP /////////////
 
       // TODO: ajouter la map du 2ème étage
-      var carte = this.make.tilemap({ key: "map2" });
-      var tileset1 = carte.addTilesetImage("couloir", "couloir");
-      var tileset2 = carte.addTilesetImage("escaliers", "escaliers");
-      var tileset3 = carte.addTilesetImage("meuble1", "meuble1");
-      var tileset4 = carte.addTilesetImage("mur", "mur");
-      var tileset5 = carte.addTilesetImage("pc", "pc");
-      var tileset6 = carte.addTilesetImage("portes", "portes");
-      var tileset7 = carte.addTilesetImage("poubelle", "poubelle");
-      var tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
+      const carte = this.make.tilemap({ key: "map2" });
+      const tileset1 = carte.addTilesetImage("couloir", "couloir");
+      const tileset2 = carte.addTilesetImage("escaliers", "escaliers");
+      const tileset3 = carte.addTilesetImage("meuble1", "meuble1");
+      const tileset4 = carte.addTilesetImage("mur", "mur");
+      const tileset5 = carte.addTilesetImage("pc", "pc");
+      const tileset6 = carte.addTilesetImage("portes", "portes");
+      const tileset7 = carte.addTilesetImage("poubelle", "poubelle");
+      const tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
   
-      var tilesets_list = [
+      const tilesets_list = [
         tileset1,
         tileset2,
         tileset3,
@@ -34,15 +34,15 @@ class SecondFloor extends Phaser.Scene {
       ///////////// LAYERS /////////////
       //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
   
-      var calque1 = carte
+      const calque1 = carte
         .createLayer("Calque de Tuiles 1", tilesets_list, 0, 0)
         .setDepth(0);
   
-      var calque2 = carte
+      const calque2 = carte
         .createLayer("Calque de Tuiles 2", tilesets_list, 0, 0)
         .setDepth(0);
   
-      var calque3 = carte
+      const calque3 = carte
         .createLayer("Calque de Tuiles 3", tilesets_list, 0, 0)
         .setDepth(2);
   

@@ -96,30 +96,30 @@ class Level extends Phaser.Scene {
 
     ///////////// DOORS /////////////
 
-    var door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
+    const door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
     this.door = door_room2_1;
 
-    var door_room2_2 = new Door(this, 1024, 417, "doubleporte", true);
+    const door_room2_2 = new Door(this, 1024, 417, "doubleporte", true);
 
-    var door_room3_1 = new Door(this, 1632, 417, "doubleporte", true);
+    const door_room3_1 = new Door(this, 1632, 417, "doubleporte", true);
 
-    var door_room3_2 = new Door(this, 1888, 417, "doubleporte", true);
+    const door_room3_2 = new Door(this, 1888, 417, "doubleporte", true);
 
-    var door_room4_1 = new Door(this, 1632, 545, "doubleporte", false);
+    const door_room4_1 = new Door(this, 1632, 545, "doubleporte", false);
 
-    var door_room4_2 = new Door(this, 1888, 545, "doubleporte", false);
+    const door_room4_2 = new Door(this, 1888, 545, "doubleporte", false);
 
-    var door_office1 = new Door(this, 1216, 417, "doubleporte", true);
+    const door_office1 = new Door(this, 1216, 417, "doubleporte", true);
 
-    var door_office2 = new Door(this, 1440, 417, "doubleporte", true);
+    const door_office2 = new Door(this, 1440, 417, "doubleporte", true);
 
-    var door_office3 = new Door(this, 1216, 545, "doubleporte", false);
+    const door_office3 = new Door(this, 1216, 545, "doubleporte", false);
 
-    var door_office4 = new Door(this, 1440, 545, "doubleporte", false);
+    const door_office4 = new Door(this, 1440, 545, "doubleporte", false);
 
-    var door_secretariat = new Door(this, 928, 673, "doubleporte", false);
+    const door_secretariat = new Door(this, 928, 673, "doubleporte", false);
 
-    var door_boss = new Door(this, 752, 673, "simpleporte", false);
+    const door_boss = new Door(this, 752, 673, "simpleporte", false);
 
 
     ///////////// CLUES /////////////
@@ -275,10 +275,8 @@ class Level extends Phaser.Scene {
     this.emitter.on("open_doors", this.open_doors_handler, this);
     this.emitter.on("time_malus", this.malusChrono, this);
 
-    //test
     const chronometer = new Chronometer(this);
     this.chronometer = chronometer;
-    //
 
     this.events.emit("scene-awake");
   }

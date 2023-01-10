@@ -17,9 +17,7 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     this.dialogType = dialogType;
     this.isEnable = true;
 
-    //test
     this.texture = texture;
-    //
 
     /// key used to open the MCQ or clue ///
     const KeySpace = this.scene.input.keyboard.addKey("SPACE");
@@ -75,7 +73,6 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         const scene_clue = this.scene.game.scene.getScene("Clue");
         scene_clue.currentClue = this;
         scene_clue.clueId = this.clueId;
-        console.log("texture of the dialog object: " + this.texture);
         if(this.texture === "pcAllume") {
           this.scene.scene.launch("Clue", { currentScene: this.scene, supportTexture: "ordinateur"});
         }

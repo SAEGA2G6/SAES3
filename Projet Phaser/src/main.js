@@ -38,7 +38,6 @@ class Boot extends Phaser.Scene {
   preload() {
     this.load.pack("pack", "assets/preload-asset-pack.json");
 
-    console.log("Lancement Preload");
     this.load.on(Phaser.Loader.Events.COMPLETE, () =>
       this.scene.start("Preload")
     );
