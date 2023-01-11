@@ -155,6 +155,11 @@
                 "url": "assets/fonds/interfaceQCM3.png",
                 "key": "interfaceQCM",
                 "type": "image"
+            },
+            {
+                "url": "assets/indices/eleve3.png",
+                "key": "eleve3",
+                "type": "image"
             }
         ]
     },

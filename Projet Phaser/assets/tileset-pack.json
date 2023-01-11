@@ -40,6 +40,11 @@
         "url": "assets/tilesets/toiletsBureau.png",
         "key": "toiletsBureau",
         "type": "image"
+      },
+      {
+        "url": "assets/tilesets/sofa.png",
+        "key": "sofa",
+        "type": "image"
       }
     ]
 
