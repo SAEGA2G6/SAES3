@@ -6,7 +6,7 @@ class DBQueries {
   static sendClueRequest(that) {
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/clue.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -17,11 +17,9 @@ class DBQueries {
         that.clue_text.text = MyJsonClue[0].CONTENUE;
       }
     };
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/clue.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(
-      "query=SELECT * FROM INDICE WHERE ID_INDICE = '" + that.clueId + "'"
-    );
+    xhr.send("clueID=" + that.clueId);
   }
 
   /**
@@ -29,10 +27,11 @@ class DBQueries {
    * @return {void}
    */
   static sendScoresRequest(that, roof) {
+    console.log("test scores request nouveau");
     that.highscore_text.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/highscore.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -63,9 +62,9 @@ class DBQueries {
         }
       }
     };
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/highscore.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM SCORE WHERE ETAGE = '" + roof + "' ORDER BY score");
+    xhr.send("roof=" + roof);
   }
 
   /**
@@ -124,7 +123,7 @@ class DBQueries {
   static sendQuestionAnswersRequest(that, prefix) {
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/QuestionAnswers.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     console.log("prefixe: " + prefix);
     xhr.onreadystatechange = function () {
@@ -144,9 +143,9 @@ class DBQueries {
         that.nextQuestion();
       }
     };
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/QuestionAnswers.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM QUESTION where SALLE = '" + prefix + "'");
+    xhr.send("room=" + prefix);
   }
 
   /**
@@ -156,25 +155,18 @@ class DBQueries {
   static sendInsertScoreRequest(that) {
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         console.log("ajout du score dans la bd");
         var response = xhr.responseText;
+        console.log(response);
       }
     };
-    xhr.open("POST", "src/mysql.php", true);
+    xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(
-      "query=INSERT INTO SCORE VALUES ('" +
-        that.player.pseudo +
-        "'," +
-        that.player.score +
-        ", '" +
-        that.levelPrefix +
-        "')"
-    );
+    xhr.send("pseudo=" + that.player.pseudo + "&score=" + that.player.score + "&levelPrefix=" + that.levelPrefix);
   }
 }

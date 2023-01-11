@@ -14,6 +14,7 @@
   // Récupération de la requête à partir des données POST
   $query = $_POST["query"];
 
+
   // Exécution de la requête
   $result = mysqli_query($con, $query);
 
