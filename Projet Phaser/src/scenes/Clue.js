@@ -29,7 +29,7 @@ class Clue extends Phaser.Scene {
         if(this.supportTexture === "ordinateur") {
           support.setScale(1.5);
           clue_text.setStyle({
-            fontSize: "23px",
+            fontSize: "22px",
             color: "white",
             wordWrap: { width: 500 }
           });
@@ -39,7 +39,7 @@ class Clue extends Phaser.Scene {
         else {
           support.setScale(1.8);
           clue_text.setStyle({
-            fontSize: "22px",
+            fontSize: "18px",
             color: "black",
             wordWrap: { width: 400 }
           });

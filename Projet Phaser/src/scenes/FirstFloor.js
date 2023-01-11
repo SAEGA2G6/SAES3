@@ -60,7 +60,7 @@ class FirstFloor extends Phaser.Scene {
 
       const prof6 = new DialogObject(
         this,
-        1120,
+        1472,
         580,
         "prof6",
         "Appuyer sur ESPACE pour commencer le QCM !",
@@ -70,7 +70,7 @@ class FirstFloor extends Phaser.Scene {
 
       const prof7 = new DialogObject(
         this,
-        1472,
+        1120,
         580,
         "prof7",
         "Appuyer sur ESPACE pour commencer le QCM !",
@@ -121,22 +121,22 @@ class FirstFloor extends Phaser.Scene {
     const pcOn1_room1 = new DialogObject(
       this, 399, 368,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...","e1_r1_1",
       "clue"
     );
 
     const pcOn2_room1 = new DialogObject(
       this, 559, 48,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...","e1_r1_2",
       "clue"
     );
-    pcOn2_room0.flipX = true;
+    pcOn2_room1.flipX = true;
 
     const papers_room1 = new DialogObject(
       this, 305, 190,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r1_3",
       "clue"
     );
 
@@ -146,22 +146,22 @@ class FirstFloor extends Phaser.Scene {
     const pcOn1_room2 = new DialogObject(
       this, 1905, 73,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...","e1_r2_1",
       "clue"
     );
-    pcOn1_room1.flipX = true;
+    pcOn1_room2.flipX = true;
 
     const papers_room2 = new DialogObject(
       this, 1505, 60,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r2_2",
       "clue"
     );
 
     const bin_room2 = new DialogObject(
       this, 1937, 400,
       "poubelleSprite",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour fouiller la poubelle","e1_r2_3",
       "clue"
     );
 
@@ -170,21 +170,21 @@ class FirstFloor extends Phaser.Scene {
     const bin_room3 = new DialogObject(
       this, 976, 590,
       "poubelleSprite",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour fouiller la poubelle","e1_r3_1",
       "clue"
     );
 
     const papers_room3 = new DialogObject(
       this, 1260, 768,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r3_2",
       "clue"
     );
 
     const eleve_room3 = new DialogObject(
       this, 976, 975,
       "eleve1",
-      "Appuyer sur ESPACE pour parler à l'élève",
+      "Appuyer sur ESPACE pour parler à l'élève","e1_r3_3",
       "clue"
     );
 
@@ -193,21 +193,21 @@ class FirstFloor extends Phaser.Scene {
     const papers1_room4 = new DialogObject(
       this, 1328, 720,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r4_1",
       "clue"
     );
 
     const papers2_room4 = new DialogObject(
       this, 1500, 926,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r4_2",
       "clue"
     );
 
     const bin_room4 = new DialogObject(
       this, 1616, 590,
       "poubelleSprite",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour fouiller la poubelle","e1_r4_3",
       "clue"
     );
 
@@ -216,22 +216,22 @@ class FirstFloor extends Phaser.Scene {
     const papers_room5 = new DialogObject(
       this, 1780, 830,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...",
+      "Appuyer sur ESPACE pour regarder les notes...","e1_r5_1",
       "clue"
     );
 
     const eleve1_room5 = new DialogObject(
       this, 1970, 930,
       "eleve1",
-      "Appuyer sur ESPACE pour parler à l'élève",
+      "Appuyer sur ESPACE pour parler à l'élève","e1_r5_2",
       "clue"
     );
-    eleve1_room4.flipX = true;
+    eleve1_room5.flipX = true;
 
     const eleve2_room5 = new DialogObject(
-      this, 1935, 930,
+      this, 1710, 930,
       "eleve2",
-      "Appuyer sur ESPACE pour parler à l'élève",
+      "Appuyer sur ESPACE pour parler à l'élève","e1_r5_3",
       "clue"
     );
 
@@ -243,14 +243,14 @@ class FirstFloor extends Phaser.Scene {
   
       const collider_list = [
         calque1, calque2, calque3,
-        door_room1_1, door_room1_2,
         door_room2_1, door_room2_2,
         door_room3_1, door_room3_2,
         door_room4_1, door_room4_2,
-        bin_room1,
-        bin_room2, eleve_room2,
+        door_room5_1, door_room5_2,
+        bin_room2,
         bin_room3,
-        eleve1_room4, eleve2_room4,
+        bin_room4, eleve_room3,
+        eleve1_room5, eleve2_room5,
         prof5, prof6, prof7, prof8, prof9
       ];
       this.physics.add.collider(player, collider_list);
