@@ -43,7 +43,7 @@ class FirstFloor extends Phaser.Scene {
   
       ///////////// PLAYER /////////////
   
-      const player = new Player(this, 160, 600, this.playerGender).setDepth(1);
+      const player = new Player(this, 160, 600, this.playerGender, this.playerPseudo).setDepth(1);
       this.player = player;
   
       ///////////// PROF/BOSS /////////////

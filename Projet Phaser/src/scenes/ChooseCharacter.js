@@ -1,7 +1,7 @@
 class ChooseCharacter extends Phaser.Scene {
   init(data) {
     this.chooseOption = data.chooseOption;
-    this.chosenLevel = data.chosenLevel
+    this.chosenLevel = data.chosenLevel;
   }
 
   /** @returns {void} */
@@ -50,7 +50,7 @@ class ChooseCharacter extends Phaser.Scene {
         color: "WHITE",
       })
       .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-        this.scene.restart({chooseOption: "Character", chosenLevel: "Level"});
+        this.scene.restart({chooseOption: "Character", chosenLevel: "GroundFloor"});
       });
 
       const roof1 = this.add.text(400, 400, "1ER ETAGE - 2EME ANNEE", {}).setDepth(5)

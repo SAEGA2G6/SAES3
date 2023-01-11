@@ -64,9 +64,9 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
 
       if (this.KeySpace.isDown && this.dialogType === "mcq") {
         this.disable(true);
-        const scene_InterfaceQCM = this.scene.game.scene.getScene("InterfaceQCM");
-        scene_InterfaceQCM.currentBoss = this;
-        this.scene.scene.launch("InterfaceQCM", { currentScene: this.scene });
+        const scene_MCQInterface = this.scene.game.scene.getScene("MCQInterface");
+        scene_MCQInterface.currentBoss = this;
+        this.scene.scene.launch("MCQInterface", { currentScene: this.scene });
 
       } else if (this.KeySpace.isDown && this.dialogType === "clue") {
         this.disable(true);

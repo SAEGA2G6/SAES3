@@ -1,4 +1,4 @@
-class InterfaceQCM extends Phaser.Scene {
+class MCQInterface extends Phaser.Scene {
   init(data) {
     this.currentScene = data.currentScene;
     //Boss of the current room
@@ -128,7 +128,7 @@ class InterfaceQCM extends Phaser.Scene {
    */
   nextQuestion() {
     console.log("--------------Next question--------------");
-    this.myJsonQA = InterfaceQCM.myJsonQA;
+    this.myJsonQA = MCQInterface.myJsonQA;
 
     this.resetRightAnswer();
     if (this.currentQuestionNb < this.myJsonQA.length) {
@@ -196,7 +196,7 @@ class InterfaceQCM extends Phaser.Scene {
 
     //the player is momentarily prevented from interacting with the answers
     this.changeInteractivity();
-    const scene_level = this.game.scene.getScene("Level");
+    const scene_level = this.game.scene.getScene(this.currentScene);
 
     //wait a second before returning to the game scene
     const timedEvent = this.time.delayedCall(

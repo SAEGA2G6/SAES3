@@ -1,4 +1,4 @@
-class Level extends Phaser.Scene {
+class GroundFloor extends Phaser.Scene {
 
   init(data) {
     this.playerGender = data.texture;

@@ -27,10 +27,10 @@ window.addEventListener("load", function () {
   game.scene.add("Highscore", Highscore);
   game.scene.add("ChooseCharacter", ChooseCharacter);
   game.scene.add("Presentation", Presentation);
-  game.scene.add("Level", Level);
+  game.scene.add("GroundFloor", GroundFloor);
   game.scene.add("FirstFloor", FirstFloor);
   game.scene.add("SecondFloor", SecondFloor);
-  game.scene.add("InterfaceQCM", InterfaceQCM);
+  game.scene.add("MCQInterface", MCQInterface);
   game.scene.add("Clue", Clue);
   game.scene.add("Boot", Boot, true);
 });

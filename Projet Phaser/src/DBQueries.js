@@ -10,10 +10,8 @@ class DBQueries {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
         var response = xhr.responseText;
         const MyJsonClue = JSON.parse(response);
-        console.log(response);
         that.clue_text.text = MyJsonClue[0].CONTENUE;
       }
     };
@@ -27,7 +25,6 @@ class DBQueries {
    * @return {void}
    */
   static sendScoresRequest(that, roof) {
-    console.log("test scores request nouveau");
     that.highscore_text.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
@@ -37,9 +34,7 @@ class DBQueries {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         var response = xhr.responseText;
-        console.log(response);
         const myJsonScores = JSON.parse(response);
-        console.log(myJsonScores);
         for (let index = 0; index < myJsonScores.length; index++) {
           if (index == 0) {
             that.highscore_text.text +=
@@ -68,54 +63,6 @@ class DBQueries {
   }
 
   /**
-   * query sent to the DB to get the lowest highscore
-   * @return {void}
-   */
-  static sendMinScoreRequest(that) {
-    const xhr = new XMLHttpRequest();
-    DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
-        var response = xhr.responseText;
-        const myJsonMinScore = JSON.parse(response);
-        console.log(response);
-        console.log(myJsonScores);
-        DBQueries.minScore = myJsonMinScore[0].SCORE;
-      }
-    };
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT MAX(SCORE) FROM SCORE");
-  }
-
-  /**
-   * query sent to the DB to get the lowest highscore
-   * @return {void}
-   */
-  static sendScoreRowNbRequest(that) {
-    const xhr = new XMLHttpRequest();
-    DBQueries.xhr = xhr;
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
-        var response = xhr.responseText;
-        const myJsonMinScore = JSON.parse(response);
-        console.log(response);
-        console.log(myJsonScores);
-        DBQueries.minScore = myJsonMinScore[0].SCORE;
-      }
-    };
-    xhr.open("POST", "src/mysql.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT MAX(SCORE) FROM SCORE");
-  }
-
-  /**
    * Send a request to the DB to get the question and answers texts of the current MCQ
    * @param {string} prefix
    * @return {void}
@@ -125,21 +72,10 @@ class DBQueries {
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/QuestionAnswers.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log("prefixe: " + prefix);
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
         var response = xhr.responseText;
-        console.log(response);
-        InterfaceQCM.myJsonQA = JSON.parse(response);
-        console.log(InterfaceQCM.myJsonQA[0].Enoncer);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse1);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse2);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse3);
-        console.log(InterfaceQCM.myJsonQA[0].Reponse4);
-        console.log(
-          "--------------juste avant nextQuestion DBQUERIES--------------"
-        );
+        MCQInterface.myJsonQA = JSON.parse(response);
         that.nextQuestion();
       }
     };
@@ -157,16 +93,10 @@ class DBQueries {
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
-        console.log("ajout du score dans la bd");
-        var response = xhr.responseText;
-        console.log(response);
-      }
-    };
+
     xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log(that.player.pseudo + " " + that.player.score + " " + that.levelPrefix);
     xhr.send("pseudo=" + that.player.pseudo + "&score=" + that.player.score + "&levelPrefix=" + that.levelPrefix);
   }
 }

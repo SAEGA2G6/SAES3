@@ -54,7 +54,7 @@ class SecondFloor extends Phaser.Scene {
   
       ///////////// PLAYER /////////////
   
-      const player = new Player(this, 160, 600, this.playerGender).setDepth(1);
+      const player = new Player(this, 160, 600, this.playerGender, this.playerPseudo).setDepth(1);
       this.player = player;
   
       ///////////// PROF/BOSS /////////////
@@ -354,7 +354,6 @@ class SecondFloor extends Phaser.Scene {
     }
   
     ///////////// EVENTS HANDLERS /////////////
-    /////////////// TODO: ajouter les portes dans list_doors depuis InterfaceQCM /////////////
     open_doors_handler() {
       for (var i = 0; i < this.list_doors.length; i++) {
         this.list_doors[i].open();
@@ -374,6 +373,7 @@ class SecondFloor extends Phaser.Scene {
     }
   
     ///////////// UPDATE /////////////
+    //TODO: implémenter nouveau chrono
     updateChrono() {
       /// CHRONOMETER
       var min = Math.floor(this.chrono / 60);
@@ -405,12 +405,6 @@ class SecondFloor extends Phaser.Scene {
   
       ///TO UPDATE CHRONOMETER
       this.updateChrono();
-  
-      /////TEST
-      const KeyK = this.input.keyboard.addKey("k");
-      if (KeyK.isDown) {
-        this.scene.restart("Level");
-      }
     }
   }
   
