@@ -48,9 +48,12 @@ class ChooseCharacter extends Phaser.Scene {
         fontSize: "40px",
         color: "WHITE",
       })
-      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "GroundFloor"});
-      });
+      })
+      .on("pointerover", () => roof0.setStyle({ fill: "orange" }))
+      .on("pointerout", () => roof0.setStyle({ fill: "white" }));
 
       const roof1 = this.add.text(400, 400, "1ER ETAGE - 2EME ANNEE", {}).setDepth(5)
       .setOrigin(0.5)
@@ -59,9 +62,12 @@ class ChooseCharacter extends Phaser.Scene {
         fontSize: "40px",
         color: "WHITE",
       })
-      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "FirstFloor"});
-      });
+      })
+      .on("pointerover", () => roof1.setStyle({ fill: "orange" }))
+      .on("pointerout", () => roof1.setStyle({ fill: "white" }));
 
       const roof2 = this.add.text(400, 500, "2EME ETAGE - 3EME ANNEE", {}).setDepth(5)
       .setOrigin(0.5)
@@ -70,9 +76,12 @@ class ChooseCharacter extends Phaser.Scene {
         fontSize: "40px",
         color: "WHITE",
       })
-      .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {
         this.scene.restart({chooseOption: "Character", chosenLevel: "SecondFloor"});
-      });
+      })
+      .on("pointerover", () => roof2.setStyle({ fill: "orange" }))
+      .on("pointerout", () => roof2.setStyle({ fill: "white" }));
   }
 
 
