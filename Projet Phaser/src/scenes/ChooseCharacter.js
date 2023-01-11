@@ -96,7 +96,7 @@ class ChooseCharacter extends Phaser.Scene {
     .setScale(2)
     .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if(inputText.text.trim().length > 0) {
-        this.scene.start(this.chosenLevel, {texture: "player", pseudo: inputText.text});
+        this.scene.start("Presentation", {chosenLevel: this.chosenLevel, texture: "player", pseudo: inputText.text});
         this.scene.stop();
       }
     });
@@ -108,7 +108,7 @@ class ChooseCharacter extends Phaser.Scene {
     .setScale(2)
     .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if(inputText.text.trim().length > 0) {
-        this.scene.start(this.chosenLevel, {texture: "player2", pseudo: inputText.text});
+        this.scene.start("Presentation", {chosenLevel: this.chosenLevel, texture: "player2", pseudo: inputText.text});
         this.scene.stop();
       }
     });

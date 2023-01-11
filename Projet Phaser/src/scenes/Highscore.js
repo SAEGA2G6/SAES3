@@ -22,7 +22,41 @@ class Highscore extends Phaser.Scene {
     .setInteractive({ useHandCursor: true }) .on("pointerdown", () => {});
     this.highscore_text = highscore_text;
 
-    DBQueries.sendScoresRequest(this);
+
+    const roof0 = this.add.text(150, 500, "REZ-DE-CHAUSSEE - 1ERE ANNEE", {}).setDepth(5)
+    .setOrigin(0.5)
+    .setStyle({
+      fontFamily: "retro-computer",
+      fontSize: "15px",
+      color: "WHITE",
+    })
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      DBQueries.sendScoresRequest(this, "rc");
+    });
+
+    const roof1 = this.add.text(400, 500, "1ER ETAGE - 2EME ANNEE", {}).setDepth(5)
+    .setOrigin(0.5)
+    .setStyle({
+      fontFamily: "retro-computer",
+      fontSize: "15px",
+      color: "WHITE",
+    })
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      DBQueries.sendScoresRequest(this, "e1");
+    });
+
+    const roof2 = this.add.text(650, 500, "2EME ETAGE - 3EME ANNEE", {}).setDepth(5)
+    .setOrigin(0.5)
+    .setStyle({
+      fontFamily: "retro-computer",
+      fontSize: "15px",
+      color: "WHITE",
+    })
+    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      DBQueries.sendScoresRequest(this, "e2");
+    });
+
+    //DBQueries.sendScoresRequest(this);
 
     this.events.emit("scene-awake");
   }

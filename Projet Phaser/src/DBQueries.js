@@ -28,7 +28,8 @@ class DBQueries {
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-  static sendScoresRequest(that) {
+  static sendScoresRequest(that, roof) {
+    that.highscore_text.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/mysql.php", true);
@@ -37,8 +38,8 @@ class DBQueries {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         var response = xhr.responseText;
-        const myJsonScores = JSON.parse(response);
         console.log(response);
+        const myJsonScores = JSON.parse(response);
         console.log(myJsonScores);
         for (let index = 0; index < myJsonScores.length; index++) {
           if (index == 0) {
@@ -64,7 +65,7 @@ class DBQueries {
     };
     xhr.open("POST", "src/mysql.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("query=SELECT * FROM SCORE ORDER BY score");
+    xhr.send("query=SELECT * FROM SCORE WHERE ETAGE = '" + roof + "' ORDER BY score");
   }
 
   /**
