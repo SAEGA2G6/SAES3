@@ -41,7 +41,6 @@ class ChooseCharacter extends Phaser.Scene {
         color: "WHITE",
       });
       
-      //TODO: changer en TextColor
       const roof0 = this.add.text(400, 300, "REZ-DE-CHAUSSEE - 1ERE ANNEE", {}).setDepth(5)
       .setOrigin(0.5)
       .setStyle({

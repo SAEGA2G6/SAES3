@@ -34,25 +34,30 @@ class DBQueries {
       if (xhr.readyState == 4 && xhr.status == 200) {
         // Traitez la réponse ici
         var response = xhr.responseText;
+        console.log("response: " + response);
         const myJsonScores = JSON.parse(response);
-        for (let index = 0; index < myJsonScores.length; index++) {
-          if (index == 0) {
-            that.highscore_text.text +=
-              "1ER  " +
-              myJsonScores[index].ID_JOUEUR +
-              "   " +
-              myJsonScores[index].SCORE +
-              " sec";
-          } else {
-            var place = index + 1;
-            that.highscore_text.text +=
-              "\n" +
-              place +
-              "EME " +
-              myJsonScores[index].ID_JOUEUR +
-              "   " +
-              myJsonScores[index].SCORE +
-              " sec";
+        if (myJsonScores.length == 0) {
+          that.highscore_text.text = "Aucun score :(";
+        } else {
+          for (let index = 0; index < myJsonScores.length; index++) {
+            if (index == 0) {
+              that.highscore_text.text +=
+                "1ER  " +
+                myJsonScores[index].ID_JOUEUR +
+                "   " +
+                myJsonScores[index].SCORE +
+                " sec";
+            } else {
+              var place = index + 1;
+              that.highscore_text.text +=
+                "\n" +
+                place +
+                "EME " +
+                myJsonScores[index].ID_JOUEUR +
+                "   " +
+                myJsonScores[index].SCORE +
+                " sec";
+            }
           }
         }
       }
@@ -96,7 +101,16 @@ class DBQueries {
 
     xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log(that.player.pseudo + " " + that.player.score + " " + that.levelPrefix);
-    xhr.send("pseudo=" + that.player.pseudo + "&score=" + that.player.score + "&levelPrefix=" + that.levelPrefix);
+    console.log(
+      that.player.pseudo + " " + that.player.score + " " + that.levelPrefix
+    );
+    xhr.send(
+      "pseudo=" +
+        that.player.pseudo +
+        "&score=" +
+        that.player.score +
+        "&levelPrefix=" +
+        that.levelPrefix
+    );
   }
 }

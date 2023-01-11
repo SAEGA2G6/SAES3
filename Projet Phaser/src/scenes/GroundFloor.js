@@ -316,6 +316,13 @@ class GroundFloor extends Phaser.Scene {
     }
   }
 
+    /**
+   * Gives the player's score, which is the time it took to complete all the MCQs
+   */
+    getScore() {
+      this.player.score = this.chronometer.chrono;
+    }
+
   ///////////// CREATE /////////////
   create() {
     this.editorCreate();
@@ -335,12 +342,5 @@ class GroundFloor extends Phaser.Scene {
     for (var i = 0; i < this.update_list.length; i++) {
       this.update_list[i].update();
     }
-  }
-
-  /**
-   * Gives the player's score, which is the time it took to complete all the MCQs
-   */
-  getScore() {
-    this.player.score = this.chronometer.chrono;
   }
 }

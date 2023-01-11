@@ -18,9 +18,10 @@ class Highscore extends Phaser.Scene {
       fontFamily: "spacemono-regular",
       fontSize: "25px",
       color: "white",
-    })
-    .setInteractive({ useHandCursor: true }) .on("pointerdown", () => {});
+    });
     this.highscore_text = highscore_text;
+
+    DBQueries.sendScoresRequest(this, "rc");
 
 
     const roof0 = this.add.text(150, 500, "REZ-DE-CHAUSSEE - 1ERE ANNEE", {}).setDepth(5)
@@ -28,10 +29,7 @@ class Highscore extends Phaser.Scene {
     .setStyle({
       fontFamily: "retro-computer",
       fontSize: "15px",
-      color: "WHITE",
-    })
-    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      DBQueries.sendScoresRequest(this, "rc");
+      color: "orange",
     });
 
     const roof1 = this.add.text(400, 500, "1ER ETAGE - 2EME ANNEE", {}).setDepth(5)
@@ -39,10 +37,7 @@ class Highscore extends Phaser.Scene {
     .setStyle({
       fontFamily: "retro-computer",
       fontSize: "15px",
-      color: "WHITE",
-    })
-    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      DBQueries.sendScoresRequest(this, "e1");
+      color: "white",
     });
 
     const roof2 = this.add.text(650, 500, "2EME ETAGE - 3EME ANNEE", {}).setDepth(5)
@@ -50,18 +45,40 @@ class Highscore extends Phaser.Scene {
     .setStyle({
       fontFamily: "retro-computer",
       fontSize: "15px",
-      color: "WHITE",
-    })
-    .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-      DBQueries.sendScoresRequest(this, "e2");
+      color: "white",
+    });
+    this.roof0 = roof0;
+    this.roof1 = roof1;
+    this.roof2 = roof2;
+
+    roof0.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.resetTextsColor();
+      roof0.setStyle({ fill: "orange" });
+      DBQueries.sendScoresRequest(this, "rc");
     });
 
-    //DBQueries.sendScoresRequest(this);
+    roof1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.resetTextsColor();
+      roof1.setStyle({ fill: "orange" });
+      DBQueries.sendScoresRequest(this, "e1");
+    });
+
+    roof2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
+      this.resetTextsColor();
+      roof2.setStyle({ fill: "orange" });
+      DBQueries.sendScoresRequest(this, "e2");
+    });
 
     this.events.emit("scene-awake");
   }
 
   create() {
     this.editorCreate();
+  }
+
+  resetTextsColor() {
+    this.roof0.setStyle({ fill: "white" });
+    this.roof1.setStyle({ fill: "white" });
+    this.roof2.setStyle({ fill: "white" });
   }
 }
