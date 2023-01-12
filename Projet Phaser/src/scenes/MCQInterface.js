@@ -40,10 +40,11 @@ class MCQInterface extends Phaser.Scene {
       fontFamily: "comforta",
       fontSize: "25px",
       color: this.txtcolor,
+      align: 'center',
       wordWrap: { width: 600 },
     });
     Phaser.Display.Align.In.TopLeft(question, this.back_interface);
-    question.y += 70;
+    question.y += 30;
     question.x += 100;
     this.question = question;
 

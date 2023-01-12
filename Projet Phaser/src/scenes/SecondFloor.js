@@ -131,6 +131,17 @@ class SecondFloor extends Phaser.Scene {
       const door_room5 = new Door(this, 1440, 545, "doubleporte", false);
 
       const door_room6 = new Door(this, 1760, 545, "doubleporte", false);
+
+                  ///////////// DOOR OPENING SYSTEM ///////////// 
+                  const list_allDoors = [
+                    [door_room2],
+                    [door_room3],
+                    [door_room4],
+                    [door_room5],
+                    [door_room6]
+                  ];
+                  this.list_allDoors = list_allDoors;
+
   
       ///////////// INDICES /////////////
 
@@ -300,111 +311,78 @@ class SecondFloor extends Phaser.Scene {
       this.cameras.main.startFollow(player);
       this.cameras.main.zoom = 1.2;
   
+
+
+
   
       ///////////// EVENTS /////////////
       this.emitter = new Phaser.Events.EventEmitter();
       this.emitter.on("open_doors", this.open_doors_handler, this);
       this.emitter.on("time_malus", this.malusChrono, this);
   
-      ///////////// CHRONOMETER /////////////
-      /// txt chrono
-  
-      const back_chrono = this.add.image(125, 100, "back_chrono").setDepth(4);
-      back_chrono.setOrigin(0.5, 0.48);
-      back_chrono.setScrollFactor(0);
-      back_chrono.setScale(0.17);
-  
-      const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5);
-      chrono_txt.setOrigin(0.5, 0.5);
-      chrono_txt.setStyle({
-        fontFamily: "roboto",
-        fontSize: "20px",
-        color: "black",
-      });
-      chrono_txt.setScrollFactor(0);
-      Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
-      this.chrono_txt = chrono_txt;
-  
-      /// txt malus chrono
-      const time_malus_txt = this.add
-        .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
-        .setDepth(5);
-      time_malus_txt.setOrigin(0.5, 0.5);
-      time_malus_txt.setStyle({
-        fontFamily: "roboto",
-        fontSize: "15px",
-        color: "red",
-      });
-      time_malus_txt.setScrollFactor(0);
-      time_malus_txt.visible = false;
-      this.time_malus_txt = time_malus_txt;
-  
-      /// Chrono start at 0
-      this.chrono = 0;
-  
-      /// Every second, the chrono increment of 1
-      const chrono = this.time.addEvent({
-        delay: 1000,
-        callback: () => (this.chrono += 1),
-        callbackScope: this,
-        loop: true,
-      });
+      const chronometer = new Chronometer(this);
+      this.chronometer = chronometer;  
   
       this.events.emit("scene-awake");
     }
   
     ///////////// EVENTS HANDLERS /////////////
     open_doors_handler() {
-      for (var i = 0; i < this.list_doors.length; i++) {
-        this.list_doors[i].open();
+      console.log("room num: " + this.currentNbRoom);
+      if (this.currentNbRoom < this.nbRooms) {
+        for (
+          var i = 0;
+          i < this.list_allDoors[this.currentNbRoom - 1].length;
+          i++
+        ) {
+          this.list_allDoors[this.currentNbRoom - 1][i].open();
+        }
       }
+      this.currentNbRoom++;
+      console.log("portes de la salle " + this.currentNbRoom + " ouvertes");
     }
   
     malusChrono() {
-      this.time_malus_txt.visible = true;
-      const timedEvent = this.time.delayedCall(
-        3000,
-        () => {
-          (this.time_malus_txt.visible = false), (this.chrono += 30);
-        },
-        [],
-        this
-      );
+      this.chronometer.malusChrono();
     }
   
-    ///////////// UPDATE /////////////
-    //TODO: implémenter nouveau chrono
-    updateChrono() {
-      /// CHRONOMETER
-      var min = Math.floor(this.chrono / 60);
-      var sec = this.chrono % 60;
-      var min_txt;
-      var sec_txt;
-      if (min < 10) {
-        min_txt = "0" + min;
-      } else {
-        min_txt = min;
-      }
-      if (sec < 10) {
-        sec_txt = "0" + sec;
-      } else {
-        sec_txt = sec;
-      }
-      this.chrono_txt.text = min_txt + " : " + sec_txt;
+  ///////////// ENDGAME /////////////
+  /**
+   * Check if the game is over, i.e. if all MCQs have been completed
+   * @returns {boolean} true if the game is over and false otherwise
+   */
+   isGameOver() {
+    if (this.currentNbRoom > this.nbRooms) {
+      return true;
+    } else {
+      return false;
     }
+  }
+
+      /**
+   * Gives the player's score, which is the time it took to complete all the MCQs
+   */
+       getScore() {
+        this.player.score = this.chronometer.chrono;
+      }
   
     create() {
       this.editorCreate();
     }
   
     update() {
-      ///LIST TO UPDATE DIALOG OBJECTS (BOSS, CLUES)
+      ///CHECK IF GAME IS OVER
+      if(this.isGameOver()) {
+        this.getScore();
+        DBQueries.sendInsertScoreRequest(this);
+        this.scene.start("Menu");
+        clearInterval(this.chronometer.intervalChrono);
+        this.scene.stop();
+      }
+      ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
       for (var i = 0; i < this.update_list.length; i++) {
         this.update_list[i].update();
       }
-  
-      ///TO UPDATE CHRONOMETER
-      this.updateChrono();
     }
   }
   

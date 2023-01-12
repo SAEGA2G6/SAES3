@@ -260,7 +260,7 @@ class FirstFloor extends Phaser.Scene {
       this.cameras.main.startFollow(player);
       this.cameras.main.zoom = 1.2;
 
-      ///////////// DOOR OPENING SYSTEM ///////////// //TODO: mettre les portes devant être ouvertes
+      ///////////// DOOR OPENING SYSTEM ///////////// 
     const list_allDoors = [
       [door_room2_1, door_room2_2],
       [door_room3_1, door_room3_2],
@@ -275,50 +275,9 @@ class FirstFloor extends Phaser.Scene {
       this.emitter.on("open_doors", this.open_doors_handler, this);
       this.emitter.on("time_malus", this.malusChrono, this);
   
-      ///////////// CHRONOMETER /////////////
-      /// txt chrono
-  
-      const back_chrono = this.add.image(125, 100, "back_chrono").setDepth(4);
-      back_chrono.setOrigin(0.5, 0.48);
-      back_chrono.setScrollFactor(0);
-      back_chrono.setScale(0.17);
-  
-      const chrono_txt = this.add.text(0, 0, "", {}).setDepth(5);
-      chrono_txt.setOrigin(0.5, 0.5);
-      chrono_txt.setStyle({
-        fontFamily: "roboto",
-        fontSize: "20px",
-        color: "black",
-      });
-      chrono_txt.setScrollFactor(0);
-      Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
-      this.chrono_txt = chrono_txt;
-  
-      /// txt malus chrono
-      const time_malus_txt = this.add
-        .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
-        .setDepth(5);
-      time_malus_txt.setOrigin(0.5, 0.5);
-      time_malus_txt.setStyle({
-        fontFamily: "roboto",
-        fontSize: "15px",
-        color: "red",
-      });
-      time_malus_txt.setScrollFactor(0);
-      time_malus_txt.visible = false;
-      this.time_malus_txt = time_malus_txt;
-  
-      /// Chrono start at 0
-      this.chrono = 0;
-  
-      /// Every second, the chrono increment of 1
-      const chrono = this.time.addEvent({
-        delay: 1000,
-        callback: () => (this.chrono += 1),
-        callbackScope: this,
-        loop: true,
-      });
-  
+      const chronometer = new Chronometer(this);
+      this.chronometer = chronometer;
+
       this.events.emit("scene-awake");
     }
   
@@ -340,38 +299,9 @@ class FirstFloor extends Phaser.Scene {
     }
   
     malusChrono() {
-      this.time_malus_txt.visible = true;
-      const timedEvent = this.time.delayedCall(
-        3000,
-        () => {
-          (this.time_malus_txt.visible = false), (this.chrono += 30);
-        },
-        [],
-        this
-      );
+      this.chronometer.malusChrono();
     }
   
-    ///////////// UPDATE /////////////
-    updateChrono() {
-      /// CHRONOMETER
-      var min = Math.floor(this.chrono / 60);
-      var sec = this.chrono % 60;
-      var min_txt;
-      var sec_txt;
-      if (min < 10) {
-        min_txt = "0" + min;
-      } else {
-        min_txt = min;
-      }
-      if (sec < 10) {
-        sec_txt = "0" + sec;
-      } else {
-        sec_txt = sec;
-      }
-      this.chrono_txt.text = min_txt + " : " + sec_txt;
-    }
-
-    
   
   ///////////// ENDGAME /////////////
   /**
@@ -386,6 +316,13 @@ class FirstFloor extends Phaser.Scene {
     }
   }
 
+        /**
+      * Gives the player's score, which is the time it took to complete all the MCQs
+      */
+       getScore() {
+        this.player.score = this.chronometer.chrono;
+      }
+
     create() {
       this.editorCreate();
     }
@@ -396,21 +333,13 @@ class FirstFloor extends Phaser.Scene {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
         this.scene.start("Menu");
+        clearInterval(this.chronometer.intervalChrono);
         this.scene.stop();
       }
       ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
       for (var i = 0; i < this.update_list.length; i++) {
         this.update_list[i].update();
       }
-      ///TO UPDATE CHRONOMETER
-      this.updateChrono();
-    }
-  
-    /**
-     * Gives the player's score, which is the time it took to complete all the MCQs
-     */
-    getScore() {
-      this.player.score = this.chrono;
     }
   }
   
