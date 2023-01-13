@@ -160,6 +160,16 @@
                 "url": "assets/indices/eleve3.png",
                 "key": "eleve3",
                 "type": "image"
+            },
+            {
+                "url": "assets/profs/prof10.png",
+                "key": "prof10",
+                "type": "image"
+            },
+            {
+                "url": "assets/profs/prof11.png",
+                "key": "prof11",
+                "type": "image"
             }
         ]
     },
