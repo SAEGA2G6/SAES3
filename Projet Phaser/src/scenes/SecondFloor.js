@@ -3,8 +3,8 @@ class SecondFloor extends Phaser.Scene {
     this.playerGender = data.texture;
     this.playerPseudo = data.pseudo;
     this.currentNbRoom = 1;
-    this.nbRooms = 6; //TODO: mettre nb de rooms avec boss de l'étage
-    this.levelPrefix = "e2" //TODO: mettre le prefixe de la room
+    this.nbRooms = 6;
+    this.levelPrefix = "e2";
   }
   
     /** @returns {void} */
@@ -12,8 +12,6 @@ class SecondFloor extends Phaser.Scene {
       ///////////// UPDATE /////////////
       this.updateList = [];
       ///////////// MAP /////////////
-
-      // TODO: ajouter la map du 2ème étage
       const carte = this.make.tilemap({ key: "map2" });
       const tileset1 = carte.addTilesetImage("couloir", "couloir");
       const tileset2 = carte.addTilesetImage("escaliers", "escaliers");
@@ -38,7 +36,7 @@ class SecondFloor extends Phaser.Scene {
       ];
   
       ///////////// LAYERS /////////////
-      //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
+      //Layer 1, 2 and 3 (depth at 0 for the ground and for the furniture, depth at 1 for the player, depth at 2 for the objects and others)
   
       const calque1 = carte
         .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
@@ -132,7 +130,7 @@ class SecondFloor extends Phaser.Scene {
 
       const doorRoom6 = new Door(this, 1760, 545, "doubleporte", false);
 
-                  ///////////// DOOR OPENING SYSTEM ///////////// 
+      ///////////// DOOR OPENING SYSTEM ///////////// 
                   const listAllDoors = [
                     [doorRoom2],
                     [doorRoom3],
@@ -216,7 +214,7 @@ class SecondFloor extends Phaser.Scene {
         "clue"
       );
 
-      /////////////// ROOM 4 //////320//////
+      /////////////// ROOM 4 ////////////
 
       const eleveRoom4 = new DialogObject(
         this, 1070, 710,
@@ -371,7 +369,7 @@ class SecondFloor extends Phaser.Scene {
     }
   
     update() {
-      ///CHECK IF GAME IS OVER
+      /// CHECK IF GAME IS OVER ///
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
@@ -379,7 +377,7 @@ class SecondFloor extends Phaser.Scene {
         clearInterval(this.chronometer.intervalChrono);
         this.scene.stop();
       }
-      ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
+      /// LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES) ///
       for (var i = 0; i < this.updateList.length; i++) {
         this.updateList[i].update();
       }

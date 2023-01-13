@@ -57,6 +57,14 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
   }
 
+    /**
+   * Enable or disable the dialog object. This prevents the player to interact with the dialog object
+   * @param {boolean} enableDialogObject
+   */
+    disable(enableDialogObject) {
+      this.isEnable = !enableDialogObject;
+    }
+
   update() {
     if (Phaser.Math.Distance.BetweenPoints(this, this.scene.player) < 40 && this.isEnable) {
       this.textDialog.visible = true;
@@ -84,13 +92,5 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       this.textDialog.visible = false;
       this.textBox.visible = false;
     }
-  }
-
-  /**
-   * Enable or disable the dialog object. This prevents the player to interact with the dialog object
-   * @param {boolean} enableDialogObject
-   */
-  disable(enableDialogObject) {
-    this.isEnable = !enableDialogObject;
   }
 }

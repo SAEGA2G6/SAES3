@@ -63,6 +63,14 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     ///////////////////////////////////////////
   }
 
+  stopSpeed() {
+    this.velocity = 0;
+  }
+
+  resetSpeed() {
+    this.velocity = this.baseVelocity;
+  }
+
   update() {
     if (this.cursors.left.isDown) {
       this.setVelocityY(0);

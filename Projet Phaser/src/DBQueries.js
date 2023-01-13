@@ -33,7 +33,6 @@ class DBQueries {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
         var response = xhr.responseText;
         console.log("response: " + response);
         const myJsonScores = JSON.parse(response);

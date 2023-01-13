@@ -26,7 +26,7 @@ class Door extends Phaser.Physics.Arcade.Sprite {
   open() {
     this.setTexture("cadredoubleporte");
 
-    //disables collision of the door
+    /// disables collision of the door ///
     this.body.enable = false;
     this.setDepth(2);
   }

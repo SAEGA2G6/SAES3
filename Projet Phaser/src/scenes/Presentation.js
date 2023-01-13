@@ -51,7 +51,7 @@ class Presentation extends Phaser.Scene {
       });
       this.textStart = textStart;
   
-      // START GAME AND HIGHSCORE 
+      /// START GAME AND HIGHSCORE /// 
       new TextColor(textStart, this.data.chosenLevel, this.data);
       this.nextText();
 

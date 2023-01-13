@@ -1,7 +1,7 @@
 class Chronometer {
   constructor(scene) {
     this.scene = scene;
-    /// Chrono start at 0
+    /// Chrono start at 0 seconds ///
     this.chrono = 0;
     ///////////// CHRONOMETER /////////////
     const backChrono = this.scene.add
@@ -24,7 +24,7 @@ class Chronometer {
     Phaser.Display.Align.In.Center(chronoTxt, backChrono);
     this.chronoTxt = chronoTxt;
 
-    ////malus text////
+
     const timeMalusTxt = this.scene.add
       .text(chronoTxt.x, chronoTxt.y + 25, "+30", {})
       .setDepth(5)
@@ -38,10 +38,9 @@ class Chronometer {
     timeMalusTxt.visible = false;
     this.timeMalusTxt = timeMalusTxt;
 
-    /// Every second, the chrono is incremented by one
+    /// Every second, the chrono is incremented by one ///
     const intervalChrono = setInterval(() => this.updateChrono(), 1000);
     this.intervalChrono = intervalChrono;
-    //
   }
 
   malusChrono() {

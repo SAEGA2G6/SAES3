@@ -27,7 +27,7 @@ class GroundFloor extends Phaser.Scene {
     ];
 
     ///////////// LAYERS /////////////
-    //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
+    //Layer 1, 2 and 3 (depth at 0 for the ground and for the furniture, depth at 1 for the player, depth at 2 for the objects and others)
 
     const calque1 = carte
       .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
@@ -304,17 +304,12 @@ class GroundFloor extends Phaser.Scene {
 
 
   ///////////// ENDGAME /////////////
-  //TODO: refactoring svp
   /**
    * Check if the game is over, i.e. if all MCQs have been completed
    * @returns {boolean} true if the game is over and false otherwise
    */
   isGameOver() {
-    if (this.currentNbRoom > this.nbRooms) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.currentNbRoom > this.nbRooms;
   }
 
     /**
@@ -331,7 +326,7 @@ class GroundFloor extends Phaser.Scene {
 
   ///////////// UPDATE /////////////
   update() {
-    ///CHECK IF GAME IS OVER
+    /// CHECK IF GAME IS OVER ///
     if(this.isGameOver()) {
       this.getScore();
       DBQueries.sendInsertScoreRequest(this);
@@ -339,7 +334,7 @@ class GroundFloor extends Phaser.Scene {
       clearInterval(this.chronometer.intervalChrono);
       this.scene.stop();
     }
-    ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
+    /// LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES) ///
     for (var i = 0; i < this.updateList.length; i++) {
       this.updateList[i].update();
     }

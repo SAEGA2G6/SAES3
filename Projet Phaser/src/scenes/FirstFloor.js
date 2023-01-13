@@ -27,7 +27,7 @@ class FirstFloor extends Phaser.Scene {
       ];
   
       ///////////// LAYERS /////////////
-      //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
+      //Layer 1, 2 and 3 (depth at 0 for the ground and for the furniture, depth at 1 for the player, depth at 2 for the objects and others)
   
       const calque1 = carte
         .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
@@ -97,9 +97,7 @@ class FirstFloor extends Phaser.Scene {
         null,
         "mcq"
       );
-      
-      //TODO//
-  
+        
       ///////////// DOORS /////////////
       
       const doorRoom2_1 = new Door(this, 1504, 417, "doubleporte", true);
@@ -114,7 +112,7 @@ class FirstFloor extends Phaser.Scene {
       const doorRoom5_1 = new Door(this, 1728, 545, "doubleporte", false);
       const doorRoom5_2 = new Door(this, 1920, 545, "doubleporte", false);
   
-      ///////////// INDICES /////////////
+      ///////////// CLUES /////////////
       
       /////////////// ROOM 1 /////////////
 
@@ -260,7 +258,7 @@ class FirstFloor extends Phaser.Scene {
       this.cameras.main.startFollow(player);
       this.cameras.main.zoom = 1.2;
 
-      ///////////// DOOR OPENING SYSTEM ///////////// //TODO: mettre les portes devant être ouvertes
+      ///////////// DOOR OPENING SYSTEM /////////////
     const listAllDoors = [
       [doorRoom2_1, doorRoom2_2],
       [doorRoom3_1, doorRoom3_2],
@@ -328,14 +326,14 @@ class FirstFloor extends Phaser.Scene {
     }
   
     update() {
-      ///CHECK IF GAME IS OVER
+      /// CHECK IF GAME IS OVER ///
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
         this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'1er étage'", playerChrono: this.player.score, playerGender: this.playerGender});
         this.scene.stop();
       }
-      ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
+      /// LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES) ///
       for (var i = 0; i < this.updateList.length; i++) {
         this.updateList[i].update();
       }

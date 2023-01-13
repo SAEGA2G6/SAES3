@@ -52,10 +52,9 @@ class Menu extends Phaser.Scene {
    * @return {void}
    */
   placeMenuItems() {
-    // Ajout du logo du MENU
     const backMenu = this.add.image(400, 300, "menuDemarrage");
 
-    // HIGHSCORE TEXT
+    /// HIGHSCORE TEXT ///
     const textHighscore = this.add.text(400, 325, "", {});
     textHighscore.setOrigin(0.5, 0.5);
     textHighscore.text = "HIGHSCORE";
@@ -65,7 +64,7 @@ class Menu extends Phaser.Scene {
       color: "white",
     });
 
-    // START TEXT
+    /// START TEXT ///
     const textStart = this.add.text(400, 425, "", {});
     textStart.setOrigin(0.5, 0.5);
     textStart.text = "START";
@@ -76,7 +75,7 @@ class Menu extends Phaser.Scene {
     });
     this.textStart = textStart;
 
-    // START GAME AND HIGHSCORE 
+    /// START GAME AND HIGHSCORE ///
     new TextColor(textStart, "Choose", {chooseOption: "Level"});
     new TextColor(textHighscore, "Highscore");
   }

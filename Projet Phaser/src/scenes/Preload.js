@@ -15,8 +15,6 @@ class Preload extends Phaser.Scene {
 
 	/** @returns {void} */
 	editorCreate() {
-
-		// spinner TODO: voir si on garde ou pas
 		const spinner = this.physics.add.sprite(400, 219, "spinner");
 
 
@@ -31,13 +29,13 @@ class Preload extends Phaser.Scene {
 		  spinner.anims.play("spin");
 		  spinner.anims.yoyo = !spinner.anims.yoyo;
 
-		// progress
+		/// progress ///
 		const progress = this.add.text(400, 349, "", {})
 		.setOrigin(0.5, 0.5)
 		.setStyle({ "fontSize": "30px" });
 		progress.text = "0%";
 
-		// progress (components)
+		/// progress (components) ///
 		new PreloadText(progress);
 
 		this.events.emit("scene-awake");

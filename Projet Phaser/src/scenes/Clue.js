@@ -11,7 +11,7 @@ class Clue extends Phaser.Scene {
   
     /** @returns {void} */
     editorCreate() {
-      this.currentScene.player.velocity = 0;
+      this.currentScene.player.stopSpeed();
 
       const support = this.add.image(400, 300, this.supportTexture)
       .setOrigin(0.5);
@@ -26,7 +26,7 @@ class Clue extends Phaser.Scene {
 
       Phaser.Display.Align.In.TopLeft(clueText,support);
       
-      // change couleur texte selon le support 
+      /// the colour of the text changes depending on the object the player is interacting with (papers, computer)//
       if(this.supportTexture === "ordinateur") {
         support.setScale(1.5);
         clueText.setStyle({
@@ -61,18 +61,17 @@ class Clue extends Phaser.Scene {
     create() {
       this.editorCreate();
     }
+
+    exitClue() {
+      this.currentScene.player.resetSpeed();
+      /// we stop this scene which is then reset ///
+      this.scene.stop();
+    }
   
     update() {
       if (this.KeyESC.isDown) {
         this.currentClue.disable(false);
         this.exitClue();
       }
-    }
-
-    exitClue() {
-      //TODO: faire une méthode pour reset la vitesse du joueur
-      this.currentScene.player.velocity = this.currentScene.player.baseVelocity;
-      //we stop this scene which is then reset
-      this.scene.stop();
     }
   }
