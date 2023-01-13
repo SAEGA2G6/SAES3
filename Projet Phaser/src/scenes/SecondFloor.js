@@ -375,7 +375,7 @@ class SecondFloor extends Phaser.Scene {
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
-        this.scene.start("Menu");
+        this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'2ème étage'", playerChrono: this.player.score, playerGender: this.playerGender});
         clearInterval(this.chronometer.intervalChrono);
         this.scene.stop();
       }

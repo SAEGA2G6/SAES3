@@ -4,7 +4,7 @@ class FirstFloor extends Phaser.Scene {
     this.playerPseudo = data.pseudo;
     this.currentNbRoom = 1;
     this.nbRooms = 5; //TODO: mettre nb de rooms avec boss de l'étage
-    this.levelPrefix = "e1" //TODO: mettre le prefixe de la room
+    this.levelPrefix = "e1"
   }
   
     /** @returns {void} */
@@ -332,7 +332,7 @@ class FirstFloor extends Phaser.Scene {
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
-        this.scene.start("Menu");
+        this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'1er étage'", playerChrono: this.player.score, playerGender: this.playerGender});
         clearInterval(this.chronometer.intervalChrono);
         this.scene.stop();
       }

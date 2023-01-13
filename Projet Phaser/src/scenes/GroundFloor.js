@@ -304,6 +304,7 @@ class GroundFloor extends Phaser.Scene {
 
 
   ///////////// ENDGAME /////////////
+  //TODO: refactoring svp
   /**
    * Check if the game is over, i.e. if all MCQs have been completed
    * @returns {boolean} true if the game is over and false otherwise
@@ -334,7 +335,7 @@ class GroundFloor extends Phaser.Scene {
     if(this.isGameOver()) {
       this.getScore();
       DBQueries.sendInsertScoreRequest(this);
-      this.scene.start("Menu");
+      this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'rez-de-chaussée'", playerChrono: this.player.score, playerGender: this.playerGender});
       clearInterval(this.chronometer.intervalChrono);
       this.scene.stop();
     }

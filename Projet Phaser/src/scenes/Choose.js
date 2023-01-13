@@ -1,4 +1,4 @@
-class ChooseCharacter extends Phaser.Scene {
+class Choose extends Phaser.Scene {
   init(data) {
     this.chooseOption = data.chooseOption;
     this.chosenLevel = data.chosenLevel;
@@ -139,7 +139,7 @@ class ChooseCharacter extends Phaser.Scene {
       fontSize: '20px',
       placeholder: 'pseudo',
       minLength: 1,
-      maxLength: 22,
+      maxLength: 10,
       align: 'center',
 
     })
