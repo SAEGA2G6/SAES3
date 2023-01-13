@@ -160,7 +160,7 @@ class GroundFloor extends Phaser.Scene {
         1040,
         240,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r2_1",
         "clue"
       );
    
@@ -169,7 +169,7 @@ class GroundFloor extends Phaser.Scene {
       750,
       146,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r2_2",
       "clue"
     );
     pcOn2Room2.flipX = true;
@@ -177,7 +177,7 @@ class GroundFloor extends Phaser.Scene {
       const binRoom2 = new DialogObject(
         this, 1075, 400,
         "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle", 
+        "Appuyer sur ESPACE pour fouiller la poubelle", "rc_r2_3", 
         "clue"
       );
 
@@ -188,7 +188,7 @@ class GroundFloor extends Phaser.Scene {
       1775,
       112,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r3_1",
       "clue"
     );
     pcOnRoom3.flipX = true;
@@ -196,7 +196,7 @@ class GroundFloor extends Phaser.Scene {
       const binRoom3 = new DialogObject(
         this, 1580, 400,
         "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle",
+        "Appuyer sur ESPACE pour fouiller la poubelle", "rc_r3_2",
         "clue"
       );
 
@@ -205,7 +205,7 @@ class GroundFloor extends Phaser.Scene {
         1937,
         262,
         "papiers",
-        "Appuyer sur ESPACE pour regarder les notes...", "Indice papier",
+        "Appuyer sur ESPACE pour regarder les notes...", "rc_r3_3",
         "clue"
       );
 
@@ -216,7 +216,7 @@ class GroundFloor extends Phaser.Scene {
         1810,
         623,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_1",
         "clue"
       );
 
@@ -225,7 +225,7 @@ class GroundFloor extends Phaser.Scene {
         1905,
         912,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_2",
         "clue"
       );
 
@@ -234,7 +234,7 @@ class GroundFloor extends Phaser.Scene {
         1776,
         815,
         "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
+        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_3",
         "clue"
       );
 
