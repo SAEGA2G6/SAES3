@@ -4,14 +4,14 @@ class Chronometer {
     /// Chrono start at 0
     this.chrono = 0;
     ///////////// CHRONOMETER /////////////
-    const back_chrono = this.scene.add
+    const backChrono = this.scene.add
       .image(125, 100, "back_chrono")
       .setDepth(4)
       .setOrigin(0.5, 0.48)
       .setScrollFactor(0)
       .setScale(0.17);
 
-    const chrono_txt = this.scene.add
+    const chronoTxt = this.scene.add
       .text(0, 0, "00 : 00", {})
       .setDepth(5)
       .setOrigin(0.5, 0.5)
@@ -21,12 +21,12 @@ class Chronometer {
         color: "black",
       })
       .setScrollFactor(0);
-    Phaser.Display.Align.In.Center(chrono_txt, back_chrono);
-    this.chrono_txt = chrono_txt;
+    Phaser.Display.Align.In.Center(chronoTxt, backChrono);
+    this.chronoTxt = chronoTxt;
 
     ////malus text////
-    const time_malus_txt = this.scene.add
-      .text(chrono_txt.x, chrono_txt.y + 25, "+30", {})
+    const timeMalusTxt = this.scene.add
+      .text(chronoTxt.x, chronoTxt.y + 25, "+30", {})
       .setDepth(5)
       .setOrigin(0.5, 0.5)
       .setStyle({
@@ -35,8 +35,8 @@ class Chronometer {
         color: "red",
       })
       .setScrollFactor(0);
-    time_malus_txt.visible = false;
-    this.time_malus_txt = time_malus_txt;
+    timeMalusTxt.visible = false;
+    this.timeMalusTxt = timeMalusTxt;
 
     /// Every second, the chrono is incremented by one
     const intervalChrono = setInterval(() => this.updateChrono(), 1000);
@@ -45,11 +45,11 @@ class Chronometer {
   }
 
   malusChrono() {
-    this.time_malus_txt.visible = true;
+    this.timeMalusTxt.visible = true;
     const timedEvent = this.scene.time.delayedCall(
       3000,
       () => {
-        (this.time_malus_txt.visible = false), (this.chrono += 30);
+        (this.timeMalusTxt.visible = false), (this.chrono += 30);
       },
       [],
       this
@@ -61,18 +61,18 @@ class Chronometer {
     this.chrono += 1
     var min = Math.floor(this.chrono / 60);
     var sec = this.chrono % 60;
-    var min_txt;
-    var sec_txt;
+    var minTxt;
+    var secTxt;
     if (min < 10) {
-      min_txt = "0" + min;
+      minTxt = "0" + min;
     } else {
-      min_txt = min;
+      minTxt = min;
     }
     if (sec < 10) {
-      sec_txt = "0" + sec;
+      secTxt = "0" + sec;
     } else {
-      sec_txt = sec;
+      secTxt = sec;
     }
-    this.chrono_txt.text = min_txt + " : " + sec_txt;
+    this.chronoTxt.text = minTxt + " : " + secTxt;
   }
 }

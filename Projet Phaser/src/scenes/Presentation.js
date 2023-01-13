@@ -35,24 +35,24 @@ class Presentation extends Phaser.Scene {
       });
       this.introText = introText;
 
-      const arrow_back = this.add.image(750, 300, "arrow_back")
+      const arrow = this.add.image(750, 300, "arrow_back")
       .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
         this.nextText();
       });
-      this.arrow = arrow_back;
+      this.arrow = arrow;
 
-      const text_start = this.add.text(400, 500, "", {});
-      text_start.setOrigin(0.5, 0.5);
-      text_start.text = "START";
-      text_start.setStyle({
+      const textStart = this.add.text(400, 500, "", {});
+      textStart.setOrigin(0.5, 0.5);
+      textStart.text = "START";
+      textStart.setStyle({
         fontFamily: "retro-computer",
         fontSize: "60px",
         color: "white",
       });
-      this.text_start = text_start;
+      this.textStart = textStart;
   
       // START GAME AND HIGHSCORE 
-      new TextColor(text_start, this.data.chosenLevel, this.data);
+      new TextColor(textStart, this.data.chosenLevel, this.data);
       this.nextText();
 
       this.events.emit("scene-awake");

@@ -20,11 +20,11 @@ class Answer extends Phaser.GameObjects.Text {
       if (this.isRight) {
         /// on lance l'event de la bonne réponse ///
         this.setStyle({ fill: "green" });
-        this.scene.emitter.emit("right_answer");
+        this.scene.emitter.emit("rightAnswer");
       } else {
         /// on lance l'event de la mauvaise réponse ///
         this.setStyle({ fill: "red" });
-        this.scene.emitter.emit("wrong_answer");
+        this.scene.emitter.emit("wrongAnswer");
       }
     });
 

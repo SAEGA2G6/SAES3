@@ -16,35 +16,35 @@ class Clue extends Phaser.Scene {
         .setOrigin(0.5);
 
 
-        const clue_text = this.add.text(0, 0, "", {}).setDepth(5)
+        const clueText = this.add.text(0, 0, "", {}).setDepth(5)
         .setOrigin(0)
         .setStyle({
         fontFamily: "comforta"
         });
-        this.clue_text = clue_text;
+        this.clueText = clueText;
 
-        Phaser.Display.Align.In.TopLeft(clue_text,support);
+        Phaser.Display.Align.In.TopLeft(clueText,support);
 
         // change couleur texte selon le support 
         if(this.supportTexture === "ordinateur") {
           support.setScale(1.5);
-          clue_text.setStyle({
+          clueText.setStyle({
             fontSize: "22px",
             color: "white",
             wordWrap: { width: 500 }
           });
-          clue_text.y -= 30;
-          clue_text.x -= 50;
+          clueText.y -= 30;
+          clueText.x -= 50;
         }
         else {
           support.setScale(1.8);
-          clue_text.setStyle({
+          clueText.setStyle({
             fontSize: "18px",
             color: "black",
             wordWrap: { width: 400 }
           });
-          clue_text.y -= 90;
-          clue_text.x -= 50;
+          clueText.y -= 90;
+          clueText.x -= 50;
         }
 
         DBQueries.sendClueRequest(this);

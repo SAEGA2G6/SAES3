@@ -11,11 +11,11 @@ class GroundFloor extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     ///////////// UPDATE /////////////
-    this.update_list = [];
+    this.updateList = [];
     ///////////// MAP /////////////
     const carte = this.make.tilemap({ key: "map" });
 
-    const tilesets_list = [
+    const tilesetsList = [
       carte.addTilesetImage("couloir", "couloir"),
       carte.addTilesetImage("escaliers", "escaliers"),
       carte.addTilesetImage("meuble1", "meuble1"),
@@ -30,15 +30,15 @@ class GroundFloor extends Phaser.Scene {
     //Calque 1,2 et 3 (profondeur à 0 pour le sol et pour le mobilier, profondeur à 1 pour le joueur, profondeur à 2 pour les objets et ce q)
 
     const calque1 = carte
-      .createLayer("Calque de Tuiles 1", tilesets_list, 0, 0)
+      .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
       .setDepth(0);
 
     const calque2 = carte
-      .createLayer("Calque de Tuiles 2", tilesets_list, 0, 0)
+      .createLayer("Calque de Tuiles 2", tilesetsList, 0, 0)
       .setDepth(0);
 
     const calque3 = carte
-      .createLayer("Calque de Tuiles 3", tilesets_list, 0, 0)
+      .createLayer("Calque de Tuiles 3", tilesetsList, 0, 0)
       .setDepth(2);
 
     ///////////// PLAYER /////////////
@@ -96,37 +96,36 @@ class GroundFloor extends Phaser.Scene {
 
     ///////////// DOORS /////////////
 
-    const door_room2_1 = new Door(this, 768, 417, "doubleporte", true);
-    this.door = door_room2_1;
+    const doorRoom2_1 = new Door(this, 768, 417, "doubleporte", true);
 
-    const door_room2_2 = new Door(this, 1024, 417, "doubleporte", true);
+    const doorRoom2_2 = new Door(this, 1024, 417, "doubleporte", true);
 
-    const door_room3_1 = new Door(this, 1632, 417, "doubleporte", true);
+    const doorRoom3_1 = new Door(this, 1632, 417, "doubleporte", true);
 
-    const door_room3_2 = new Door(this, 1888, 417, "doubleporte", true);
+    const doorRoom3_2 = new Door(this, 1888, 417, "doubleporte", true);
 
-    const door_room4_1 = new Door(this, 1632, 545, "doubleporte", false);
+    const doorRoom4_1 = new Door(this, 1632, 545, "doubleporte", false);
 
-    const door_room4_2 = new Door(this, 1888, 545, "doubleporte", false);
+    const doorRoom4_2 = new Door(this, 1888, 545, "doubleporte", false);
 
-    const door_office1 = new Door(this, 1216, 417, "doubleporte", true);
+    const doorOffice1 = new Door(this, 1216, 417, "doubleporte", true);
 
-    const door_office2 = new Door(this, 1440, 417, "doubleporte", true);
+    const doorOffice2 = new Door(this, 1440, 417, "doubleporte", true);
 
-    const door_office3 = new Door(this, 1216, 545, "doubleporte", false);
+    const doorOffice3 = new Door(this, 1216, 545, "doubleporte", false);
 
-    const door_office4 = new Door(this, 1440, 545, "doubleporte", false);
+    const doorOffice4 = new Door(this, 1440, 545, "doubleporte", false);
 
-    const door_secretariat = new Door(this, 928, 673, "doubleporte", false);
+    const doorSecretariat = new Door(this, 928, 673, "doubleporte", false);
 
-    const door_boss = new Door(this, 752, 673, "simpleporte", false);
+    const doorBoss = new Door(this, 752, 673, "simpleporte", false);
 
 
     ///////////// CLUES /////////////
 
 
     ///////////// ROOM 1 /////////////
-    const pcOn1_room1 = new DialogObject(
+    const pcOn1Room1 = new DialogObject(
       this,
       495,
       240,
@@ -135,9 +134,9 @@ class GroundFloor extends Phaser.Scene {
       "rc_r1_1",
       "clue"
     );
-    pcOn1_room1.flipX = true;
+    pcOn1Room1.flipX = true;
 
-    const pcOn2_room1 = new DialogObject(
+    const pcOn2Room1 = new DialogObject(
       this,
       625,
       110,
@@ -146,7 +145,7 @@ class GroundFloor extends Phaser.Scene {
       "clue"
     );
 
-    const papers_room1 = new DialogObject(
+    const papersRoom1 = new DialogObject(
       this,
       305,
       80,
@@ -156,7 +155,7 @@ class GroundFloor extends Phaser.Scene {
     );
 
     ///////////// ROOM 2 /////////////
-      const pcOn1_room2 = new DialogObject(
+      const pcOn1Room2 = new DialogObject(
         this,
         1040,
         240,
@@ -165,7 +164,7 @@ class GroundFloor extends Phaser.Scene {
         "clue"
       );
    
-      const pcOn2_room2 = new DialogObject(
+      const pcOn2Room2 = new DialogObject(
       this,
       750,
       146,
@@ -173,9 +172,9 @@ class GroundFloor extends Phaser.Scene {
       "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
-    pcOn2_room2.flipX = true;
+    pcOn2Room2.flipX = true;
 
-      const bin_room2 = new DialogObject(
+      const binRoom2 = new DialogObject(
         this, 1075, 400,
         "poubelleSprite",
         "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle", 
@@ -184,7 +183,7 @@ class GroundFloor extends Phaser.Scene {
 
     ///////////// ROOM 3 /////////////
 
-    const pcOn_room3 = new DialogObject(
+    const pcOnRoom3 = new DialogObject(
       this,
       1775,
       112,
@@ -192,16 +191,16 @@ class GroundFloor extends Phaser.Scene {
       "Appuyer sur ESPACE pour regarder l'ordinateur...", "Indice pc",
       "clue"
     );
-    pcOn_room3.flipX = true;
+    pcOnRoom3.flipX = true;
 
-      const bin_room3 = new DialogObject(
+      const binRoom3 = new DialogObject(
         this, 1580, 400,
         "poubelleSprite",
         "Appuyer sur ESPACE pour fouiller la poubelle", "Indice poubelle",
         "clue"
       );
 
-      const papers_room3 = new DialogObject(
+      const papersRoom3 = new DialogObject(
         this,
         1937,
         262,
@@ -212,7 +211,7 @@ class GroundFloor extends Phaser.Scene {
 
     ///////////// ROOM 4 /////////////
 
-      const pcOn_room4 = new DialogObject(
+      const pcOnRoom4 = new DialogObject(
         this,
         1810,
         623,
@@ -221,7 +220,7 @@ class GroundFloor extends Phaser.Scene {
         "clue"
       );
 
-      const pcOn2_room4 = new DialogObject(
+      const pcOn2Room4 = new DialogObject(
         this,
         1905,
         912,
@@ -230,7 +229,7 @@ class GroundFloor extends Phaser.Scene {
         "clue"
       );
 
-      const pcOn3_room4 = new DialogObject(
+      const pcOn3Room4 = new DialogObject(
         this,
         1776,
         815,
@@ -244,18 +243,18 @@ class GroundFloor extends Phaser.Scene {
     calque2.setCollisionByProperty({ estSolide: true });
     calque3.setCollisionByProperty({ estSolide: true });
 
-    const collider_list = [
+    const colliderList = [
       calque1,calque2,calque3,
       prof1,prof2,prof3,prof4,
-      door_room2_1,door_room2_2,
-      door_room3_1,door_room3_2,
-      door_room4_1,door_room4_2,
-      door_office1, door_office2,
-      door_office3,door_office4,
-      door_secretariat,door_boss,
-      bin_room2, bin_room3
+      doorRoom2_1,doorRoom2_2,
+      doorRoom3_1,doorRoom3_2,
+      doorRoom4_1,doorRoom4_2,
+      doorOffice1, doorOffice2,
+      doorOffice3,doorOffice4,
+      doorSecretariat,doorBoss,
+      binRoom2, binRoom3
     ];
-    this.physics.add.collider(player, collider_list);
+    this.physics.add.collider(player, colliderList);
 
     ///////////// CAMERA /////////////
     this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
@@ -263,18 +262,19 @@ class GroundFloor extends Phaser.Scene {
     this.cameras.main.zoom = 1.2;
 
     ///////////// DOOR OPENING SYSTEM /////////////
-    const list_allDoors = [
-      [door_room2_1, door_room2_2],
-      [door_room3_1, door_room3_2],
-      [door_room4_1, door_room4_2],
+    const listAllDoors = [
+      [doorRoom2_1, doorRoom2_2],
+      [doorRoom3_1, doorRoom3_2],
+      [doorRoom4_1, doorRoom4_2],
     ];
-    this.list_allDoors = list_allDoors;
+    this.listAllDoors = listAllDoors;
 
     ///////////// EVENTS /////////////
     this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on("open_doors", this.open_doors_handler, this);
-    this.emitter.on("time_malus", this.malusChrono, this);
+    this.emitter.on("openDoors", this.openDoorsHandler, this);
+    this.emitter.on("timeMalus", this.malusChrono, this);
 
+    ///////////// CHRONOMETER /////////////
     const chronometer = new Chronometer(this);
     this.chronometer = chronometer;
 
@@ -283,15 +283,15 @@ class GroundFloor extends Phaser.Scene {
 
 
   ///////////// EVENTS HANDLERS /////////////
-  open_doors_handler() {
+  openDoorsHandler() {
     console.log("room num: " + this.currentNbRoom);
     if (this.currentNbRoom < this.nbRooms) {
       for (
         var i = 0;
-        i < this.list_allDoors[this.currentNbRoom - 1].length;
+        i < this.listAllDoors[this.currentNbRoom - 1].length;
         i++
       ) {
-        this.list_allDoors[this.currentNbRoom - 1][i].open();
+        this.listAllDoors[this.currentNbRoom - 1][i].open();
       }
     }
     this.currentNbRoom++;
@@ -340,8 +340,8 @@ class GroundFloor extends Phaser.Scene {
       this.scene.stop();
     }
     ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)
-    for (var i = 0; i < this.update_list.length; i++) {
-      this.update_list[i].update();
+    for (var i = 0; i < this.updateList.length; i++) {
+      this.updateList[i].update();
     }
   }
 }

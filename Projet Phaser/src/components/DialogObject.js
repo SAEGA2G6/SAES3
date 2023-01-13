@@ -31,27 +31,27 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
       this.scene.cameras.main.worldView.y +
       this.scene.cameras.main.height / 1.2;
 
-    const text_box = this.scene.add
+    const textBox = this.scene.add
       .image(screenCenterX, screenCenterY, "textbox")
       .setScrollFactor(0);
-    text_box.setDepth(5);
-    this.text_box = text_box;
+    textBox.setDepth(5);
+    this.textBox = textBox;
 
-    const text_dialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
-    text_dialog.setOrigin(0.5, 0.5);
-    text_dialog.text = displayText;
-    text_dialog.setStyle({
+    const textDialog = this.scene.add.text(0, 0, "", {}).setDepth(5);
+    textDialog.setOrigin(0.5, 0.5);
+    textDialog.text = displayText;
+    textDialog.setStyle({
       fontFamily: "Roboto",
       fontSize: "22px",
       color: "black",
     });
-    text_dialog.setScrollFactor(0);
-    Phaser.Display.Align.In.Center(text_dialog, text_box);
-    this.text_dialog = text_dialog;
+    textDialog.setScrollFactor(0);
+    Phaser.Display.Align.In.Center(textDialog, textBox);
+    this.textDialog = textDialog;
     ////////////////////////////
 
     /// Put the dialog object in the list of objects to be updated ///
-    this.scene.update_list.push(this);
+    this.scene.updateList.push(this);
     ////////////////////////////
 
     scene.add.existing(this);
@@ -59,20 +59,20 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
 
   update() {
     if (Phaser.Math.Distance.BetweenPoints(this, this.scene.player) < 40 && this.isEnable) {
-      this.text_dialog.visible = true;
-      this.text_box.visible = true;
+      this.textDialog.visible = true;
+      this.textBox.visible = true;
 
       if (this.KeySpace.isDown && this.dialogType === "mcq") {
         this.disable(true);
-        const scene_MCQInterface = this.scene.game.scene.getScene("MCQInterface");
-        scene_MCQInterface.currentBoss = this;
+        const sceneMCQInterface = this.scene.game.scene.getScene("MCQInterface");
+        sceneMCQInterface.currentBoss = this;
         this.scene.scene.launch("MCQInterface", { currentScene: this.scene });
 
       } else if (this.KeySpace.isDown && this.dialogType === "clue") {
         this.disable(true);
-        const scene_clue = this.scene.game.scene.getScene("Clue");
-        scene_clue.currentClue = this;
-        scene_clue.clueId = this.clueId;
+        const sceneClue = this.scene.game.scene.getScene("Clue");
+        sceneClue.currentClue = this;
+        sceneClue.clueId = this.clueId;
         if(this.texture === "pcAllume") {
           this.scene.scene.launch("Clue", { currentScene: this.scene, supportTexture: "ordinateur"});
         }
@@ -81,8 +81,8 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
         }
       }
     } else {
-      this.text_dialog.visible = false;
-      this.text_box.visible = false;
+      this.textDialog.visible = false;
+      this.textBox.visible = false;
     }
   }
 

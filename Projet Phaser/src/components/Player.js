@@ -24,13 +24,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 
     ///////////// ADD TO UPDATE LIST //////////
-    scene.update_list.push(this);
+    scene.updateList.push(this);
     ///////////////////////////////////////////
 
     scene.add.existing(this);
 
     this.cursors = scene.input.keyboard.createCursorKeys();
-    this.facing_direction;
+    this.facingDirection;
 
     ///////////////// ANIMATIONS ////////////////
     this.anims.create({
@@ -68,30 +68,30 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       this.setVelocityY(0);
       this.setVelocityX(-this.velocity);
       this.anims.play("left", true);
-      this.facing_direction = "left";
+      this.facingDirection = "left";
     } else if (this.cursors.right.isDown) {
       this.setVelocityY(0);
       this.setVelocityX(this.velocity);
       this.anims.play("right", true);
-      this.facing_direction = "right";
+      this.facingDirection = "right";
     } else if (this.cursors.up.isDown) {
       this.setVelocityX(0);
       this.setVelocityY(-this.velocity);
       this.anims.play("up", true);
-      this.facing_direction = "up";
+      this.facingDirection = "up";
     } else if (this.cursors.down.isDown) {
       this.setVelocityX(0);
       this.setVelocityY(this.velocity);
       this.anims.play("down", true);
-      this.facing_direction = "down";
+      this.facingDirection = "down";
     } else {
-      if (this.facing_direction == "left") {
+      if (this.facingDirection == "left") {
         this.anims.play("left");
-      } else if (this.facing_direction == "right") {
+      } else if (this.facingDirection == "right") {
         this.anims.play("right");
-      } else if (this.facing_direction == "up") {
+      } else if (this.facingDirection == "up") {
         this.anims.play("up");
-      } else if (this.facing_direction == "down") {
+      } else if (this.facingDirection == "down") {
         this.anims.play("down");
       }
 

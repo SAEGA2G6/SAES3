@@ -21,16 +21,16 @@ class MCQInterface extends Phaser.Scene {
     this.currentScene.player.velocity = 0;
     this.currentQuestionNb = 0;
     // Fond sur lequel seront affichées les questions //
-    const back_interface = this.add.image(0, 0, "interfaceQCM")
+    const backInterface = this.add.image(0, 0, "interfaceQCM")
     .setDepth(5)
     .setScale(0.97)
     .setOrigin(0.5, 0.5);
     ////////////////////////////////
 
-    Phaser.Display.Align.In.Center(back_interface, this.add.zone(400, 300, 800, 600));
+    Phaser.Display.Align.In.Center(backInterface, this.add.zone(400, 300, 800, 600));
 
-    back_interface.y += 59;
-    this.back_interface = back_interface;
+    backInterface.y += 59;
+    this.backInterface = backInterface;
 
     // Question
     const question = this.add.text(0, 0, "", {})
@@ -43,7 +43,7 @@ class MCQInterface extends Phaser.Scene {
       align: "center",
       wordWrap: { width: 600 },
     });
-    Phaser.Display.Align.In.TopLeft(question, this.back_interface);
+    Phaser.Display.Align.In.TopLeft(question, this.backInterface);
     question.y += 30;
     question.x += 100;
     this.question = question;
@@ -63,10 +63,10 @@ class MCQInterface extends Phaser.Scene {
     this.answer3 = answer3;
     this.answer4 = answer4;
 
-    Phaser.Display.Align.In.BottomLeft(this.answer1, this.back_interface);
-    Phaser.Display.Align.In.BottomLeft(this.answer2, this.back_interface);
-    Phaser.Display.Align.In.BottomLeft(this.answer3, this.back_interface);
-    Phaser.Display.Align.In.BottomLeft(this.answer4, this.back_interface);
+    Phaser.Display.Align.In.BottomLeft(this.answer1, this.backInterface);
+    Phaser.Display.Align.In.BottomLeft(this.answer2, this.backInterface);
+    Phaser.Display.Align.In.BottomLeft(this.answer3, this.backInterface);
+    Phaser.Display.Align.In.BottomLeft(this.answer4, this.backInterface);
 
     this.answer1.y -= 230;
     answer1.x += 140;
@@ -89,8 +89,8 @@ class MCQInterface extends Phaser.Scene {
 
     //Creation of the events about the right and wrong answers
     this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on("right_answer", this.right_answer_handler, this);
-    this.emitter.on("wrong_answer", this.wrong_answer_handler, this);
+    this.emitter.on("rightAnswer", this.rightAnswerHandler, this);
+    this.emitter.on("wrongAnswer", this.wrongAnswerHandler, this);
 
     const KeyK = this.input.keyboard.addKey("k");
     this.KeyK = KeyK;
@@ -111,8 +111,8 @@ class MCQInterface extends Phaser.Scene {
   update() {
     // TODO: RETIRER AVANT LA FIN DU PROJET
     if (this.KeyK.isDown) {
-      const scene_level = this.game.scene.getScene(this.currentScene);
-      scene_level.emitter.emit("open_doors");
+      const sceneLevel = this.game.scene.getScene(this.currentScene);
+      sceneLevel.emitter.emit("openDoors");
       this.currentBoss.disable(true);
       this.exitMCQ();
     }
@@ -158,8 +158,8 @@ class MCQInterface extends Phaser.Scene {
       this.currentBoss.disable(true);
 
       //the doors to the next room open
-      const scene_level = this.game.scene.getScene(this.currentScene);
-      scene_level.emitter.emit("open_doors");
+      const sceneLevel = this.game.scene.getScene(this.currentScene);
+      sceneLevel.emitter.emit("openDoors");
 
       this.exitMCQ();
     }
@@ -169,7 +169,7 @@ class MCQInterface extends Phaser.Scene {
    * Is triggered when an answer is correct
    * @return {void}
    */
-  right_answer_handler() {
+  rightAnswerHandler() {
     console.log("right answer");
 
     //the player is momentarily prevented from interacting with the answers
@@ -192,19 +192,19 @@ class MCQInterface extends Phaser.Scene {
    * Is triggered when an answer is wrong
    * @return {void}
    */
-  wrong_answer_handler() {
+  wrongAnswerHandler() {
     console.log("wrong answer");
 
     //the player is momentarily prevented from interacting with the answers
     this.changeInteractivity();
-    const scene_level = this.game.scene.getScene(this.currentScene);
+    const sceneLevel = this.game.scene.getScene(this.currentScene);
 
     //wait a second before returning to the game scene
     const timedEvent = this.time.delayedCall(
       1000,
       () => {
         this.currentBoss.disable(false);
-        scene_level.emitter.emit("time_malus"), this.exitMCQ();
+        sceneLevel.emitter.emit("timeMalus"), this.exitMCQ();
       },
       [],
       this

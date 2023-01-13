@@ -12,7 +12,7 @@ class DBQueries {
       if (xhr.readyState == 4 && xhr.status == 200) {
         var response = xhr.responseText;
         const MyJsonClue = JSON.parse(response);
-        that.clue_text.text = MyJsonClue[0].CONTENUE;
+        that.clueText.text = MyJsonClue[0].CONTENUE;
       }
     };
     xhr.open("POST", "src/clue.php", true);
@@ -25,7 +25,7 @@ class DBQueries {
    * @return {void}
    */
   static sendScoresRequest(that, roof) {
-    that.highscore_text.text = "";
+    that.textHighscore.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
     xhr.open("POST", "src/highscore.php", true);
@@ -37,11 +37,11 @@ class DBQueries {
         console.log("response: " + response);
         const myJsonScores = JSON.parse(response);
         if (myJsonScores.length == 0) {
-          that.highscore_text.text = "Aucun score :(";
+          that.textHighscore.text = "Aucun score :(";
         } else {
           for (let index = 0; index < myJsonScores.length; index++) {
             if (index == 0) {
-              that.highscore_text.text +=
+              that.textHighscore.text +=
                 "1ER  " +
                 myJsonScores[index].ID_JOUEUR +
                 "   " +
@@ -49,7 +49,7 @@ class DBQueries {
                 " sec";
             } else {
               var place = index + 1;
-              that.highscore_text.text +=
+              that.textHighscore.text +=
                 "\n" +
                 place +
                 "EME " +

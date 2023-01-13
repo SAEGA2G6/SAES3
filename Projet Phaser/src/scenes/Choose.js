@@ -9,7 +9,7 @@ class Choose extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    const arrow_back = this.add.image(100, 100, "arrow_back")
+    const arrowBack = this.add.image(100, 100, "arrow_back")
     .setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.scene.start("Menu");
       this.scene.stop();
@@ -33,7 +33,7 @@ class Choose extends Phaser.Scene {
   }
 
   chooseLevel() {
-    const msg_chooseLevel = this.add.text(400, 150, "CHOISIS TON ETAGE", {}).setDepth(5)
+    const textChooseLevel = this.add.text(400, 150, "CHOISIS TON ETAGE", {}).setDepth(5)
       .setOrigin(0.5)
       .setStyle({
         fontFamily: "retro-computer",
@@ -86,7 +86,7 @@ class Choose extends Phaser.Scene {
 
 
   chooseCharacter() {
-    const msg_chooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {})
+    const textChooseCharacter = this.add.text(400, 150, "CHOISIS TON PERSONNAGE", {})
     .setDepth(5)
     .setOrigin(0.5)
     .setStyle({
@@ -99,6 +99,19 @@ class Choose extends Phaser.Scene {
     .setStrokeStyle(4, 0x56A0D3);
     const back2 = this.add.rectangle(460, 300, 100, 148, 0xF3E6D8)
     .setStrokeStyle(4, 0xF773D6);
+
+    const inputText = this.add.rexInputText(400, 450, {
+      type: 'textarea',
+      text: '',
+      fontSize: '20px',
+      placeholder: 'pseudo',
+      minLength: 1,
+      maxLength: 10,
+      align: 'center',
+
+    })
+      .resize(250, 100)
+      .setOrigin(0.5, 0.5);
 
     const player1 = this.add.sprite(0, 0, "player")
     .setScale(2)
@@ -124,26 +137,13 @@ class Choose extends Phaser.Scene {
     Phaser.Display.Align.In.Center(player2, back2);
 
 
-    const male_symbol = this.add.image(0, 0, "male-symbol")
+    const maleSymbol = this.add.image(0, 0, "male-symbol")
     .setOrigin(1,0).setScale(0.025);
 
-    const female_symbol = this.add.image(0, 0, "female-symbol")
+    const femaleSymbol = this.add.image(0, 0, "female-symbol")
     .setOrigin(1,0).setScale(0.025);
 
-    Phaser.Display.Align.In.TopRight(male_symbol, back1);
-    Phaser.Display.Align.In.TopRight(female_symbol, back2);
-
-    const inputText = this.add.rexInputText(400, 450, {
-      type: 'textarea',
-      text: '',
-      fontSize: '20px',
-      placeholder: 'pseudo',
-      minLength: 1,
-      maxLength: 10,
-      align: 'center',
-
-    })
-      .resize(250, 100)
-      .setOrigin(0.5, 0.5);
+    Phaser.Display.Align.In.TopRight(maleSymbol, back1);
+    Phaser.Display.Align.In.TopRight(femaleSymbol, back2);
   }
 }
