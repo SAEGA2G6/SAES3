@@ -15,6 +15,7 @@ class DBQueries {
         that.clueText.text = MyJsonClue[0].CONTENUE;
       }
     };
+    console.log("ClueID: " + that.clueId);
     xhr.open("POST", "src/clue.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("clueID=" + that.clueId);
