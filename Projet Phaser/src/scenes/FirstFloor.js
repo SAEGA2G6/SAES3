@@ -332,7 +332,7 @@ class FirstFloor extends Phaser.Scene {
       if(this.isGameOver()) {
         this.getScore();
         DBQueries.sendInsertScoreRequest(this);
-        this.scene.start("Menu");
+        this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'1er étage'", playerChrono: this.player.score, playerGender: this.playerGender});
         this.scene.stop();
       }
       ///LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES)

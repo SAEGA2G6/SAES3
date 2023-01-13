@@ -268,6 +268,7 @@ class MCQInterface extends Phaser.Scene {
   }
 
   exitMCQ() {
+    //TODO: faire une méthode pour reset la vitesse du joueur
     this.currentScene.player.velocity = this.currentScene.player.baseVelocity;
     //we stop this scene which is then reset
     this.scene.stop();
