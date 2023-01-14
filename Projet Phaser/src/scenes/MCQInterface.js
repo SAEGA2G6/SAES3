@@ -114,13 +114,11 @@ class MCQInterface extends Phaser.Scene {
    * @return {void}
    */
     nextQuestion() {
-      console.log("--------------Next question--------------");
       this.myJsonQA = MCQInterface.myJsonQA;
   
       this.resetRightAnswer();
       if (this.currentQuestionNb < this.myJsonQA.length) {
-        console.log("question n°" + this.currentQuestionNb);
-  
+
         /// the question and answers are assigned to the respective texts that will be displayed ///
         this.question.text = this.myJsonQA[this.currentQuestionNb].Enoncer;
         this.answer1.text = this.myJsonQA[this.currentQuestionNb].Reponse1;
@@ -136,10 +134,6 @@ class MCQInterface extends Phaser.Scene {
         /// the question number is incremented for the next ///
         this.currentQuestionNb++;
       } else {
-        console.log(
-          "end of questions: the player has answered the MCQ correctly"
-        );
-  
         /// the player is prevented from interacting with this boss again ///
         this.currentBoss.disable(true);
   
@@ -156,8 +150,6 @@ class MCQInterface extends Phaser.Scene {
      * @return {void}
      */
     rightAnswerHandler() {
-      console.log("right answer");
-  
       /// the player is momentarily prevented from interacting with the answers ///
       this.changeInteractivity();
   
@@ -179,8 +171,6 @@ class MCQInterface extends Phaser.Scene {
      * @return {void}
      */
     wrongAnswerHandler() {
-      console.log("wrong answer");
-  
       /// the player is momentarily prevented from interacting with the answers ///
       this.changeInteractivity();
       const sceneLevel = this.game.scene.getScene(this.currentScene);

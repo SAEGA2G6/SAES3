@@ -18,11 +18,9 @@ class Choose extends Phaser.Scene {
 
     if(this.chooseOption == "Level") {
       this.chooseLevel();
-      console.log("choosing level");
     }
     else if(this.chooseOption == "Character") {
       this.chooseCharacter();
-      console.log("choosing character");
     }
 
     this.events.emit("scene-awake");

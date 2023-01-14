@@ -45,8 +45,6 @@ class GroundFloor extends Phaser.Scene {
     const player = new Player(this, 352, 918, this.playerGender, this.playerPseudo).setDepth(1);
     this.player = player;
 
-    console.log("pseudo: " + player.pseudo)
-
     ///////////// PROF/BOSS /////////////
 
     const prof1 = new DialogObject(
@@ -284,7 +282,6 @@ class GroundFloor extends Phaser.Scene {
 
   ///////////// EVENTS HANDLERS /////////////
   openDoorsHandler() {
-    console.log("room num: " + this.currentNbRoom);
     if (this.currentNbRoom < this.nbRooms) {
       for (
         var i = 0;
@@ -295,7 +292,6 @@ class GroundFloor extends Phaser.Scene {
       }
     }
     this.currentNbRoom++;
-    console.log("portes de la salle " + this.currentNbRoom + " ouvertes");
   }
 
   malusChrono() {

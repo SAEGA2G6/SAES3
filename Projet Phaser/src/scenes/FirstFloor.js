@@ -282,7 +282,6 @@ class FirstFloor extends Phaser.Scene {
   
     ///////////// EVENTS HANDLERS /////////////
     openDoorsHandler() {
-      console.log("room num: " + this.currentNbRoom);
       if (this.currentNbRoom < this.nbRooms) {
         for (
           var i = 0;
@@ -293,7 +292,6 @@ class FirstFloor extends Phaser.Scene {
         }
       }
       this.currentNbRoom++;
-      console.log("portes de la salle " + this.currentNbRoom + " ouvertes");
     }
   
     malusChrono() {

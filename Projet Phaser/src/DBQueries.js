@@ -15,7 +15,6 @@ class DBQueries {
         that.clueText.text = MyJsonClue[0].CONTENUE;
       }
     };
-    console.log("ClueID: " + that.clueId);
     xhr.open("POST", "src/clue.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("clueID=" + that.clueId);
@@ -34,7 +33,6 @@ class DBQueries {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
         var response = xhr.responseText;
-        console.log("response: " + response);
         const myJsonScores = JSON.parse(response);
         if (myJsonScores.length == 0) {
           that.textHighscore.text = "Aucun score :(";
@@ -101,9 +99,6 @@ class DBQueries {
 
     xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log(
-      that.player.pseudo + " " + that.player.score + " " + that.levelPrefix
-    );
     xhr.send(
       "pseudo=" +
         that.player.pseudo +
