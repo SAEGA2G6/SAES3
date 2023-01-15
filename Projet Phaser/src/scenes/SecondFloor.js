@@ -210,7 +210,7 @@ class SecondFloor extends Phaser.Scene {
       this,
       1872,
       45,
-      "eleve4",
+      "eleve2",
       "Appuyer sur ESPACE pour parler à l'élève",
       "e2_r2_3",
       "clue"
@@ -255,7 +255,7 @@ class SecondFloor extends Phaser.Scene {
       1070,
       710,
       "eleve1",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour parler à l'élève",
       "e2_r4_1",
       "clue"
     );
@@ -307,7 +307,7 @@ class SecondFloor extends Phaser.Scene {
       1390,
       710,
       "eleve2",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour parler à l'élève",
       "e2_r5_3",
       "clue"
     );
@@ -339,7 +339,7 @@ class SecondFloor extends Phaser.Scene {
       1904,
       902,
       "eleve3",
-      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "Appuyer sur ESPACE pour parler à l'élève",
       "e2_r6_3",
       "clue"
     );
