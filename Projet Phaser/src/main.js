@@ -1,8 +1,8 @@
 window.addEventListener("load", function () {
   var game = new Phaser.Game({
-    parent: 'phaser-example',
+    parent: "phaser-input",
     dom: {
-      createContainer: true
+      createContainer: true,
     },
     width: 800,
     height: 600,
@@ -20,7 +20,6 @@ window.addEventListener("load", function () {
       },
     },
   });
-
 
   game.scene.add("Preload", Preload);
   game.scene.add("Menu", Menu);

@@ -1,63 +1,55 @@
 class UserComponent {
+  /**
+   * @param {Phaser.GameObjects.GameObject} gameObject The entity.
+   */
+  constructor(gameObject) {
+    this.scene = gameObject.scene;
 
-    /**
-     * @param {Phaser.GameObjects.GameObject} gameObject The entity.
-     */
-    constructor(gameObject) {
+    const listenAwake = this.awake !== UserComponent.prototype.awake;
+    const listenStart = this.start !== UserComponent.prototype.start;
+    const listenUpdate = this.update !== UserComponent.prototype.update;
+    const listenDestroy = this.destroy !== UserComponent.prototype.destroy;
 
-        this.scene = gameObject.scene;
+    if (listenAwake) {
+      this.scene.events.once("scene-awake", this.awake, this);
+    }
 
-        const listenAwake = this.awake !== UserComponent.prototype.awake;
-        const listenStart = this.start !== UserComponent.prototype.start;
-        const listenUpdate = this.update !== UserComponent.prototype.update;
-        const listenDestroy = this.destroy !== UserComponent.prototype.destroy;
-        
-        if (listenAwake) {
+    if (listenStart) {
+      this.scene.events.once(Phaser.Scenes.Events.UPDATE, this.start, this);
+    }
 
-            this.scene.events.once("scene-awake", this.awake, this);
+    if (listenUpdate) {
+      this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+    }
+
+    if (listenStart || listenUpdate || listenDestroy) {
+      gameObject.on(Phaser.GameObjects.Events.DESTROY, () => {
+        this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.start, this);
+        this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
+
+        if (listenDestroy) {
+          this.destroy();
         }
-
-        if (listenStart) {
-
-            this.scene.events.once(Phaser.Scenes.Events.UPDATE, this.start, this);
-        }
-
-        if (listenUpdate) {
-
-            this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
-        }
-
-        if (listenStart || listenUpdate || listenDestroy) {
-
-            gameObject.on(Phaser.GameObjects.Events.DESTROY, () => {
-
-                this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.start, this);
-                this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
-
-                if (listenDestroy) {
-
-                    this.destroy();
-                }
-            });
-        }
+      });
     }
+  }
 
-    /** @type {Phaser.Scene} */
-    scene;
+  /** @type {Phaser.Scene} */
+  scene;
 
-    awake() {
-        // override this
-    }
+  awake() {
+    // override this
+  }
 
-    start() {
-        // override this
-    }
+  start() {
+    // override this
+  }
 
-    update() {
-        // override this
-    }
+  update() {
+    // override this
+  }
 
-    destroy() {
-        // override this
-    }
+  destroy() {
+    // override this
+  }
 }

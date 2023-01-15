@@ -1,4 +1,7 @@
 class Menu extends Phaser.Scene {
+  /**
+   * Scene that displays the menu.
+   */
   constructor() {
     super("Menu");
   }
@@ -8,7 +11,6 @@ class Menu extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-
     const carte = this.make.tilemap({ key: "map" });
 
     const tilesetsList = [
@@ -33,14 +35,17 @@ class Menu extends Phaser.Scene {
       .createLayer("Calque de Tuiles 2", tilesetsList, 0, 0)
       .setDepth(0);
 
-
     this.placeMenuItems();
 
     this.events.emit("scene-awake");
   }
 
   preload() {
-    this.load.plugin('rexinputtextplugin', 'lib/rexinputtextplugin.min.js', true);
+    this.load.plugin(
+      "rexinputtextplugin",
+      "lib/rexinputtextplugin.min.js",
+      true
+    );
   }
 
   create() {
@@ -52,10 +57,9 @@ class Menu extends Phaser.Scene {
    * @return {void}
    */
   placeMenuItems() {
-    // Ajout du logo du MENU
     const backMenu = this.add.image(400, 300, "menuDemarrage");
 
-    // HIGHSCORE TEXT
+    /// HIGHSCORE TEXT ///
     const textHighscore = this.add.text(400, 325, "", {});
     textHighscore.setOrigin(0.5, 0.5);
     textHighscore.text = "HIGHSCORE";
@@ -65,7 +69,7 @@ class Menu extends Phaser.Scene {
       color: "white",
     });
 
-    // START TEXT
+    /// START TEXT ///
     const textStart = this.add.text(400, 425, "", {});
     textStart.setOrigin(0.5, 0.5);
     textStart.text = "START";
@@ -76,8 +80,8 @@ class Menu extends Phaser.Scene {
     });
     this.textStart = textStart;
 
-    // START GAME AND HIGHSCORE 
-    new TextColor(textStart, "Choose", {chooseOption: "Level"});
+    /// START GAME AND HIGHSCORE ///
+    new TextColor(textStart, "Choose", { chooseOption: "Level" });
     new TextColor(textHighscore, "Highscore");
   }
 }

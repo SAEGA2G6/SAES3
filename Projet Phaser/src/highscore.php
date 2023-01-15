@@ -9,7 +9,7 @@ catch(Exception $e)
     die('Erreur : '.$e->getMessage());
 }
 $req = $pdo->prepare('SELECT * FROM SCORE WHERE ETAGE = ? ORDER BY score');
-$req->execute(array($_POST['roof']));
+$req->execute(array($_POST['floor']));
 
 // Récupération des résultats sous forme de tableau associatif
 $rows = array();

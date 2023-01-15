@@ -15,7 +15,6 @@ class DBQueries {
         that.clueText.text = MyJsonClue[0].CONTENUE;
       }
     };
-    console.log("ClueID: " + that.clueId);
     xhr.open("POST", "src/clue.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("clueID=" + that.clueId);
@@ -25,7 +24,7 @@ class DBQueries {
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-  static sendScoresRequest(that, roof) {
+  static sendScoresRequest(that, floor) {
     that.textHighscore.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
@@ -33,9 +32,7 @@ class DBQueries {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // Traitez la réponse ici
         var response = xhr.responseText;
-        console.log("response: " + response);
         const myJsonScores = JSON.parse(response);
         if (myJsonScores.length == 0) {
           that.textHighscore.text = "Aucun score :(";
@@ -65,7 +62,7 @@ class DBQueries {
     };
     xhr.open("POST", "src/highscore.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("roof=" + roof);
+    xhr.send("floor=" + floor);
   }
 
   /**
@@ -102,9 +99,6 @@ class DBQueries {
 
     xhr.open("POST", "src/score.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log(
-      that.player.pseudo + " " + that.player.score + " " + that.levelPrefix
-    );
     xhr.send(
       "pseudo=" +
         that.player.pseudo +
