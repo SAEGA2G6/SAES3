@@ -57,35 +57,47 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
   }
 
-    /**
-   * Enable or disable the dialog object. This prevents the player to interact with the dialog object
+  /**
+   * Enable or disable the dialog object. This prevents the player to interact with the dialog object.
    * @param {boolean} enableDialogObject
    */
-    disable(enableDialogObject) {
-      this.isEnable = !enableDialogObject;
-    }
+  disable(enableDialogObject) {
+    this.isEnable = !enableDialogObject;
+  }
 
+  /**
+   * update the DialogObject (see if the player is close enough to interact with it...).
+   * @return {void}
+   */
   update() {
-    if (Phaser.Math.Distance.BetweenPoints(this, this.scene.player) < 40 && this.isEnable) {
+    if (
+      Phaser.Math.Distance.BetweenPoints(this, this.scene.player) < 40 &&
+      this.isEnable
+    ) {
       this.textDialog.visible = true;
       this.textBox.visible = true;
 
       if (this.KeySpace.isDown && this.dialogType === "mcq") {
         this.disable(true);
-        const sceneMCQInterface = this.scene.game.scene.getScene("MCQInterface");
+        const sceneMCQInterface =
+          this.scene.game.scene.getScene("MCQInterface");
         sceneMCQInterface.currentBoss = this;
         this.scene.scene.launch("MCQInterface", { currentScene: this.scene });
-
       } else if (this.KeySpace.isDown && this.dialogType === "clue") {
         this.disable(true);
         const sceneClue = this.scene.game.scene.getScene("Clue");
         sceneClue.currentClue = this;
         sceneClue.clueId = this.clueId;
-        if(this.texture === "pcAllume") {
-          this.scene.scene.launch("Clue", { currentScene: this.scene, supportTexture: "ordinateur"});
-        }
-        else {
-          this.scene.scene.launch("Clue", { currentScene: this.scene, supportTexture: "papier"});
+        if (this.texture === "pcAllume") {
+          this.scene.scene.launch("Clue", {
+            currentScene: this.scene,
+            supportTexture: "ordinateur",
+          });
+        } else {
+          this.scene.scene.launch("Clue", {
+            currentScene: this.scene,
+            supportTexture: "papier",
+          });
         }
       }
     } else {

@@ -24,7 +24,7 @@ class DBQueries {
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-  static sendScoresRequest(that, roof) {
+  static sendScoresRequest(that, floor) {
     that.textHighscore.text = "";
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
@@ -62,7 +62,7 @@ class DBQueries {
     };
     xhr.open("POST", "src/highscore.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("roof=" + roof);
+    xhr.send("floor=" + floor);
   }
 
   /**

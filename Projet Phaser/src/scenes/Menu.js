@@ -1,4 +1,7 @@
 class Menu extends Phaser.Scene {
+  /**
+   * Scene that displays the menu.
+   */
   constructor() {
     super("Menu");
   }
@@ -8,7 +11,6 @@ class Menu extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-
     const carte = this.make.tilemap({ key: "map" });
 
     const tilesetsList = [
@@ -33,14 +35,17 @@ class Menu extends Phaser.Scene {
       .createLayer("Calque de Tuiles 2", tilesetsList, 0, 0)
       .setDepth(0);
 
-
     this.placeMenuItems();
 
     this.events.emit("scene-awake");
   }
 
   preload() {
-    this.load.plugin('rexinputtextplugin', 'lib/rexinputtextplugin.min.js', true);
+    this.load.plugin(
+      "rexinputtextplugin",
+      "lib/rexinputtextplugin.min.js",
+      true
+    );
   }
 
   create() {
@@ -76,7 +81,7 @@ class Menu extends Phaser.Scene {
     this.textStart = textStart;
 
     /// START GAME AND HIGHSCORE ///
-    new TextColor(textStart, "Choose", {chooseOption: "Level"});
+    new TextColor(textStart, "Choose", { chooseOption: "Level" });
     new TextColor(textHighscore, "Highscore");
   }
 }

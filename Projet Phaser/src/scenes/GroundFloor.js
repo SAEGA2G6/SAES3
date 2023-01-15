@@ -1,11 +1,14 @@
 class GroundFloor extends Phaser.Scene {
-
+  /**
+   * Scene corresponding to the ground floor level.
+   * @param {*} data Object containing data essential to the functioning of the level (player gender, player'nickname/pseudo).
+   */
   init(data) {
     this.playerGender = data.texture;
     this.playerPseudo = data.pseudo;
     this.currentNbRoom = 1;
     this.nbRooms = 4;
-    this.levelPrefix = "rc"
+    this.levelPrefix = "rc";
   }
 
   /** @returns {void} */
@@ -42,7 +45,13 @@ class GroundFloor extends Phaser.Scene {
       .setDepth(2);
 
     ///////////// PLAYER /////////////
-    const player = new Player(this, 352, 918, this.playerGender, this.playerPseudo).setDepth(1);
+    const player = new Player(
+      this,
+      352,
+      918,
+      this.playerGender,
+      this.playerPseudo
+    ).setDepth(1);
     this.player = player;
 
     ///////////// PROF/BOSS /////////////
@@ -118,9 +127,7 @@ class GroundFloor extends Phaser.Scene {
 
     const doorBoss = new Door(this, 752, 673, "simpleporte", false);
 
-
     ///////////// CLUES /////////////
-
 
     ///////////// ROOM 1 /////////////
     const pcOn1Room1 = new DialogObject(
@@ -139,7 +146,8 @@ class GroundFloor extends Phaser.Scene {
       625,
       110,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r1_2",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r1_2",
       "clue"
     );
 
@@ -148,36 +156,42 @@ class GroundFloor extends Phaser.Scene {
       305,
       80,
       "papiers",
-      "Appuyer sur ESPACE pour regarder les notes...", "rc_r1_3",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "rc_r1_3",
       "clue"
     );
 
     ///////////// ROOM 2 /////////////
-      const pcOn1Room2 = new DialogObject(
-        this,
-        1040,
-        240,
-        "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r2_1",
-        "clue"
-      );
-   
-      const pcOn2Room2 = new DialogObject(
+    const pcOn1Room2 = new DialogObject(
+      this,
+      1040,
+      240,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r2_1",
+      "clue"
+    );
+
+    const pcOn2Room2 = new DialogObject(
       this,
       750,
       146,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r2_2",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r2_2",
       "clue"
     );
     pcOn2Room2.flipX = true;
 
-      const binRoom2 = new DialogObject(
-        this, 1075, 400,
-        "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle", "rc_r2_3", 
-        "clue"
-      );
+    const binRoom2 = new DialogObject(
+      this,
+      1075,
+      400,
+      "poubelleSprite",
+      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "rc_r2_3",
+      "clue"
+    );
 
     ///////////// ROOM 3 /////////////
 
@@ -186,55 +200,63 @@ class GroundFloor extends Phaser.Scene {
       1775,
       112,
       "pcAllume",
-      "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r3_1",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r3_1",
       "clue"
     );
     pcOnRoom3.flipX = true;
 
-      const binRoom3 = new DialogObject(
-        this, 1580, 400,
-        "poubelleSprite",
-        "Appuyer sur ESPACE pour fouiller la poubelle", "rc_r3_2",
-        "clue"
-      );
+    const binRoom3 = new DialogObject(
+      this,
+      1580,
+      400,
+      "poubelleSprite",
+      "Appuyer sur ESPACE pour fouiller la poubelle",
+      "rc_r3_2",
+      "clue"
+    );
 
-      const papersRoom3 = new DialogObject(
-        this,
-        1937,
-        262,
-        "papiers",
-        "Appuyer sur ESPACE pour regarder les notes...", "rc_r3_3",
-        "clue"
-      );
+    const papersRoom3 = new DialogObject(
+      this,
+      1937,
+      262,
+      "papiers",
+      "Appuyer sur ESPACE pour regarder les notes...",
+      "rc_r3_3",
+      "clue"
+    );
 
     ///////////// ROOM 4 /////////////
 
-      const pcOnRoom4 = new DialogObject(
-        this,
-        1810,
-        623,
-        "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_1",
-        "clue"
-      );
+    const pcOnRoom4 = new DialogObject(
+      this,
+      1810,
+      623,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r4_1",
+      "clue"
+    );
 
-      const pcOn2Room4 = new DialogObject(
-        this,
-        1905,
-        912,
-        "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_2",
-        "clue"
-      );
+    const pcOn2Room4 = new DialogObject(
+      this,
+      1905,
+      912,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r4_2",
+      "clue"
+    );
 
-      const pcOn3Room4 = new DialogObject(
-        this,
-        1776,
-        815,
-        "pcAllume",
-        "Appuyer sur ESPACE pour regarder l'ordinateur...", "rc_r4_3",
-        "clue"
-      );
+    const pcOn3Room4 = new DialogObject(
+      this,
+      1776,
+      815,
+      "pcAllume",
+      "Appuyer sur ESPACE pour regarder l'ordinateur...",
+      "rc_r4_3",
+      "clue"
+    );
 
     ///////////// COLLISIONS /////////////
     calque1.setCollisionByProperty({ estSolide: true });
@@ -242,15 +264,27 @@ class GroundFloor extends Phaser.Scene {
     calque3.setCollisionByProperty({ estSolide: true });
 
     const colliderList = [
-      calque1,calque2,calque3,
-      prof1,prof2,prof3,prof4,
-      doorRoom2_1,doorRoom2_2,
-      doorRoom3_1,doorRoom3_2,
-      doorRoom4_1,doorRoom4_2,
-      doorOffice1, doorOffice2,
-      doorOffice3,doorOffice4,
-      doorSecretariat,doorBoss,
-      binRoom2, binRoom3
+      calque1,
+      calque2,
+      calque3,
+      prof1,
+      prof2,
+      prof3,
+      prof4,
+      doorRoom2_1,
+      doorRoom2_2,
+      doorRoom3_1,
+      doorRoom3_2,
+      doorRoom4_1,
+      doorRoom4_2,
+      doorOffice1,
+      doorOffice2,
+      doorOffice3,
+      doorOffice4,
+      doorSecretariat,
+      doorBoss,
+      binRoom2,
+      binRoom3,
     ];
     this.physics.add.collider(player, colliderList);
 
@@ -279,8 +313,11 @@ class GroundFloor extends Phaser.Scene {
     this.events.emit("scene-awake");
   }
 
-
   ///////////// EVENTS HANDLERS /////////////
+  /**
+   * Open the doors to the next room
+   * @return {void}
+   */
   openDoorsHandler() {
     if (this.currentNbRoom < this.nbRooms) {
       for (
@@ -294,10 +331,13 @@ class GroundFloor extends Phaser.Scene {
     this.currentNbRoom++;
   }
 
+  /**
+   * Apply the chronometer's malus
+   * @return {void}
+   */
   malusChrono() {
     this.chronometer.malusChrono();
   }
-
 
   ///////////// ENDGAME /////////////
   /**
@@ -308,12 +348,12 @@ class GroundFloor extends Phaser.Scene {
     return this.currentNbRoom > this.nbRooms;
   }
 
-    /**
+  /**
    * Gives the player's score, which is the time it took to complete all the MCQs
    */
-    getScore() {
-      this.player.score = this.chronometer.chrono;
-    }
+  getScore() {
+    this.player.score = this.chronometer.chrono;
+  }
 
   ///////////// CREATE /////////////
   create() {
@@ -321,12 +361,22 @@ class GroundFloor extends Phaser.Scene {
   }
 
   ///////////// UPDATE /////////////
+
+  /**
+   * Update the first floor (to detect when the game is over and update the objects in the scene).
+   * @return {void}
+   */
   update() {
     /// CHECK IF GAME IS OVER ///
-    if(this.isGameOver()) {
+    if (this.isGameOver()) {
       this.getScore();
       DBQueries.sendInsertScoreRequest(this);
-      this.scene.start("GameOver", {pseudo: this.playerPseudo, roof: "'rez-de-chaussée'", playerChrono: this.player.score, playerGender: this.playerGender});
+      this.scene.start("GameOver", {
+        pseudo: this.playerPseudo,
+        floor: "'rez-de-chaussée'",
+        playerChrono: this.player.score,
+        playerGender: this.playerGender,
+      });
       clearInterval(this.chronometer.intervalChrono);
       this.scene.stop();
     }
