@@ -188,7 +188,7 @@ class SecondFloor extends Phaser.Scene {
 
       const eleveRoom2 = new DialogObject(
         this, 1872, 45,
-        "eleve4",
+        "eleve1",
         "Appuyer sur ESPACE pour parler à l'élève","e2_r2_3",
         "clue"
       );
