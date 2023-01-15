@@ -36,7 +36,7 @@ class Clue extends Phaser.Scene {
     if (this.supportTexture === "ordinateur") {
       support.setScale(1.5);
       clueText.setStyle({
-        fontSize: "20px",
+        fontSize: "19px",
         color: "white",
         wordWrap: { width: 500 },
       });
