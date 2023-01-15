@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
   var game = new Phaser.Game({
-    parent: "phaser-example",
+    parent: "phaser-input",
     dom: {
       createContainer: true,
     },
