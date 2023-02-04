@@ -15,7 +15,7 @@ class Presentation extends Phaser.Scene {
     const introTab = [
       "Bonjour, je m'appelle Mr Povrhr !",
       "Bienvenue sur notre jeu vidéo, Aix’ploration !\nCe jeu a été développé pour un projet (SAE) de 2ème année.",
-      "L’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique.",
+      "L’objectif de ce jeu est de faire découvrir aux étudiants les différents débouchés professionnels disponibles à la sortie du BUT Informatique.",
       "Il sert aussi à découvrir les matières et les parcours disponibles durant cette période d’études, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.",
       "Hé oui ! Nous avons modélisé notre IUT en 2D pour pouvoir se déplacer dedans dans le jeu !\nPour se déplacer, il vous faudra utiliser les flèches directionnelles.",
       "Tu peux aussi utiliser <Espace> pour interagir avec les objets et les personnages (et <Echap> pour fermer les interfaces).",
@@ -35,7 +35,7 @@ class Presentation extends Phaser.Scene {
     const introTab = [
       "Bonjour, je m'appelle Mr Povrhr !",
       "Bienvenue sur notre jeu vidéo, Aix’ploration !\nCe jeu a été développé pour un projet (SAE) de 2ème année.",
-      "L’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique.",
+      "L’objectif de ce jeu est de faire découvrir aux étudiants les différents débouchés professionnels disponibles à la sortie du BUT Informatique.",
       "Il sert aussi à découvrir les matières et les parcours disponibles durant cette période d’études, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.",
       "Hé oui ! Nous avons modélisé notre IUT en 2D pour pouvoir se déplacer dedans dans le jeu !\nPour se déplacer, il vous faudra utiliser les flèches directionnelles.",
       "Tu peux aussi utiliser <Espace> pour interagir avec les objets et les personnages (et <Echap> pour fermer les interfaces).",
@@ -44,14 +44,14 @@ class Presentation extends Phaser.Scene {
     ];
 
     const introTabResponse = [
-      "Bonjour !",
-      "Whoo trop stylé !",
-      "C'est tout ?",
-      "Au sein de l'IUT?",
-      "OK !",
-      "OK j'ai compris.",
-      "Oki oki !",
-      "Parfait ! Merci pour tout !",
+      "[Bonjour !]",
+      "[Whoo trop stylé !]",
+      "[C'est tout ?]",
+      "[Au sein de l'IUT ?]",
+      "[OK !]",
+      "[OK j'ai compris.]",
+      "[Oki oki !]",
+      "[Parfait ! Merci pour tout !]",
     ];
 
     this.introTab = introTab;
@@ -92,6 +92,16 @@ class Presentation extends Phaser.Scene {
     arrow.angle = 180;
     this.arrow = arrow;
 
+    const skipText = this.add.text(700, 125, "", {});
+    skipText.setOrigin(0.5, 0.5);
+    skipText.text = "Tout passer";
+    skipText.setStyle({
+      fontFamily: "spacemono-regular",
+      fontSize: "15px",
+      color: "WHITE",
+      wordWrap: { width: 600 },
+    });
+
     const introTextResponse = this.add.text(400, 250, "", {});
     introTextResponse.setOrigin(0.5, 0.5);
     introTextResponse.text = "START";
@@ -103,6 +113,8 @@ class Presentation extends Phaser.Scene {
     });
     introTextResponse
       .setInteractive({ useHandCursor: true })
+      .on("pointerover", () => introTextResponse.setStyle({ fill: "GRAY" }))
+      .on("pointerout", () => introTextResponse.setStyle({ fill: "WHITE" }))
       .on("pointerdown", () => {
         this.nextText();
       });
