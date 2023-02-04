@@ -6,21 +6,6 @@ class Presentation extends Phaser.Scene {
   init(data) {
     this.data = data;
   }
-  
-    /** @returns {void} */
-    editorPreload() {}
-  
-    /** @returns {void} */
-    editorCreate() {
-      const introTab = 
-      [
-        "Bonjour et bienvenue surs notre jeu vidéo, Aix’ploration, développé pour la SAE de 2ème année.\nL’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique, mais aussi les matières et les parcours disponibles durant cette période d’étude, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.\nPour se déplacer, il vous faudra utiliser les flèches directionnelles, et utiliser espace pour interagir avec les objets ou PNJ (échap pour fermer les interfaces).\nChaque salle portera sur un sujet précis, et sera composée d''indices disséminés un peu partout dans la salle et d’un PNJ bien visible qui vous posera des questions. Les indices sont indispensables pour répondre à celles-ci.\nVotre performance sera chronométrée et chaque mauvaise réponse augmentera votre temps à la fin de la partie. Si votre résultat figure parmi les 10 meilleurs, alors il sera affiché dans la partie “Highscore” dans l’écran d’accueil.\n",
-       "Le BUT Informatique est un diplôme national dont l’objectif est de former des informaticiens généralistes.\nCeux-ci participent à la réalisation , la conception et la mise en oeuvre de solutions informatiques diverses et variées.\nLes informaticiens issus de cette formation possèdent des compétences à la fois théoriques et pratiques leur permettant d’envisager une insertion professionnelle immédiate ou une poursuite d’études.\nLes cours seront dispensés en 3 volets distincts : les CM (cours magistraux se déroulant dans les amphis), les TD (se déroulant en salle de classe ou salle machine) et les TP (se déroulant en demi-groupe, principalement en salle machine)."
-      ]
-      this.introTab = introTab;
-      var introIterator = 0;
-      this.introIterator = introIterator;
-    }
 
   /** @returns {void} */
   editorPreload() {}
@@ -28,12 +13,52 @@ class Presentation extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     const introTab = [
-      "Bonjour et bienvenue surs notre jeu vidéo, Aix’ploration, développé pour la SAE de 2ème année.\nL’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique, mais aussi les matières et les parcours disponibles durant cette période d’étude, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.\nPour se déplacer, il vous faudra utiliser les flèches directionnelles, et utiliser espace pour interagir avec les objets ou pnj (échap pour fermer les interfaces).\nChaque salle portera sur un sujet précis, et sera composée d''indices disséminés un peu partout dans la salle et d’un pnj bien visible qui vous posera des questions. Les indices sont indispensables pour répondre à ces questions.\nVotre performance sera chronométrée et chaque mauvaise réponse augmentera votre temps à la fin de la partie. Si votre temps à la fin de la partie, figure parmis les 3 meilleurs, alors il sera affiché dans la partie “Highscore” dans l’écran d’accueil.\n",
-      "Le BUT Informatique est un diplôme national dont l’objectif est de former des informaticiens généralistes.\nCeux-ci participent à la réalisation , la conception et la mise en œuvre de solutions informatiques diverses et variées.\nLes informaticiens issus de cette formation possèdent des compétences à la fois théoriques et pratiques leur permettant d’envisager une insertion professionnelle immédiate ou une poursuite d’étude.\nLes cours seront composés en 3 types distincts : les CM (cours magistraux se déroulant dans les amphi), les TD (se déroulant en salle de classe ou salle machine) et les TP (se déroulant en demi-groupe, principalement en salle machine).",
+      "Bonjour, je m'appelle Mr Povrhr !",
+      "Bienvenue sur notre jeu vidéo, Aix’ploration !\nCe jeu a été développé pour un projet (SAE) de 2ème année.",
+      "L’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique.",
+      "Il sert aussi à découvrir les matières et les parcours disponibles durant cette période d’études, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.",
+      "Hé oui ! Nous avons modélisé notre IUT en 2D pour pouvoir se déplacer dedans dans le jeu !\nPour se déplacer, il vous faudra utiliser les flèches directionnelles.",
+      "Tu peux aussi utiliser <Espace> pour interagir avec les objets et les personnages (et <Echap> pour fermer les interfaces).",
+      "Chaque salle portera sur un sujet précis, et sera composée d'indices disséminés un peu partout dans la salle et d’un personnage bien visible qui vous posera des questions. Les indices sont indispensables pour répondre à ces questions.",
+      "Ah, au fait ! Votre performance sera chronométrée et chaque mauvaise réponse augmentera votre temps à la fin de la partie. Si votre temps à la fin de la partie figure parmis les 10 plus bas, alors il sera affiché dans la partie “Highscore” dans l’écran d’accueil.",
     ];
     this.introTab = introTab;
     var introIterator = 0;
     this.introIterator = introIterator;
+  }
+
+  /** @returns {void} */
+  editorPreload() {}
+
+  /** @returns {void} */
+  editorCreate() {
+    const introTab = [
+      "Bonjour, je m'appelle Mr Povrhr !",
+      "Bienvenue sur notre jeu vidéo, Aix’ploration !\nCe jeu a été développé pour un projet (SAE) de 2ème année.",
+      "L’objectif de ce jeu est de faire découvrir aux étudiants les différentes débouchées professionnelles disponibles à la sortie du BUT Informatique.",
+      "Il sert aussi à découvrir les matières et les parcours disponibles durant cette période d’études, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.",
+      "Hé oui ! Nous avons modélisé notre IUT en 2D pour pouvoir se déplacer dedans dans le jeu !\nPour se déplacer, il vous faudra utiliser les flèches directionnelles.",
+      "Tu peux aussi utiliser <Espace> pour interagir avec les objets et les personnages (et <Echap> pour fermer les interfaces).",
+      "Chaque salle portera sur un sujet précis, et sera composée d'indices disséminés un peu partout dans la salle et d’un personnage bien visible qui vous posera des questions. Les indices sont indispensables pour répondre à ces questions.",
+      "Ah, au fait ! Votre performance sera chronométrée et chaque mauvaise réponse augmentera votre temps à la fin de la partie. Si votre temps à la fin de la partie figure parmis les 10 plus bas, alors il sera affiché dans la partie “Highscore” dans l’écran d’accueil.",
+    ];
+
+    const introTabResponse = [
+      "Bonjour !",
+      "Whoo trop stylé !",
+      "C'est tout ?",
+      "Au sein de l'IUT?",
+      "OK !",
+      "OK j'ai compris.",
+      "Oki oki !",
+      "Parfait ! Merci pour tout !",
+    ];
+
+    this.introTab = introTab;
+    var introIterator = 0;
+    this.introIterator = introIterator;
+
+    this.introTabResponse = introTabResponse;
 
     const msgIntro = this.add
       .text(400, 100, "INTRODUCTION", {})
@@ -58,12 +83,30 @@ class Presentation extends Phaser.Scene {
     this.introText = introText;
 
     const arrow = this.add
-      .image(750, 300, "arrow_back")
+      .image(700, 100, "arrow_back")
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {
+        this.introIterator = this.introTab.length - 1;
+        this.nextText();
+      });
+    arrow.angle = 180;
+    this.arrow = arrow;
+
+    const introTextResponse = this.add.text(400, 250, "", {});
+    introTextResponse.setOrigin(0.5, 0.5);
+    introTextResponse.text = "START";
+    introTextResponse.setStyle({
+      fontFamily: "spacemono-regular",
+      fontSize: "15px",
+      color: "WHITE",
+      wordWrap: { width: 600 },
+    });
+    introTextResponse
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", () => {
         this.nextText();
       });
-    this.arrow = arrow;
+    this.introTextResponse = introTextResponse;
 
     const textStart = this.add.text(400, 500, "", {});
     textStart.setOrigin(0.5, 0.5);
@@ -74,6 +117,7 @@ class Presentation extends Phaser.Scene {
       color: "white",
     });
     this.textStart = textStart;
+    this.textStart.visible = false;
 
     /// START GAME AND HIGHSCORE ///
     new TextColor(textStart, this.data.chosenLevel, this.data);
@@ -92,15 +136,14 @@ class Presentation extends Phaser.Scene {
    */
   nextText() {
     if (this.introIterator + 1 < this.introTab.length) {
-      this.arrow.angle = 180;
-      this.arrow.x = 750;
       this.introText.text = this.introTab[this.introIterator];
+      this.introTextResponse.text = this.introTabResponse[this.introIterator];
       this.introIterator++;
     } else {
-      this.arrow.x = 50;
-      this.arrow.angle = 0;
       this.introText.text = this.introTab[this.introIterator];
-      this.introIterator = 0;
+      this.introTextResponse.text = this.introTabResponse[this.introIterator];
+      //this.introIterator = 0;
+      this.textStart.visible = true;
     }
   }
 }
