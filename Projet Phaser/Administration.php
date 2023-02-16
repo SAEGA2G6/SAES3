@@ -50,7 +50,7 @@ if ($_POST['login']=='admin'){
         mysqli_close ($db);
 
         echo '<button onclick="afficheEditeur()">crée une nouvelle question</button><br><div id="newQ"></div>';
-        echo '<script src="Adminstration.js"></script>
+        echo '<script src="Administration.js"></script>
         <footer>
         <a href="/mentionslegales.html">Mentions légales</a><p> . </p><a href="/index.html"> le jeu</a>
         </footer>
