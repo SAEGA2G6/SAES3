@@ -170,6 +170,11 @@
                 "url": "assets/profs/prof11.png",
                 "key": "prof11",
                 "type": "image"
+            },
+            {
+                "url": "assets/indices/bde.png",
+                "key": "bde",
+                "type": "image"
             }
         ]
     },

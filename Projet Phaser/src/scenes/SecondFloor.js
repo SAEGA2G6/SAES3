@@ -26,6 +26,7 @@ class SecondFloor extends Phaser.Scene {
     const tileset7 = carte.addTilesetImage("poubelle", "poubelle");
     const tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
     const tileset9 = carte.addTilesetImage("sofa", "sofa");
+    const tileset10 = carte.addTilesetImage("tv", "tv");
 
     const tilesetsList = [
       tileset1,
@@ -37,6 +38,7 @@ class SecondFloor extends Phaser.Scene {
       tileset7,
       tileset8,
       tileset9,
+      tileset10
     ];
 
     ///////////// LAYERS /////////////
@@ -151,6 +153,18 @@ class SecondFloor extends Phaser.Scene {
 
 
     ///////////// INDICES /////////////
+
+    /////////////// BDE ////////////////
+
+    const bde = new DialogObject(
+      this,
+      400,
+      80,
+      "bde",
+      "Appuyer sur ESPACE pour intéragir avec le BDE",
+      "e2_r0_1",
+      "clue"
+    );
 
     /////////////// ROOM 1 /////////////
 
@@ -374,6 +388,7 @@ class SecondFloor extends Phaser.Scene {
       eleveRoom5,
       binRoom6,
       eleveRoom6,
+      bde
     ];
     this.physics.add.collider(player, colliderList);
 
