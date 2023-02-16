@@ -27,7 +27,8 @@ if ($_POST['login']=='admin'){
         //$res = mysqli_query($db, $sql);
         if(mysqli_num_rows($res) !==0) {
             while ($data = mysqli_fetch_object($res)) {
-                echo '<div><p> id question : '. $data->ID_QUESTION.'</p>';
+                echo '<div> <input type="checkbox" class="checkbox" id="'.$data->ID_QUESTION.'">';
+                echo '<p> id question : '. $data->ID_QUESTION.'</p>';
                 echo '<p>parcour : '. $data->Parcour.'</p>';
                 echo '<p>salle : '. $data->salle.'</p>';
                 echo '<p>enoncer : "'. $data->Enoncer.'"</p>';
@@ -50,6 +51,7 @@ if ($_POST['login']=='admin'){
         mysqli_close ($db);
 
         echo '<button onclick="afficheEditeur()">crée une nouvelle question</button><br><div id="newQ"></div>';
+        echo '<button onclick="supprimerQuestion()"> supprimer la question sélectionné</button><br><div id="delete"></div>';
         echo '<script src="Administration.js"></script>
         <footer>
         <a href="/mentionslegales.html">Mentions légales</a><p> . </p><a href="/index.html"> le jeu</a>

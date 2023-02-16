@@ -86,3 +86,29 @@ monForm.append(submit)
 
 maDiv.append(monForm)
 }
+
+function supprimerQuestion(){
+    checkedCheckboxes = []
+    checkboxes = document.querySelectorAll('.checkbox')
+    checkboxes.forEach(element => {
+        if(element.checked)
+            checkedCheckboxes.push(element)
+    });
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "l'url");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+    }};
+
+    let data = `{
+        "Id": l'id des boutons,
+    }`;
+
+    xhr.send(data)
+}
