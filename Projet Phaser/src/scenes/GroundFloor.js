@@ -9,6 +9,7 @@ class GroundFloor extends Phaser.Scene {
     this.currentNbRoom = 1;
     this.nbRooms = 4;
     this.levelPrefix = "rc";
+    this.imageMap = "rcimg";
   }
 
   /** @returns {void} */

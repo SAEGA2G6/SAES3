@@ -17,6 +17,16 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     this.setScale(0.8, 0.8);
     this.body.setSize(this.width * 0.6, this.height * 0.5).setOffset(6, 20);
 
+    /////// MINIMAP //////
+    const minimap = this.scene.add.image(400, 300, this.scene.imageMap);
+    minimap.setScale(0.3);
+    minimap.setScrollFactor(0);
+    minimap.setDepth(3);
+    minimap.setVisible(false);
+    this.minimap = minimap;
+    this.openedMap = 0;
+    this.isProcessing = false;
+
     ///////////////// SCORE MANAGER ////////////////
     this.pseudo = pseudo;
     this.score;
@@ -30,6 +40,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.cursors = scene.input.keyboard.createCursorKeys();
     this.facingDirection;
+
+    const KeyESC = scene.input.keyboard.addKey("esc");
+    this.KeyESC = KeyESC;
+
+    const KeyM = scene.input.keyboard.addKey("m");
+    this.KeyM = KeyM;
 
     ///////////////// ANIMATIONS ////////////////
     this.anims.create({
@@ -115,6 +131,31 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
       this.setVelocityX(0);
       this.setVelocityY(0);
+    }
+
+    if (this.KeyM.isDown && !this.isProcessing) {
+      this.isProcessing = true;
+      if (this.openedMap == 0) {
+        this.minimap.setVisible(true);
+        this.openedMap = 1;
+        this.stopSpeed();
+      } else if (this.openedMap == 1) {
+        this.minimap.setVisible(false);
+        this.openedMap = 0;
+        this.resetSpeed();
+      }
+      this.scene.time.delayedCall(
+        500,
+        function () {
+          this.isProcessing = false;
+        },
+        [],
+        this
+      );
+    }
+    else if(this.KeyESC.isDown && this.openedMap == 1) {
+      this.minimap.setVisible(false);
+      this.resetSpeed();
     }
   }
 }

@@ -150,7 +150,7 @@
         {
          "columns":16,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/escaliers.png",
+         "image":"..\/tilesets\/escaliers.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -353,7 +353,7 @@
         {
          "columns":22,
          "firstgid":257,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/toiletsBureau.png",
+         "image":"..\/tilesets\/toiletsBureau.png",
          "imageheight":1214,
          "imagewidth":718,
          "margin":0,
@@ -3143,7 +3143,7 @@
         {
          "columns":24,
          "firstgid":1071,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/meuble1.png",
+         "image":"..\/tilesets\/meuble1.png",
          "imageheight":512,
          "imagewidth":768,
          "margin":0,
@@ -5320,7 +5320,7 @@
         {
          "columns":6,
          "firstgid":1455,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/pc.png",
+         "image":"..\/tilesets\/pc.png",
          "imageheight":200,
          "imagewidth":200,
          "margin":0,
@@ -5514,7 +5514,7 @@
         {
          "columns":11,
          "firstgid":1491,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/mur.png",
+         "image":"..\/tilesets\/mur.png",
          "imageheight":160,
          "imagewidth":352,
          "margin":0,
@@ -6023,7 +6023,7 @@
         {
          "columns":24,
          "firstgid":1546,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/couloir.png",
+         "image":"..\/tilesets\/couloir.png",
          "imageheight":512,
          "imagewidth":768,
          "margin":0,
@@ -6118,7 +6118,7 @@
         {
          "columns":22,
          "firstgid":1930,
-         "image":"..\/..\/..\/..\/..\/..\/S3\/SAE\/SAES3\/Projet Phaser\/assets\/tilesets\/portes.png",
+         "image":"..\/tilesets\/portes.png",
          "imageheight":1214,
          "imagewidth":718,
          "margin":0,

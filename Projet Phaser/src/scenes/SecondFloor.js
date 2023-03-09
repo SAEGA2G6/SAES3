@@ -9,6 +9,7 @@ class SecondFloor extends Phaser.Scene {
     this.currentNbRoom = 1;
     this.nbRooms = 6;
     this.levelPrefix = "e2";
+    this.imageMap = "e2img";
   }
 
   /** @returns {void} */
