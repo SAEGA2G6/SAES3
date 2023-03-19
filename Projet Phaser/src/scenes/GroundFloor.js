@@ -128,6 +128,21 @@ class GroundFloor extends Phaser.Scene {
 
     const doorBoss = new Door(this, 752, 673, "simpleporte", false);
 
+
+    const textOpenDoors = this.add.text(400, 100, "", {}).setDepth(5);
+    textOpenDoors.setOrigin(0.5);
+    textOpenDoors.text =
+      "Les portes de la prochaine salle viennent de s'ouvrir !";
+    textOpenDoors.setStyle({
+      fontFamily: "Roboto",
+      fontSize: "22px",
+      color: "black",
+      backgroundColor: "white",
+    });
+    textOpenDoors.setScrollFactor(0);
+    textOpenDoors.visible = false;
+    this.textOpenDoors = textOpenDoors;
+
     ///////////// CLUES /////////////
 
     ///////////// ROOM 1 /////////////
@@ -328,6 +343,16 @@ class GroundFloor extends Phaser.Scene {
       ) {
         this.listAllDoors[this.currentNbRoom - 1][i].open();
       }
+
+      this.textOpenDoors.visible = true;
+      this.time.delayedCall(
+        5000,
+        () => {
+          this.textOpenDoors.visible = false;
+        },
+        [],
+        this
+      );
     }
     this.currentNbRoom++;
   }
