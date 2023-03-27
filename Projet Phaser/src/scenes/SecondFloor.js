@@ -1,73 +1,29 @@
-class SecondFloor extends Phaser.Scene {
+class SecondFloor extends Floor {
   /**
    * Scene corresponding to the 2nd floor level.
    * @param {*} data Object containing data essential to the functioning of the level (player gender, player'nickname/pseudo).
    */
   init(data) {
-    this.playerGender = data.texture;
-    this.playerPseudo = data.pseudo;
-    this.currentNbRoom = 1;
+    super.init(data);
+    this.pos = { x: 160, y: 600 };
+
     this.nbRooms = 6;
+
     this.levelPrefix = "e2";
+    this.map = "map2";
     this.imageMap = "e2img";
   }
 
   /** @returns {void} */
   editorCreate() {
-    ///////////// UPDATE /////////////
-    this.updateList = [];
-    ///////////// MAP /////////////
-    const carte = this.make.tilemap({ key: "map2" });
-    const tileset1 = carte.addTilesetImage("couloir", "couloir");
-    const tileset2 = carte.addTilesetImage("escaliers", "escaliers");
-    const tileset3 = carte.addTilesetImage("meuble1", "meuble1");
-    const tileset4 = carte.addTilesetImage("mur", "mur");
-    const tileset5 = carte.addTilesetImage("pc", "pc");
-    const tileset6 = carte.addTilesetImage("portes", "portes");
-    const tileset7 = carte.addTilesetImage("poubelle", "poubelle");
-    const tileset8 = carte.addTilesetImage("toiletsBureau", "toiletsBureau");
-    const tileset9 = carte.addTilesetImage("sofa", "sofa");
-    const tileset10 = carte.addTilesetImage("tv", "tv");
+    super.createTemplateFloor();
+    this.createSecondFloor();
+    this.player.setPosition(this.pos.x, this.pos.y);
+    this.events.emit("scene-awake");
+  }
 
-    const tilesetsList = [
-      tileset1,
-      tileset2,
-      tileset3,
-      tileset4,
-      tileset5,
-      tileset6,
-      tileset7,
-      tileset8,
-      tileset9,
-      tileset10
-    ];
-
-    ///////////// LAYERS /////////////
-    //Layer 1, 2 and 3 (depth at 0 for the ground and for the furniture, depth at 1 for the player, depth at 2 for the objects and others)
-
-    const calque1 = carte
-      .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
-      .setDepth(0);
-
-    const calque2 = carte
-      .createLayer("Calque de Tuiles 2", tilesetsList, 0, 0)
-      .setDepth(0);
-
-    const calque3 = carte
-      .createLayer("Calque de Tuiles 3", tilesetsList, 0, 0)
-      .setDepth(2);
-
-    ///////////// PLAYER /////////////
-
-    const player = new Player(
-      this,
-      160,
-      600,
-      this.playerGender,
-      this.playerPseudo
-    ).setDepth(1);
-    this.player = player;
-
+  /** @returns {void} */
+  createSecondFloor() {
     ///////////// PROF/BOSS /////////////
 
     const prof10 = new DialogObject(
@@ -141,17 +97,6 @@ class SecondFloor extends Phaser.Scene {
     const doorRoom5 = new Door(this, 1440, 545, "doubleporte", false);
 
     const doorRoom6 = new Door(this, 1760, 545, "doubleporte", false);
-
-    ///////////// DOOR OPENING SYSTEM /////////////
-    const listAllDoors = [
-      [doorRoom2],
-      [doorRoom3],
-      [doorRoom4],
-      [doorRoom5],
-      [doorRoom6],
-    ];
-    this.listAllDoors = listAllDoors;
-
 
     ///////////// INDICES /////////////
 
@@ -359,16 +304,7 @@ class SecondFloor extends Phaser.Scene {
       "clue"
     );
 
-    ///////////// COLLISIONS /////////////
-
-    calque1.setCollisionByProperty({ estSolide: true });
-    calque2.setCollisionByProperty({ estSolide: true });
-    calque3.setCollisionByProperty({ estSolide: true });
-
     const colliderList = [
-      calque1,
-      calque2,
-      calque3,
       doorRoom2,
       doorRoom3,
       doorRoom4,
@@ -389,97 +325,20 @@ class SecondFloor extends Phaser.Scene {
       eleveRoom5,
       binRoom6,
       eleveRoom6,
-      bde
+      bde,
     ];
-    this.physics.add.collider(player, colliderList);
-
-    ///////////// CAMERA /////////////
-    this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
-    this.cameras.main.startFollow(player);
-    this.cameras.main.zoom = 1.2;
-
-    ///////////// EVENTS /////////////
-    this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on("openDoors", this.openDoorsHandler, this);
-    this.emitter.on("timeMalus", this.malusChrono, this);
-
-    const chronometer = new Chronometer(this);
-    this.chronometer = chronometer;
-
-    this.events.emit("scene-awake");
+    this.physics.add.collider(this.player, colliderList);
+    this.listAllDoors = [
+      [doorRoom2],
+      [doorRoom3],
+      [doorRoom4],
+      [doorRoom5],
+      [doorRoom6],
+    ];
   }
 
-  ///////////// EVENTS HANDLERS /////////////
-  /**
-   * Open the doors to the next room
-   * @return {void}
-   */
-  openDoorsHandler() {
-    if (this.currentNbRoom < this.nbRooms) {
-      for (
-        var i = 0;
-        i < this.listAllDoors[this.currentNbRoom - 1].length;
-        i++
-      ) {
-        this.listAllDoors[this.currentNbRoom - 1][i].open();
-      }
-    }
-    this.currentNbRoom++;
-  }
-
-  /**
-   * Apply the chronometer's malus
-   * @return {void}
-   */
-  malusChrono() {
-    this.chronometer.malusChrono();
-  }
-
-  ///////////// ENDGAME /////////////
-  /**
-   * Check if the game is over, i.e. if all MCQs have been completed
-   * @returns {boolean} true if the game is over and false otherwise
-   */
-  isGameOver() {
-    if (this.currentNbRoom > this.nbRooms) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   * Gives the player's score, which is the time it took to complete all the MCQs
-   */
-  getScore() {
-    this.player.score = this.chronometer.chrono;
-  }
-
+  /** @returns {void} */
   create() {
     this.editorCreate();
-  }
-
-  /**
-   * Update the first floor (to detect when the game is over and update the objects in the scene).
-   * @return {void}
-   */
-  update() {
-    /// CHECK IF GAME IS OVER ///
-    if (this.isGameOver()) {
-      this.getScore();
-      DBQueries.sendInsertScoreRequest(this);
-      this.scene.start("GameOver", {
-        pseudo: this.playerPseudo,
-        floor: "'2ème étage'",
-        playerChrono: this.player.score,
-        playerGender: this.playerGender,
-      });
-      clearInterval(this.chronometer.intervalChrono);
-      this.scene.stop();
-    }
-    /// LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES) ///
-    for (var i = 0; i < this.updateList.length; i++) {
-      this.updateList[i].update();
-    }
   }
 }

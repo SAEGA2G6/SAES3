@@ -6,7 +6,7 @@ class DBQueries {
   static sendClueRequest(that) {
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/clue.php", true);
+    xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -15,7 +15,7 @@ class DBQueries {
         that.clueText.text = MyJsonClue[0].CONTENUE;
       }
     };
-    xhr.open("POST", "src/clue.php", true);
+    xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("clueID=" + that.clueId);
   }
@@ -24,44 +24,25 @@ class DBQueries {
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-  static sendScoresRequest(that, floor) {
-    that.textHighscore.text = "";
+  
+  static sendScoresRequest(that, floor, callback) {
+    //that.textHighscore.text = "";
+
     const xhr = new XMLHttpRequest();
+
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/highscore.php", true);
+
+    xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = xhr.responseText;
-        const myJsonScores = JSON.parse(response);
-        if (myJsonScores.length == 0) {
-          that.textHighscore.text = "Aucun score :(";
-        } else {
-          for (let index = 0; index < myJsonScores.length; index++) {
-            if (index == 0) {
-              that.textHighscore.text +=
-                "1ER  " +
-                myJsonScores[index].ID_JOUEUR +
-                "   " +
-                myJsonScores[index].SCORE +
-                " sec";
-            } else {
-              var place = index + 1;
-              that.textHighscore.text +=
-                "\n" +
-                place +
-                "EME " +
-                myJsonScores[index].ID_JOUEUR +
-                "   " +
-                myJsonScores[index].SCORE +
-                " sec";
-            }
-          }
+        if(typeof callback === "function"){
+          var resp = JSON.parse(xhr.responseText)
+          callback(that, resp);
         }
       }
     };
-    xhr.open("POST", "src/highscore.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("floor=" + floor);
   }
 
@@ -73,7 +54,7 @@ class DBQueries {
   static sendQuestionAnswersRequest(that, prefix) {
     const xhr = new XMLHttpRequest();
     DBQueries.xhr = xhr;
-    xhr.open("POST", "src/QuestionAnswers.php", true);
+    xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -82,8 +63,6 @@ class DBQueries {
         that.nextQuestion();
       }
     };
-    xhr.open("POST", "src/QuestionAnswers.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("room=" + prefix);
   }
 
@@ -93,11 +72,10 @@ class DBQueries {
    */
   static sendInsertScoreRequest(that) {
     const xhr = new XMLHttpRequest();
-    DBQueries.xhr = xhr;
-    xhr.open("POST", "src/score.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    xhr.open("POST", "src/score.php", true);
+    DBQueries.xhr = xhr;
+
+    xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
       "pseudo=" +

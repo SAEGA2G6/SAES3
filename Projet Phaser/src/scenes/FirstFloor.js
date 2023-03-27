@@ -1,61 +1,29 @@
-class FirstFloor extends Phaser.Scene {
+class FirstFloor extends Floor {
   /**
    * Scene corresponding to the 1st floor level.
    * @param {*} data Object containing data essential to the functioning of the level (player gender, player'nickname/pseudo).
    */
   init(data) {
-    this.playerGender = data.texture;
-    this.playerPseudo = data.pseudo;
-    this.currentNbRoom = 1;
+    super.init(data);
+    this.pos = { x: 160, y: 600 };
+
     this.nbRooms = 5;
+
     this.levelPrefix = "e1";
+    this.map = "map1";
     this.imageMap = "e1img";
   }
 
   /** @returns {void} */
   editorCreate() {
-    ///////////// UPDATE /////////////
-    this.updateList = [];
-    ///////////// MAP /////////////
-    const carte = this.make.tilemap({ key: "map1" });
+    super.createTemplateFloor();
+    this.createFirstFloor();
+    this.player.setPosition(this.pos.x, this.pos.y);
+    this.events.emit("scene-awake");
+  }
 
-    const tilesetsList = [
-      carte.addTilesetImage("couloir", "couloir"),
-      carte.addTilesetImage("escaliers", "escaliers"),
-      carte.addTilesetImage("meuble1", "meuble1"),
-      carte.addTilesetImage("mur", "mur"),
-      carte.addTilesetImage("pc", "pc"),
-      carte.addTilesetImage("portes", "portes"),
-      carte.addTilesetImage("poubelle", "poubelle"),
-      carte.addTilesetImage("toiletsBureau", "toiletsBureau"),
-    ];
-
-    ///////////// LAYERS /////////////
-    //Layer 1, 2 and 3 (depth at 0 for the ground and for the furniture, depth at 1 for the player, depth at 2 for the objects and others)
-
-    const calque1 = carte
-      .createLayer("Calque de Tuiles 1", tilesetsList, 0, 0)
-      .setDepth(0);
-
-    const calque2 = carte
-      .createLayer("Calque de Tuiles 2", tilesetsList, 0, 0)
-      .setDepth(0);
-
-    const calque3 = carte
-      .createLayer("Calque de Tuiles 3", tilesetsList, 0, 0)
-      .setDepth(2);
-
-    ///////////// PLAYER /////////////
-
-    const player = new Player(
-      this,
-      160,
-      600,
-      this.playerGender,
-      this.playerPseudo
-    ).setDepth(1);
-    this.player = player;
-
+  /** @returns {void} */
+  createFirstFloor() {
     ///////////// PROF/BOSS /////////////
 
     const prof5 = new DialogObject(
@@ -147,7 +115,8 @@ class FirstFloor extends Phaser.Scene {
     );
     pcOn2Room1.flipX = true;
 
-    const papersRoom1 = new DialogObject(
+    //const papersRoom1 = 
+    new DialogObject(
       this,
       305,
       190,
@@ -159,7 +128,8 @@ class FirstFloor extends Phaser.Scene {
 
     /////////////// ROOM 2 /////////////
 
-    const pcOn1Room2 = new DialogObject(
+    //const pcOn1Room2 = 
+    new DialogObject(
       this,
       1905,
       73,
@@ -167,10 +137,11 @@ class FirstFloor extends Phaser.Scene {
       "Appuyer sur ESPACE pour regarder l'ordinateur...",
       "e1_r2_1",
       "clue"
-    );
-    pcOn1Room2.flipX = true;
+    ).flipX = true;
+    //pcOn1Room2.flipX = true;
 
-    const papersRoom2 = new DialogObject(
+    //const papersRoom2 = 
+    new DialogObject(
       this,
       1505,
       60,
@@ -202,7 +173,8 @@ class FirstFloor extends Phaser.Scene {
       "clue"
     );
 
-    const papersRoom3 = new DialogObject(
+    //const papersRoom3 = 
+    new DialogObject(
       this,
       1260,
       768,
@@ -224,7 +196,8 @@ class FirstFloor extends Phaser.Scene {
 
     /////////////// ROOM 4 /////////////
 
-    const papers1Room4 = new DialogObject(
+    //const papers1Room4 = 
+    new DialogObject(
       this,
       1328,
       720,
@@ -234,7 +207,8 @@ class FirstFloor extends Phaser.Scene {
       "clue"
     );
 
-    const papers2Room4 = new DialogObject(
+    //const papers2Room4 = 
+    new DialogObject(
       this,
       1500,
       926,
@@ -256,7 +230,8 @@ class FirstFloor extends Phaser.Scene {
 
     /////////////// ROOM 5 /////////////
 
-    const papersRoom5 = new DialogObject(
+    //const papersRoom5 = 
+    new DialogObject(
       this,
       1780,
       830,
@@ -274,8 +249,8 @@ class FirstFloor extends Phaser.Scene {
       "Appuyer sur ESPACE pour parler à l'élève",
       "e1_r5_2",
       "clue"
-    );
-    eleve1Room5.flipX = true;
+    ).flipX = true;
+    //eleve1Room5.flipX = true;
 
     const eleve2Room5 = new DialogObject(
       this,
@@ -287,16 +262,12 @@ class FirstFloor extends Phaser.Scene {
       "clue"
     );
 
-    ///////////// COLLISIONS /////////////
-
-    calque1.setCollisionByProperty({ estSolide: true });
-    calque2.setCollisionByProperty({ estSolide: true });
-    calque3.setCollisionByProperty({ estSolide: true });
-
     const colliderList = [
-      calque1,
-      calque2,
-      calque3,
+      prof5,
+      prof6,
+      prof7,
+      prof8,
+      prof9,
       doorRoom2_1,
       doorRoom2_2,
       doorRoom3_1,
@@ -311,110 +282,19 @@ class FirstFloor extends Phaser.Scene {
       eleveRoom3,
       eleve1Room5,
       eleve2Room5,
-      prof5,
-      prof6,
-      prof7,
-      prof8,
-      prof9,
     ];
-    this.physics.add.collider(player, colliderList);
-
-    ///////////// CAMERA /////////////
-    this.cameras.main.setBounds(0, 0, carte.displayWidth, carte.displayHeight);
-    this.cameras.main.startFollow(player);
-    this.cameras.main.zoom = 1.2;
-
+    this.physics.add.collider(this.player, colliderList);
     ///////////// DOOR OPENING SYSTEM /////////////
-    const listAllDoors = [
+    this.listAllDoors = [
       [doorRoom2_1, doorRoom2_2],
       [doorRoom3_1, doorRoom3_2],
       [doorRoom4_1, doorRoom4_2],
       [doorRoom5_1, doorRoom5_2],
     ];
-    this.listAllDoors = listAllDoors;
-
-    ///////////// EVENTS /////////////
-    this.emitter = new Phaser.Events.EventEmitter();
-    this.emitter.on("openDoors", this.openDoorsHandler, this);
-    this.emitter.on("timeMalus", this.malusChrono, this);
-
-    ///////////// CHRONOMETER /////////////
-    const chronometer = new Chronometer(this);
-    this.chronometer = chronometer;
-
-    this.events.emit("scene-awake");
   }
 
-  ///////////// EVENTS HANDLERS /////////////
-  /**
-   * Open the doors to the next room
-   * @return {void}
-   */
-  openDoorsHandler() {
-    if (this.currentNbRoom < this.nbRooms) {
-      for (
-        var i = 0;
-        i < this.listAllDoors[this.currentNbRoom - 1].length;
-        i++
-      ) {
-        this.listAllDoors[this.currentNbRoom - 1][i].open();
-      }
-    }
-    this.currentNbRoom++;
-  }
-
-  /**
-   * Apply the chronometer's malus
-   * @return {void}
-   */
-  malusChrono() {
-    this.chronometer.malusChrono();
-  }
-
-  ///////////// ENDGAME /////////////
-  /**
-   * Check if the game is over, i.e. if all MCQs have been completed
-   * @returns {boolean} true if the game is over and false otherwise
-   */
-  isGameOver() {
-    if (this.currentNbRoom > this.nbRooms) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   * Gives the player's score, which is the time it took to complete all the MCQs
-   */
-  getScore() {
-    this.player.score = this.chronometer.chrono;
-  }
-
+  /** @returns {void} */
   create() {
     this.editorCreate();
-  }
-
-  /**
-   * Update the first floor (to detect when the game is over and update the objects in the scene).
-   * @return {void}
-   */
-  update() {
-    /// CHECK IF GAME IS OVER ///
-    if (this.isGameOver()) {
-      this.getScore();
-      DBQueries.sendInsertScoreRequest(this);
-      this.scene.start("GameOver", {
-        pseudo: this.playerPseudo,
-        floor: "'1er étage'",
-        playerChrono: this.player.score,
-        playerGender: this.playerGender,
-      });
-      this.scene.stop();
-    }
-    /// LIST TO UPDATE DIALOG OBJECTS (PLAYER, BOSS, CLUES) ///
-    for (var i = 0; i < this.updateList.length; i++) {
-      this.updateList[i].update();
-    }
   }
 }

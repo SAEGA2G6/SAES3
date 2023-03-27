@@ -154,7 +154,6 @@ class Presentation extends Phaser.Scene {
     } else {
       this.introText.text = this.introTab[this.introIterator];
       this.introTextResponse.text = this.introTabResponse[this.introIterator];
-      //this.introIterator = 0;
       this.textStart.visible = true;
     }
   }

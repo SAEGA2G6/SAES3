@@ -27,7 +27,9 @@ class Highscore extends Phaser.Scene {
       });
     this.textHighscore = textHighscore;
 
-    DBQueries.sendScoresRequest(this, "rc");
+    
+
+    DBQueries.sendScoresRequest(this, "rc", this.callback);
 
     const floor0 = this.add
       .text(150, 500, "REZ-DE-CHAUSSEE - 1ERE ANNEE", {})
@@ -65,19 +67,19 @@ class Highscore extends Phaser.Scene {
     floor0.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor0.setStyle({ fill: "orange" });
-      DBQueries.sendScoresRequest(this, "rc");
+      DBQueries.sendScoresRequest(this, "rc", this.callback);
     });
 
     floor1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor1.setStyle({ fill: "orange" });
-      DBQueries.sendScoresRequest(this, "e1");
+      DBQueries.sendScoresRequest(this, "e1", this.callback);
     });
 
     floor2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor2.setStyle({ fill: "orange" });
-      DBQueries.sendScoresRequest(this, "e2");
+      DBQueries.sendScoresRequest(this, "e2", this.callback);
     });
 
     this.events.emit("scene-awake");
@@ -86,6 +88,35 @@ class Highscore extends Phaser.Scene {
   create() {
     this.editorCreate();
   }
+
+  callback(that, data){
+    that.textHighscore.text = "";
+    if (data.length == 0) {
+      that.textHighscore.text = "Aucun score :(";
+    } else {
+      for (let index = 0; index < data.length; index++) {
+        if (index == 0) {
+          that.textHighscore.text +=
+            "1ER  " +
+            data[index].ID_JOUEUR +
+            "   " +
+            data[index].SCORE +
+            " sec";
+        } else {
+          var place = index + 1;
+          that.textHighscore.text +=
+            "\n" +
+            place +
+            "EME " +
+            data[index].ID_JOUEUR +
+            "   " +
+            data[index].SCORE +
+            " sec";
+        }
+      }
+    }
+  }
+
 
   /**
    * Resets the colour of the floor texts.
