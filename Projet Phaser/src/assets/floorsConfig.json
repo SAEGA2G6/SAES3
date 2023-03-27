@@ -1,0 +1,505 @@
+{
+  "GroundFloor": [
+    {
+      "levelPrefix": "rc",
+      "map": "map",
+      "imageMap": "rcimg",
+      "nbRooms": 4,
+      "posPlayer": { "x": 352, "y": 918 },
+      "profs": [
+        {
+          "pos": { "x": 480, "y": 340 },
+          "texture": "prof1",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 900, "y": 340 },
+          "texture": "prof2",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1760, "y": 340 },
+          "texture": "prof3",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1938, "y": 725 },
+          "texture": "prof4",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        }
+      ],
+      "doors": [
+        {
+          "pos": { "x": 768, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1024, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1632, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1632, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1888, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1216, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1440, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1216, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1440, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 928, "y": 673 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 752, "y": 673 },
+          "texture": "simpleporte",
+          "isTop": false
+        }
+      ],
+      "clues": [
+        {
+          "pos": { "x": 495, "y": 240 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r1_1"
+        },
+        {
+          "pos": { "x": 625, "y": 110 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r1_2"
+        },
+        {
+          "pos": { "x": 305, "y": 80 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "rc_r1_3"
+        },
+        {
+          "pos": { "x": 1040, "y": 240 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r2_1"
+        },
+        {
+          "pos": { "x": 750, "y": 146 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r2_2"
+        },
+        {
+          "pos": { "x": 1075, "y": 400 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "rc_r2_3"
+        },
+        {
+          "pos": { "x": 1775, "y": 112 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r3_1"
+        },
+        {
+          "pos": { "x": 1580, "y": 400 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "rc_r3_2"
+        },
+        {
+          "pos": { "x": 1937, "y": 262 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "rc_r3_3"
+        },
+        {
+          "pos": { "x": 1810, "y": 623 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r4_1"
+        },
+        {
+          "pos": { "x": 1905, "y": 912 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r4_2"
+        },
+        {
+          "pos": { "x": 1776, "y": 815 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "rc_r4_3"
+        }
+      ]
+    }
+  ],
+  "FirstFloor": [
+    {
+      "levelPrefix": "e1",
+      "map": "map1",
+      "imageMap": "e1img",
+      "nbRooms": 5,
+      "posPlayer": { "x": 160, "y": 600 },
+      "profs": [
+        {
+          "pos": { "x": 660, "y": 240 },
+          "texture": "prof5",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1472, "y": 580 },
+          "texture": "prof6",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1120, "y": 580 },
+          "texture": "prof7",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1824, "y": 580 },
+          "texture": "prof8",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1900, "y": 250 },
+          "texture": "prof9",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        }
+      ],
+      "doors": [
+        {
+          "pos": { "x": 1504, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1024, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1216, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1376, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1568, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1728, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1920, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      "clues": [
+        {
+          "pos": { "x": 399, "y": 368 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e1_r1_1"
+        },
+        {
+          "pos": { "x": 559, "y": 48 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e1_r1_2"
+        },
+        {
+          "pos": { "x": 305, "y": 190 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e1_r1_3"
+        },
+        {
+          "pos": { "x": 1905, "y": 73 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e1_r2_1"
+        },
+        {
+          "pos": { "x": 1505, "y": 60 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e1_r2_2"
+        },
+        {
+          "pos": { "x": 1937, "y": 400 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e1_r2_3"
+        },
+        {
+          "pos": { "x": 976, "y": 590 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e1_r3_1"
+        },
+        {
+          "pos": { "x": 1260, "y": 768 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e1_r3_2"
+        },
+        {
+          "pos": { "x": 976, "y": 975 },
+          "texture": "eleve1",
+          "displayText": "Appuyer sur ESPACE pour parler à l'élève",
+          "clueId": "e1_r3_3"
+        },
+        {
+          "pos": { "x": 1328, "y": 720 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e1_r4_1"
+        },
+        {
+          "pos": { "x": 1500, "y": 926 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e1_r4_2"
+        },
+        {
+          "pos": { "x": 1616, "y": 590 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e1_r4_3"
+        }
+      ]
+    }
+  ],
+  "SecondFloor": [
+    {
+      "levelPrefix": "e2",
+      "map": "map2",
+      "imageMap": "e2img",
+      "nbRooms": 6,
+      "posPlayer": { "x": 160, "y": 600 },
+      "profs": [
+        {
+          "pos": { "x": 788, "y": 400 },
+          "texture": "prof10",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1870, "y": 200 },
+          "texture": "prof1",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1010, "y": 609 },
+          "texture": "prof9",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1232, "y": 580 },
+          "texture": "prof8",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1552, "y": 580 },
+          "texture": "prof11",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        },
+        {
+          "pos": { "x": 1872, "y": 580 },
+          "texture": "prof6",
+          "displayText": "Appuyer sur ESPACE pour commencer le QCM !"
+        }
+      ],
+      "doors": [
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 800, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1120, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1440, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1760, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      "clues": [
+        {
+          "pos": { "x": 400, "y": 80 },
+          "texture": "bde",
+          "displayText": "Appuyer sur ESPACE pour intéragir avec le BDE",
+          "clueId": "e2_r0_1"
+        },
+        {
+          "pos": { "x": 620, "y": 400 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e2_r1_1"
+        },
+        {
+          "pos": { "x": 755, "y": 225 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r1_2"
+        },
+        {
+          "pos": { "x": 656, "y": 108 },
+          "texture": "eleve3",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e2_r1_3"
+        },
+        {
+          "pos": { "x": 1743, "y": 238 },
+          "texture": "pcAllume",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e2_r2_1"
+        },
+        {
+          "pos": { "x": 1840, "y": 310 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r2_2"
+        },
+        {
+          "pos": { "x": 1872, "y": 45 },
+          "texture": "eleve2",
+          "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+          "clueId": "e2_r2_3"
+        },
+        {
+          "pos": { "x": 750, "y": 590 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e2_r3_1"
+        },
+        {
+          "pos": { "x": 782, "y": 792 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r3_2"
+        },
+        {
+          "pos": { "x": 910, "y": 920 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r3_3"
+        },
+        {
+          "pos": { "x": 1070, "y": 710 },
+          "texture": "eleve1",
+          "displayText": "Appuyer sur ESPACE pour parler à l'élève",
+          "clueId": "e2_r4_1"
+        },
+        {
+          "pos": { "x": 1326, "y": 656 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r4_2"
+        },
+        {
+          "pos": { "x": 1298, "y": 920 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r4_3"
+        },
+        {
+          "pos": { "x": 1390, "y": 590 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e2_r5_1"
+        },
+        {
+          "pos": { "x": 1522, "y": 796 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r5_2"
+        },
+        {
+          "pos": { "x": 1390, "y": 710 },
+          "texture": "eleve2",
+          "displayText": "Appuyer sur ESPACE pour parler à l'élève",
+          "clueId": "e2_r5_3"
+        },
+        {
+          "pos": { "x": 1965, "y": 930 },
+          "texture": "papiers",
+          "displayText": "Appuyer sur ESPACE pour regarder les notes...",
+          "clueId": "e2_r6_1"
+        },
+        {
+          "pos": { "x": 1710, "y": 590 },
+          "texture": "poubelleSprite",
+          "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
+          "clueId": "e2_r6_2"
+        },
+        {
+          "pos": { "x": 1904, "y": 902 },
+          "texture": "eleve3",
+          "displayText": "Appuyer sur ESPACE pour parler à l'élève",
+          "clueId": "e2_r6_3"
+        }
+      ]
+    }
+  ]
+}

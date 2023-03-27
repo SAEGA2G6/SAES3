@@ -5,6 +5,8 @@ class GroundFloor extends Floor {
    */
   init(data) {
     super.init(data);
+
+    //dans le json
     this.pos = { x: 352, y: 918 };
 
     this.nbRooms = 4;
@@ -12,6 +14,7 @@ class GroundFloor extends Floor {
     this.levelPrefix = "rc";
     this.map = "map";
     this.imageMap = "rcimg";
+    ///////////////
   }
 
   /** @returns {void} */
@@ -21,6 +24,7 @@ class GroundFloor extends Floor {
     this.player.setPosition(this.pos.x, this.pos.y);
     this.events.emit("scene-awake");
   }
+
 
   createGroundFloor() {
     ///////////// PROF/BOSS /////////////
