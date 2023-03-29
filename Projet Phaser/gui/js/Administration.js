@@ -1,6 +1,7 @@
 function afficheEditeur(){
 let maDiv = document.getElementById('newQ')
 let monForm = document.createElement('form')
+monForm.action = 'newQAction.php';
 
 let idQuestion = document.createElement('p')
 idQuestion.innerHTML = 'id question : sera généré automatiquement'
@@ -111,4 +112,38 @@ function supprimerQuestion(){
     }`;
 
     xhr.send(data)
+}
+
+function updateQuestion(){
+    checkedCheckboxes = []
+    checkboxes = document.querySelectorAll('.checkbox')
+    checkboxes.forEach(element => {
+        if(element.checked)
+            checkedCheckboxes.push(element)
+    });
+    if (checkedCheckboxes.length < 1){
+        alert('pas de question sélectionné')
+    }
+    if (checkedCheckboxes.length > 1){
+        alert('trop de question sélectionné')
+    }
+    currentQuestion = checkedCheckboxes[0].parentNode
+
+    
+    let parcour = currentQuestion.childNodes.item(1)
+    let inputParcour = document.createElement('input')
+    inputParcour.type = 'text'
+    alert(parcour.childNodes.item(0))
+    /*let maDiv = parcour.children[0]
+    inputParcour.innerHTML = maDiv.innerHTML
+    parcour.removeChild(maDiv)
+    parcour.append(inputParcour)*/
+    
+    
+    /*alert(currentQuestion)
+    alert(currentQuestion.childNodes)
+    currentQuestion.childNodes.forEach(element => {
+        alert(element.value)
+    });*/
+
 }

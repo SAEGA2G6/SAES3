@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta description="Serious Game présentant le BUT Informatique d'Aix-En-Provence !">
+
+	<title>Aix'ploration - À la découverte du BUT Informatique !</title>
+	<link rel="icon" href="../assets/favicon.ico">
+	<link as="font" href="../assets/fonts/Retro_Computer.otf" type="font/otf">
+	<link as="font" href="../assets/fonts/SpaceMono-Regular.ttf" type="font/ttf">
+	<link as="font" href= ../assets/fonts/Comfortaa-VariableFont_wght.ttf" type="font/ttf">
+	<script src="../lib/phaser.min.js"></script>
+	<script src="../lib/rexinputtextplugin.min.js"></script>
+	<script src="../src/DBQueries.js"></script>
+	<script src="../src/components/Player.js"></script>
+	<script src="../src/components/Door.js"></script>
+	<script src="../src/components/UserComponent.js"></script>
+	<script src="../src/components/Chronometer.js"></script>
+	<script src="../src/components/PushOnClick.js"></script>
+	<script src="../src/components/TextColor.js"></script>
+	<script src="../src/components/Answer.js"></script>
+	<script src="../src/components/DialogObject.js"></script>
+	<script src="../src/components/PreloadText.js"></script>
+	<script src="../src/scenes/Preload.js"></script>
+	<script src="../src/scenes/Menu.js"></script>
+	<script src="../src/scenes/Choose.js"></script>
+	<script src="../src/scenes/GameOver.js"></script>
+	<script src="../src/scenes/Highscore.js"></script>
+	<script src="../src/scenes/Presentation.js"></script>
+	<script src="../src/scenes/GroundFloor.js"></script>
+	<script src="../src/scenes/FirstFloor.js"></script>
+	<script src="../src/scenes/SecondFloor.js"></script>
+	<script src="../src/scenes/MCQInterface.js"></script>
+	<script src="../src/scenes/Clue.js"></script>
+
+	<script src="../src/main.js"></script>
+
+	<style>
+		body {
+			background: linear-gradient(45deg, #54c6eb, #faad3c, #2174b5);
+			margin: 0;
+			padding: 0;
+		}
+
+		footer {
+			text-align: center;
+			background-color: black;
+		}
+
+		footer>a {
+				color: white;
+		}
+
+		@font-face {
+			font-family: retro-computer;
+			src: url(assets/fonts/Retro_Computer.otf);
+		}
+		@font-face {
+			font-family: spacemono-regular;
+			src: url(assets/fonts/SpaceMono-Regular.ttf);
+		}
+		@font-face {
+			font-family: comforta;
+			src: url(assets/fonts/Comfortaa-VariableFont_wght.ttf);
+		}
+	</style>
+</head>
+<body>
+    <div style="font-family:retro-computer; position:absolute; left:-1000px; visibility:hidden;">.</div>
+    <div style="font-family:spacemono-regular; position:absolute; left:-1000px; visibility:hidden;">.</div>
+    <div style="font-family:comforta; position:absolute; left:-1000px; visibility:hidden;">.</div>
+    <div id=phaser-input></div>
+<footer>
+    <a href="/gui/mentionslegales.html">Mentions légales</a><p> . </p><a href="index.php/login"> l'administration</a>
+</footer>
+</body>
+</html>

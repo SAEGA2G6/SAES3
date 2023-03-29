@@ -8,11 +8,11 @@ class Preload extends Phaser.Scene {
 
   /** @returns {void} */
   editorPreload() {
-    this.load.pack("asset-pack", "assets/asset-pack.json");
-    this.load.pack("tileset-pack", "assets/tileset-pack.json");
-    this.load.tilemapTiledJSON("map", "assets/maps/iut_rcFinis.json");
-    this.load.tilemapTiledJSON("map1", "assets/maps/iut_e1Finis.json");
-    this.load.tilemapTiledJSON("map2", "assets/maps/iut_e2.json");
+    this.load.pack("asset-pack", "../assets/asset-pack.json");
+    this.load.pack("tileset-pack", "../assets/tileset-pack.json");
+    this.load.tilemapTiledJSON("map", "../assets/maps/iut_rcFinis.json");
+    this.load.tilemapTiledJSON("map1", "../assets/maps/iut_e1Finis.json");
+    this.load.tilemapTiledJSON("map2", "../assets/maps/iut_e2.json");
   }
 
   /** @returns {void} */
