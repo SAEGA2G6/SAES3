@@ -36,7 +36,7 @@ Il y a **3 étages** (correspondant chacun à une année du BUT Informatique et 
 ## Accès
 
 
-Vous pouvez [accèder au jeu](https://aixploration.alwaysdata.net/) directement depuis un navigateur Internet.
+Vous pouvez [accéder au jeu](https://aixploration.alwaysdata.net/) directement depuis un navigateur Internet.
 
 
 ## Crédits
