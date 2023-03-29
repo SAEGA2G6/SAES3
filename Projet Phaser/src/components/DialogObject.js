@@ -9,12 +9,13 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
    * @param {string} clueId ID which is used for the call to the DB to obtain the associated text
    * @param {string} dialogType Type of dialogue the object will have with the player, it can be a 'MCQ' type dialogue or a 'clue' type dialogue
    */
-  constructor(scene, x, y, texture, displayText, clueId, dialogType) {
+  constructor(scene, x, y, texture, displayText, clueId, dialogType, isFlipX) {
     super(scene, x, y, texture);
     this.scene.physics.world.enable(this);
     this.setImmovable();
     this.clueId = clueId;
     this.dialogType = dialogType;
+    this.isFlipX = isFlipX;
     this.isEnable = true;
 
     this.texture = texture;
