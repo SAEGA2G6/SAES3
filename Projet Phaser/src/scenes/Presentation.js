@@ -134,7 +134,7 @@ class Presentation extends Phaser.Scene {
     this.textStart.visible = false;
 
     /// START GAME AND HIGHSCORE ///
-    new TextColor(textStart, this.data.chosenLevel, this.data);
+    new TextColor(textStart, "Floor", this.data);
     this.nextText();
     console.log("")
 

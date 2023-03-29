@@ -124,15 +124,18 @@ class Floor extends Phaser.Scene {
     ///////////// DOORS /////////////
 
     this.floorConfig["doors"].forEach((door) => {
-      let currentDoor = new Door(
-        this,
-        door["pos"].x,
-        door["pos"].y,
-        door["texture"],
-        door["isTop"]
-      );
-      colliderList.push(currentDoor);
-      this.listAllDoors.push(currentDoor);
+      this.listAllDoors.push([]);
+      for (let i = 0; i < door.length; i++) {
+        let currentDoor = new Door(
+          this,
+          door[i]["pos"].x,
+          door[i]["pos"].y,
+          door[i]["texture"],
+          door[i]["isTop"]
+        );
+        this.listAllDoors[this.listAllDoors.length - 1].push(currentDoor);
+        colliderList.push(currentDoor);
+      }
     });
 
     ///////////// CLUES /////////////
@@ -146,7 +149,7 @@ class Floor extends Phaser.Scene {
         clue["clueId"],
         "clue"
       );
-      if (currentClue.texture === "poubelleSprite") {
+      if (currentClue.texture === "poubelleSprite" || currentClue.texture.includes("eleve") || currentClue.texture === "bde") {
         colliderList.push(currentClue);
       }
       if (clue["isFlipX"] === true) {
@@ -159,7 +162,6 @@ class Floor extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    console.log("create floor");
     this.createTemplateFloor();
     this.createFloor();
     this.player.setPosition(

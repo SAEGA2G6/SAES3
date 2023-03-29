@@ -28,66 +28,78 @@
       }
     ],
     "doors": [
-      {
-        "pos": { "x": 768, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1024, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1632, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1888, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1632, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1888, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1216, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1440, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1216, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1440, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 928, "y": 673 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 752, "y": 673 },
-        "texture": "simpleporte",
-        "isTop": false
-      }
+      [
+        {
+          "pos": { "x": 768, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1024, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1632, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1632, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1888, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1216, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1440, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1216, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1440, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 928, "y": 673 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 752, "y": 673 },
+          "texture": "simpleporte",
+          "isTop": false
+        }
+      ]
     ],
     "clues": [
       {
@@ -435,7 +447,7 @@
       {
         "pos": { "x": 620, "y": 400 },
         "texture": "poubelleSprite",
-        "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "displayText": "Appuyer sur ESPACE pour fouiller la poubelle",
         "clueId": "e2_r1_1",
         "isFlipX": false
       },
@@ -449,7 +461,7 @@
       {
         "pos": { "x": 656, "y": 108 },
         "texture": "eleve3",
-        "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "displayText": "Appuyer sur ESPACE pour parler à l'élève",
         "clueId": "e2_r1_3",
         "isFlipX": false
       },
@@ -470,7 +482,7 @@
       {
         "pos": { "x": 1872, "y": 45 },
         "texture": "eleve2",
-        "displayText": "Appuyer sur ESPACE pour regarder l'ordinateur...",
+        "displayText": "Appuyer sur ESPACE pour parler à l'élève",
         "clueId": "e2_r2_3",
         "isFlipX": false
       },
