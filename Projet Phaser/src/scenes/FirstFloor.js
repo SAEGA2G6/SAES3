@@ -8,7 +8,7 @@ class FirstFloor extends Floor {
     this.pos = { x: 160, y: 600 };
 
     this.nbRooms = 5;
-
+    console.log("niveau:" + data.chosenLevel);
     this.levelPrefix = "e1";
     this.map = "map1";
     this.imageMap = "e1img";

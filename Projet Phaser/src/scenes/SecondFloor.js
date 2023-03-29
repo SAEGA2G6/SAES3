@@ -184,7 +184,7 @@ class SecondFloor extends Floor {
       590,
       "poubelleSprite",
       "Appuyer sur ESPACE pour fouiller la poubelle",
-      "e2_r3_3",
+      "e2_r3_1",
       "clue"
     );
 
@@ -204,7 +204,7 @@ class SecondFloor extends Floor {
       920,
       "papiers",
       "Appuyer sur ESPACE pour regarder les notes...",
-      "e2_r3_2",
+      "e2_r3_3",
       "clue"
     );
 

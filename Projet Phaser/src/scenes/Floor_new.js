@@ -3,6 +3,10 @@ class Floor extends Phaser.Scene {
     this.playerGender = data.texture;
     this.playerPseudo = data.pseudo;
 
+    this.chosenLevel = data.chosenLevel;
+
+
+
     this.currentNbRoom = 1;
     this.nbRooms;
 

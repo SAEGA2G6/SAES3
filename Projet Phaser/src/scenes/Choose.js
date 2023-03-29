@@ -13,7 +13,6 @@ class Choose extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
-    //const arrowBack = 
     this.add
       .image(100, 100, "arrow_back")
       .setInteractive({ useHandCursor: true })
@@ -40,7 +39,7 @@ class Choose extends Phaser.Scene {
    * @return {void}
    */
   chooseLevel() {
-    //const textChooseLevel = 
+    
     this.add
       .text(400, 150, "CHOISIS TON ETAGE", {})
       .setDepth(5)
@@ -114,7 +113,6 @@ class Choose extends Phaser.Scene {
    * @return {void}
    */
   chooseCharacter() {
-    //const textChooseCharacter = 
     this.add
       .text(400, 150, "CHOISIS TON PERSONNAGE", {})
       .setDepth(5)
