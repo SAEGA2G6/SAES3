@@ -97,11 +97,12 @@ elseif ( '/index.php/administration' == $uri ){
     $vueAnnonces->display();
 }
 elseif ('/index.php/ajouteQuestion' == $uri) {
-    echo var_dump($_POST);
     $question = new Question(null,$_POST['Parcour'],$_POST['salle'],$_POST['Enoncer'],$_POST['BonneReponse'],$_POST['Reponse1'],$_POST['Reponse2'],$_POST['Reponse3'],$_POST['Reponse4']);
-    echo var_dump($question);
     $controller->createQuestionAction($question, $administrationCheck, $dataAdministration);
     header("refresh:2;url=/index.php/administration"); 
+}
+elseif('/index.php/deleteQuestion' == $uri){
+    $controller->deleteQuestionAction($_POST['ID'],$administrationCheck,$dataAdministration);
 }
 else {
     header('Status: 404 Not Found');

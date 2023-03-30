@@ -100,29 +100,36 @@ maDiv.append(monForm)
 }
 
 function supprimerQuestion(){
-    checkedCheckboxes = []
+    checkedCheckboxe= []
     checkboxes = document.querySelectorAll('.checkbox')
     checkboxes.forEach(element => {
         if(element.checked)
-            checkedCheckboxes.push(element)
+            checkedCheckboxe.push(element)
     });
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "l'url");
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
-
+    if (checkedCheckboxe.length < 1){
+        alert('pas de question sélectionné')
+    }
+    if (checkedCheckboxe.length > 1){
+        alert('trop de question sélectionné')
+    }
+    
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "deleteQuestion", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-    }};
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = xhr.responseText;
+      }
+    };
+    xhr.open("POST", "deleteQuestion", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("ID=" + checkedCheckboxe[0].id);
 
-    let data = `{
-        "Id": l'id des boutons,
-    }`;
+    setTimeout(function(){
+        location.reload(true)
+    }, 2000);
+    
 
-    xhr.send(data)
 }
 
 function updateQuestion(){

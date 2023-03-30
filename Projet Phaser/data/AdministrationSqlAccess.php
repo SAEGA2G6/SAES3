@@ -43,4 +43,9 @@ class AdministrationSqlAccess implements AdministrationAccessInterface
         $query->execute(['ID_QUESTION' => $question->getID(), 'Parcour' => $question->getParcour(), 'salle'=> $question->getSalle(), 'Enoncer'=> $question->getEnoncer(), 'BonneReponse'=> $question->getBonneReponse(), 'Reponse1'=> $question->getReponse1(), 'Reponse2'=> $question->getReponse2(), 'Reponse3'=> $question->getReponse3(), 'Reponse4'=> $question->getReponse4()]);
     }
 
+    public function deleteQuestion($id){
+        $query = $this->dataAccess->prepare('DELETE FROM QUESTION WHERE QUESTION.ID_QUESTION = :ID_QUESTION');
+        $query->execute(['ID_QUESTION' => $id]);
+    }
+
 }
