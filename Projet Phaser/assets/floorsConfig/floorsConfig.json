@@ -222,46 +222,54 @@
       }
     ],
     "doors": [
-      {
-        "pos": { "x": 1504, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1888, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 1024, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1216, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1376, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1568, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1728, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1920, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      }
+      [
+        {
+          "pos": { "x": 1504, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        },
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1024, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1216, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1376, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1568, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1728, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        },
+        {
+          "pos": { "x": 1920, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ]
     ],
     "clues": [
       {
@@ -410,31 +418,41 @@
       }
     ],
     "doors": [
-      {
-        "pos": { "x": 1888, "y": 417 },
-        "texture": "doubleporte",
-        "isTop": true
-      },
-      {
-        "pos": { "x": 800, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1120, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1440, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      },
-      {
-        "pos": { "x": 1760, "y": 545 },
-        "texture": "doubleporte",
-        "isTop": false
-      }
+      [
+        {
+          "pos": { "x": 1888, "y": 417 },
+          "texture": "doubleporte",
+          "isTop": true
+        }
+      ],
+      [
+        {
+          "pos": { "x": 800, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1120, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1440, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ],
+      [
+        {
+          "pos": { "x": 1760, "y": 545 },
+          "texture": "doubleporte",
+          "isTop": false
+        }
+      ]
     ],
     "clues": [
       {
