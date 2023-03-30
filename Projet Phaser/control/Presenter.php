@@ -16,6 +16,7 @@ class Presenter
         $content = null;
         if( $this->administrationCheck->getAdministrationTxt() != null )
         {
+            
             foreach( $this->administrationCheck->getAdministrationTxt()as $question ) {
                 $content .=  '<div> <input type="checkbox" class="checkbox" id="'.$question['id'].'">';
                 $content .=  '<p> id question : <div>'. $question['id'].'</div></p>';

@@ -38,5 +38,9 @@ class AdministrationSqlAccess implements AdministrationAccessInterface
         return $administration;
     }
 
+    public function createQuestion($question){
+        $query = $this->dataAccess->prepare('INSERT INTO QUESTION (ID_QUESTION, Parcour, salle, Enoncer, BonneReponse, Reponse1, Reponse2, Reponse3, Reponse4) VALUES (:ID_QUESTION, :Parcour, :salle, :Enoncer, :BonneReponse, :Reponse1, :Reponse2, :Reponse3, :Reponse4)');
+        $query->execute(['ID_QUESTION' => $question->getID(), 'Parcour' => $question->getParcour(), 'salle'=> $question->getSalle(), 'Enoncer'=> $question->getEnoncer(), 'BonneReponse'=> $question->getBonneReponse(), 'Reponse1'=> $question->getReponse1(), 'Reponse2'=> $question->getReponse2(), 'Reponse3'=> $question->getReponse3(), 'Reponse4'=> $question->getReponse4()]);
+    }
 
 }

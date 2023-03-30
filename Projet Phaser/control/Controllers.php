@@ -41,4 +41,8 @@ class Controllers
     public function getAllQuestionAction($administrationCheck, $dataAdministration){
         $administrationCheck->getAllAdministration($dataAdministration);
     }
+
+    public function createQuestionAction($question, $administrationCheck, $dataAdministration){
+        $administrationCheck->createQuestion($dataAdministration, $question);
+    }
 }

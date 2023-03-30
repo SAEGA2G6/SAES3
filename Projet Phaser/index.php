@@ -19,6 +19,7 @@ include_once 'gui/ViewJeu.php';
 use gui\{ViewLogin, ViewAdministration, ViewJeu, Layout};
 use control\{Controllers, Presenter};
 use data\{AdministrationSqlAccess, UserSqlAccess};
+use domain\Question;
 use service\{AdministrationChecking, UserChecking};
 
 $data = null;
@@ -74,7 +75,7 @@ if ( '/index.php' == $uri ) {
         if( $error == 'bad login or pwd' or $error == 'not connected')
             $redirect = 'index.php';
     }
-    header("refresh:5;url=/index.php/administration"); 
+    header("refresh:2;url=/index.php/administration"); 
 }/*
 if (  'index.php' == $uri || 'index.php/logout' == $uri) {
     // affichage de la page de connexion
@@ -94,6 +95,13 @@ elseif ( '/index.php/administration' == $uri ){
     $vueAnnonces= new ViewAdministration( $layout, $presenter);
 
     $vueAnnonces->display();
+}
+elseif ('/index.php/ajouteQuestion' == $uri) {
+    echo var_dump($_POST);
+    $question = new Question(null,$_POST['Parcour'],$_POST['salle'],$_POST['Enoncer'],$_POST['BonneReponse'],$_POST['Reponse1'],$_POST['Reponse2'],$_POST['Reponse3'],$_POST['Reponse4']);
+    echo var_dump($question);
+    $controller->createQuestionAction($question, $administrationCheck, $dataAdministration);
+    header("refresh:2;url=/index.php/administration"); 
 }
 else {
     header('Status: 404 Not Found');
