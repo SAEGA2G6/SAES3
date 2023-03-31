@@ -27,4 +27,8 @@ class AdministrationChecking
     public function deleteQuestion($data, $id){
         $data->deleteQuestion($id);
     }
+
+    public function updateQuestion($data,$question){
+        $data->updateQuestion($question);
+    }
 }

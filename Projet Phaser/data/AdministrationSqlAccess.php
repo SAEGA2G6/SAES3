@@ -48,4 +48,10 @@ class AdministrationSqlAccess implements AdministrationAccessInterface
         $query->execute(['ID_QUESTION' => $id]);
     }
 
+    public function updateQuestion($question){
+        $query = $this->dataAccess->prepare('UPDATE QUESTION SET Parcour = :Parcour, salle = :salle, Enoncer = :Enoncer, BonneReponse = :BonneReponse, Reponse1 = :Reponse1, Reponse2 = :Reponse2, Reponse3 = :Reponse3, Reponse4 = :Reponse4 WHERE QUESTION.ID_QUESTION = :ID_QUESTION ');
+        $query->execute(['ID_QUESTION' => $question->getID(), 'Parcour' => $question->getParcour(), 'salle'=> $question->getSalle(), 'Enoncer'=> $question->getEnoncer(), 'BonneReponse'=> $question->getBonneReponse(), 'Reponse1'=> $question->getReponse1(), 'Reponse2'=> $question->getReponse2(), 'Reponse3'=> $question->getReponse3(), 'Reponse4'=> $question->getReponse4()]);
+
+    }
+
 }

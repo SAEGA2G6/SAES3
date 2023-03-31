@@ -49,4 +49,8 @@ class Controllers
     public function deleteQuestionAction($id, $administrationCheck, $dataAdministration){
         $administrationCheck->deleteQuestion($dataAdministration, $id);
     }
+
+    public function updateQuestionAction($question, $administrationCheck, $dataAdministration){
+        $administrationCheck->updateQuestion($dataAdministration, $question);
+    }
 }

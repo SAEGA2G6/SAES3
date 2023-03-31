@@ -104,6 +104,13 @@ elseif ('/index.php/ajouteQuestion' == $uri) {
 elseif('/index.php/deleteQuestion' == $uri){
     $controller->deleteQuestionAction($_POST['ID'],$administrationCheck,$dataAdministration);
 }
+elseif('/index.php/updateQuestion' == $uri){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json);
+    $data = (array)$data;
+    $question = new Question($data['id'],$data['parcour'],$data['salle'],$data['enoncer'],$data['bonneReponse'],$data['reponse1'],$data['reponse2'],$data['reponse3'],$data['reponse4']);
+    $controller->updateQuestionAction($question,$administrationCheck,$dataAdministration);
+}
 else {
     header('Status: 404 Not Found');
     echo var_dump($uri);

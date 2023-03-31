@@ -147,21 +147,138 @@ function updateQuestion(){
     }
     currentQuestion = checkedCheckboxes[0].parentNode
 
+    let id = currentQuestion.childNodes.item(3)
     
-    let parcour = currentQuestion.childNodes.item(1)
+    
+    let parcour = currentQuestion.childNodes.item(5)
     let inputParcour = document.createElement('input')
     inputParcour.type = 'text'
-    alert(parcour.childNodes.item(0))
-    /*let maDiv = parcour.children[0]
-    inputParcour.innerHTML = maDiv.innerHTML
-    parcour.removeChild(maDiv)
-    parcour.append(inputParcour)*/
-    
-    
-    /*alert(currentQuestion)
-    alert(currentQuestion.childNodes)
-    currentQuestion.childNodes.forEach(element => {
-        alert(element.value)
-    });*/
+    let parcourText = parcour.innerHTML.split(' : ')
+    inputParcour.value = parcourText[1]
+    parcour.innerHTML = parcourText[0]+' : '
+    parcour.append(inputParcour)
 
+    let salle = currentQuestion.childNodes.item(6)
+    let inputSalle = document.createElement('input')
+    inputSalle.type = 'text'
+    let salleText = salle.innerHTML.split(' : ')
+    inputSalle.value = salleText[1]
+    salle.innerHTML = salleText[0]+' : '
+    salle.append(inputSalle)
+
+    let enoncer = currentQuestion.childNodes.item(7)
+    let inputEnoncer = document.createElement('input')
+    inputEnoncer.type = 'text'
+    let enoncerText = enoncer.innerHTML.split(' : ')
+    inputEnoncer.value = enoncerText[1].replace("\"","").replace("\"","")
+    enoncer.innerHTML = enoncerText[0]+' : '
+    enoncer.append(inputEnoncer)
+
+    let bonneReponse = currentQuestion.childNodes.item(8)
+    let inputBonneReponse = document.createElement('input')
+    inputBonneReponse.type = 'text'
+    let bonneReponseText = bonneReponse.innerHTML.split(' : ')
+    inputBonneReponse.value = bonneReponseText[1]
+    bonneReponse.innerHTML = bonneReponseText[0]+" : "
+    bonneReponse.append(inputBonneReponse)
+
+    let reponse1 = currentQuestion.childNodes.item(9)
+    let inputReponse1 = document.createElement('input')
+    inputReponse1.type = 'text'
+    let reponse1Text = reponse1.innerHTML.split(' : ')
+    inputReponse1.value = reponse1Text[1].replace("\"","").replace("\"","")
+    reponse1.innerHTML = reponse1Text[0]+' : '
+    reponse1.append(inputReponse1)
+
+    let reponse2 = currentQuestion.childNodes.item(10)
+    let inputReponse2 = document.createElement('input')
+    inputReponse2.type = 'text'
+    let reponse2Text = reponse2.innerHTML.split(' : ')
+    inputReponse2.value = reponse2Text[1].replace("\"","").replace("\"","")
+    reponse2.innerHTML = reponse2Text[0]+' : '
+    reponse2.append(inputReponse2)
+
+    let reponse3 = currentQuestion.childNodes.item(11)
+    let inputReponse3 = document.createElement('input')
+    inputReponse3.type = 'text'
+    let reponse3Text = reponse3.innerHTML.split(' : ')
+    inputReponse3.value = reponse3Text[1].replace("\"","").replace("\"","")
+    reponse3.innerHTML = reponse3Text[0]+' : '
+    reponse3.append(inputReponse3)
+
+    let reponse4 = currentQuestion.childNodes.item(12)
+    let inputReponse4 = document.createElement('input')
+    inputReponse4.type = 'text'
+    let reponse4Text = reponse4.innerHTML.split(' : ')
+    inputReponse4.value = reponse4Text[1].replace("\"","").replace("\"","")
+    reponse4.innerHTML = reponse4Text[0]+' : '
+    reponse4.append(inputReponse4)
+
+    let submit = document.createElement('p')
+    let inputSubmit = document.createElement('input')
+    inputSubmit.type = "submit"
+    inputSubmit.addEventListener('click', event => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "updateQuestion", true);
+        xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log(response)
+        }
+        };
+        xhr.open("POST", "updateQuestion", true);
+        xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        xhr.send(JSON.stringify({
+            "id":id.innerHTML,
+            "parcour":inputParcour.value,
+            "salle":inputSalle.value,
+            "enoncer":inputEnoncer.value,
+            "bonneReponse":inputBonneReponse.value,
+            "reponse1":inputReponse1.value,
+            "reponse2":inputReponse2.value,
+            "reponse3":inputReponse3.value,
+            "reponse4":inputReponse4.value,
+        }));
+
+
+        setTimeout(function(){
+            location.reload(true)
+        }, 2000);
+      });
+    submit.append(inputSubmit)
+    currentQuestion.append(submit)
+    
+    
+
+}
+
+function send(id, parcour, salle, enoncer, bonneReponse, reponse1, reponse2,reponse3,reponse4){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "updateQuestion", true);
+    xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = xhr.responseText;
+        console.log(response)
+      }
+    };
+    xhr.open("POST", "updateQuestion", true);
+    xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({
+        "id":id,
+        "parcour":parcour,
+        "salle":salle,
+        "enoncer":enoncer,
+        "bonneReponse":bonneReponse,
+        "reponse1":reponse1,
+        "reponse2":reponse2,
+        "reponse3":reponse3,
+        "reponse4":reponse4,
+    }));
+
+
+    /*setTimeout(function(){
+        location.reload(true)
+    }, 2000);*/
 }
