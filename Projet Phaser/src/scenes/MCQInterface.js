@@ -186,9 +186,7 @@ class MCQInterface extends Phaser.Scene {
         this.changeInteractivity(),
         this.resetAnswersColor(),
         this.nextQuestion()
-      ),
-      [],
-      this
+      )
     );
   }
 
@@ -202,15 +200,10 @@ class MCQInterface extends Phaser.Scene {
     const sceneLevel = this.game.scene.getScene(this.currentScene);
 
     /// wait a second before returning to the game scene ///
-    const timedEvent = this.time.delayedCall(
-      1000,
-      () => {
-        this.currentBoss.disable(false);
-        sceneLevel.emitter.emit("timeMalus"), this.exitMCQ();
-      },
-      [],
-      this
-    );
+    const timedEvent = this.time.delayedCall(1000, () => {
+      this.currentBoss.disable(false);
+      sceneLevel.emitter.emit("timeMalus"), this.exitMCQ();
+    });
   }
 
   /**

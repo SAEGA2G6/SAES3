@@ -41,7 +41,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     scene.add.existing(this);
 
-    this.cursors = scene.input.keyboard.createCursorKeys();
+    this.cursors = scene.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.Z,
+      left: Phaser.Input.Keyboard.KeyCodes.Q,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
+    this.cursorsAlt = scene.input.keyboard.createCursorKeys();
     this.facingDirection;
 
     const KeyESC = scene.input.keyboard.addKey("esc");
@@ -101,22 +107,22 @@ class Player extends Phaser.Physics.Arcade.Sprite {
    * Update the player (to manage moves).
    */
   update() {
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown || this.cursorsAlt.left.isDown) {
       this.setVelocityY(0);
       this.setVelocityX(-this.velocity);
       this.anims.play("left", true);
       this.facingDirection = "left";
-    } else if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown || this.cursorsAlt.right.isDown) {
       this.setVelocityY(0);
       this.setVelocityX(this.velocity);
       this.anims.play("right", true);
       this.facingDirection = "right";
-    } else if (this.cursors.up.isDown) {
+    } else if (this.cursors.up.isDown || this.cursorsAlt.up.isDown) {
       this.setVelocityX(0);
       this.setVelocityY(-this.velocity);
       this.anims.play("up", true);
       this.facingDirection = "up";
-    } else if (this.cursors.down.isDown) {
+    } else if (this.cursors.down.isDown || this.cursorsAlt.down.isDown) {
       this.setVelocityX(0);
       this.setVelocityY(this.velocity);
       this.anims.play("down", true);
@@ -147,16 +153,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.openedMap = 0;
         this.resetSpeed();
       }
-      this.scene.time.delayedCall(
-        500,
-        function () {
-          this.isProcessing = false;
-        },
-        [],
-        this
-      );
-    }
-    else if(this.KeyESC.isDown && this.openedMap == 1) {
+      this.scene.time.delayedCall(500, () => {
+        this.isProcessing = false;
+      });
+    } else if (this.KeyESC.isDown && this.openedMap == 1) {
       this.minimap.setVisible(false);
       this.resetSpeed();
     }

@@ -51,14 +51,9 @@ class Chronometer {
    */
   malusChrono() {
     this.timeMalusTxt.visible = true;
-    const timedEvent = this.scene.time.delayedCall(
-      3000,
-      () => {
-        (this.timeMalusTxt.visible = false), (this.chrono += 30);
-      },
-      [],
-      this
-    );
+    const timedEvent = this.scene.time.delayedCall(3000, () => {
+      (this.timeMalusTxt.visible = false), (this.chrono += 30);
+    });
   }
 
   /**
