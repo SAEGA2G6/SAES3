@@ -45,6 +45,11 @@
         "url": "/assets/tilesets/sofa.png",
         "key": "sofa",
         "type": "image"
+      },
+      {
+        "url": "/assets/tilesets/tv.png",
+        "key": "tv",
+        "type": "image"
       }
     ]
 

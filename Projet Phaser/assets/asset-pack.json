@@ -170,7 +170,27 @@
                 "url": "/assets/profs/prof11.png",
                 "key": "prof11",
                 "type": "image"
-            }
+            },
+            {
+                "url": "/assets/indices/bde.png",
+                "key": "bde",
+                "type": "image"
+            },
+            {
+                "url": "/assets/maps/iut_rc.png",
+                "key": "rcimg",
+                "type": "image"
+            },
+            {
+                "url": "/assets/maps/iut_e1.png",
+                "key": "e1img",
+                "type": "image"
+            },
+            {
+                "url": "/assets/maps/iut_e2.png",
+                "key": "e2img",
+                "type": "image"
+            },
         ]
     },
     "meta": {

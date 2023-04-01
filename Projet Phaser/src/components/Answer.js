@@ -1,12 +1,15 @@
 class Answer extends Phaser.GameObjects.Text {
   /**
-   * The constructor for a answer object which will be displayed during the MCQ. The player will be able to click on it if he/she thinks it is right
-   * @param {Phaser.Scene} scene Scene to display the answer
+   * The constructor for a answer object which will be displayed during the MCQ. The player will be able to click on it.
+   * @param {Phaser.Scene} scene Scene where the answer is displayed
    */
   constructor(scene) {
     super(scene, 0, 0, "", {});
     this.scene = scene;
+
+    /// by default, the answer is created as false ///
     this.isRight = false;
+
     this.setDepth(5);
     this.setStyle({
       fontFamily: "Roboto",
@@ -18,16 +21,17 @@ class Answer extends Phaser.GameObjects.Text {
 
     this.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       if (this.isRight) {
-        /// we launch the event of the right answer ///
+        /// the event of the right answer is launched ///
         this.setStyle({ fill: "green" });
         this.scene.emitter.emit("rightAnswer");
       } else {
-        /// we launch the event of the wrong answer ///
+        /// the event of the wrong answer is launched ///
         this.setStyle({ fill: "red" });
         this.scene.emitter.emit("wrongAnswer");
       }
     });
 
+    /// the answer is added to the scene ///
     this.scene.add.existing(this);
   }
 }

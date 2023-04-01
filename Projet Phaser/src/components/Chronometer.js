@@ -1,3 +1,6 @@
+/**
+ * Class representing a chronometer
+ */
 class Chronometer {
   constructor(scene) {
     this.scene = scene;

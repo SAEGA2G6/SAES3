@@ -13,6 +13,7 @@ class Preload extends Phaser.Scene {
     this.load.tilemapTiledJSON("map", "../assets/maps/iut_rcFinis.json");
     this.load.tilemapTiledJSON("map1", "../assets/maps/iut_e1Finis.json");
     this.load.tilemapTiledJSON("map2", "../assets/maps/iut_e2.json");
+    this.load.json("FloorsConfig", "../assets/floorsConfig/floorsConfig.json");
   }
 
   /** @returns {void} */
