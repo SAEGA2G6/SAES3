@@ -278,7 +278,7 @@ function send(id, parcour, salle, enoncer, bonneReponse, reponse1, reponse2,repo
     }));
 
 
-    /*setTimeout(function(){
+    setTimeout(function(){
         location.reload(true)
-    }, 2000);*/
+    }, 2000);
 }

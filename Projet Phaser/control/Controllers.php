@@ -22,8 +22,7 @@ class Controllers
                 // Enregistrement des informations de session après une authentification réussie
                 else {
                     $_SESSION['login'] = $_POST['login'] ;
-                    echo 'on est la';
-                    header("Location: https://localhost/index.php/administration");
+                    header("refresh:2;url=/index.php/administration"); 
                     die();
                 }
             }

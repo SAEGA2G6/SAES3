@@ -66,7 +66,6 @@ if ( '/index.php' == $uri ) {
     $vueLogin->display();
 
 }elseif ('/index.php/authenticate' == $uri){
-    
     $error = $controller->authenticateAction($userCheck,$dataUsers);
 
     if( $error != null )
@@ -76,22 +75,15 @@ if ( '/index.php' == $uri ) {
             $redirect = 'index.php';
     }
     header("refresh:2;url=/index.php/administration"); 
-}/*
-if (  'index.php' == $uri || 'index.php/logout' == $uri) {
-    // affichage de la page de connexion
-
-    session_destroy();
-    $layout = new Layout("gui/layoutAdmin.html" );
-    $vueLogin = new ViewLogin( $layout );
-
-    $vueLogin->display();
-}*/
+}
 elseif ( '/index.php/administration' == $uri ){
-    
+    if(!isset($_SESSION['login'])){
+        header("refresh:0;url=/index.php/login"); 
+    }
     
     $controller->getAllQuestionAction($administrationCheck, $dataAdministration);
 
-    $layout = new Layout("gui/layoutAdmin.html" );
+    $layout = new Layout("gui/layoutAdminLogged.html" );
     $vueAnnonces= new ViewAdministration( $layout, $presenter);
 
     $vueAnnonces->display();
@@ -110,6 +102,15 @@ elseif('/index.php/updateQuestion' == $uri){
     $data = (array)$data;
     $question = new Question($data['id'],$data['parcour'],$data['salle'],$data['enoncer'],$data['bonneReponse'],$data['reponse1'],$data['reponse2'],$data['reponse3'],$data['reponse4']);
     $controller->updateQuestionAction($question,$administrationCheck,$dataAdministration);
+}
+elseif ( '/index.php/logout' == $uri) {
+    // affichage de la page de connexion
+
+    session_destroy();
+    $layout = new Layout("gui/layoutAdmin.html" );
+    $vueLogin = new ViewLogin( $layout );
+
+    $vueLogin->display();
 }
 else {
     header('Status: 404 Not Found');

@@ -12,8 +12,8 @@ class ViewLogin extends View{
 
         $this->content = '<form method="POST" action="authenticate">
         <p>Connectez Vous!</p>
-        <input name="login" placeholder="Login">
-        <input name="password" placeholder="Mot de Passe">
+        <input type="text" name="login" placeholder="Login">
+        <input type="password" name="password" placeholder="Mot de Passe">
         <button type="submit">Connexion</button>
         </form>';
 
