@@ -1,3 +1,6 @@
+/**
+ * Class representing a preloading text, used during loading and indicating the loading percentage
+ */
 class PreloadText extends UserComponent {
   /**
    * @param {Phaser.GameObjects.GameObject} gameObject The entity.

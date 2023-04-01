@@ -28,9 +28,6 @@ window.addEventListener("load", function () {
   game.scene.add("GameOver", GameOver);
   game.scene.add("Presentation", Presentation);
   game.scene.add("Floor", Floor);
-  //game.scene.add("GroundFloor", GroundFloor);
-  //game.scene.add("FirstFloor", FirstFloor);
-  //game.scene.add("SecondFloor", SecondFloor);
   game.scene.add("MCQInterface", MCQInterface);
   game.scene.add("Clue", Clue);
   game.scene.add("Boot", Boot, true);

@@ -1,3 +1,6 @@
+/**
+ * Class representing a player
+ */
 class Player extends Phaser.Physics.Arcade.Sprite {
   /**
    *

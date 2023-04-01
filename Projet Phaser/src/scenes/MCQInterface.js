@@ -9,13 +9,12 @@ class MCQInterface extends Phaser.Scene {
     /// Boss of the current room ///
     this.currentBoss;
 
-    /// Request DB ///
-    this.xhr;
-
-    this.myJsonQA;
+    this.QAjson;
     this.currentQuestionNb;
 
     this.txtcolor = "black";
+
+    this.repo = new DBQueries();
   }
 
   /** @returns {void} */
@@ -58,23 +57,24 @@ class MCQInterface extends Phaser.Scene {
     this.question = question;
 
     const answer1 = new Answer(this);
+    this.answer1 = answer1;
 
     const answer2 = new Answer(this);
+    this.answer2 = answer2;
 
     const answer3 = new Answer(this);
+    this.answer3 = answer3;
 
     const answer4 = new Answer(this);
-
-    this.answer1 = answer1;
-    this.answer2 = answer2;
-    this.answer3 = answer3;
     this.answer4 = answer4;
 
+    /// all answers are placed at the same coordinates at the beginning ///
     Phaser.Display.Align.In.BottomLeft(this.answer1, this.backInterface);
     Phaser.Display.Align.In.BottomLeft(this.answer2, this.backInterface);
     Phaser.Display.Align.In.BottomLeft(this.answer3, this.backInterface);
     Phaser.Display.Align.In.BottomLeft(this.answer4, this.backInterface);
 
+    /// the coordinates of each answer are adjusted ///
     this.answer1.y -= 230;
     answer1.x += 140;
     this.answer2.y = this.answer1.y + 60;
@@ -90,9 +90,15 @@ class MCQInterface extends Phaser.Scene {
     const prefix =
       this.currentBoss.scene.levelPrefix +
       "_r" +
-      this.currentBoss.scene.currentNbRoom;
-    /// Request send to the DB to get the questions and answers that correspond to the actual boss ///
-    DBQueries.sendQuestionAnswersRequest(this, prefix);
+      this.currentBoss.scene.currentRoomNumber;
+
+    /// Request send to the DB to get the questions and answers that correspond to the actual boss/mcq ///
+    this.repo.sendQuestionAnswersRequest(prefix, (response) => {
+      const parsedResponse = JSON.parse(response);
+      this.QAjson = parsedResponse;
+      this.nextQuestion();
+      //this.nextQuestion(parsedResponse);
+    });
 
     /// Creation of the events about the right and wrong answers ///
     this.emitter = new Phaser.Events.EventEmitter();
@@ -115,15 +121,29 @@ class MCQInterface extends Phaser.Scene {
     this.editorCreate();
   }
 
+  createQA() {
+    /// the question and answers are assigned to the respective texts that will be displayed ///
+    this.question.text = this.QAjson[this.currentQuestionNb].Enoncer;
+    this.answer1.text = this.QAjson[this.currentQuestionNb].Reponse1;
+    this.answer2.text = this.QAjson[this.currentQuestionNb].Reponse2;
+    this.answer3.text = this.QAjson[this.currentQuestionNb].Reponse3;
+    this.answer4.text = this.QAjson[this.currentQuestionNb].Reponse4;
+
+    /// the property of the correct answer is changed so that it is considered correct ///
+    this.answerList[
+      this.QAjson[this.currentQuestionNb].BonneReponse - 1
+    ].isRight = true;
+  }
+
   /**
    * Goes to next question
    * @return {void}
    */
   nextQuestion() {
-    this.myJsonQA = MCQInterface.myJsonQA;
+    //this.myJsonQA = MCQInterface.myJsonQA;
 
     this.resetRightAnswer();
-    if (this.currentQuestionNb < this.myJsonQA.length) {
+    /*if (this.currentQuestionNb < this.myJsonQA.length) {
       /// the question and answers are assigned to the respective texts that will be displayed ///
       this.question.text = this.myJsonQA[this.currentQuestionNb].Enoncer;
       this.answer1.text = this.myJsonQA[this.currentQuestionNb].Reponse1;
@@ -134,8 +154,9 @@ class MCQInterface extends Phaser.Scene {
       /// the property of the correct answer is changed so that it is considered correct ///
       this.answerList[
         this.myJsonQA[this.currentQuestionNb].BonneReponse - 1
-      ].isRight = true;
-
+      ].isRight = true;*/
+    if (this.currentQuestionNb < this.QAjson.length) {
+      this.createQA(this.QAjson);
       /// the question number is incremented for the next ///
       this.currentQuestionNb++;
     } else {

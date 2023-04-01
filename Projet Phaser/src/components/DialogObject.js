@@ -1,6 +1,9 @@
+/**
+ * Class representing an access to an MCQ or a clue
+ */
 class DialogObject extends Phaser.Physics.Arcade.Sprite {
   /**
-   *
+   * 
    * @param {Phaser.Scene} scene Scene where the dialog object will be placed
    * @param {number} x x coordinate
    * @param {number} y y coordinate
@@ -67,25 +70,34 @@ class DialogObject extends Phaser.Physics.Arcade.Sprite {
   }
 
   /**
+   * Returns the value of the distance between this DialogObject and the player
+   * @returns {number} The distance between this DialogObject and the player
+   */
+  distanceBetweenThisAndPlayer() {
+    return Phaser.Math.Distance.BetweenPoints(this, this.scene.player);
+  }
+
+  /**
    * update the DialogObject (see if the player is close enough to interact with it...).
    * @return {void}
    */
   update() {
-    if (
-      Phaser.Math.Distance.BetweenPoints(this, this.scene.player) < 40 &&
-      this.isEnable
-    ) {
+    if (this.distanceBetweenThisAndPlayer() < 40 && this.isEnable) {
       this.textDialog.visible = true;
       this.textBox.visible = true;
 
       if (this.KeySpace.isDown && this.dialogType === "mcq") {
+        /// the DialogObject is deactivated so that it cannot be activated again during its use ///
         this.disable(true);
+        /// the DialogObject is transferred to the scene managing the MCQs ///
         const sceneMCQInterface =
           this.scene.game.scene.getScene("MCQInterface");
         sceneMCQInterface.currentBoss = this;
         this.scene.scene.launch("MCQInterface", { currentScene: this.scene });
       } else if (this.KeySpace.isDown && this.dialogType === "clue") {
+        /// the DialogObject is deactivated so that it cannot be activated again during its use ///
         this.disable(true);
+        /// the DialogObject is transferred to the scene managing the clues ///
         const sceneClue = this.scene.game.scene.getScene("Clue");
         sceneClue.currentClue = this;
         sceneClue.clueId = this.clueId;

@@ -1,49 +1,42 @@
 class DBQueries {
+  constructor() {}
   /**
    * query sent to retrieve the text of the clue
    * @return {void}
    */
-  static sendClueRequest(that) {
+  sendClueRequest(clueId, callback) {
     const xhr = new XMLHttpRequest();
-    DBQueries.xhr = xhr;
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("clueID=" + clueId);
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = xhr.responseText;
-        const MyJsonClue = JSON.parse(response);
-        that.clueText.text = MyJsonClue[0].CONTENUE;
+        if (typeof callback === "function") {
+          var resp = xhr.responseText;
+          callback(resp);
+        }
       }
     };
-    xhr.open("POST", "src/requetes.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("clueID=" + that.clueId);
   }
 
   /**
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-  
-  static sendScoresRequest(that, floor, callback) {
-    //that.textHighscore.text = "";
 
+  sendScoresRequest(floor, callback) {
     const xhr = new XMLHttpRequest();
-
-    DBQueries.xhr = xhr;
-
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
+    xhr.send("floor=" + floor);
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        if(typeof callback === "function"){
-          var resp = JSON.parse(xhr.responseText)
-          callback(that, resp);
+        if (typeof callback === "function") {
+          var resp = xhr.responseText;
+          callback(resp);
         }
       }
     };
-    xhr.send("floor=" + floor);
   }
 
   /**
@@ -51,39 +44,36 @@ class DBQueries {
    * @param {string} prefix
    * @return {void}
    */
-  static sendQuestionAnswersRequest(that, prefix) {
+  sendQuestionAnswersRequest(prefix, callback) {
     const xhr = new XMLHttpRequest();
-    DBQueries.xhr = xhr;
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("room=" + prefix);
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = xhr.responseText;
-        MCQInterface.myJsonQA = JSON.parse(response);
-        that.nextQuestion();
+        if (typeof callback === "function") {
+          var resp = xhr.responseText;
+          callback(resp);
+        }
       }
     };
-    xhr.send("room=" + prefix);
   }
 
   /**
    * Sends a request to the DB to insert the player's score in the DB
    * @return {void}
    */
-  static sendInsertScoreRequest(that) {
+  sendInsertScoreRequest(player, levelPrefix) {
     const xhr = new XMLHttpRequest();
-
-    DBQueries.xhr = xhr;
-
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(
       "pseudo=" +
-        that.player.pseudo +
+        player.pseudo +
         "&score=" +
-        that.player.score +
+        player.score +
         "&levelPrefix=" +
-        that.levelPrefix
+        levelPrefix
     );
   }
 }

@@ -8,6 +8,8 @@ class Clue extends Phaser.Scene {
     this.supportTexture = data.supportTexture;
     this.currentClue;
     this.clueId;
+
+    this.repo = new DBQueries();
   }
 
   /** @returns {void} */
@@ -30,9 +32,8 @@ class Clue extends Phaser.Scene {
       });
     this.clueText = clueText;
 
-
     Phaser.Display.Align.In.TopLeft(clueText, support);
-    /// the colour of the text changes depending on the object the player is interacting with (papers, computer)//
+    /// the colour of the text changes depending on the object the player is interacting with (papers, computer) ///
     if (this.supportTexture === "ordinateur") {
       support.setScale(1.5);
       clueText.setStyle({
@@ -53,7 +54,11 @@ class Clue extends Phaser.Scene {
       clueText.x -= 50;
     }
 
-    DBQueries.sendClueRequest(this);
+    this.repo.sendClueRequest(this.clueId, (response) => {
+      const parsedResponse = JSON.parse(response);
+      const clueContent = parsedResponse[0].CONTENUE;
+      this.clueText.text = clueContent;
+    });
 
     const KeyESC = this.input.keyboard.addKey("esc");
     this.KeyESC = KeyESC;
@@ -68,7 +73,7 @@ class Clue extends Phaser.Scene {
   }
 
   /**
-   * Close the clue.
+   * Close the clue interface.
    * @return {void}
    */
   exitClue() {
@@ -76,6 +81,8 @@ class Clue extends Phaser.Scene {
     /// we stop this scene which is then reset ///
     this.scene.stop();
   }
+
+  getClueText() {}
 
   /**
    * Update the clue (to detect when the player wants to close the clue).

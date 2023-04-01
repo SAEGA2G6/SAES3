@@ -6,7 +6,7 @@ class Floor extends Phaser.Scene {
     this.playerGender = data.texture;
     this.playerPseudo = data.pseudo;
 
-    this.currentNbRoom = 1;
+    this.currentRoomNumber = 1;
     this.nbRooms = this.floorConfig["nbRooms"];
 
     this.levelPrefix = this.floorConfig["levelPrefix"];
@@ -20,6 +20,8 @@ class Floor extends Phaser.Scene {
     this.listAllDoors;
 
     this.chronometer;
+
+    this.repo = new DBQueries();
   }
 
   /** @returns {void} */
@@ -182,20 +184,20 @@ class Floor extends Phaser.Scene {
    * @return {void}
    */
   openDoorsHandler() {
-    if (this.currentNbRoom < this.nbRooms) {
+    if (this.currentRoomNumber < this.nbRooms) {
       for (
         var i = 0;
-        i < this.listAllDoors[this.currentNbRoom - 1].length;
+        i < this.listAllDoors[this.currentRoomNumber - 1].length;
         i++
       ) {
-        this.listAllDoors[this.currentNbRoom - 1][i].open();
+        this.listAllDoors[this.currentRoomNumber - 1][i].open();
       }
       this.textOpenDoors.visible = true;
       this.time.delayedCall(5000, () => {
         this.textOpenDoors.visible = false;
       });
     }
-    this.currentNbRoom++;
+    this.currentRoomNumber++;
   }
 
   /**
@@ -212,7 +214,7 @@ class Floor extends Phaser.Scene {
    * @returns {boolean} true if the game is over and false otherwise
    */
   isGameOver() {
-    return this.currentNbRoom > this.nbRooms;
+    return this.currentRoomNumber > this.nbRooms;
   }
 
   /**
@@ -230,7 +232,7 @@ class Floor extends Phaser.Scene {
     /// CHECK IF GAME IS OVER ///
     if (this.isGameOver()) {
       this.getScore();
-      DBQueries.sendInsertScoreRequest(this);
+      this.repo.sendInsertScoreRequest(this.player, this.levelPrefix)
       this.scene.start("GameOver", {
         pseudo: this.playerPseudo,
         floor: "'rez-de-chaussée'",

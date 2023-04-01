@@ -13,6 +13,7 @@ class Choose extends Phaser.Scene {
 
   /** @returns {void} */
   editorCreate() {
+    /// back arrow ///
     this.add
       .image(100, 100, "arrow_back")
       .setInteractive({ useHandCursor: true })
@@ -21,9 +22,9 @@ class Choose extends Phaser.Scene {
         this.scene.stop();
       });
 
-    if (this.chooseOption == "Level") {
+    if (this.chooseOption === "Level") {
       this.chooseLevel();
-    } else if (this.chooseOption == "Character") {
+    } else if (this.chooseOption === "Character") {
       this.chooseCharacter();
     }
 
@@ -39,7 +40,6 @@ class Choose extends Phaser.Scene {
    * @return {void}
    */
   chooseLevel() {
-    
     this.add
       .text(400, 150, "CHOISIS TON ETAGE", {})
       .setDepth(5)

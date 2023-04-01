@@ -11,24 +11,6 @@ class Presentation extends Phaser.Scene {
   editorPreload() {}
 
   /** @returns {void} */
-  /*editorCreate() {
-    const introTab = [
-      "Bonjour, je m'appelle Mr Povrhr !",
-      "Bienvenue sur notre jeu vidéo, Aix’ploration !\nCe jeu a été développé pour un projet (SAE) de 2ème année.",
-      "L’objectif de ce jeu est de faire découvrir aux étudiants les différents débouchés professionnels disponibles à la sortie du BUT Informatique.",
-      "Il sert aussi à découvrir les matières et les parcours disponibles durant cette période d’études, tout en ayant une immersion, la plus réaliste possible, au sein de notre IUT.",
-      "Hé oui ! Nous avons modélisé notre IUT en 2D pour pouvoir se déplacer dedans dans le jeu !\nPour se déplacer, il vous faudra utiliser les flèches directionnelles.",
-      "Tu peux aussi utiliser <Espace> pour interagir avec les objets et les personnages (et <Echap> pour fermer les interfaces).",
-      "Il y a aussi possibilité d'ouvrir le plan de l'étage en appuyant sur <M>",
-      "Chaque salle portera sur un sujet précis, et sera composée d'indices disséminés un peu partout dans la salle et d’un personnage bien visible qui vous posera des questions. Les indices sont indispensables pour répondre à ces questions.",
-      "Ah, au fait ! Votre performance sera chronométrée et chaque mauvaise réponse augmentera votre temps à la fin de la partie. Si votre temps à la fin de la partie figure parmis les 10 plus bas, alors il sera affiché dans la partie “Highscore” dans l’écran d’accueil.",
-    ];
-    this.introTab = introTab;
-    var introIterator = 0;
-    this.introIterator = introIterator;
-  }*/
-
-  /** @returns {void} */
   editorPreload() {}
 
   /** @returns {void} */
@@ -136,7 +118,6 @@ class Presentation extends Phaser.Scene {
     /// START GAME AND HIGHSCORE ///
     new TextColor(textStart, "Floor", this.data);
     this.nextText();
-    console.log("")
 
     this.events.emit("scene-awake");
   }
