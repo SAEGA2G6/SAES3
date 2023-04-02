@@ -1,3 +1,6 @@
+/**
+ * Class representing an answer, an object that can be clicked when a question is displayed
+ */
 class Answer extends Phaser.GameObjects.Text {
   /**
    * The constructor for a answer object which will be displayed during the MCQ. The player will be able to click on it.

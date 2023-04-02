@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene displayed before the start of the game, which is used to load the resources
+ */
 class Preload extends Phaser.Scene {
   /**
    * Scene that is displayed during preloading

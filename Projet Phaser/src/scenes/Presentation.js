@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene displayed before the start of the level, which is used to explain the context of the game
+ */
 class Presentation extends Phaser.Scene {
   /**
    * Scene that displays the presentation, the context of the game.

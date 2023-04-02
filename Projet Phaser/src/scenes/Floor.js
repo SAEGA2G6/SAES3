@@ -1,3 +1,6 @@
+/**
+ * Class representing the floor, the level where the player can move on
+ */
 class Floor extends Phaser.Scene {
   init(data) {
     this.floorsConfig = this.cache.json.get("FloorsConfig");
@@ -151,7 +154,11 @@ class Floor extends Phaser.Scene {
         clue["clueId"],
         "clue"
       );
-      if (currentClue.texture === "poubelleSprite" || currentClue.texture.includes("eleve") || currentClue.texture === "bde") {
+      if (
+        currentClue.texture === "poubelleSprite" ||
+        currentClue.texture.includes("eleve") ||
+        currentClue.texture === "bde"
+      ) {
         colliderList.push(currentClue);
       }
       if (clue["isFlipX"] === true) {
@@ -232,7 +239,7 @@ class Floor extends Phaser.Scene {
     /// CHECK IF GAME IS OVER ///
     if (this.isGameOver()) {
       this.getScore();
-      this.repo.sendInsertScoreRequest(this.player, this.levelPrefix)
+      this.repo.sendInsertScoreRequest(this.player, this.levelPrefix);
       this.scene.start("GameOver", {
         pseudo: this.playerPseudo,
         floor: "'rez-de-chaussée'",

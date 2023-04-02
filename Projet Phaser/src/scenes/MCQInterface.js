@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene where the question and answers are displayed
+ */
 class MCQInterface extends Phaser.Scene {
   /**
    * Scene that displays the MCQ.
@@ -123,7 +126,7 @@ class MCQInterface extends Phaser.Scene {
 
   createQA() {
     /// the question and answers are assigned to the respective texts that will be displayed ///
-    this.question.text = this.QAjson[this.currentQuestionNb].Enoncer;
+    this.question.text = this.QAjson[this.currentQuestionNb].Enonce;
     this.answer1.text = this.QAjson[this.currentQuestionNb].Reponse1;
     this.answer2.text = this.QAjson[this.currentQuestionNb].Reponse2;
     this.answer3.text = this.QAjson[this.currentQuestionNb].Reponse3;
@@ -145,7 +148,7 @@ class MCQInterface extends Phaser.Scene {
     this.resetRightAnswer();
     /*if (this.currentQuestionNb < this.myJsonQA.length) {
       /// the question and answers are assigned to the respective texts that will be displayed ///
-      this.question.text = this.myJsonQA[this.currentQuestionNb].Enoncer;
+      this.question.text = this.myJsonQA[this.currentQuestionNb].Enonce;
       this.answer1.text = this.myJsonQA[this.currentQuestionNb].Reponse1;
       this.answer2.text = this.myJsonQA[this.currentQuestionNb].Reponse2;
       this.answer3.text = this.myJsonQA[this.currentQuestionNb].Reponse3;
@@ -186,9 +189,7 @@ class MCQInterface extends Phaser.Scene {
         this.changeInteractivity(),
         this.resetAnswersColor(),
         this.nextQuestion()
-      ),
-      [],
-      this
+      )
     );
   }
 
@@ -202,15 +203,10 @@ class MCQInterface extends Phaser.Scene {
     const sceneLevel = this.game.scene.getScene(this.currentScene);
 
     /// wait a second before returning to the game scene ///
-    const timedEvent = this.time.delayedCall(
-      1000,
-      () => {
-        this.currentBoss.disable(false);
-        sceneLevel.emitter.emit("timeMalus"), this.exitMCQ();
-      },
-      [],
-      this
-    );
+    const timedEvent = this.time.delayedCall(1000, () => {
+      this.currentBoss.disable(false);
+      sceneLevel.emitter.emit("timeMalus"), this.exitMCQ();
+    });
   }
 
   /**

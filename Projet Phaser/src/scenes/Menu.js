@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene displayed at the beginning of the game
+ */
 class Menu extends Phaser.Scene {
   /**
    * Scene that displays the menu.

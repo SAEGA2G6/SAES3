@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene where the clue is displayed
+ */
 class Clue extends Phaser.Scene {
   /**
    * Scene that displays the clue.
@@ -56,7 +59,7 @@ class Clue extends Phaser.Scene {
 
     this.repo.sendClueRequest(this.clueId, (response) => {
       const parsedResponse = JSON.parse(response);
-      const clueContent = parsedResponse[0].CONTENUE;
+      const clueContent = parsedResponse[0].CONTENU;
       this.clueText.text = clueContent;
     });
 

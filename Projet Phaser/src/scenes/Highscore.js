@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene where you can see the scores of other players
+ */
 class Highscore extends Phaser.Scene {
   /**
    * Scene that displays the highscores.
