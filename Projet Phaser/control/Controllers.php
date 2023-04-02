@@ -27,7 +27,7 @@ class Controllers
                 }
             }
             else{
-                // retourne une erreur si la personne ne passe pas par le forumlaire de création ou de connexion
+                // retourne une erreur si la personne ne passe pas par le formulaire de création ou de connexion
                 $error = 'not connected';
                 echo $error;
                 return $error;
