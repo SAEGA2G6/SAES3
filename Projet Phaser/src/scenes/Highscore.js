@@ -9,12 +9,12 @@ class Highscore extends Phaser.Scene {
     super("Highscore");
     this.myJsonScores;
     this.repo = new DBQueries();
-
   }
 
   /** @returns {void} */
   editorCreate() {
-    const arrowBack = this.add
+    /// back arrow ///
+    this.add
       .image(100, 100, "arrow_back")
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", () => {
@@ -32,9 +32,7 @@ class Highscore extends Phaser.Scene {
       });
     this.textHighscore = textHighscore;
 
-    
-
-    this.repo.sendScoresRequest("rc", (response) => {
+    this.repo.getScoresJSON("rc", (response) => {
       const parsedResponse = JSON.parse(response);
       this.createScoreBoard(parsedResponse);
     });
@@ -75,7 +73,7 @@ class Highscore extends Phaser.Scene {
     floor0.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor0.setStyle({ fill: "orange" });
-      this.repo.sendScoresRequest("rc", (response) => {
+      this.repo.getScoresJSON("rc", (response) => {
         const parsedResponse = JSON.parse(response);
         this.createScoreBoard(parsedResponse);
       });
@@ -84,7 +82,7 @@ class Highscore extends Phaser.Scene {
     floor1.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor1.setStyle({ fill: "orange" });
-      this.repo.sendScoresRequest("e1", (response) => {
+      this.repo.getScoresJSON("e1", (response) => {
         const parsedResponse = JSON.parse(response);
         this.createScoreBoard(parsedResponse);
       });
@@ -93,7 +91,7 @@ class Highscore extends Phaser.Scene {
     floor2.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
       this.resetTextsColor();
       floor2.setStyle({ fill: "orange" });
-      this.repo.sendScoresRequest("e2", (response) => {
+      this.repo.getScoresJSON("e2", (response) => {
         const parsedResponse = JSON.parse(response);
         this.createScoreBoard(parsedResponse);
       });
@@ -106,7 +104,7 @@ class Highscore extends Phaser.Scene {
     this.editorCreate();
   }
 
-  createScoreBoard(response){
+  createScoreBoard(response) {
     this.textHighscore.text = "";
     if (response.length == 0) {
       this.textHighscore.text = "Aucun score :(";
@@ -133,35 +131,6 @@ class Highscore extends Phaser.Scene {
       }
     }
   }
-
-  /*callback(that, data){
-    that.textHighscore.text = "";
-    if (data.length == 0) {
-      that.textHighscore.text = "Aucun score :(";
-    } else {
-      for (let index = 0; index < data.length; index++) {
-        if (index == 0) {
-          that.textHighscore.text +=
-            "1ER  " +
-            data[index].ID_JOUEUR +
-            "   " +
-            data[index].SCORE +
-            " sec";
-        } else {
-          var place = index + 1;
-          that.textHighscore.text +=
-            "\n" +
-            place +
-            "EME " +
-            data[index].ID_JOUEUR +
-            "   " +
-            data[index].SCORE +
-            " sec";
-        }
-      }
-    }
-  }*/
-
 
   /**
    * Resets the colour of the floor texts.

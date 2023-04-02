@@ -190,6 +190,31 @@
                 "url": "/assets/maps/iut_e2.png",
                 "key": "e2img",
                 "type": "image"
+            },
+            {
+                "url": "/assets/presentation/pres1.png",
+                "key": "pres1",
+                "type": "image"
+            },
+            {
+                "url": "/assets/presentation/pres2.png",
+                "key": "pres2",
+                "type": "image"
+            },
+            {
+                "url": "/assets/presentation/pres3.png",
+                "key": "pres3",
+                "type": "image"
+            },
+            {
+                "url": "/assets/presentation/pres4.png",
+                "key": "pres4",
+                "type": "image"
+            },
+            {
+                "url": "/assets/presentation/pres5.png",
+                "key": "pres5",
+                "type": "image"
             }
         ]
     },

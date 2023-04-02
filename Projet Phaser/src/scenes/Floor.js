@@ -239,7 +239,7 @@ class Floor extends Phaser.Scene {
     /// CHECK IF GAME IS OVER ///
     if (this.isGameOver()) {
       this.getScore();
-      this.repo.sendInsertScoreRequest(this.player, this.levelPrefix);
+      this.repo.insertPlayerScore(this.player, this.levelPrefix);
       this.scene.start("GameOver", {
         pseudo: this.playerPseudo,
         floor: "'rez-de-chaussée'",

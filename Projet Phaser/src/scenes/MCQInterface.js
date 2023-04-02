@@ -21,9 +21,6 @@ class MCQInterface extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
     this.currentScene.player.stopSpeed();
     this.currentQuestionNb = 0;
@@ -96,11 +93,10 @@ class MCQInterface extends Phaser.Scene {
       this.currentBoss.scene.currentRoomNumber;
 
     /// Request send to the DB to get the questions and answers that correspond to the actual boss/mcq ///
-    this.repo.sendQuestionAnswersRequest(prefix, (response) => {
+    this.repo.getQuestionAnswersJSON(prefix, (response) => {
       const parsedResponse = JSON.parse(response);
       this.QAjson = parsedResponse;
       this.nextQuestion();
-      //this.nextQuestion(parsedResponse);
     });
 
     /// Creation of the events about the right and wrong answers ///
@@ -114,10 +110,6 @@ class MCQInterface extends Phaser.Scene {
     this.KeyESC = KeyESC;
 
     this.events.emit("scene-awake");
-  }
-
-  Preload() {
-    this.editorPreload();
   }
 
   create() {
@@ -146,18 +138,6 @@ class MCQInterface extends Phaser.Scene {
     //this.myJsonQA = MCQInterface.myJsonQA;
 
     this.resetRightAnswer();
-    /*if (this.currentQuestionNb < this.myJsonQA.length) {
-      /// the question and answers are assigned to the respective texts that will be displayed ///
-      this.question.text = this.myJsonQA[this.currentQuestionNb].Enonce;
-      this.answer1.text = this.myJsonQA[this.currentQuestionNb].Reponse1;
-      this.answer2.text = this.myJsonQA[this.currentQuestionNb].Reponse2;
-      this.answer3.text = this.myJsonQA[this.currentQuestionNb].Reponse3;
-      this.answer4.text = this.myJsonQA[this.currentQuestionNb].Reponse4;
-
-      /// the property of the correct answer is changed so that it is considered correct ///
-      this.answerList[
-        this.myJsonQA[this.currentQuestionNb].BonneReponse - 1
-      ].isRight = true;*/
     if (this.currentQuestionNb < this.QAjson.length) {
       this.createQA(this.QAjson);
       /// the question number is incremented for the next ///

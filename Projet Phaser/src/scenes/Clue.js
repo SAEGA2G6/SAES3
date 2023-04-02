@@ -16,9 +16,6 @@ class Clue extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
     this.currentScene.player.stopSpeed();
 
@@ -57,7 +54,7 @@ class Clue extends Phaser.Scene {
       clueText.x -= 50;
     }
 
-    this.repo.sendClueRequest(this.clueId, (response) => {
+    this.repo.getClueJSON(this.clueId, (response) => {
       const parsedResponse = JSON.parse(response);
       const clueContent = parsedResponse[0].CONTENU;
       this.clueText.text = clueContent;
@@ -65,10 +62,6 @@ class Clue extends Phaser.Scene {
 
     const KeyESC = this.input.keyboard.addKey("esc");
     this.KeyESC = KeyESC;
-  }
-
-  Preload() {
-    this.editorPreload();
   }
 
   create() {

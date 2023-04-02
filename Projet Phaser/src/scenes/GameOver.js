@@ -14,11 +14,9 @@ class GameOver extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
-    const arrowBack = this.add
+    /// back arrow ///
+    this.add
       .image(100, 100, "arrow_back")
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", () => {

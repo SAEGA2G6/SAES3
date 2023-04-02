@@ -12,9 +12,6 @@ class Choose extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
     /// back arrow ///
     this.add

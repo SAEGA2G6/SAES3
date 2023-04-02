@@ -7,7 +7,7 @@ class DBQueries {
    * query sent to retrieve the text of the clue
    * @return {void}
    */
-  sendClueRequest(clueId, callback) {
+  getClueJSON(clueId, callback) {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -26,8 +26,7 @@ class DBQueries {
    * query sent to retrieve the scores from DB
    * @return {void}
    */
-
-  sendScoresRequest(floor, callback) {
+  getScoresJSON(floor, callback) {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -47,7 +46,7 @@ class DBQueries {
    * @param {string} prefix
    * @return {void}
    */
-  sendQuestionAnswersRequest(prefix, callback) {
+  getQuestionAnswersJSON(prefix, callback) {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -66,7 +65,7 @@ class DBQueries {
    * Sends a request to the DB to insert the player's score in the DB
    * @return {void}
    */
-  sendInsertScoreRequest(player, levelPrefix) {
+  insertPlayerScore(player, levelPrefix) {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "src/requetes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

@@ -10,9 +10,6 @@ class Menu extends Phaser.Scene {
   }
 
   /** @returns {void} */
-  editorPreload() {}
-
-  /** @returns {void} */
   editorCreate() {
     const carte = this.make.tilemap({ key: "map" });
 
