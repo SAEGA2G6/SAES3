@@ -16,8 +16,9 @@ class Presenter
         $content = null;
         if( $this->administrationCheck->getAdministrationTxt() != null )
         {
-            
+            $content .=  '<div class= "scrollbox">';
             foreach( $this->administrationCheck->getAdministrationTxt()as $question ) {
+                $content .=  '<div class= "questionBox">';
                 $content .=  '<div> <input type="checkbox" class="checkbox" id="'.$question['id'].'">';
                 $content .=  '<p>ID question : <div>'. $question['id'].'</div></p>';
                 $content .=  '<p>Parcours : '. $question['parcours'].'</p>';
@@ -28,7 +29,9 @@ class Presenter
                 $content .=  '<p>Réponse 2 : "'. $question['reponse2'].'"</p>';
                 $content .=  '<p>Réponse 3 : "'. $question['reponse3'].'"</p>';                    
                 $content .=  '<p>Réponse 4 : "'. $question['reponse4'].'"</p></div><br><br>';   
+                $content .=  '</div>';
             }    
+            $content .=  '</div>';
         }else {
             $content .=  'Pas de correspondance <br><br>';   
         } 
