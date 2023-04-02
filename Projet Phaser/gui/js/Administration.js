@@ -7,13 +7,13 @@ monForm.method = "POST"
 let idQuestion = document.createElement('p')
 idQuestion.innerHTML = 'id question : sera généré automatiquement'
 
-let parcour = document.createElement('p')
-parcour.innerHTML = 'parcour : '
-let inputParcour = document.createElement('input')
-inputParcour.type = 'text'
-inputParcour.name = 'Parcour'
-parcour.append(inputParcour)
-monForm.append(parcour)
+let parcours = document.createElement('p')
+parcours.innerHTML = 'parcours : '
+let inputParcours = document.createElement('input')
+inputParcours.type = 'text'
+inputParcours.name = 'Parcours'
+parcours.append(inputParcours)
+monForm.append(parcours)
 
 let salle = document.createElement('p')
 salle.innerHTML = 'salle : '
@@ -24,13 +24,13 @@ inputSalle.name = 'salle'
 salle.append(inputSalle)
 monForm.append(salle)
 
-let enoncer = document.createElement('p')
-enoncer.innerHTML = 'enoncer : '
-let inputEnoncer = document.createElement('input')
-inputEnoncer.type = 'text'
-inputEnoncer.name = 'Enoncer'
-enoncer.append(inputEnoncer)
-monForm.append(enoncer)
+let enonce = document.createElement('p')
+enonce.innerHTML = 'enonce : '
+let inputEnonce = document.createElement('input')
+inputEnonce.type = 'text'
+inputEnonce.name = 'Enonce'
+enonce.append(inputEnonce)
+monForm.append(enonce)
 
 let bonneReponse = document.createElement('p')
 bonneReponse.innerHTML = 'bonne reponse :'
@@ -150,13 +150,13 @@ function updateQuestion(){
     let id = currentQuestion.childNodes.item(3)
     
     
-    let parcour = currentQuestion.childNodes.item(5)
-    let inputParcour = document.createElement('input')
-    inputParcour.type = 'text'
-    let parcourText = parcour.innerHTML.split(' : ')
-    inputParcour.value = parcourText[1]
-    parcour.innerHTML = parcourText[0]+' : '
-    parcour.append(inputParcour)
+    let parcours = currentQuestion.childNodes.item(5)
+    let inputParcours = document.createElement('input')
+    inputParcours.type = 'text'
+    let parcoursText = parcours.innerHTML.split(' : ')
+    inputParcours.value = parcoursText[1]
+    parcours.innerHTML = parcoursText[0]+' : '
+    parcours.append(inputParcours)
 
     let salle = currentQuestion.childNodes.item(6)
     let inputSalle = document.createElement('input')
@@ -166,13 +166,13 @@ function updateQuestion(){
     salle.innerHTML = salleText[0]+' : '
     salle.append(inputSalle)
 
-    let enoncer = currentQuestion.childNodes.item(7)
-    let inputEnoncer = document.createElement('input')
-    inputEnoncer.type = 'text'
-    let enoncerText = enoncer.innerHTML.split(' : ')
-    inputEnoncer.value = enoncerText[1].replace("\"","").replace("\"","")
-    enoncer.innerHTML = enoncerText[0]+' : '
-    enoncer.append(inputEnoncer)
+    let enonce = currentQuestion.childNodes.item(7)
+    let inputEnonce = document.createElement('input')
+    inputEnonce.type = 'text'
+    let enonceText = enonce.innerHTML.split(' : ')
+    inputEnonce.value = enonceText[1].replace("\"","").replace("\"","")
+    enonce.innerHTML = enonceText[0]+' : '
+    enonce.append(inputEnonce)
 
     let bonneReponse = currentQuestion.childNodes.item(8)
     let inputBonneReponse = document.createElement('input')
@@ -231,9 +231,9 @@ function updateQuestion(){
         xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
         xhr.send(JSON.stringify({
             "id":id.innerHTML,
-            "parcour":inputParcour.value,
+            "parcours":inputParcours.value,
             "salle":inputSalle.value,
-            "enoncer":inputEnoncer.value,
+            "enonce":inputEnonce.value,
             "bonneReponse":inputBonneReponse.value,
             "reponse1":inputReponse1.value,
             "reponse2":inputReponse2.value,
@@ -253,7 +253,7 @@ function updateQuestion(){
 
 }
 
-function send(id, parcour, salle, enoncer, bonneReponse, reponse1, reponse2,reponse3,reponse4){
+function send(id, parcours, salle, enonce, bonneReponse, reponse1, reponse2,reponse3,reponse4){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "updateQuestion", true);
     xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
@@ -267,9 +267,9 @@ function send(id, parcour, salle, enoncer, bonneReponse, reponse1, reponse2,repo
     xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({
         "id":id,
-        "parcour":parcour,
+        "parcours":parcours,
         "salle":salle,
-        "enoncer":enoncer,
+        "enonce":enonce,
         "bonneReponse":bonneReponse,
         "reponse1":reponse1,
         "reponse2":reponse2,

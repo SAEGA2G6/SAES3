@@ -1,3 +1,6 @@
+/**
+ * Class representing the floor, the level where the player can move on
+ */
 class Floor extends Phaser.Scene {
   init(data) {
     this.floorsConfig = this.cache.json.get("FloorsConfig");

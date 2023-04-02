@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene where you choose your level and your character
+ */
 class Choose extends Phaser.Scene {
   /**
    * Scene for level and character selection.

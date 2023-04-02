@@ -1,3 +1,6 @@
+/**
+ * Class representing the scene which is displayed when you successfully finish to answer all questions of the floor
+ */
 class GameOver extends Phaser.Scene {
   /**
    * Scene that displays when the player has finished a level.

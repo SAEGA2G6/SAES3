@@ -4,21 +4,21 @@ namespace domain;
 class Question
 {
     protected $id;
-    protected $parcour;
+    protected $parcours;
     protected $salle;
-    protected $enoncer;
+    protected $enonce;
     protected $bonneReponse;
     protected $reponse1;
     protected $reponse2;
     protected $reponse3;
     protected $reponse4;
 
-    public function __construct($id, $parcour, $salle, $enoncer, $bonneReponse, $reponse1, $reponse2, $reponse3, $reponse4)
+    public function __construct($id, $parcours, $salle, $enonce, $bonneReponse, $reponse1, $reponse2, $reponse3, $reponse4)
     {
         $this->id = $id;
-        $this->parcour = $parcour;
+        $this->parcours = $parcours;
         $this->salle = $salle;
-        $this->enoncer = $enoncer;
+        $this->enonce = $enonce;
         $this->bonneReponse = $bonneReponse;
         $this->reponse1 = $reponse1;
         $this->reponse2 = $reponse2;
@@ -31,9 +31,9 @@ class Question
         return $this->id;
     }
 
-    public function getParcour()
+    public function getParcours()
     {
-        return $this->parcour;
+        return $this->parcours;
     }
 
     public function getSalle()
@@ -41,9 +41,9 @@ class Question
         return $this->salle;
     }
 
-    public function getEnoncer()
+    public function getEnonce()
     {
-        return $this->enoncer;
+        return $this->enonce;
     }
 
     public function getBonneReponse()

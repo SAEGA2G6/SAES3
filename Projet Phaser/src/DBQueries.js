@@ -1,3 +1,6 @@
+/**
+ * Class allowing to get the necessary information for the functioning of the game (MCQs, clues, etc...) but also to send some (score of the player)
+ */
 class DBQueries {
   constructor() {}
   /**
