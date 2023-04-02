@@ -68,17 +68,13 @@ if ( '/index.php' == $uri ) {
 }elseif ('/index.php/authenticate' == $uri){
     $error = $controller->authenticateAction($userCheck,$dataUsers);
 
-    if( $error != null )
-    {
-        $uri='index.php/error' ;
-        if( $error == 'bad login or pwd' or $error == 'not connected')
-            $redirect = 'index.php';
-    }
+
     header("refresh:2;url=/index.php/administration"); 
 }
 elseif ( '/index.php/administration' == $uri ){
     if(!isset($_SESSION['login'])){
         header("refresh:0;url=/index.php/login"); 
+        die();
     }
     
     $controller->getAllQuestionAction($administrationCheck, $dataAdministration);
