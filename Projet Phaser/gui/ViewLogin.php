@@ -14,7 +14,7 @@ class ViewLogin extends View{
         <p>Connectez Vous!</p>
         <input type="text" name="login" placeholder="Login">
         <input type="password" name="password" placeholder="Mot de Passe">
-        <button type="submit">Connexion</button>
+        <button class="connexion" type="submit">Connexion</button>
         </form>';
 
     }
