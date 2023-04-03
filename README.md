@@ -4,7 +4,7 @@
   <a href="https://aixploration.alwaysdata.net/"><img src="https://user-images.githubusercontent.com/104560706/212537516-4d43fe10-6b2c-428a-bdba-862bd8cfc3e4.png" alt="Markdownify" width="600"></a>
 </h1>
 
-<h4 align="center">Un Serious Game sur le BUT Informatique d'Aix-en-Provence !</h4>
+<h4 align="center">Un serious game sur le BUT Informatique d'Aix-en-Provence !</h4>
 
 <p align="center">
   <a href="#contexte">Contexte</a> •
@@ -20,7 +20,7 @@
 
 ## Contexte
 Jeu réalisé lors de notre **2nde année de BUT Informatique à Aix-en-Provence.**
-Ce Serious Game permet aux lycéens et étudiants réoritentés d'en apprendre plus sur le BUT Informatique d'Aix-en-Provence.
+Ce serious game permet aux lycéens et étudiants réoritentés d'en apprendre plus sur le BUT Informatique d'Aix-en-Provence.
 
 [Plus d'informations...](https://github.com/Aehnt/SAES3/files/9753629/2022_SAE_S3_presentation.pdf)
 
@@ -36,7 +36,7 @@ Il y a **3 étages** (correspondant chacun à une année du BUT Informatique et 
 ## Accès
 
 
-Vous pouvez [accéder au jeu](https://aixploration.alwaysdata.net/) directement depuis un navigateur Internet.
+Vous pouvez [accéder au jeu](https://aixploration.alwaysdata.net/index.php) directement depuis un navigateur Internet.
 
 
 ## Crédits
