@@ -5,6 +5,8 @@ try {
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
+
+///GET CLUE (JSON)
 if (isset($_POST['clueID'])) {
     $req = $pdo->prepare('SELECT * FROM INDICE WHERE ID_INDICE = ?');
     $req->execute(array($_POST['clueID']));
@@ -21,7 +23,9 @@ if (isset($_POST['clueID'])) {
 
     // Fermeture de la connexion
     $req->closeCursor();
-} else if (isset($_POST['floor'])) {
+}
+///GET ALL SCORES (JSON)
+else if (isset($_POST['floor'])) {
     $req = $pdo->prepare('SELECT * FROM SCORE WHERE ETAGE = ? ORDER BY score');
     $req->execute(array($_POST['floor']));
 
@@ -38,7 +42,9 @@ if (isset($_POST['clueID'])) {
     // Fermeture de la connexion
     $req->closeCursor();
 
-} else if (isset($_POST['room'])) {
+}
+///GET QUESTIONS AND ANSWERS OF A ROOM (JSON) 
+else if (isset($_POST['room'])) {
     $req = $pdo->prepare('SELECT * FROM QUESTION where SALLE = ?');
     $req->execute(array($_POST['room']));
 
@@ -55,7 +61,9 @@ if (isset($_POST['clueID'])) {
     // Fermeture de la connexion
     $req->closeCursor();
 
-} else if (isset($_POST['levelPrefix']) && isset($_POST['score']) && isset($_POST['pseudo'])) {
+}
+///INSERT SCORE OF THE PLAYER 
+else if (isset($_POST['levelPrefix']) && isset($_POST['score']) && isset($_POST['pseudo'])) {
     $req = $pdo->prepare('SELECT ID_JOUEUR as pseudo, SCORE FROM SCORE WHERE etage = ? ORDER BY SCORE DESC LIMIT 1');
     $req->execute(array($_POST['levelPrefix']));
     $score_max = $req->fetch();
